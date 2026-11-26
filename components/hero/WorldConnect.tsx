@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Bot, BrainCircuit, Cloud, Code2, Cpu, Database } from "lucide-react";
 import mapData from "@/public/media/map/world-pins.json";
+import MapRobots from "./MapRobots";
 
 /**
  * Hero visual: a dotted world map with ALPIXN's nine markets, linked by animated
@@ -127,6 +128,9 @@ export default function WorldConnect() {
             </span>
           );
         })}
+
+        {/* Little robots at work */}
+        <MapRobots />
 
         {/* Technology badges on the links */}
         {BADGES.map(({ link, icon: Icon, label, bg, ink, ...rest }, i) => {

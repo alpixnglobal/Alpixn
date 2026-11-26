@@ -97,11 +97,10 @@ export function HeroV4({
         <div className="absolute bottom-0 left-1/2 h-[300px] w-[700px] -translate-x-1/2 rounded-full bg-[#9a5b08]/10 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1320px] px-4 pt-12 sm:px-6 sm:pt-16 lg:px-10 lg:pt-20">
+      <div className="relative mx-auto max-w-[1320px] px-4 pt-6 sm:px-6 sm:pt-8 lg:px-10 lg:pt-8">
         {/* Centered message */}
         <div className="mx-auto max-w-4xl text-center">
-          <Kicker tone="blue">AI · Robotics · Software Engineering</Kicker>
-          <h1 id="hero-title" className="mt-6 font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
+          <h1 id="hero-title" className="font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
             {useDefault ? (
               <>
                 Engineering <span className="text-brand-spectrum">AI, Robotics &amp; Software</span> for the Real World
@@ -112,8 +111,8 @@ export function HeroV4({
               </>
             )}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-fg-muted">{copy}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-fg-muted">{copy}</p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
               {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
             </Link>
@@ -124,7 +123,7 @@ export function HeroV4({
         </div>
 
         {/* Stage: the nine markets on a world map, linked by AI, robotics, cloud and software */}
-        <div className="relative mx-auto mt-10 max-w-[1180px] lg:mt-12">
+        <div className="relative mx-auto mt-4 max-w-[1120px] lg:-mt-2">
           <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(8,120,209,0.14)_0%,rgba(246,215,122,0.18)_45%,transparent_72%)] blur-2xl" />
           <WorldConnect />
         </div>
