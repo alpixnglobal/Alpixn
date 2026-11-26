@@ -46,3 +46,6 @@ next-env.d.ts
 # Local security backups
 security-backup-*/
 !.env.example
+
+# Local pre-change backups (may contain old defaults) — never commit
+*.before-*

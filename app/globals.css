@@ -886,7 +886,10 @@ html.theme-ready section {
 .nav-link {
   position: relative;
   display: inline-flex;
+  flex-direction: row;
+  gap: 0.25rem;
   align-items: center;
+  border-radius: 0;
   height: 2.5rem;
   padding: 0 0.85rem;
   font-size: 0.9375rem;
