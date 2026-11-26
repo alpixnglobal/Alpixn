@@ -65,7 +65,7 @@ const BlogDetailsSection = ({
             <div
               className="rounded-[10px] p-[40px]"
               style={{
-                background: "linear-gradient(85.85deg, var(--tech) 0%, #064A87 48.27%, #A200FF 98.56%)",
+                background: "linear-gradient(85.85deg, var(--tech) 0%, #064A87 48.27%, var(--gold) 98.56%)",
               }}
             >
               <div className="grid grid-cols-1 gap-[22px] xl:grid-cols-[194px_auto]">

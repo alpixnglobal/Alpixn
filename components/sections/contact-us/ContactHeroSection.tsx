@@ -21,7 +21,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[1440px] h-[191px] left-0 top-[-150px]"
         style={{
-          background: "#D42190",
+          background: "var(--gold)",
           opacity: 0.66,
           filter: "blur(92.5px)",
           transform: "matrix(1, 0, 0, -1, , 0)",
@@ -42,7 +42,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[320px] h-[320px] left-[1183px] top-[143px]"
         style={{
-          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 100%)",
+          background: "linear-gradient(180deg, var(--gold) 0%, var(--tech) 100%)",
           opacity: 0.53,
           filter: "blur(250px)",
         }}
@@ -52,7 +52,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[320px] h-[320px] left-[-79px] top-[143px]"
         style={{
-          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 100%)",
+          background: "linear-gradient(180deg, var(--gold) 0%, var(--tech) 100%)",
           opacity: 0.53,
           filter: "blur(250px)",
         }}

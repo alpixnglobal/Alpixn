@@ -35,7 +35,7 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
           height: "107%",
           left: "-5%",
           top: "-59%",
-          background: "linear-gradient(0deg, #D42190, #D42190)",
+          background: "linear-gradient(0deg, var(--gold), var(--gold))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -77,7 +77,7 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
           height: "107%",
           right: "-5%",
           top: "89%",
-          background: "linear-gradient(0deg, #D42190, #D42190)",
+          background: "linear-gradient(0deg, var(--gold), var(--gold))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}

@@ -72,7 +72,7 @@ const GuideToSoftwareDevSection = ({ slug = "software-development", data }: Guid
                       ? {
                           background: "linear-gradient(180deg, var(--tech) 0%, #064A87 100%)",
                           borderBottom: "3px solid",
-                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, #FFFFFF 0%, var(--tech) 100%)",
+                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, var(--heading-from) 0%, var(--tech) 100%)",
                         }
                       : {
                           background: "color-mix(in srgb, var(--tech) 5%, transparent)",

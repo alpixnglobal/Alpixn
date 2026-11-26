@@ -21,7 +21,7 @@ const Home = async () => {
         heroImageData={settings.heroImageData}
       />
       <CustomSolutionSection title={settings.customSolutionsTitle} subtitle={settings.customSolutionsSubtitle} cards={settings.customSolutionCards} />
-      <OfferSection title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings as any} />
+      <OfferSection title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings} />
       <CaseStudySection title={settings.caseStudyTitle} subtitle={settings.caseStudySubtitle} cases={settings.caseStudies} />
       <HomeIndustriesSection title={settings.industriesTitle} subtitle={settings.industriesSubtitle} tabs={settings.industriesTabs} />
       <TechStackSection title={settings.techStackTitle} description={settings.techStackDescription} tabs={settings.techStackTabs} />

@@ -38,7 +38,7 @@ const AboutHeroSection = ({
         <h1
           className="w-full max-w-[980px] pb-1 font-extrabold text-2xl sm:text-3xl md:text-[38px] lg:text-[52px] leading-[1.16] text-left sm:text-center break-words"
           style={{
-            background: "linear-gradient(89.81deg, #FFFFFF 19.79%, #FFFFFF 76.65%, var(--tech-soft) 93.54%)",
+            background: "linear-gradient(89.81deg, var(--heading-from) 19.79%, var(--heading-from) 76.65%, var(--tech-soft) 93.54%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -75,7 +75,7 @@ const AboutHeroSection = ({
               background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
               border: "1.5px solid transparent",
               backgroundImage:
-                "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
+                "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
               backgroundOrigin: "border-box",
               backgroundClip: "padding-box, border-box",
             }}

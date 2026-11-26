@@ -57,7 +57,7 @@ const WhoWeAreSection = ({
               <span
                 className="text-gradient font-bold text-2xl md:text-3xl leading-snug"
               style={{
-                background: "linear-gradient(89.81deg, #FFFFFF 19.79%, #FFFFFF 76.65%, var(--tech-soft) 93.54%)",
+                background: "linear-gradient(89.81deg, var(--heading-from) 19.79%, var(--heading-from) 76.65%, var(--tech-soft) 93.54%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -101,7 +101,7 @@ const WhoWeAreSection = ({
               <div
                 className="w-[86px] h-[2px]"
                 style={{
-                  background: "linear-gradient(90deg, #FFFFFF 0%, var(--tech-soft) 47.6%, #FFFFFF 100%)",
+                  background: "linear-gradient(90deg, var(--heading-from) 0%, var(--tech-soft) 47.6%, var(--heading-from) 100%)",
                 }}
               />
 

@@ -74,7 +74,7 @@ const JobDetailsSection = ({
                 background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                 border: "1.5px solid transparent",
                 backgroundImage:
-                  "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
+                  "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
                 backgroundOrigin: "border-box",
                 backgroundClip: "padding-box, border-box",
               }}

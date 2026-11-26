@@ -22,7 +22,7 @@ const ExpertiseHeroSection = ({
   const resolvedLogos = logos.length > 0 ? logos : ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"];
   const heroTitleClassName = `
     font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight
-    bg-[linear-gradient(89.22deg,#FFFFFF_1.35%,#FFFFFF_58.47%,var(--tech-soft)_101.3%)]
+    bg-[linear-gradient(89.22deg,var(--heading-from)_1.35%,var(--heading-from)_58.47%,var(--tech-soft)_101.3%)]
     bg-clip-text text-transparent
   `;
 

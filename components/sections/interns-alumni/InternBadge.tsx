@@ -20,7 +20,7 @@ const BADGE_STYLES: Record<
     textColor: "#FFFFFF",
   },
   silver: {
-    background: "linear-gradient(278.66deg, #FFFFFF -86%, #8CA0A7 100%)",
+    background: "linear-gradient(278.66deg, var(--heading-from) -86%, #8CA0A7 100%)",
     foldColor: "#6F8288",
     textColor: "#0B1F26",
   },

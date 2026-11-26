@@ -2,9 +2,9 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTheme } from "@/components/theme-provider";
-import type { SceneQuality, TelemetryRefs } from "./RoboticsScene";
+import type { SceneQuality, TelemetrySample } from "./RoboticsScene";
 
 // Three.js + R3F are only downloaded when a capable device actually needs the scene.
 const RoboticsScene = dynamic(() => import("./RoboticsScene"), { ssr: false, loading: () => null });
@@ -75,7 +75,18 @@ export default function HeroVisual({ fallbackImage }: { fallbackImage?: string }
   const capability = useCapability();
   const quality = useQuality();
   const wrapRef = useRef<HTMLDivElement>(null);
-  const telemetry: TelemetryRefs = useRef({});
+  const telemetry = useRef<Partial<Record<"yaw" | "shoulder" | "elbow" | "grip" | "phase" | "inference", HTMLElement | null>>>({});
+  // Called by the scene ~10×/s; writes straight to the DOM (no React re-render per frame).
+  const onTelemetry = useCallback((sample: TelemetrySample) => {
+    const el = telemetry.current;
+    const deg = (r: number) => `${(r * 57.2958).toFixed(1)}°`;
+    if (el.yaw) el.yaw.textContent = deg(sample.yaw);
+    if (el.shoulder) el.shoulder.textContent = deg(sample.shoulder);
+    if (el.elbow) el.elbow.textContent = deg(sample.elbow);
+    if (el.grip) el.grip.textContent = `${Math.round(sample.grip * 100)}%`;
+    if (el.phase) el.phase.textContent = sample.phase;
+    if (el.inference) el.inference.textContent = `${sample.inference.toFixed(1)}%`;
+  }, []);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(true);
   const [deferred, setDeferred] = useState(false);
@@ -148,7 +159,7 @@ export default function HeroVisual({ fallbackImage }: { fallbackImage?: string }
 
       {showScene ? (
         <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}>
-          <RoboticsScene theme={theme} quality={quality} active={active} telemetry={telemetry} onReady={() => setReady(true)} />
+          <RoboticsScene theme={theme} quality={quality} active={active} onTelemetry={onTelemetry} onReady={() => setReady(true)} />
         </div>
       ) : null}
 

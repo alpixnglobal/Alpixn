@@ -81,7 +81,7 @@ const SuccessPropelSection = ({ title = "Node.js Development Services That Prope
               <div
                 className={`absolute inset-0 ${cornerClasses[index % cornerClasses.length]} pointer-events-none`}
                 style={{
-                  background: "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                  background: "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                   padding: "1px",
                   WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   WebkitMaskComposite: "xor",

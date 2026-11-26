@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 // Define your custom variants
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-manrope font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--gold)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         // Your custom variants
         primary:
-          "bg-tech text-white border-2 border-tech hover:bg-[#2980db] hover:border-[#2980db] shadow-[0_2px_10px_rgba(157,216,255,0.1)]",
+          "text-white border border-[color:var(--line-gold)] bg-gradient-to-br from-brand-royal to-brand-midnight shadow-[0_8px_24px_-10px_rgba(8,120,209,0.7)] hover:shadow-[0_12px_32px_-10px_rgba(8,120,209,0.85),0_0_0_1px_rgba(246,215,122,0.45)] hover:-translate-y-0.5",
         secondary: "bg-gray-100 text-gray-800 border-2 border-gray-300 hover:bg-gray-200 hover:border-gray-400",
-        outlined: "bg-transparent text-white border-2 border-tech hover:bg-tech hover:text-white",
+        outlined: "bg-transparent text-fg border border-[color:var(--line-gold)] hover:border-gold hover:text-gold hover:shadow-[0_8px_24px_-14px_var(--gold)]",
         // Keep shadcn's defaults
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",

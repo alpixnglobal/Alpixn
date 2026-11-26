@@ -68,7 +68,7 @@ const WhyChooseUsAboutSection = ({
                 borderRadius: "10px",
                 padding: "1px",
                 background:
-                  "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                  "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
@@ -232,7 +232,7 @@ const WhyChooseUsAboutSection = ({
                 borderRadius: "10px",
                 padding: "1px",
                 background:
-                  "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                  "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
@@ -447,7 +447,7 @@ const WhyChooseUsAboutSection = ({
                 borderRadius: "10px",
                 padding: "1px",
                 background:
-                  "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                  "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 maskComposite: "exclude",
@@ -683,7 +683,7 @@ const WhyChooseUsAboutSection = ({
                     fill="white"
                     fillOpacity={isCellHovered ? "0.9" : "0.5"}
                     style={{
-                      filter: isCellHovered ? "drop-shadow(0 0 8px rgba(255, 255, 255, 0.9))" : "none",
+                      filter: isCellHovered ? "drop-shadow(0 0 8px rgb(var(--hi-rgb) / calc(0.9 * var(--hi-scale))))" : "none",
                       transition: "fill-opacity 0.6s ease, filter 0.6s ease",
                     }}
                   />
@@ -694,7 +694,7 @@ const WhyChooseUsAboutSection = ({
                     fill="white"
                     fillOpacity={isCellHovered ? "0.9" : "0.5"}
                     style={{
-                      filter: isCellHovered ? "drop-shadow(0 0 6px rgba(255, 255, 255, 0.9))" : "none",
+                      filter: isCellHovered ? "drop-shadow(0 0 6px rgb(var(--hi-rgb) / calc(0.9 * var(--hi-scale))))" : "none",
                       transition: "fill-opacity 0.6s ease, filter 0.6s ease",
                     }}
                   />
@@ -956,7 +956,7 @@ const WhyChooseUsAboutSection = ({
                     borderRadius: "10px",
                     padding: "1px",
                     background:
-                      "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                      "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                     WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                     WebkitMaskComposite: "xor",
                     maskComposite: "exclude",

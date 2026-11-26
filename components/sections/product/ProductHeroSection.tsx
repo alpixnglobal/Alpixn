@@ -18,12 +18,13 @@ const ProductHeroSection = ({
   buttonHref = "/contact-us",
 }: ProductHeroSectionProps) => {
   return (
-    <section className="sectionDefault h-fit lg:h-164 overflow-hidden">
+    <section className="dark sectionDefault h-fit lg:h-164 overflow-hidden text-fg">
+      {/* Cinematic dark band in both themes: `dark` scopes the dark-theme tokens to this hero */}
       {/* Background Color */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(90deg,rgba(2, 0, 36, 1) 20%, rgba(9, 9, 121, 1) 35%, rgba(2, 0, 36, 1) 80%)",
+          background: "linear-gradient(90deg, #040d1c 15%, #0a3466 45%, #071a33 70%, #040d1c 90%)",
         }}
       />
 
@@ -128,7 +129,7 @@ const ProductHeroSection = ({
           top: "496px",
           left: "50%",
           transform: "translateX(-0%) translateX(-58px)",
-          background: "linear-gradient(0deg, #D42190, #D42190)",
+          background: "linear-gradient(0deg, var(--gold), var(--gold))",
           opacity: 0.71,
           filter: "blur(202.85px)",
         }}
@@ -173,7 +174,7 @@ const ProductHeroSection = ({
           top: "-190px",
           left: "50%",
           transform: "translateX(0%) translateX(-443px)",
-          background: "linear-gradient(0deg, #D42190, #D42190)",
+          background: "linear-gradient(0deg, var(--gold), var(--gold))",
           opacity: 0.71,
           filter: "blur(202.85px)",
         }}

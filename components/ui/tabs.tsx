@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { Separator } from "@/components/ui/separator";
 
 import { cn } from "@/lib/utils";
 

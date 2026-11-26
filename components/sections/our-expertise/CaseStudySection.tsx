@@ -65,7 +65,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
             className="absolute inset-0 rounded-[20px] pointer-events-none"
             style={{
               background:
-                "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.375) 0%, rgba(255, 255, 255, 0.075) 72.87%)",
+                "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.375 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.075 * var(--hi-scale))) 72.87%)",
               padding: "1px",
               WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMaskComposite: "xor",
@@ -103,7 +103,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                       className="absolute inset-0 rounded-[10px] pointer-events-none"
                       style={{
                         background:
-                          "radial-gradient(100% 100% at 49.96% 0%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.15) 72.87%)",
+                          "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                         padding: "1px",
                         WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                         WebkitMaskComposite: "xor",
@@ -193,7 +193,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                       "
                         style={{
                           background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
-                          border: "1px solid rgba(255, 255, 255, 0.1)",
+                          border: "1px solid rgb(var(--hi-rgb) / calc(0.1 * var(--hi-scale)))",
                         }}
                       >
                         {activeCaseStudy.cta2}

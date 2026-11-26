@@ -315,11 +315,11 @@ const Footer = ({ settings }: FooterProps) => {
           <div className="text-center text-xs sm:text-sm text-fg-subtle [&_a]:text-fg-muted [&_a:hover]:text-gold">{copyrightText}</div>
 
           <div className="flex items-center gap-4 text-xs sm:text-sm font-medium uppercase tracking-[0.12em]">
-            <Link href="/privacy-policy" className="text-fg-muted transition-colors hover:text-gold">
+            <Link href="/privacy-policy" prefetch={false} className="text-fg-muted transition-colors hover:text-gold">
               Privacy Policy
             </Link>
             <span aria-hidden className="h-4 w-px bg-line" />
-            <Link href="/sitemap" className="text-fg-muted transition-colors hover:text-gold">
+            <Link href="/sitemap" prefetch={false} className="text-fg-muted transition-colors hover:text-gold">
               Sitemap
             </Link>
           </div>

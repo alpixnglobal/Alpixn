@@ -41,7 +41,7 @@ function StepIcon({ index }: { index: number }) {
       <div
         className="absolute inset-0 rounded-full pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, #4275AA 0%, #FFFFFF 100%)",
+          background: "linear-gradient(180deg, #4275AA 0%, var(--heading-from) 100%)",
           padding: "1px",
           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
@@ -94,7 +94,7 @@ const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSection
             background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
             border: "1.5px solid transparent",
             backgroundImage:
-              "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
+              "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
           }}

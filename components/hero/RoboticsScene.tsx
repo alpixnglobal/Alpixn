@@ -15,21 +15,15 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 export type SceneTheme = "dark" | "light";
 export type SceneQuality = "high" | "medium";
 
-/** DOM nodes the scene writes live telemetry into (no React re-renders). */
-export type TelemetryRefs = MutableRefObject<{
-  yaw?: HTMLElement | null;
-  shoulder?: HTMLElement | null;
-  elbow?: HTMLElement | null;
-  grip?: HTMLElement | null;
-  phase?: HTMLElement | null;
-  inference?: HTMLElement | null;
-}>;
+/** Live telemetry sample, emitted ~10×/s so the overlay can update the DOM without React re-renders. */
+export type TelemetrySample = { yaw: number; shoulder: number; elbow: number; grip: number; phase: string; inference: number };
+export type TelemetryHandler = (sample: TelemetrySample) => void;
 
 type Props = {
   theme: SceneTheme;
   quality: SceneQuality;
   active: boolean;
-  telemetry?: TelemetryRefs;
+  onTelemetry?: TelemetryHandler;
   onReady?: () => void;
 };
 
@@ -92,6 +86,15 @@ function makeGlowTexture() {
   return tex;
 }
 
+/** Small deterministic PRNG (Park–Miller) so the layout is identical on every load and in captures. */
+function createRng(seed: number) {
+  const state = { v: seed };
+  return () => {
+    state.v = (state.v * 16807) % 2147483647;
+    return (state.v - 1) / 2147483646;
+  };
+}
+
 const smooth = (x: number) => x * x * (3 - 2 * x); // smoothstep 0..1
 
 // Key poses: yaw, shoulder, elbow, wrist, roll, grip (0 open → 1 closed)
@@ -122,8 +125,9 @@ function samplePose(t: number, out: number[]) {
 /* ---------- environment & lights ---------- */
 
 function Environment({ intensity }: { intensity: number }) {
-  const { gl, scene } = useThree();
+  const get = useThree((state) => state.get);
   useEffect(() => {
+    const { gl, scene } = get();
     const pmrem = new THREE.PMREMGenerator(gl);
     const room = new RoomEnvironment();
     const env = pmrem.fromScene(room, 0.04).texture;
@@ -141,13 +145,13 @@ function Environment({ intensity }: { intensity: number }) {
         else mat?.dispose?.();
       });
     };
-  }, [gl, scene, intensity]);
+  }, [get, intensity]);
   return null;
 }
 
 /* ---------- robotic arm ---------- */
 
-function RoboticArm({ theme, telemetry, coreRef }: { theme: SceneTheme; telemetry?: TelemetryRefs; coreRef: MutableRefObject<THREE.Group | null> }) {
+function RoboticArm({ theme, onTelemetry, coreRef }: { theme: SceneTheme; onTelemetry?: TelemetryHandler; coreRef: MutableRefObject<THREE.Group | null> }) {
   const p = PALETTES[theme];
   const turret = useRef<THREE.Group>(null);
   const shoulder = useRef<THREE.Group>(null);
@@ -157,9 +161,10 @@ function RoboticArm({ theme, telemetry, coreRef }: { theme: SceneTheme; telemetr
   const palm = useRef<THREE.Group>(null);
   const fingers = useRef<(THREE.Group | null)[]>([]);
   const tips = useRef<(THREE.Group | null)[]>([]);
-  const pose = useMemo(() => new Array(6).fill(0) as number[], []);
-  const tmp = useMemo(() => new THREE.Vector3(), []);
-  const home = useMemo(() => new THREE.Vector3(-1.55, 0.95, 0.9), []);
+  // Mutable per-frame scratch values live in refs (never mutated during render).
+  const pose = useRef<number[]>([0, 0, 0, 0, 0, 0]);
+  const tmp = useRef(new THREE.Vector3());
+  const home = useRef(new THREE.Vector3(-1.55, 0.95, 0.9));
   const frame = useRef(0);
 
   const geo = useMemo(
@@ -187,9 +192,9 @@ function RoboticArm({ theme, telemetry, coreRef }: { theme: SceneTheme; telemetr
 
   useFrame((state) => {
     const t = sceneTime(state.clock.elapsedTime);
-    const phase = samplePose(t, pose);
+    const phase = samplePose(t, pose.current);
     const micro = Math.sin(t * 1.7) * 0.02;
-    const [yaw, sh, el, wr, rl, grip] = pose;
+    const [yaw, sh, el, wr, rl, grip] = pose.current;
     if (turret.current) turret.current.rotation.y = yaw + micro;
     if (shoulder.current) shoulder.current.rotation.z = sh + micro * 0.5;
     if (elbow.current) elbow.current.rotation.z = el;
@@ -204,28 +209,22 @@ function RoboticArm({ theme, telemetry, coreRef }: { theme: SceneTheme; telemetr
     const core = coreRef.current;
     if (core && palm.current) {
       const holding = (t % CYCLE) > TIMES[2] && (t % CYCLE) < TIMES[5];
+      const v = tmp.current;
       if (holding) {
-        palm.current.getWorldPosition(tmp);
-        tmp.y += 0.05;
-        core.position.lerp(tmp, 0.25);
+        palm.current.getWorldPosition(v);
+        v.y += 0.05;
+        core.position.lerp(v, 0.25);
       } else {
-        tmp.copy(home);
-        tmp.y += Math.sin(t * 1.4) * 0.08;
-        core.position.lerp(tmp, 0.06);
+        v.copy(home.current);
+        v.y += Math.sin(t * 1.4) * 0.08;
+        core.position.lerp(v, 0.06);
       }
     }
 
-    // Telemetry → DOM (throttled)
+    // Telemetry → overlay (throttled; the overlay writes to the DOM directly)
     frame.current++;
-    const tel = telemetry?.current;
-    if (tel && frame.current % 6 === 0) {
-      const deg = (r: number) => `${(r * 57.2958).toFixed(1)}°`;
-      if (tel.yaw) tel.yaw.textContent = deg(yaw);
-      if (tel.shoulder) tel.shoulder.textContent = deg(sh);
-      if (tel.elbow) tel.elbow.textContent = deg(el);
-      if (tel.grip) tel.grip.textContent = `${Math.round(grip * 100)}%`;
-      if (tel.phase) tel.phase.textContent = PHASES[phase % PHASES.length];
-      if (tel.inference) tel.inference.textContent = `${(96 + Math.sin(t * 0.9) * 2.6).toFixed(1)}%`;
+    if (onTelemetry && frame.current % 6 === 0) {
+      onTelemetry({ yaw, shoulder: sh, elbow: el, grip, phase: PHASES[phase % PHASES.length], inference: 96 + Math.sin(t * 0.9) * 2.6 });
     }
   });
 
@@ -372,8 +371,7 @@ function NeuralField({ theme, quality, glowTex }: { theme: SceneTheme; quality: 
 
   const data = useMemo(() => {
     // Deterministic pseudo-random so SSR/CSR and captures are stable
-    let seed = 7;
-    const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+    const rnd = createRng(7);
     const nodes: THREE.Vector3[] = [];
     for (let i = 0; i < nodeCount; i++) {
       const th = rnd() * Math.PI * 2;
@@ -405,8 +403,8 @@ function NeuralField({ theme, quality, glowTex }: { theme: SceneTheme; quality: 
     lineGeo.setAttribute("position", new THREE.BufferAttribute(linePos, 3));
     const pulseGeo = new THREE.BufferGeometry();
     pulseGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(pulseCount * 3), 3));
-    const pulses = Array.from({ length: pulseCount }, (_, i) => ({ edge: Math.floor(rnd() * edges.length), t: rnd(), speed: 0.25 + rnd() * 0.5, dir: i % 2 }));
-    return { nodes, edges, nodeGeo, lineGeo, pulseGeo, pulses };
+    const pulseSeeds = Array.from({ length: pulseCount }, (_, i) => ({ edge: Math.floor(rnd() * edges.length), t: rnd(), speed: 0.25 + rnd() * 0.5, dir: i % 2 }));
+    return { nodes, edges, nodeGeo, lineGeo, pulseGeo, pulseSeeds };
   }, [nodeCount, pulseCount, p.netA, p.netB]);
 
   useEffect(
@@ -420,14 +418,21 @@ function NeuralField({ theme, quality, glowTex }: { theme: SceneTheme; quality: 
 
   const group = useRef<THREE.Group>(null);
   const lineMat = useRef<THREE.LineBasicMaterial>(null);
+  const pulsePoints = useRef<THREE.Points>(null);
+  const pulses = useRef<{ edge: number; t: number; speed: number; dir: number }[]>([]);
+  useEffect(() => {
+    pulses.current = data.pulseSeeds.map((p) => ({ ...p }));
+  }, [data]);
 
   useFrame((s, rawDt) => {
     const t = sceneTime(s.clock.elapsedTime);
     const dt = sceneDelta(rawDt);
     if (group.current) group.current.rotation.y = Math.sin(t * 0.08) * 0.25;
     if (lineMat.current) lineMat.current.opacity = p.netOpacity * (0.55 + Math.sin(t * 0.8) * 0.15);
-    const pos = data.pulseGeo.attributes.position as THREE.BufferAttribute;
-    data.pulses.forEach((pl, i) => {
+    const pts = pulsePoints.current;
+    if (!pts) return;
+    const pos = pts.geometry.attributes.position as THREE.BufferAttribute;
+    pulses.current.forEach((pl, i) => {
       pl.t += dt * pl.speed;
       if (pl.t >= 1) {
         pl.t = 0;
@@ -449,7 +454,7 @@ function NeuralField({ theme, quality, glowTex }: { theme: SceneTheme; quality: 
       <points geometry={data.nodeGeo}>
         <pointsMaterial size={0.09} map={glowTex} vertexColors transparent opacity={0.95} blending={p.blending} depthWrite={false} sizeAttenuation />
       </points>
-      <points geometry={data.pulseGeo}>
+      <points ref={pulsePoints} geometry={data.pulseGeo}>
         <pointsMaterial size={0.16} map={glowTex} color={p.netB} transparent opacity={1} blending={p.blending} depthWrite={false} sizeAttenuation />
       </points>
     </group>
@@ -489,8 +494,7 @@ function Particles({ theme, quality, glowTex }: { theme: SceneTheme; quality: Sc
   const p = PALETTES[theme];
   const count = quality === "high" ? 420 : 180;
   const geo = useMemo(() => {
-    let seed = 13;
-    const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+    const rnd = createRng(13);
     const a = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       a[i * 3] = (rnd() - 0.5) * 12;
@@ -520,10 +524,9 @@ function Particles({ theme, quality, glowTex }: { theme: SceneTheme; quality: Sc
 /* ---------- camera rig: mouse parallax + scroll response ---------- */
 
 function CameraRig() {
-  const { camera } = useThree();
   const pointer = useRef({ x: 0, y: 0 });
   const scroll = useRef(0);
-  const target = useMemo(() => new THREE.Vector3(0, 0.95, 0), []);
+  const target = useRef(new THREE.Vector3(0, 0.95, 0));
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -542,7 +545,7 @@ function CameraRig() {
     };
   }, []);
 
-  useFrame(() => {
+  useFrame(({ camera }) => {
     const s = scroll.current;
     const tx = 0.4 + pointer.current.x * 0.6 + s * 1.2;
     const ty = 1.7 - pointer.current.y * 0.3 + s * 1.2;
@@ -550,7 +553,7 @@ function CameraRig() {
     camera.position.x += (tx - camera.position.x) * 0.04;
     camera.position.y += (ty - camera.position.y) * 0.04;
     camera.position.z += (tz - camera.position.z) * 0.04;
-    camera.lookAt(target);
+    camera.lookAt(target.current);
   });
   return null;
 }
@@ -570,7 +573,7 @@ function ReadySignal({ onReady }: { onReady?: () => void }) {
 
 /* ---------- root ---------- */
 
-function SceneContents({ theme, quality, telemetry, onReady }: Omit<Props, "active">) {
+function SceneContents({ theme, quality, onTelemetry, onReady }: Omit<Props, "active">) {
   const p = PALETTES[theme];
   const coreRef = useRef<THREE.Group | null>(null);
   const glowTex = useMemo(() => makeGlowTexture(), []);
@@ -587,7 +590,7 @@ function SceneContents({ theme, quality, telemetry, onReady }: Omit<Props, "acti
       <NeuralField theme={theme} quality={quality} glowTex={glowTex} />
       <Particles theme={theme} quality={quality} glowTex={glowTex} />
       <FloorScanner theme={theme} glowTex={glowTex} />
-      <RoboticArm theme={theme} telemetry={telemetry} coreRef={coreRef} />
+      <RoboticArm theme={theme} onTelemetry={onTelemetry} coreRef={coreRef} />
       <DataCore theme={theme} groupRef={coreRef} glowTex={glowTex} />
       <CameraRig />
       <ReadySignal onReady={onReady} />
@@ -595,7 +598,7 @@ function SceneContents({ theme, quality, telemetry, onReady }: Omit<Props, "acti
   );
 }
 
-export default function RoboticsScene({ theme, quality, active, telemetry, onReady }: Props) {
+export default function RoboticsScene({ theme, quality, active, onTelemetry, onReady }: Props) {
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
@@ -610,7 +613,7 @@ export default function RoboticsScene({ theme, quality, active, telemetry, onRea
       aria-hidden
       style={{ width: "100%", height: "100%" }}
     >
-      <SceneContents theme={theme} quality={quality} telemetry={telemetry} onReady={onReady} />
+      <SceneContents theme={theme} quality={quality} onTelemetry={onTelemetry} onReady={onReady} />
     </Canvas>
   );
 }

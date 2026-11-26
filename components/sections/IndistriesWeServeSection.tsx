@@ -1440,7 +1440,7 @@ export default function IndustriesWeServeSection() {
   ${index === 0 ? "rounded-t-[10px]" : ""}
   bg-[linear-gradient(180deg,_var(--tech)_0%,_#064A87_100%)]
   border-transparent
-  [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_var(--tech)_100%)]
+  [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_var(--heading-from)_0%,_var(--tech)_100%)]
   [border-image-slice:1]
 `
                         : "text-fg border-fg/15 hover:text-white",
@@ -1529,7 +1529,7 @@ export default function IndustriesWeServeSection() {
                             style={{
                               border: "1px solid transparent",
                               background:
-                                "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, color-mix(in srgb, var(--tech) 80%, transparent) 100%) border-box",
+                                "linear-gradient(180deg, rgb(var(--hi-rgb) / calc(0.5 * var(--hi-scale))) 0%, color-mix(in srgb, var(--tech) 80%, transparent) 100%) border-box",
                               WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                               WebkitMaskComposite: "xor",
                               maskComposite: "exclude",

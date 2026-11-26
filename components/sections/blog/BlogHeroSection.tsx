@@ -48,7 +48,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{
                 padding: "1px",
-                background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
+                background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, var(--heading-from) 0%, var(--tech) 100%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -85,7 +85,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
             href={`/resources/blogs/${featuredPost.slug}`}
             className="relative flex cursor-pointer items-center gap-2.5 overflow-hidden rounded-[10px] px-[25px] py-2.5 sm:self-center"
             style={{
-              background: "linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(20, 39, 170, 0.1) 100%)",
+              background: "linear-gradient(90deg, rgb(var(--hi-rgb) / calc(0.1 * var(--hi-scale))) 0%, rgba(20, 39, 170, 0.1) 100%)",
               backdropFilter: "blur(18.399999618530273px)",
             }}
           >
@@ -93,7 +93,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               className="absolute inset-0 rounded-[10px] pointer-events-none"
               style={{
                 padding: "1.5px",
-                background: "linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
+                background: "linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",

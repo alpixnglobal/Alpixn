@@ -122,6 +122,8 @@
   --heading-from: #071a33;
   --heading-via: #064a87;
   --heading-to: #071a33;
+  --hi-rgb: 7 26 51;
+  --hi-scale: 0.35;
 
   --background: var(--canvas);
   --foreground: var(--fg);
@@ -186,6 +188,8 @@
   --heading-from: #ffffff;
   --heading-via: #cfe6ff;
   --heading-to: #ffffff;
+  --hi-rgb: 255 255 255;
+  --hi-scale: 1;
 
   --input: rgba(160, 196, 240, 0.2);
   --destructive: oklch(0.65 0.22 25);

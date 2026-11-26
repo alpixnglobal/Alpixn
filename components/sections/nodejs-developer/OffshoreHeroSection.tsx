@@ -95,7 +95,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                 className="w-full max-w-[471px] lg:w-[471px] h-auto lg:h-[515px] flex flex-col gap-4 lg:gap-[20px] p-6 lg:p-0"
                 style={{
                   background:
-                    "linear-gradient(314.76deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%)",
+                    "linear-gradient(314.76deg, rgb(var(--hi-rgb) / calc(0.08 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.08 * var(--hi-scale))) 100%)",
                   border: "1px solid #FFFFFF26",
                   backdropFilter: "blur(25px)",
                   borderRadius: "10px",

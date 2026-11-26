@@ -58,7 +58,7 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                 style={{
                   padding: "1px",
                   background:
-                    "radial-gradient(100% 100% at 49.96% 0%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.15) 72.87%)",
+                    "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
                   WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                   WebkitMaskComposite: "xor",
                   maskComposite: "exclude",
@@ -80,7 +80,7 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                     <div
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
+                        background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, var(--heading-from) 0%, var(--tech) 100%)",
                         padding: "1.2px",
                         WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                         WebkitMaskComposite: "xor",
@@ -99,7 +99,7 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                       <div
                         className="absolute inset-0 rounded-full"
                         style={{
-                          background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
+                          background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, var(--heading-from) 0%, var(--tech) 100%)",
                           padding: "1px",
                           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                           WebkitMaskComposite: "xor",

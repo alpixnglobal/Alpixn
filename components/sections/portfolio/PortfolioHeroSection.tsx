@@ -19,7 +19,7 @@ const PortfolioHeroSection = ({ title = "Proven Results And Impacts", descriptio
           height: "320px",
           right: "-5%",
           top: "36.6%", // 143px / 391px ≈ 36.6%
-          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 0%)",
+          background: "linear-gradient(180deg, var(--gold) 0%, var(--tech) 0%)",
           opacity: "1",
           filter: "blur(250px)",
         }}
@@ -33,7 +33,7 @@ const PortfolioHeroSection = ({ title = "Proven Results And Impacts", descriptio
           height: "320px",
           left: "-5%",
           top: "36.6%", // 143px / 391px ≈ 36.6%
-          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 0%)",
+          background: "linear-gradient(180deg, var(--gold) 0%, var(--tech) 0%)",
           opacity: "1",
           filter: "blur(250px)",
         }}

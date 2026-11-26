@@ -27,7 +27,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
           left: "50%",
           top: "361px",
           transform: "translateX(-50%)",
-          background: "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.11) 8.13%)",
+          background: "linear-gradient(180deg, var(--heading-from) 0%, rgb(var(--hi-rgb) / calc(0.11 * var(--hi-scale))) 8.13%)",
           padding: "4px",
           animation: "careers-earth-open 2s cubic-bezier(0.22, 1, 0.36, 1) both, careers-earth-ring 14s ease-in-out 2s infinite",
         }}
@@ -50,7 +50,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
           left: "50%",
           top: "55%",
           transform: "translateX(-50%)",
-          background: "linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.11) 8.13%)",
+          background: "linear-gradient(180deg, var(--heading-from) 0%, rgb(var(--hi-rgb) / calc(0.11 * var(--hi-scale))) 8.13%)",
           padding: "3px",
           animation: "careers-earth-open 2s cubic-bezier(0.22, 1, 0.36, 1) both, careers-earth-ring 14s ease-in-out 2s infinite",
         }}

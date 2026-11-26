@@ -20,7 +20,7 @@ function TimelineDot() {
   return (
     <div
       className="absolute left-8 md:left-1/2 -translate-x-1/2 mt-[21px] z-20 w-[25px] h-[25px] rounded-full p-[1px]"
-      style={{ background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)", boxShadow: "0px 0px 15.9px 0px var(--tech)" }}
+      style={{ background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, var(--heading-from) 0%, var(--tech) 100%)", boxShadow: "0px 0px 15.9px 0px var(--tech)" }}
     >
       <div className="w-full h-full rounded-full" style={{ background: "linear-gradient(0.63deg, var(--tech) 2.69%, #064A87 97.31%)" }} />
     </div>
@@ -32,7 +32,7 @@ function YearPill({ year, alignRight }: { year: string; alignRight: boolean }) {
     <div className={`w-full ml-16 md:ml-0 md:w-1/2 ${alignRight ? "pr-12 md:text-right" : "md:pl-12 md:text-left"} relative z-10`}>
       <div
         className={`inline-block mt-5.25 mb-4 md:mb-0 rounded-full p-[1px] ${alignRight ? "md:ml-auto md:mr-2" : "md:mr-auto md:ml-2"}`}
-        style={{ background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)", boxShadow: "0px 4px 15px 0px rgba(255, 255, 255, 0.41)" }}
+        style={{ background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, var(--heading-from) 0%, var(--tech) 100%)", boxShadow: "0px 4px 15px 0px rgb(var(--hi-rgb) / calc(0.41 * var(--hi-scale)))" }}
       >
         <div className="py-[5px] px-[25px] lg:py-[10px] lg:px-[45px] rounded-full text-fg font-medium text-sm md:text-base leading-snug text-center" style={{ background: "linear-gradient(0.63deg, var(--tech) 2.69%, #064A87 97.31%)" }}>
           {year}
@@ -50,12 +50,12 @@ function ContentCard({ item, alignRight }: { item: MilestoneItem; alignRight: bo
       </div>
 
       <div className={`hidden lg:flex items-center mb-4 mt-5.25 ${alignRight ? "" : "justify-end gap-2.5"}`}>
-        {alignRight ? <div className="w-[29px] h-0 mr-3 border" style={{ borderImageSource: "linear-gradient(90deg, #FFFFFF 0%, var(--tech-soft) 47.6%, #FFFFFF 100%)", borderImageSlice: 1 }} /> : null}
+        {alignRight ? <div className="w-[29px] h-0 mr-3 border" style={{ borderImageSource: "linear-gradient(90deg, var(--heading-from) 0%, var(--tech-soft) 47.6%, var(--heading-from) 100%)", borderImageSlice: 1 }} /> : null}
         <h3 className={`text-xl md:text-2xl font-semibold leading-snug text-fg ${alignRight ? "text-left" : "text-right"}`}>{item.title}</h3>
-        {!alignRight ? <div className="w-[29px] h-0 mr-3 border" style={{ borderImageSource: "linear-gradient(90deg, #FFFFFF 0%, var(--tech-soft) 47.6%, #FFFFFF 100%)", borderImageSlice: 1 }} /> : null}
+        {!alignRight ? <div className="w-[29px] h-0 mr-3 border" style={{ borderImageSource: "linear-gradient(90deg, var(--heading-from) 0%, var(--tech-soft) 47.6%, var(--heading-from) 100%)", borderImageSlice: 1 }} /> : null}
       </div>
 
-      <div className="p-5 text-fg w-full flex items-center" style={{ background: "linear-gradient(75.79deg, var(--glow) 0%, var(--canvas-2) 44.95%, var(--glow) 100%)", border: "1px solid rgba(255, 255, 255, 0.15)", boxShadow: "0px 0px 15px 0px rgba(255, 255, 255, 0.15)", borderRadius: "10px", minHeight: "118px" }}>
+      <div className="p-5 text-fg w-full flex items-center" style={{ background: "linear-gradient(75.79deg, var(--glow) 0%, var(--canvas-2) 44.95%, var(--glow) 100%)", border: "1px solid rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale)))", boxShadow: "0px 0px 15px 0px rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale)))", borderRadius: "10px", minHeight: "118px" }}>
         <p className={`text-base font-normal leading-relaxed text-fg ${alignRight ? "text-left" : "text-left lg:text-right"} w-full max-w-[420px]`}>
           {item.description}
         </p>
