@@ -1,10 +1,8 @@
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("Missing MONGODB_URI environment variable.");
-}
+// Note: a missing MONGODB_URI is reported when a connection is attempted (below), not at import time.
+// Public pages then fall back to built-in content, so builds/previews work without a database.
 
 type MongooseCache = {
   conn: typeof mongoose | null;
