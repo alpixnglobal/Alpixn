@@ -10,7 +10,7 @@ import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "n
  *   is applied to <html class="dark|light"> before first paint (no flash, no
  *   hydration mismatch).
  * - Persists the visitor's choice in localStorage under THEME_STORAGE_KEY.
- * - Dark is the brand default; light is a fully designed alternative.
+ * - Light (ivory & gold) is the default since the v3 redesign; dark is a fully designed alternative.
  */
 export const THEME_STORAGE_KEY = "alpixn-theme";
 
@@ -29,7 +29,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
       themes={["dark", "light"]}
       enableSystem={false}
       storageKey={THEME_STORAGE_KEY}

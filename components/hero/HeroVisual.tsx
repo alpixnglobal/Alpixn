@@ -70,7 +70,7 @@ const VIDEO = {
   light: { webm: "/media/hero/robotics-loop-light.webm", mp4: "/media/hero/robotics-loop-light.mp4" },
 };
 
-export default function HeroVisual({ fallbackImage }: { fallbackImage?: string }) {
+export default function HeroVisual({ fallbackImage, showPanels = true }: { fallbackImage?: string; showPanels?: boolean }) {
   const { theme } = useTheme();
   const capability = useCapability();
   const quality = useQuality();
@@ -166,7 +166,7 @@ export default function HeroVisual({ fallbackImage }: { fallbackImage?: string }
       </div>
 
       {/* Floating holographic interface panels */}
-      <div className="hero-overlay pointer-events-none absolute inset-0">
+      <div className={`hero-overlay pointer-events-none absolute inset-0 ${showPanels ? "" : "hidden"}`}>
         <div className="glass absolute left-[2%] top-[10%] hidden w-[200px] rounded-xl p-3.5 text-[11px] shadow-[var(--shadow-card)] sm:block animate-float">
           <div className="mb-2 flex items-center justify-between">
             <span className="font-semibold uppercase tracking-[0.16em] text-gold-ink">Motion planning</span>
