@@ -185,9 +185,34 @@ export function PortfolioRichEditor({ values = {} }: { values?: Partial<Portfoli
 
       <AdminField label="Project title"><AdminInput name="title" required defaultValue={values.title} placeholder="Leap Into Digitalized Referrals" /></AdminField>
       <AdminField label="Industry"><AdminInput name="industry" required defaultValue={values.industry} placeholder="Construction CRM" /></AdminField>
-      <AdminField label="Engagement"><AdminInput name="engagement" required defaultValue={values.engagement} placeholder="UX/UI + Platform Build" /></AdminField>
-      <AdminField label="Timeline"><AdminInput name="timeline" required defaultValue={values.timeline} placeholder="14 weeks" /></AdminField>
-      <AdminField label="Outcome"><AdminInput name="outcome" required defaultValue={values.outcome} placeholder="+38% partner participation" /></AdminField>
+      <div className="lg:col-span-2 rounded-[24px] border border-[color:var(--line-gold)] bg-[var(--surface-2)] p-4 grid gap-4 lg:grid-cols-2">
+        <div className="lg:col-span-2">
+          <p className="text-sm font-semibold">Verification &amp; discovery</p>
+          <p className="text-xs text-fg-muted">Only &quot;Real&quot; (verified ALPIXN work with permission to show) and &quot;Concept&quot; (ALPIXN-built demo) projects appear on the public site. Never mark third-party websites as Real.</p>
+        </div>
+        <AdminField label="Project status">
+          <select name="verificationStatus" defaultValue={values.verificationStatus ?? "unverified"} className="w-full rounded-[18px] border border-line bg-[var(--surface)] px-4 py-3 text-sm">
+            <option value="unverified">Unverified (hidden)</option>
+            <option value="concept">Concept project (ALPIXN demo)</option>
+            <option value="real">Real project (verified, permission to show)</option>
+          </select>
+        </AdminField>
+        <AdminField label="URL slug" hint="Leave blank to keep the current URL."><AdminInput name="slug" defaultValue={values.slug} /></AdminField>
+        <AdminField label="Country / target market"><AdminInput name="country" defaultValue={values.country} placeholder="United Kingdom" /></AdminField>
+        <AdminField label="Currency"><AdminInput name="currency" defaultValue={values.currency} placeholder="GBP" /></AdminField>
+        <AdminField label="Project types" hint="Comma separated, e.g. Web application, Dashboard"><AdminInput name="projectTypes" defaultValue={(values.projectTypes ?? []).join(", ")} /></AdminField>
+        <AdminField label="Technology stack" hint="Comma separated"><AdminInput name="techStack" defaultValue={(values.techStack ?? []).join(", ")} placeholder="Next.js, Node.js, PostgreSQL" /></AdminField>
+        <AdminField label="Verified live URL" hint="Real projects only. Must start with https://"><AdminInput name="liveUrl" type="url" defaultValue={values.liveUrl} placeholder="https://" /></AdminField>
+        <AdminField label="Demo path" hint="Concept demos, e.g. /demos/careslot-clinic-booking"><AdminInput name="demoPath" defaultValue={values.demoPath} /></AdminField>
+        <div className="lg:col-span-2"><AdminField label="Business problem"><AdminTextarea name="problem" defaultValue={values.problem} className="min-h-20" /></AdminField></div>
+        <div className="lg:col-span-2"><AdminField label="Solution approach"><AdminTextarea name="approach" defaultValue={values.approach} className="min-h-20" /></AdminField></div>
+        <AdminField label="Key features" hint="One per line"><AdminTextarea name="features" defaultValue={(values.features ?? []).join("\n")} className="min-h-24" /></AdminField>
+        <AdminField label="Functional highlights" hint="One per line (no invented results)"><AdminTextarea name="highlights" defaultValue={(values.highlights ?? []).join("\n")} className="min-h-24" /></AdminField>
+        <div className="lg:col-span-2"><AdminCheckbox name="featured" label="Feature on portfolio page" defaultChecked={values.featured ?? false} /></div>
+      </div>
+      <AdminField label="Engagement" hint="Real projects only — leave blank for concepts."><AdminInput name="engagement" defaultValue={values.engagement} /></AdminField>
+      <AdminField label="Timeline" hint="Only if verified."><AdminInput name="timeline" defaultValue={values.timeline} /></AdminField>
+      <AdminField label="Outcome" hint="Only verified, client-approved results."><AdminInput name="outcome" defaultValue={values.outcome} /></AdminField>
       <AdminField label="Accent"><AdminInput name="accent" defaultValue={values.accent} placeholder="linear-gradient(160deg, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.12))" /></AdminField>
       <AdminField label="Display order"><AdminInput name="order" type="number" min="0" defaultValue={String(values.order ?? 1)} /></AdminField>
       <div className="lg:col-span-2"><AdminField label="Summary"><AdminTextarea name="summary" required defaultValue={values.summary} className="min-h-24" /></AdminField></div>
@@ -329,18 +354,29 @@ export function JobRichEditor({ values = {} }: { values?: Partial<JobOpeningReco
 }
 
 export function BlogRichEditor({ values = {} }: { values?: Partial<BlogPostRecord> }) {
+  const sourcesText = (values.sources ?? []).map((source) => `${source.label} | ${source.url}`).join("\n");
   return (
     <>
-      <AdminField label="Title"><AdminInput name="title" required defaultValue={values.title} placeholder="Understanding Similarity Scoring in RAG Systems" /></AdminField>
-      <AdminField label="Category"><AdminInput name="category" required defaultValue={values.category} placeholder="AI Engineering" /></AdminField>
-      <AdminField label="Author"><AdminInput name="author" required defaultValue={values.author} placeholder="ALPIXN" /></AdminField>
-      <AdminField label="Read time"><AdminInput name="readTime" required defaultValue={values.readTime} placeholder="2 min read" /></AdminField>
-      <AdminField label="Accent"><AdminInput name="accent" defaultValue={values.accent} placeholder="linear-gradient(160deg, rgba(56, 189, 248, 0.28), rgba(14, 116, 144, 0.12))" /></AdminField>
+      <AdminField label="Title"><AdminInput name="title" required defaultValue={values.title} placeholder="How to Scope an AI Development Project" /></AdminField>
+      <AdminField label="URL slug" hint="Leave blank to keep the current URL (or generate one for new posts). Changing it breaks existing links."><AdminInput name="slug" defaultValue={values.slug} placeholder="how-to-scope-an-ai-development-project" /></AdminField>
+      <AdminField label="Category"><AdminInput name="category" required defaultValue={values.category} placeholder="AI & Machine Learning" /></AdminField>
+      <AdminField label="Author" hint="Use a real, confirmed author or 'ALPIXN Editorial Team'."><AdminInput name="author" required defaultValue={values.author ?? "ALPIXN Editorial Team"} /></AdminField>
+      <AdminField label="Publication date"><AdminInput name="publishedAt" type="date" defaultValue={values.publishedAt} /></AdminField>
+      <AdminField label="Read time" hint="Leave blank to calculate from article length."><AdminInput name="readTime" defaultValue={values.readTime} placeholder="Calculated automatically" /></AdminField>
+      <AdminField label="Tags" hint="Comma separated."><AdminInput name="tags" defaultValue={(values.tags ?? []).join(", ")} placeholder="AI strategy, Project scoping" /></AdminField>
       <AdminField label="Display order"><AdminInput name="order" type="number" min="0" defaultValue={String(values.order ?? 1)} /></AdminField>
+      <div className="lg:col-span-2"><AdminField label="SEO title" hint="Shown in search results. Aim for under 60 characters."><AdminInput name="metaTitle" maxLength={120} defaultValue={values.metaTitle} /></AdminField></div>
+      <div className="lg:col-span-2"><AdminField label="Meta description" hint="Aim for 120–155 characters."><AdminTextarea name="metaDescription" maxLength={320} defaultValue={values.metaDescription} className="min-h-20" /></AdminField></div>
       <div className="lg:col-span-2"><AdminField label="Excerpt"><AdminTextarea name="excerpt" required defaultValue={values.excerpt} className="min-h-24" /></AdminField></div>
-      <div className="lg:col-span-2"><AdminField label="Article content" hint="Use blank lines to separate paragraphs."><AdminTextarea name="content" required defaultValue={values.content} className="min-h-56" /></AdminField></div>
-      <div className="lg:col-span-2"><ImageUploadField name="imageData" label="Cover image" description="Upload image or paste URL/path." defaultValue={values.imageData} /></div>
-      <div className="lg:col-span-2 flex flex-wrap gap-4"><AdminCheckbox name="featured" label="Feature on blog hero" defaultChecked={values.featured ?? false} /><AdminCheckbox name="isPublished" label="Published on website" defaultChecked={values.isPublished ?? true} /></div>
+      <div className="lg:col-span-2"><AdminField label="Article content (Markdown)" hint="Start with ## headings (the title is the page H1). Supports lists, tables, [links](/path) and ```flow blocks (one 'Step | description' per line)."><AdminTextarea name="content" required defaultValue={values.content} className="min-h-72 font-mono text-xs" /></AdminField></div>
+      <div className="lg:col-span-2"><AdminField label="Sources / references" hint="One per line: Label | https://url (only http/https links are saved)."><AdminTextarea name="sources" defaultValue={sourcesText} className="min-h-24" /></AdminField></div>
+      <AdminField label="Accent"><AdminInput name="accent" defaultValue={values.accent} placeholder="Optional CSS gradient" /></AdminField>
+      <div className="lg:col-span-2"><ImageUploadField name="imageData" label="Cover image" description="Upload image or paste URL/path (1200×630 recommended)." defaultValue={values.imageData} /></div>
+      <div className="lg:col-span-2 flex flex-wrap gap-4">
+        <AdminCheckbox name="featured" label="Feature on blog hero" defaultChecked={values.featured ?? false} />
+        <AdminCheckbox name="isPublished" label="Published on website" defaultChecked={values.isPublished ?? true} />
+        <AdminCheckbox name="aiAssisted" label="Drafted with AI assistance (shows a disclosure)" defaultChecked={values.aiAssisted ?? false} />
+      </div>
     </>
   );
 }

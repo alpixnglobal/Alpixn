@@ -309,9 +309,10 @@ const portfolioProjectSchema = new Schema(
     slug: { type: String, required: true, unique: true, index: true },
     summary: { type: String, required: true, trim: true },
     industry: { type: String, required: true, trim: true },
-    engagement: { type: String, required: true, trim: true },
-    timeline: { type: String, required: true, trim: true },
-    outcome: { type: String, required: true, trim: true },
+    // Relaxed in the 2026 redesign: concept projects have no engagement timeline or business outcome.
+    engagement: { type: String, default: "", trim: true },
+    timeline: { type: String, default: "", trim: true },
+    outcome: { type: String, default: "", trim: true },
     tags: { type: [String], default: [] },
     objective: { type: String, default: "" },
     objectivePoints: { type: [String], default: [] },
@@ -330,6 +331,21 @@ const portfolioProjectSchema = new Schema(
     order: { type: Number, default: 0 },
     isPublished: { type: Boolean, default: true },
     teamMembers: { type: [portfolioTeamMemberSchema], default: [] },
+    // Portfolio verification & discovery fields (2026 redesign)
+    verificationStatus: { type: String, enum: ["real", "concept", "unverified"], default: "unverified", index: true },
+    country: { type: String, default: "", trim: true },
+    currency: { type: String, default: "", trim: true },
+    projectTypes: { type: [String], default: [] },
+    techStack: { type: [String], default: [] },
+    featured: { type: Boolean, default: false },
+    liveUrl: { type: String, default: "", trim: true },
+    demoPath: { type: String, default: "", trim: true },
+    problem: { type: String, default: "" },
+    approach: { type: String, default: "" },
+    features: { type: [String], default: [] },
+    highlights: { type: [String], default: [] },
+    screenshots: { type: [{ src: String, alt: String, device: { type: String, enum: ["desktop", "mobile"] } }], default: [] },
+    related: { type: [{ label: String, href: String }], default: [] },
   },
   { timestamps: true }
 );
@@ -370,6 +386,14 @@ const blogPostSchema = new Schema(
     imageData: { type: String, default: "" },
     order: { type: Number, default: 0 },
     isPublished: { type: Boolean, default: true },
+    // SEO & editorial fields (added in the 2026 redesign; all optional for existing records)
+    metaTitle: { type: String, default: "", trim: true, maxlength: 120 },
+    metaDescription: { type: String, default: "", trim: true, maxlength: 320 },
+    tags: { type: [String], default: [] },
+    publishedAt: { type: String, default: "" },
+    modifiedAt: { type: String, default: "" },
+    sources: { type: [{ label: { type: String, trim: true }, url: { type: String, trim: true } }], default: [] },
+    aiAssisted: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

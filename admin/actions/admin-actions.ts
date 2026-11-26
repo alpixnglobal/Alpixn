@@ -29,6 +29,7 @@ import {
   TechnologyPageModel,
 } from "@/lib/models";
 import { createSlugForModel, ensureSeedData } from "@/lib/content-service";
+import { readingTime } from "@/lib/blog/types";
 
 type EntityType = "intern" | "team" | "portfolio" | "job" | "blog" | "technology" | "product" | "offshore" | "expertise";
 
@@ -39,6 +40,74 @@ function getValue(formData: FormData, key: string) {
 function getOptionalValue(formData: FormData, key: string) {
   const value = getValue(formData, key);
   return value || "";
+}
+
+/** "Label | https://url" per line → validated source list (http/https only, max 20). */
+function parseBlogSources(raw: string) {
+  return raw
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [label, ...rest] = line.split("|");
+      const url = rest.join("|").trim();
+      return { label: label.trim().slice(0, 200), url };
+    })
+    .filter((source) => source.label && /^https?:\/\/[^\s]+$/i.test(source.url))
+    .slice(0, 20);
+}
+
+const PORTFOLIO_STATUSES = new Set(["real", "concept", "unverified"]);
+
+/** Validated portfolio verification/discovery fields from the admin form. */
+function getPortfolioDiscoveryPayload(formData: FormData) {
+  const status = getOptionalValue(formData, "verificationStatus");
+  const liveUrl = getOptionalValue(formData, "liveUrl");
+  const demoPath = getOptionalValue(formData, "demoPath");
+  const csv = (key: string) =>
+    getOptionalValue(formData, key)
+      .split(",")
+      .map((v) => v.trim())
+      .filter(Boolean)
+      .slice(0, 20);
+  const lines = (key: string) =>
+    getOptionalValue(formData, key)
+      .split("\n")
+      .map((v) => v.trim())
+      .filter(Boolean)
+      .slice(0, 20);
+  return {
+    verificationStatus: PORTFOLIO_STATUSES.has(status) ? status : "unverified",
+    country: getOptionalValue(formData, "country").slice(0, 80),
+    currency: getOptionalValue(formData, "currency").toUpperCase().slice(0, 3),
+    projectTypes: csv("projectTypes"),
+    techStack: csv("techStack"),
+    featured: getBooleanValue(formData, "featured"),
+    // Only https URLs are accepted for live links; demo paths must stay on this site.
+    liveUrl: /^https:\/\/[^\s]+$/i.test(liveUrl) ? liveUrl.slice(0, 300) : "",
+    demoPath: /^\/demos\/[a-z0-9-]+$/.test(demoPath) ? demoPath : "",
+    problem: getOptionalValue(formData, "problem").slice(0, 2000),
+    approach: getOptionalValue(formData, "approach").slice(0, 2000),
+    features: lines("features"),
+    highlights: lines("highlights"),
+  };
+}
+
+function normaliseIsoDate(value: string) {
+  if (!value) return new Date().toISOString().slice(0, 10);
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? new Date().toISOString().slice(0, 10) : date.toISOString().slice(0, 10);
+}
+
+function slugifyValue(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 120);
 }
 
 function getNumberValue(formData: FormData, key: string, fallback = 0) {
@@ -624,9 +693,14 @@ export async function upsertEntityAction(entityType: EntityType, returnPath: str
       isPublished,
       imageData,
       teamMembers: processedTeamMembers,
+      ...getPortfolioDiscoveryPayload(formData),
     };
 
-    const slug = await createSlugForModel(PortfolioProjectModel, payload.title, id || undefined);
+    const requestedSlug = slugifyValue(getOptionalValue(formData, "slug"));
+    const existingProject = id ? ((await PortfolioProjectModel.findById(id).select("slug").lean()) as { slug?: string } | null) : null;
+    const slug = requestedSlug
+      ? await createSlugForModel(PortfolioProjectModel, requestedSlug, id || undefined)
+      : existingProject?.slug || (await createSlugForModel(PortfolioProjectModel, payload.title, id || undefined));
 
     if (id) {
       await PortfolioProjectModel.findByIdAndUpdate(id, { ...payload, slug });
@@ -669,21 +743,40 @@ export async function upsertEntityAction(entityType: EntityType, returnPath: str
   }
 
   if (entityType === "blog") {
+    const content = getValue(formData, "content");
+    const sources = parseBlogSources(getOptionalValue(formData, "sources"));
     const payload = {
       title: getValue(formData, "title"),
       excerpt: getValue(formData, "excerpt"),
-      content: getValue(formData, "content"),
+      content,
       author: getValue(formData, "author"),
-      readTime: getValue(formData, "readTime"),
+      // Reading time is derived from the actual article length unless explicitly overridden.
+      readTime: getOptionalValue(formData, "readTime") || readingTime(content),
       category: getValue(formData, "category"),
       featured: getBooleanValue(formData, "featured"),
       accent: getOptionalValue(formData, "accent"),
+      metaTitle: getOptionalValue(formData, "metaTitle").slice(0, 120),
+      metaDescription: getOptionalValue(formData, "metaDescription").slice(0, 320),
+      tags: getOptionalValue(formData, "tags")
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean)
+        .slice(0, 12),
+      publishedAt: normaliseIsoDate(getOptionalValue(formData, "publishedAt")),
+      modifiedAt: new Date().toISOString().slice(0, 10),
+      sources,
+      aiAssisted: getBooleanValue(formData, "aiAssisted"),
       order,
       isPublished,
       imageData,
     };
 
-    const slug = await createSlugForModel(BlogPostModel, payload.title, id || undefined);
+    // Keep existing URLs stable: an explicit slug wins, otherwise an existing post keeps its slug.
+    const requestedSlug = slugifyValue(getOptionalValue(formData, "slug"));
+    const existing = id ? ((await BlogPostModel.findById(id).select("slug").lean()) as { slug?: string } | null) : null;
+    const slug = requestedSlug
+      ? await createSlugForModel(BlogPostModel, requestedSlug, id || undefined)
+      : existing?.slug || (await createSlugForModel(BlogPostModel, payload.title, id || undefined));
 
     if (payload.featured) {
       await BlogPostModel.updateMany({}, { featured: false });

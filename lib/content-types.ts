@@ -270,6 +270,23 @@ export type PortfolioProjectRecord = ContentRecordBase & {
   galleryImageThree: string;
   galleryImageFour: string;
   teamMembers: PortfolioTeamMember[];
+  /** real = verified ALPIXN work with permission to show; concept = ALPIXN-built demo; unverified = hidden from the public site. */
+  verificationStatus?: "real" | "concept" | "unverified";
+  country?: string;
+  currency?: string;
+  projectTypes?: string[];
+  techStack?: string[];
+  featured?: boolean;
+  /** Verified public URL of a real, live project (never invented). */
+  liveUrl?: string;
+  /** Internal path of an interactive demo, e.g. /demos/<slug>. */
+  demoPath?: string;
+  problem?: string;
+  approach?: string;
+  features?: string[];
+  highlights?: string[];
+  screenshots?: { src: string; alt: string; device: "desktop" | "mobile" }[];
+  related?: { label: string; href: string }[];
 };
 
 export type JobOpeningRecord = ContentRecordBase & {
@@ -286,14 +303,26 @@ export type JobOpeningRecord = ContentRecordBase & {
   benefits: string[];
 };
 
+export type BlogSourceRecord = { label: string; url: string };
+
 export type BlogPostRecord = ContentRecordBase & {
   title: string;
   excerpt: string;
+  /** Markdown (headings, lists, tables, links, ```flow diagrams). Plain paragraphs also work. */
   content: string;
   author: string;
   readTime: string;
   category: string;
   featured: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
+  tags?: string[];
+  /** ISO date shown as the publication date. */
+  publishedAt?: string;
+  modifiedAt?: string;
+  sources?: BlogSourceRecord[];
+  /** True when the draft was prepared with AI assistance (disclosed on the article page). */
+  aiAssisted?: boolean;
 };
 
 export type JobApplicationRecord = {

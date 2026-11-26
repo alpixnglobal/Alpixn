@@ -1,6 +1,9 @@
 import { unstable_cache } from "next/cache";
 
 import { jobData } from "@/lib/internsData";
+import { blogArticles } from "@/content/blog";
+import { CONCEPT_LABEL, screenshotPath, showcaseProjects } from "@/lib/portfolio/showcase";
+import { EDITORIAL_AUTHOR, blogCoverPath, readingTime } from "@/lib/blog/types";
 import { connectToDatabase } from "@/lib/db";
 import {
   AboutSettingsModel,
@@ -633,419 +636,77 @@ const teamSeedData = [
   },
 ];
 
-const portfolioSeedData = [
-  {
-    slug: "leap-into-digitalized-referrals",
-    title: "Leap into Digitalized Referrals",
-    summary:
-      "The CRM platform for Akij Cement revolutionizes the referral system for engineers and masons with intuitive partner workflows and performance tracking.",
-    industry: "Construction CRM",
-    engagement: "UX/UI + Platform Build",
-    timeline: "14 weeks",
-    outcome: "+38% partner participation",
-    tags: ["Web Application", "CRM", "Dashboard"],
-    objective:
-      "Create a smoother referral workflow for engineers and masons while giving the business a clearer view of partner engagement.",
-    objectivePoints: [
-      "Reduce friction across referral capture and approvals.",
-      "Improve partner visibility and relationship tracking.",
-      "Support faster reporting for internal teams.",
-    ],
-    solutionPoints: [
-      "Designed a streamlined CRM workflow for partner submissions.",
-      "Created clearer dashboard views for operations and field teams.",
-      "Improved system structure to support future program expansion.",
-    ],
-    resultPrimaryValue: "71.4%",
-    resultPrimaryLabel: "Conversion Increase",
-    resultSecondaryValue: "342.4%",
-    resultSecondaryLabel: "Revenue Increase",
-    resultBullets: [
-      "Website traffic quality improved with more partner-led referrals.",
-      "Internal teams could monitor referral activity much faster.",
-      "The new workflow reduced delays across partner onboarding and follow-up.",
-    ],
-    galleryImageOne: "/images/venex.svg",
-    galleryImageTwo: "/images/venex2.svg",
-    galleryImageThree: "/images/venex3.svg",
-    galleryImageFour: "/images/venex4.svg",
-    accent: "linear-gradient(160deg, rgba(59, 130, 246, 0.3), rgba(6, 182, 212, 0.12))",
-    imageData: "/images/phone.svg",
-    order: 1,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "enhancing-fitness-for-australians",
-    title: "Enhancing Fitness for Australians",
-    summary:
-      "Fitmate is a digital fitness experience designed to improve habit formation, coaching access, and retention for active users across Australia.",
-    industry: "Health & Fitness",
-    engagement: "Mobile Product Design",
-    timeline: "10 weeks",
-    outcome: "+24% weekly retention",
-    tags: ["Mobile App", "Fitness", "Product Design"],
-    objective: "Design a more habit-forming digital fitness experience for users with consistent coaching support.",
-    objectivePoints: ["Improve retention.", "Simplify workout tracking.", "Make coaching touchpoints more visible."],
-    solutionPoints: ["Reworked the mobile experience around user routines.", "Improved content hierarchy and coaching access.", "Aligned the product flow with behavior-based engagement."],
-    resultPrimaryValue: "24%",
-    resultPrimaryLabel: "Weekly Retention Growth",
-    resultSecondaryValue: "18%",
-    resultSecondaryLabel: "Session Depth Increase",
-    resultBullets: ["Users returned more often during the first month.", "Coaching interactions became easier to discover.", "The overall experience became easier to navigate on mobile."],
-    galleryImageOne: "/images/fitness.svg",
-    galleryImageTwo: "/images/fitness.svg",
-    galleryImageThree: "/images/fitness.svg",
-    galleryImageFour: "/images/fitness.svg",
-    accent: "linear-gradient(160deg, rgba(16, 185, 129, 0.28), rgba(14, 165, 233, 0.12))",
-    imageData: "/images/fitness.svg",
-    order: 2,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "maldivian-travel-redesign",
-    title: "Maldivian Travel Redesign",
-    summary:
-      "A travel-booking experience redesigned for better discovery, itinerary clarity, and mobile conversions across leisure travelers.",
-    industry: "Travel & Hospitality",
-    engagement: "UX Audit + Redesign",
-    timeline: "8 weeks",
-    outcome: "+19% booking conversion",
-    tags: ["Travel", "UI/UX", "Booking Flow"],
-    objective: "Increase mobile and desktop travel bookings by simplifying destination discovery and itinerary decisions.",
-    objectivePoints: ["Reduce friction in search.", "Improve clarity around packages.", "Support faster booking decisions."],
-    solutionPoints: ["Restructured destination and trip information.", "Improved the booking flow hierarchy.", "Focused the interface on mobile conversion behavior."],
-    resultPrimaryValue: "19%",
-    resultPrimaryLabel: "Booking Conversion Increase",
-    resultSecondaryValue: "27%",
-    resultSecondaryLabel: "Mobile Completion Growth",
-    resultBullets: ["Travelers could compare packages faster.", "The booking process felt more predictable.", "Mobile users completed reservations more often."],
-    galleryImageOne: "/images/travelwebsite.svg",
-    galleryImageTwo: "/images/travelwebsite.svg",
-    galleryImageThree: "/images/travelwebsite.svg",
-    galleryImageFour: "/images/travelwebsite.svg",
-    accent: "linear-gradient(160deg, rgba(56, 189, 248, 0.28), rgba(99, 102, 241, 0.12))",
-    imageData: "/images/travelwebsite.svg",
-    order: 3,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "onethread-project-management-redesign",
-    title: "Onethread Project Management Software Redesign",
-    summary:
-      "A product refresh focused on simplifying work planning, reducing friction inside large boards, and improving collaboration visibility.",
-    industry: "Project Management SaaS",
-    engagement: "Product Design + UX Research",
-    timeline: "12 weeks",
-    outcome: "+31% activation rate",
-    tags: ["SaaS", "Productivity", "UX Research"],
-    objective: "Help teams move from first login to sustained use by simplifying planning and collaboration workflows.",
-    objectivePoints: ["Improve feature discoverability.", "Reduce board complexity.", "Increase activation."],
-    solutionPoints: ["Ran UX research to identify common workflow friction.", "Redesigned planning surfaces around core actions.", "Improved structure for task visibility and adoption."],
-    resultPrimaryValue: "31%",
-    resultPrimaryLabel: "Activation Increase",
-    resultSecondaryValue: "22%",
-    resultSecondaryLabel: "Workflow Completion Growth",
-    resultBullets: ["New users understood the product faster.", "Teams adopted planning views more consistently.", "Task collaboration required fewer clicks."],
-    galleryImageOne: "/images/onethread.svg",
-    galleryImageTwo: "/images/onethread.svg",
-    galleryImageThree: "/images/onethread.svg",
-    galleryImageFour: "/images/onethread.svg",
-    accent: "linear-gradient(160deg, rgba(244, 114, 182, 0.28), rgba(59, 130, 246, 0.12))",
-    imageData: "/images/onethread.svg",
-    order: 4,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "healthcare-management-system",
-    title: "Healthcare Management System",
-    summary:
-      "An integrated hospital operations platform for patient records, appointments, workflows, and AI-assisted healthcare insights.",
-    industry: "Healthcare",
-    engagement: "Platform Design + Engineering",
-    timeline: "16 weeks",
-    outcome: "2x faster admin processing",
-    tags: ["Healthcare", "Admin Panel", "Operations"],
-    objective: "Unify fragmented hospital workflows into a clearer operational system for care and admin teams.",
-    objectivePoints: ["Improve record access.", "Reduce admin repetition.", "Support appointment visibility."],
-    solutionPoints: ["Centralized record and scheduling workflows.", "Improved staff-facing dashboard structure.", "Made operational actions easier to track across teams."],
-    resultPrimaryValue: "2x",
-    resultPrimaryLabel: "Faster Admin Processing",
-    resultSecondaryValue: "29%",
-    resultSecondaryLabel: "Workflow Error Reduction",
-    resultBullets: ["Staff could complete repeated tasks with fewer steps.", "Operational visibility improved across departments.", "The platform supported more reliable day-to-day coordination."],
-    galleryImageOne: "/images/healthcare.svg",
-    galleryImageTwo: "/images/healthcare.svg",
-    galleryImageThree: "/images/healthcare.svg",
-    galleryImageFour: "/images/healthcare.svg",
-    accent: "linear-gradient(160deg, rgba(20, 184, 166, 0.28), rgba(14, 165, 233, 0.12))",
-    imageData: "/images/healthcare.svg",
-    order: 5,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "automark-ai-automation-platform",
-    title: "AutoMarkAI Automation Platform",
-    summary:
-      "An AI-driven marketing assistant that streamlines campaign creation, content suggestions, and performance analytics for digital agencies.",
-    industry: "Marketing Technology",
-    engagement: "AI Product Development",
-    timeline: "11 weeks",
-    outcome: "41% faster campaign setup",
-    tags: ["AI", "Automation", "Analytics"],
-    objective: "Reduce the effort needed to build and launch campaigns for agency teams working across multiple clients.",
-    objectivePoints: ["Speed up setup.", "Improve content generation workflows.", "Make performance tracking easier."],
-    solutionPoints: ["Built a cleaner AI-assisted setup flow.", "Improved content suggestion clarity.", "Connected campaign actions to analytics visibility."],
-    resultPrimaryValue: "41%",
-    resultPrimaryLabel: "Faster Campaign Setup",
-    resultSecondaryValue: "17%",
-    resultSecondaryLabel: "Content Throughput Growth",
-    resultBullets: ["Teams could launch campaigns with less manual work.", "Content iteration moved faster.", "Performance reporting became easier to review."],
-    galleryImageOne: "/images/automation.svg",
-    galleryImageTwo: "/images/automation.svg",
-    galleryImageThree: "/images/automation.svg",
-    galleryImageFour: "/images/automation.svg",
-    accent: "linear-gradient(160deg, rgba(168, 85, 247, 0.28), rgba(59, 130, 246, 0.12))",
-    imageData: "/images/automation.svg",
-    order: 6,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "finx-erp-suite-fintech-platform",
-    title: "FinX ERP Suite Fintech Platform",
-    summary:
-      "A smart ERP system integrating payroll, taxation, and financial automation for SMEs with better compliance visibility.",
-    industry: "Fintech",
-    engagement: "ERP Experience Design",
-    timeline: "15 weeks",
-    outcome: "26% fewer finance ops errors",
-    tags: ["ERP", "Fintech", "Automation"],
-    objective: "Make finance and payroll workflows easier for SME teams managing operations with limited internal complexity tolerance.",
-    objectivePoints: ["Improve process visibility.", "Reduce manual errors.", "Support compliance clarity."],
-    solutionPoints: ["Reframed finance operations around clearer task groupings.", "Improved reporting and review flows.", "Reduced friction across key payroll and tax interactions."],
-    resultPrimaryValue: "26%",
-    resultPrimaryLabel: "Error Reduction",
-    resultSecondaryValue: "34%",
-    resultSecondaryLabel: "Reporting Speed Increase",
-    resultBullets: ["Teams reviewed finance operations with more confidence.", "Manual mistakes dropped across routine tasks.", "Compliance-related workflows became easier to track."],
-    galleryImageOne: "/images/finx.svg",
-    galleryImageTwo: "/images/finx.svg",
-    galleryImageThree: "/images/finx.svg",
-    galleryImageFour: "/images/finx.svg",
-    accent: "linear-gradient(160deg, rgba(251, 191, 36, 0.28), rgba(245, 158, 11, 0.12))",
-    imageData: "/images/finx.svg",
-    order: 7,
-    isPublished: true,
-    teamMembers: [],
-  },
-  {
-    slug: "smartpay-ai-payroll-automation",
-    title: "SmartPay AI Payroll Automation",
-    summary:
-      "An AI-powered HR and payroll automation dashboard for enterprise teams, with predictive analytics and reporting.",
-    industry: "HR Tech",
-    engagement: "Dashboard UX + Automation",
-    timeline: "9 weeks",
-    outcome: "54% faster payroll runs",
-    tags: ["HR Tech", "Payroll", "Dashboard"],
-    objective: "Streamline payroll and analytics for enterprise HR teams that need speed without losing review control.",
-    objectivePoints: ["Improve payroll speed.", "Surface analytics clearly.", "Reduce admin overhead."],
-    solutionPoints: ["Designed a dashboard around payroll-critical tasks.", "Improved analytics visibility for HR stakeholders.", "Reduced navigation complexity across routine actions."],
-    resultPrimaryValue: "54%",
-    resultPrimaryLabel: "Faster Payroll Runs",
-    resultSecondaryValue: "21%",
-    resultSecondaryLabel: "Admin Time Reduction",
-    resultBullets: ["Payroll cycles became faster and easier to manage.", "HR teams had clearer access to operational metrics.", "The system reduced repetitive admin interactions."],
-    galleryImageOne: "/images/smartpay.svg",
-    galleryImageTwo: "/images/smartpay.svg",
-    galleryImageThree: "/images/smartpay.svg",
-    galleryImageFour: "/images/smartpay.svg",
-    accent: "linear-gradient(160deg, rgba(14, 165, 233, 0.28), rgba(6, 182, 212, 0.12))",
-    imageData: "/images/smartpay.svg",
-    order: 8,
-    isPublished: true,
-    teamMembers: [],
-  },
-];
+// Concept portfolio (original ALPIXN demos). Legacy template projects referenced third-party companies
+// and unverified results, so they are no longer seeded; existing database records default to "unverified"
+// and stay hidden from the public site until an admin verifies them.
+const portfolioSeedData = showcaseProjects.map((p, index) => ({
+  slug: p.slug,
+  title: p.title,
+  summary: p.summary,
+  industry: p.industry,
+  engagement: CONCEPT_LABEL,
+  timeline: "",
+  outcome: "",
+  tags: p.projectTypes,
+  objective: p.problem,
+  objectivePoints: [],
+  solutionPoints: p.features,
+  resultPrimaryValue: "",
+  resultPrimaryLabel: "",
+  resultSecondaryValue: "",
+  resultSecondaryLabel: "",
+  resultBullets: [],
+  galleryImageOne: screenshotPath(p.slug, "desktop"),
+  galleryImageTwo: screenshotPath(p.slug, "mobile"),
+  galleryImageThree: "",
+  galleryImageFour: "",
+  accent: "",
+  imageData: screenshotPath(p.slug, "desktop"),
+  order: index + 1,
+  isPublished: true,
+  teamMembers: [],
+  verificationStatus: "concept" as const,
+  country: p.country,
+  currency: p.currency,
+  projectTypes: p.projectTypes,
+  techStack: p.techStack,
+  featured: Boolean(p.featured),
+  liveUrl: "",
+  demoPath: `/demos/${p.slug}`,
+  problem: p.problem,
+  approach: p.approach,
+  features: p.features,
+  highlights: p.highlights,
+  screenshots: [
+    { src: screenshotPath(p.slug, "desktop"), alt: `${p.product} desktop interface (concept demo)`, device: "desktop" as const },
+    { src: screenshotPath(p.slug, "mobile"), alt: `${p.product} mobile interface (concept demo)`, device: "mobile" as const },
+  ],
+  related: p.related,
+}));
 
-const blogSeedData = [
-  {
-    slug: "prompt-based-control-flow-in-fastapi-using-langchain-expression-language-lcel",
-    title: "Prompt-Based Control Flow in FastAPI Using LangChain Expression Language (LCEL)",
-    excerpt:
-      "How structured prompt pipelines make FastAPI services more composable, testable, and easier to evolve inside AI-backed systems.",
-    content:
-      "Prompt orchestration becomes much easier to reason about when the control flow is explicit. LCEL gives teams a consistent way to compose prompts, retrieval, and model calls without burying that logic across multiple service layers.\n\nIn FastAPI projects, that matters because the API surface stays clean while the prompt chain remains modular. Teams can iterate on prompts, add routing logic, and test individual branches without turning the request lifecycle into a black box.\n\nA good implementation treats prompt chains like application logic instead of magic strings. That usually means better observability, safer rollouts, and simpler maintenance for product teams building AI features in production.",
-    author: "ALPIXN",
-    readTime: "4 min read",
-    category: "AI Engineering",
-    featured: true,
-    accent: "linear-gradient(160deg, rgba(56, 189, 248, 0.28), rgba(14, 116, 144, 0.12))",
-    imageData: "/images/lcel.svg",
-    order: 1,
-    isPublished: true,
-  },
-  {
-    slug: "monolithic-vs-microservices-features-pros-cons-real-world-use-cases",
-    title: "Monolithic vs Microservices: Features, Pros & Cons, and Real-World Use Cases",
-    excerpt:
-      "Choosing between a monolith and microservices depends less on trends and more on delivery shape, team structure, and product complexity.",
-    content:
-      "Architecture decisions usually fail when teams make them too early or for the wrong reasons. A monolith can be the fastest path for a product that still needs validation, while microservices become useful when teams need clearer ownership boundaries and isolated scaling.\n\nThe practical tradeoff is operational complexity. Microservices create more moving parts, more deployment surfaces, and more coordination overhead. If the organization is not ready for that, the architecture will hurt velocity instead of helping it.\n\nThe right answer comes from product maturity, deployment frequency, and how independently teams need to move. Architecture should support the business, not compete with it.",
-    author: "ALPIXN",
-    readTime: "5 min read",
-    category: "Architecture",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(168, 85, 247, 0.28), rgba(59, 130, 246, 0.12))",
-    imageData: "/images/mono.svg",
-    order: 2,
-    isPublished: true,
-  },
-  {
-    slug: "repairing-broken-json-in-python-with-json-repair",
-    title: "Repairing Broken JSON in Python with json-repair",
-    excerpt: "Malformed JSON shows up often in real integrations. The value is in recovering safely without hiding upstream issues.",
-    content:
-      "Broken JSON appears in LLM outputs, vendor payloads, and partially formatted exports. Recovery tools are useful, but they work best when teams also log and classify what failed.\n\nUsing a repair step inside Python services can reduce downstream crashes and keep automation flows moving. Still, repaired output should be treated as a mitigation, not a replacement for proper validation and schema checks.\n\nThe healthiest approach is usually repair first, validate second, and report the failure path so the source can eventually be fixed.",
-    author: "ALPIXN",
-    readTime: "3 min read",
-    category: "Python",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(251, 191, 36, 0.28), rgba(249, 115, 22, 0.12))",
-    imageData: "/images/rapairing.svg",
-    order: 3,
-    isPublished: true,
-  },
-  {
-    slug: "how-nlp-is-transforming-the-legal-domain-use-cases-challenges",
-    title: "How NLP is Transforming the Legal Domain: Use Cases & Challenges",
-    excerpt: "Legal NLP can accelerate review and research, but only when teams stay strict about accuracy, provenance, and human review.",
-    content:
-      "The legal domain benefits from NLP where the work is repetitive, document-heavy, and time-sensitive. Search, summarization, clause extraction, and issue spotting all become faster when language systems are applied carefully.\n\nThe challenge is that legal work has a low tolerance for ambiguity. Systems need traceability, confidence checks, and review workflows so that automation supports experts instead of replacing their judgment.\n\nThe best legal NLP products create leverage for practitioners by reducing manual effort while preserving accountability.",
-    author: "ALPIXN",
-    readTime: "4 min read",
-    category: "NLP",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(14, 165, 233, 0.28), rgba(168, 85, 247, 0.12))",
-    imageData: "/images/nlp.svg",
-    order: 4,
-    isPublished: true,
-  },
-  {
-    slug: "generative-ai-in-retail-use-cases-with-real-life-examples",
-    title: "Generative AI in Retail: Use Cases with Real-Life Examples",
-    excerpt: "Retail teams are using generative AI where speed and personalization directly affect conversion and retention.",
-    content:
-      "Retail adoption succeeds when AI improves a measurable customer or operations workflow. Merchandising copy, personalized recommendations, customer support, and internal search are common places where generative systems already create value.\n\nWhat matters most is operational fit. Retail systems need guardrails for pricing, inventory, and policy-sensitive messaging, especially when AI touches customer-facing surfaces.\n\nWhen implemented with those constraints in mind, generative AI can increase content velocity and improve buying journeys without degrading brand consistency.",
-    author: "ALPIXN",
-    readTime: "4 min read",
-    category: "Retail AI",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(244, 114, 182, 0.28), rgba(249, 115, 22, 0.12))",
-    imageData: "/images/generative-ai.svg",
-    order: 5,
-    isPublished: true,
-  },
-  {
-    slug: "natural-language-processing-nlp-in-healthcare-applications-and-benefits",
-    title: "Natural Language Processing (NLP) in Healthcare: Applications and Benefits",
-    excerpt:
-      "Healthcare NLP creates leverage across records, documentation, and decision support when paired with strong clinical review.",
-    content:
-      "Healthcare organizations sit on large amounts of unstructured text. NLP helps transform that text into usable signals for coding, triage, documentation, and patient support workflows.\n\nThe opportunity is large, but healthcare teams also need privacy, auditability, and clinical safety. Systems should be built to support care teams, not create hidden failure points.\n\nTeams that combine domain expertise with careful product design can make NLP genuinely useful in care delivery and operations.",
-    author: "ALPIXN",
-    readTime: "4 min read",
-    category: "Healthcare AI",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(16, 185, 129, 0.28), rgba(14, 165, 233, 0.12))",
-    imageData: "/images/nlp-health.svg",
-    order: 6,
-    isPublished: true,
-  },
-  {
-    slug: "a-deep-dive-into-textgrads-differential-optimization-framework",
-    title: "A Deep Dive into TextGrad's Differential Optimization Framework",
-    excerpt: "Text-based optimization is useful when teams need iterative prompt improvement with clearer feedback loops.",
-    content:
-      "Optimization frameworks like TextGrad are interesting because they formalize how prompts evolve. Instead of manual tweaking, teams can structure experimentation and use model-generated feedback as part of the iteration loop.\n\nThat does not eliminate evaluation discipline. Teams still need strong task definitions, human review, and success metrics to prevent the optimization process from drifting away from the actual product goal.\n\nUsed carefully, these frameworks can turn prompt work from ad hoc craft into a more repeatable engineering process.",
-    author: "ALPIXN",
-    readTime: "5 min read",
-    category: "LLM Systems",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(59, 130, 246, 0.28), rgba(99, 102, 241, 0.12))",
-    imageData: "/images/deepdive.svg",
-    order: 7,
-    isPublished: true,
-  },
-  {
-    slug: "generative-ai-vs-predictive-ai-the-ultimate-comparison-guide",
-    title: "Generative AI vs Predictive AI: The Ultimate Comparison Guide",
-    excerpt: "These two AI categories solve different business problems, and product teams should treat them that way.",
-    content:
-      "Generative AI creates new outputs while predictive AI estimates what is likely to happen next. The overlap in tooling can make them look similar, but the product and business use cases are different.\n\nPredictive systems usually power decisions such as forecasting, risk scoring, and demand planning. Generative systems are better suited to content, assistance, and interface-level intelligence.\n\nTeams make better bets when they start with the workflow they need to improve, then pick the AI pattern that actually fits it.",
-    author: "ALPIXN",
-    readTime: "4 min read",
-    category: "AI Strategy",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(236, 72, 153, 0.28), rgba(59, 130, 246, 0.12))",
-    imageData: "/images/predictive.svg",
-    order: 8,
-    isPublished: true,
-  },
-  {
-    slug: "prompt-to-flowchart-generating-flowcharts-from-natural-language-using-genai",
-    title: "Prompt-to-Flowchart: Generating Flowcharts from Natural Language using GenAI",
-    excerpt:
-      "Learn how to transform natural language descriptions into visual flowcharts using generative AI, enabling faster documentation and process visualization.",
-    content:
-      "Flowcharts have always been a powerful way to visualize processes, but creating them manually can be time-consuming. With generative AI, teams can now describe a process in plain English and get a structured flowchart automatically.\n\nThis approach works especially well for technical documentation, onboarding materials, and process mapping. Instead of spending hours in diagramming tools, engineers and product managers can focus on the logic while AI handles the visual representation.\n\nThe key is using well-structured prompts that capture decision points, branches, and endpoints. When combined with modern LLMs, these prompts become powerful tools for rapid visualization.",
-    author: "Jellyfish Technologies",
-    readTime: "5 min read",
-    category: "AI Engineering",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(56, 189, 248, 0.28), rgba(14, 116, 144, 0.12))",
-    imageData: "/images/prompt-to-flowchart.png",
-    order: 9,
-    isPublished: true,
-  },
-  {
-    slug: "how-natural-language-processing-is-transforming-industries",
-    title: "How Natural Language Processing Is Transforming Industries",
-    excerpt:
-      "Explore how NLP technologies are revolutionizing healthcare, finance, retail, and other sectors through automated text analysis and understanding.",
-    content:
-      "Natural Language Processing has moved from research labs to production systems across every major industry. Healthcare uses NLP for clinical documentation, finance applies it to sentiment analysis and fraud detection, and retail leverages it for customer service automation.\n\nThe common thread is that organizations have vast amounts of unstructured text data that was previously inaccessible to systematic analysis. NLP unlocks this data, turning emails, documents, and conversations into actionable insights.\n\nSuccess in NLP deployment depends on understanding both the capabilities and limitations. Models work best when teams combine them with domain expertise and appropriate human review workflows.",
-    author: "Vivek Sadh",
-    readTime: "6 min read",
-    category: "NLP",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(14, 165, 233, 0.28), rgba(168, 85, 247, 0.12))",
-    imageData: "/images/natural-language.png",
-    order: 10,
-    isPublished: true,
-  },
-  {
-    slug: "cache-augmented-generation-cag-a-revolutionary-alternative-to-rag",
-    title: "Cache-Augmented Generation (CAG): A Revolutionary Alternative to RAG",
-    excerpt:
-      "Discover how Cache-Augmented Generation improves upon RAG by reducing latency and costs while maintaining context accuracy in AI applications.",
-    content:
-      "Retrieval-Augmented Generation (RAG) has become the standard for grounding LLM responses in external knowledge. However, RAG comes with latency overhead from real-time retrieval and potential consistency issues when documents change frequently.\n\nCache-Augmented Generation (CAG) addresses these challenges by pre-computing and caching relevant context. Instead of querying a vector database on every request, CAG maintains a warm cache of frequently accessed information that can be injected directly into prompts.\n\nThis approach works especially well for applications with predictable query patterns, stable knowledge bases, and strict latency requirements. Teams can achieve significant cost savings while maintaining the accuracy benefits of grounded generation.",
-    author: "Jellyfish Technologies",
-    readTime: "5 min read",
-    category: "AI Engineering",
-    featured: false,
-    accent: "linear-gradient(160deg, rgba(168, 85, 247, 0.28), rgba(59, 130, 246, 0.12))",
-    imageData: "/images/cache-augmented.png",
-    order: 11,
-    isPublished: true,
-  },
-];
+// Editorial articles live in /content/blog (Markdown). They seed the BlogPost collection and are the
+// built-in fallback when MongoDB is unavailable. Legacy seed posts were thin placeholders and were removed.
+const blogSeedData = blogArticles.map((article, index) => ({
+  slug: article.slug,
+  title: article.title,
+  excerpt: article.excerpt,
+  content: article.body.trim(),
+  author: EDITORIAL_AUTHOR,
+  readTime: readingTime(article.body),
+  category: article.category,
+  featured: Boolean(article.featured) && index < 1,
+  accent: "",
+  imageData: blogCoverPath(article.slug),
+  order: index + 1,
+  isPublished: true,
+  metaTitle: article.metaTitle,
+  metaDescription: article.metaDescription,
+  tags: article.tags,
+  publishedAt: article.publishedAt,
+  modifiedAt: article.modifiedAt ?? article.publishedAt,
+  sources: article.sources,
+  aiAssisted: true,
+}));
 
 function slugify(value: string) {
   return value
@@ -1106,7 +767,32 @@ function withPortfolioDefaults(project: PortfolioProjectRecord): PortfolioProjec
     galleryImageThree: project.galleryImageThree ?? "",
     galleryImageFour: project.galleryImageFour ?? "",
     teamMembers: project.teamMembers ?? [],
+    verificationStatus: project.verificationStatus || "unverified",
+    country: project.country ?? "",
+    currency: project.currency ?? "",
+    projectTypes: project.projectTypes?.length ? project.projectTypes : project.tags ?? [],
+    techStack: project.techStack ?? [],
+    featured: project.featured ?? false,
+    liveUrl: project.liveUrl ?? "",
+    demoPath: project.demoPath ?? "",
+    problem: project.problem ?? "",
+    approach: project.approach ?? "",
+    features: project.features ?? [],
+    highlights: project.highlights ?? [],
+    screenshots: project.screenshots ?? [],
+    related: project.related ?? [],
   };
+}
+
+/** Only verified real work or clearly labelled concept work is ever shown publicly. */
+const PUBLIC_PORTFOLIO_STATUSES = ["real", "concept"];
+function isPubliclyVisibleProject(project: PortfolioProjectRecord) {
+  return project.isPublished && PUBLIC_PORTFOLIO_STATUSES.includes(project.verificationStatus || "unverified");
+}
+
+/** Editorial seed records, used by scripts/upsert-editorial-content.ts. */
+export function getEditorialSeed() {
+  return { blogs: blogSeedData, portfolio: portfolioSeedData };
 }
 
 function withTechnologyDefaults(page: TechnologyPageRecord): TechnologyPageRecord {
@@ -1899,19 +1585,25 @@ export async function getAdminPortfolioProjects() {
 
 export async function getPublishedPortfolioProjects() {
   if (!(await prepareRead())) {
-    return portfolioSeedData.map((item) => withPortfolioDefaults(withFallbackId(item))).filter((item) => item.isPublished);
+    return portfolioSeedData.map((item) => withPortfolioDefaults(withFallbackId(item) as PortfolioProjectRecord)).filter(isPubliclyVisibleProject);
   }
 
-  const records = await PortfolioProjectModel.find({ isPublished: true }).sort({ order: 1, createdAt: 1 }).lean();
-  return records.map((record) => withPortfolioDefaults(toPlainRecord<PortfolioProjectRecord>(record)));
+  const records = await PortfolioProjectModel.find({ isPublished: true, verificationStatus: { $in: PUBLIC_PORTFOLIO_STATUSES } })
+    .sort({ featured: -1, order: 1, createdAt: 1 })
+    .lean();
+  return records.map((record) => withPortfolioDefaults(toPlainRecord<PortfolioProjectRecord>(record))).filter(isPubliclyVisibleProject);
 }
 
 export async function getPublishedPortfolioProjectBySlug(slug: string) {
   if (!(await prepareRead())) {
-    return portfolioSeedData.map((item) => withPortfolioDefaults(withFallbackId(item))).find((item) => item.slug === slug && item.isPublished) ?? null;
+    return (
+      portfolioSeedData
+        .map((item) => withPortfolioDefaults(withFallbackId(item) as PortfolioProjectRecord))
+        .find((item) => item.slug === slug && isPubliclyVisibleProject(item)) ?? null
+    );
   }
 
-  const record = await PortfolioProjectModel.findOne({ slug, isPublished: true }).lean();
+  const record = await PortfolioProjectModel.findOne({ slug, isPublished: true, verificationStatus: { $in: PUBLIC_PORTFOLIO_STATUSES } }).lean();
   return record ? withPortfolioDefaults(toPlainRecord<PortfolioProjectRecord>(record)) : null;
 }
 
@@ -1997,7 +1689,7 @@ export async function getBlogCategories() {
     return Array.from(new Set(blogSeedData.map((item) => item.category))).sort((left, right) => left.localeCompare(right));
   }
 
-  const categories = (await BlogPostModel.distinct("category")) as string[];
+  const categories = (await BlogPostModel.distinct("category", { isPublished: true })) as string[];
   return categories.filter(Boolean).sort((left, right) => left.localeCompare(right));
 }
 
@@ -2140,7 +1832,7 @@ export const getCachedPublishedBlogPosts = unstable_cache(
   async () => {
     return getPublishedBlogPosts();
   },
-  ["published-blog-posts"],
+  ["published-blog-posts-v2"],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ["blog"] }
 );
 
@@ -2173,7 +1865,7 @@ export const getCachedPublishedPortfolioProjects = unstable_cache(
   async () => {
     return getPublishedPortfolioProjects();
   },
-  ["published-portfolio"],
+  ["published-portfolio-v2"],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ["portfolio"] }
 );
 
@@ -2206,7 +1898,7 @@ export const getCachedBlogCategories = unstable_cache(
   async () => {
     return getBlogCategories();
   },
-  ["blog-categories"],
+  ["blog-categories-v2"],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ["blog"] }
 );
 
@@ -2217,7 +1909,7 @@ export const getCachedPublishedFeaturedBlogPost = unstable_cache(
   async () => {
     return getPublishedFeaturedBlogPost();
   },
-  ["featured-blog-post"],
+  ["featured-blog-post-v2"],
   { revalidate: CACHE_REVALIDATE_SECONDS, tags: ["blog"] }
 );
 
