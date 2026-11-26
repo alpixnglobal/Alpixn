@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Bot, BrainCircuit, Code2, Eye, FileCheck2, GitBranch, ShieldCheck, Workflow } from "lucide-react";
-import HeroVisual from "@/components/hero/HeroVisual";
+import WorldConnect from "@/components/hero/WorldConnect";
 import { BlogCard, type BlogCardData } from "@/components/blog/BlogExplorer";
 import Reveal from "@/components/ui/Reveal";
 import type { HomeOfferingRecord } from "@/lib/content-types";
@@ -67,7 +67,6 @@ export function HeroV4({
   description,
   primary,
   secondary,
-  fallbackImage,
 }: {
   title: string;
   description: string;
@@ -108,61 +107,23 @@ export function HeroV4({
           </div>
         </div>
 
-        {/* Orbit stage: robot in the centre, one capability per logo colour around it */}
-        <div className="relative mx-auto mt-10 h-[360px] max-w-[1180px] sm:h-[480px] lg:mt-6 lg:h-[560px]">
-          {/* Rings */}
-          <div aria-hidden className="absolute left-1/2 top-[54%] aspect-square w-[min(92vw,620px)] -translate-x-1/2 -translate-y-1/2">
-            <div className="absolute inset-0 rounded-full border border-line" />
-            <div className="absolute inset-[11%] rounded-full border border-dashed border-[#0878d1]/25" />
-            <div className="absolute inset-[3%] animate-[spin_40s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,#071a33,#064a87,#0878d1,#f6d77a,#d99a19,#9a5b08,#071a33)] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))]" />
-            <div className="absolute inset-[22%] rounded-full bg-[radial-gradient(circle,rgba(246,215,122,0.35)_0%,rgba(8,120,209,0.10)_55%,transparent_72%)]" />
-            {/* Orbiting dots in logo colours */}
-            <div className="absolute inset-[3%] animate-[spin_40s_linear_infinite]">
-              {[
-                ["#0878d1", "left-1/2 -top-1.5 -translate-x-1/2"],
-                ["#d99a19", "-right-1.5 top-1/2 -translate-y-1/2"],
-                ["#064a87", "left-1/2 -bottom-1.5 -translate-x-1/2"],
-                ["#9a5b08", "-left-1.5 top-1/2 -translate-y-1/2"],
-              ].map(([c, pos]) => (
-                <span key={c} className={`absolute h-3 w-3 rounded-full ring-4 ring-[var(--canvas)] ${pos}`} style={{ background: c }} />
-              ))}
-            </div>
-          </div>
-
-          {/* Robot */}
-          <div className="absolute bottom-0 left-1/2 aspect-square h-full -translate-x-1/2 [mask-image:radial-gradient(circle_at_50%_52%,#000_48%,transparent_70%)]">
-            <HeroVisual fallbackImage={fallbackImage} showPanels={false} />
-          </div>
-
-          {/* Floating capability cards (desktop) */}
-          {PILLARS.map(({ icon: Icon, title: t, text, color, ink }, i) => {
-            const pos = ["left-0 top-[12%]", "left-[4%] bottom-[10%]", "right-0 top-[12%]", "right-[4%] bottom-[10%]"][i];
-            return (
-              <div
-                key={t}
-                className={`glass absolute hidden w-[250px] items-start gap-3 rounded-2xl p-4 shadow-[var(--shadow-card)] lg:flex animate-float ${pos}`}
-                style={{ animationDelay: `${i * -1.5}s` }}
-              >
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl" style={{ background: color, color: ink }}>
-                  <Icon aria-hidden className="h-5 w-5" />
-                </span>
-                <span>
-                  <span className="block font-display text-[15px] font-semibold text-fg">{t}</span>
-                  <span className="mt-0.5 block text-[12.5px] leading-snug text-fg-muted">{text}</span>
-                </span>
-              </div>
-            );
-          })}
+        {/* Stage: the nine markets on a world map, linked by AI, robotics, cloud and software */}
+        <div className="relative mx-auto mt-10 max-w-[1180px] lg:mt-12">
+          <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(8,120,209,0.14)_0%,rgba(246,215,122,0.18)_45%,transparent_72%)] blur-2xl" />
+          <WorldConnect />
         </div>
 
-        {/* Capability chips (mobile / tablet) */}
-        <ul className="mt-6 grid grid-cols-2 gap-3 lg:hidden">
-          {PILLARS.map(({ icon: Icon, title: t, color, ink }) => (
-            <li key={t} className="flex items-center gap-2.5 rounded-2xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg" style={{ background: color, color: ink }}>
-                <Icon aria-hidden className="h-4 w-4" />
+        {/* Capabilities — one logo colour each */}
+        <ul className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+          {PILLARS.map(({ icon: Icon, title: t, text, color, ink }) => (
+            <li key={t} className="flex items-center gap-3 rounded-2xl border border-line bg-surface p-3 shadow-[var(--shadow-card)] lg:items-start lg:p-4">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg lg:h-11 lg:w-11 lg:rounded-xl" style={{ background: color, color: ink }}>
+                <Icon aria-hidden className="h-4 w-4 lg:h-5 lg:w-5" />
               </span>
-              <span className="font-display text-[13px] font-semibold leading-tight text-fg">{t}</span>
+              <span>
+                <span className="block font-display text-[13px] font-semibold leading-tight text-fg lg:text-[15px]">{t}</span>
+                <span className="mt-1 hidden text-[12.5px] leading-snug text-fg-muted lg:block">{text}</span>
+              </span>
             </li>
           ))}
         </ul>

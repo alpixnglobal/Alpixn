@@ -1384,3 +1384,33 @@ html.theme-ready section {
   background-image: linear-gradient(90deg, #3f9be3 0%, #7cc6ff 30%, #f6d77a 65%, #d99a19 100%);
 }
 
+
+/* World connectivity hero */
+@keyframes wc-flow {
+  to {
+    stroke-dashoffset: -11;
+  }
+}
+@keyframes wc-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.world-connect .wc-flow {
+  animation: wc-flow 1.6s linear infinite;
+}
+.world-connect .wc-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wc-pulse 2.4s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-connect animateMotion {
+    display: none;
+  }
+}
