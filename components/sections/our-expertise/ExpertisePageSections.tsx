@@ -1,3 +1,4 @@
+import { visualForSlug } from "@/components/hero/PageVisuals";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 import type { ExpertisePageRecord, ExpertiseSettingsRecord, SharedStatRecord } from "@/lib/content-types";
 
@@ -29,6 +30,7 @@ export function ExpertisePageSections({
         ctaButtonLink="/contact-us"
         logos={page.heroLogos}
         heroBackgroundImage={page.heroBackgroundImage}
+        visual={visualForSlug(`${page.slug ?? ""} ${page.heroTitle ?? ""}`)}
       />
       {/* Stats section removed: figures were unverified template data (2026 content review). */}
       {/* <CaseStudySection data={{ mainTitle: page.caseStudyTitle, mainSubtitle: page.caseStudySubtitle, caseStudies: page.caseStudyTabs }} /> */}

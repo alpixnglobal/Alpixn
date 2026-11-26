@@ -22,7 +22,7 @@ function Head({ visor = NAVY }: { visor?: string }) {
 }
 
 /** Walking robot (optionally carrying a parcel). */
-function Walker({ body = "#0878d1", parcel = false }: { body?: string; parcel?: boolean }) {
+export function Walker({ body = "#0878d1", parcel = false }: { body?: string; parcel?: boolean }) {
   return (
     <svg viewBox="0 0 40 50" className="h-full w-full overflow-visible">
       <ellipse cx="20" cy="49" rx="9" ry="1.6" fill={NAVY} opacity="0.18" />
@@ -59,7 +59,7 @@ function Walker({ body = "#0878d1", parcel = false }: { body?: string; parcel?: 
 }
 
 /** Seated robot typing on a laptop, code flickering on the screen. */
-function Coder() {
+export function Coder() {
   return (
     <svg viewBox="0 0 64 50" className="h-full w-full overflow-visible">
       <ellipse cx="32" cy="48.5" rx="22" ry="1.8" fill={NAVY} opacity="0.18" />
@@ -90,7 +90,7 @@ function Coder() {
 }
 
 /** Robot sketching a UI on a big screen; shapes appear one by one. */
-function Designer() {
+export function Designer() {
   return (
     <svg viewBox="0 0 70 52" className="h-full w-full overflow-visible">
       <ellipse cx="34" cy="50.5" rx="26" ry="1.8" fill={NAVY} opacity="0.18" />
@@ -127,7 +127,7 @@ function Designer() {
 }
 
 /** Hovering drone-bot with spinning rotors. */
-function Drone() {
+export function Drone() {
   return (
     <svg viewBox="0 0 44 36" className="h-full w-full overflow-visible">
       <ellipse cx="22" cy="35" rx="8" ry="1.3" fill={NAVY} opacity="0.12" />

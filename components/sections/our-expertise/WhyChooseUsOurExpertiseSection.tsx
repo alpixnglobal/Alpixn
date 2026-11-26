@@ -1,6 +1,6 @@
+import { FeatureCards, Heading, Section } from "@/components/ui/v4";
 import { getWhyChooseUsData } from "@/lib/expertise/why-choose-us-our-expertise-section-data";
 import type { ExpertiseFeatureCardRecord } from "@/lib/content-types";
-import Image from "next/image";
 
 interface CaseStudySectionProps {
   slug?: string;
@@ -20,53 +20,10 @@ const WhyChooseUsOurExpertiseSection = ({ slug = "software-development", data }:
   };
 
   return (
-    <section className="sectionDefault">
-      {/* Background Color  */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)",
-        }}
-      />
-
-      {/* Container */}
-      <div className="container max-w-337.5">
-        <div className="w-full max-w-296.25 mx-auto flex flex-col gap-[15px]">
-          {/* Title & Subtitle */}
-          <h2 className="title heading-gradient-white leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{resolvedData.mainTitle}</h2>
-          <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{resolvedData.mainSubtitle}</p>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 mt-12.5">
-          {resolvedData.features.map((feature) => (
-            <div
-              key={feature.id}
-              className="relative flex flex-col gap-5 p-5 z-10"
-              style={{
-                borderRadius: "10px",
-                background:
-                  "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
-                border: "1px solid #FFFFFF26",
-              }}
-            >
-              <h6 className="text-fg font-semibold text-lg md:text-xl">{feature.title}</h6>
-              <p className="text-xs md:text-sm text-fg/80 leading-relaxed font-normal z-10">{feature.description}</p>
-              {feature.icon ? (
-                <Image
-                  src={feature.icon}
-                  alt={feature.iconAlt}
-                  width={feature.iconWidth}
-                  height={feature.iconHeight}
-                  className={`absolute ${feature.iconRightClass || "right-5"} top-0 z-0`}
-                  unoptimized={feature.icon.startsWith("data:") || feature.icon.startsWith("http")}
-                />
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section id="why-choose-title" alt>
+      <Heading id="why-choose-title" kicker="Why ALPIXN" kickerTone="blue" title={resolvedData.mainTitle} subtitle={resolvedData.mainSubtitle} center />
+      <FeatureCards items={resolvedData.features.map((f) => ({ title: f.title, description: f.description }))} />
+    </Section>
   );
 };
 

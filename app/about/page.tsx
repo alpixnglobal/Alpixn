@@ -3,7 +3,7 @@ import { BadgeCheck, Bot, BrainCircuit, Code2, FileSearch, Scale, Users } from "
 import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import CtaBand from "@/components/sections/shared/CtaBand";
-import HeroBrandPanel from "@/components/sections/shared/HeroBrandPanel";
+import PageVisual from "@/components/hero/PageVisuals";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 import PageHero from "@/components/sections/shared/PageHero";
 import { MarketsV4 } from "@/components/home/HomeV4";
@@ -68,7 +68,7 @@ export default function AboutPage() {
         description="ALPIXN designs and builds software that makes businesses work better: applications customers use every day, internal systems teams depend on, and AI and automation that remove repetitive work. We bring product thinking, engineering discipline and practical AI experience into one team."
         primary={{ label: "Start a conversation", href: "/contact-us" }}
         secondary={{ label: "Explore our services", href: "/our-expertise" }}
-        aside={<HeroBrandPanel />}
+        aside={<PageVisual kind="robotics" />}
       />
 
       <section aria-labelledby="what-we-do" className="bg-canvas-2 py-20">

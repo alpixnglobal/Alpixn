@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { FaqList, Heading, Section } from "@/components/ui/v4";
 
 type FAQItem = {
   question: string;
@@ -42,26 +42,12 @@ const FAQExpertiseSection = ({
   items?: FAQItem[];
   questionClassName?: string;
 }) => {
+  void questionClassName;
   return (
-    <section className="w-full py-12.5" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }}>
-      {/* Container */}
-      <div className="container max-w-[1349px]">
-        {/* Title */}
-        <h2 className="text-gradient heading text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
-
-        {/* Accordion */}
-        <Accordion type="single" collapsible className="w-full" defaultValue={items[items.length - 1] ? `item-${items.length}` : undefined}>
-          {items.map((item, index) => (
-            <AccordionItem key={item.question} value={`item-${index + 1}`}>
-              <AccordionTrigger className={`cursor-pointer ${questionClassName}`.trim()}>{item.question}</AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
-                <p className="text-base text-fg leading-relaxed">{item.answer}</p>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </div>
-    </section>
+    <Section id="faq-title" alt>
+      <Heading id="faq-title" kicker="FAQ" kickerTone="blue" title={title} center />
+      <FaqList items={items} />
+    </Section>
   );
 };
 

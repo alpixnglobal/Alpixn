@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroBrandPanel from "@/components/sections/shared/HeroBrandPanel";
+import PageVisual from "@/components/hero/PageVisuals";
 import PageHero from "@/components/sections/shared/PageHero";
 import type { TechnologyLogoRecord } from "@/lib/content-types";
 
@@ -38,7 +38,7 @@ const TechnologiesHeroSection = ({
       }
       primary={{ label: primaryButtonLabel, href: primaryButtonHref }}
       secondary={secondaryButtonLabel ? { label: secondaryButtonLabel, href: secondaryButtonHref } : null}
-      aside={<HeroBrandPanel />}
+      aside={<PageVisual kind="code" />}
     >
       {realLogos.length ? (
         <div className="mt-8 flex flex-wrap items-center gap-6 opacity-80">

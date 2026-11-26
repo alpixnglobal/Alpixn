@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import clsx from "clsx";
+import { Heading, Section, tone } from "@/components/ui/v4";
 import { getGuideToSoftwareDevData } from "@/lib/expertise/guide-to-software-dev-data";
 import type { ExpertiseGuideTabRecord } from "@/lib/content-types";
 
@@ -35,125 +36,57 @@ const GuideToSoftwareDevSection = ({ slug = "software-development", data }: Guid
   if (!tabs.length) return null;
 
   return (
-    <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }} />
-
-      <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-[45px]">
-        <div className="flex flex-col gap-[15px] max-w-[998px] mx-auto">
-          <h2 className="title heading-gradient max-w-[828px] mx-auto text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
-          <p className="subtitleMeXl80 leading-relaxed max-w-[998px] mx-auto text-left sm:text-center">{mainSubtitle}</p>
+    <Section id="guide-title">
+      <Heading id="guide-title" kicker="Guide" title={mainTitle} subtitle={mainSubtitle} center />
+      <div className="mt-12 grid gap-5 lg:grid-cols-12">
+        <div role="tablist" aria-orientation="vertical" className="flex gap-2 overflow-x-auto pb-1 lg:col-span-4 lg:flex-col lg:overflow-visible">
+          {tabs.map((tab, index) => {
+            const isActive = active === tab.key;
+            const t = tone(index);
+            return (
+              <button
+                key={tab.key}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(tab.key)}
+                className={clsx(
+                  "flex shrink-0 items-center gap-3 rounded-2xl border px-4 py-3.5 text-left text-[14.5px] font-semibold transition-all",
+                  isActive ? "border-transparent text-white shadow-[0_20px_40px_-24px_rgba(7,26,51,0.7)]" : "border-line bg-surface text-fg hover:border-[#d99a19]/50"
+                )}
+                style={isActive ? { background: "linear-gradient(135deg,#071a33,#064a87)" } : undefined}
+              >
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-[11px] font-bold" style={{ background: t.c, color: t.ink }}>
+                  {index + 1}
+                </span>
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
-
-        <div className="mt-12.5 flex flex-col xl:flex-row gap-5 items-stretch">
-          <div
-            className="
-                  w-full
-                  xl:w-[422px]
-                  h-auto
-                  xl:h-[510px]
-                  rounded-t-10
-                "
-            style={{ background: "color-mix(in srgb, var(--tech) 5%, transparent)", backdropFilter: "blur(15px)" }}
-          >
-            {tabs.map((tab, index) => {
-              const isActive = active === tab.key;
-              const isFirstTab = index === 0;
-
-              return (
-                <div
-                  key={tab.key}
-                  onClick={() => setActive(tab.key)}
-                  className={clsx(
-                    "h-[80px] sm:h-[90px] xl:h-[102px] flex items-center cursor-pointer",
-                    isFirstTab && "rounded-t-10",
-                  )}
-                  style={
-                    isActive
-                      ? {
-                          background: "linear-gradient(180deg, var(--tech) 0%, #064A87 100%)",
-                          borderBottom: "3px solid",
-                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, var(--heading-from) 0%, var(--tech) 100%)",
-                        }
-                      : {
-                          background: "color-mix(in srgb, var(--tech) 5%, transparent)",
-                          border: "1px solid #FFFFFF26",
-                          backdropFilter: "blur(15px)",
-                        }
-                  }
-                >
-                  <span className="ml-2.5 sm:ml-5 text-fg text-base sm:text-lg font-roboto">{tab.label}</span>
-                </div>
-              );
-            })}
-          </div>
-
-          <div
-            className="
-                  w-full
-                  xl:w-[908px]
-                  h-[420px]
-                  sm:h-[500px]
-                  xl:h-[510px]
-                  rounded-t-[10px]
-                "
-            style={{
-              background:
-                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24,24,24,0) 49%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
-              border: "2px solid #FFFFFF26",
-              backdropFilter: "blur(4px)",
-            }}
-          >
-            <div
-              className="p-4 sm:p-5 h-full overflow-y-scroll custom-scrollbar"
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "var(--tech) #ffffff1a",
-              }}
-            >
-              <style jsx>{`
-                .custom-scrollbar::-webkit-scrollbar {
-                  width: 8px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-track {
-                  background: #ffffff1a;
-                  border-radius: 4px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                  background: var(--tech);
-                  border-radius: 4px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                  background: #1e88e5;
-                }
-              `}</style>
-
-              {activeContent && (
-                <>
-                  <h6 className="text-fg text-sm font-medium leading-relaxed">{activeContent.section}</h6>
-
-                  {activeContent.items.map((item, idx) => (
-                    <div key={idx} className="mt-4 sm:mt-5">
-                      <h5 className="text-fg text-base font-semibold leading-relaxed">{item.title}</h5>
-
-                      <ul className="list-disc pl-5 mt-2.5 space-y-2">
-                        {item.bullets.map((bullet, i) => (
-                          <li key={i} className="text-fg text-sm leading-relaxed">
-                            {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </>
-              )}
-            </div>
-          </div>
+        <div className="rounded-[28px] border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:col-span-8">
+          {activeContent ? (
+            <>
+              {activeContent.section ? <p className="text-[15px] leading-relaxed text-fg-muted">{activeContent.section}</p> : null}
+              <div className="mt-6 space-y-6">
+                {activeContent.items.map((item, idx) => (
+                  <div key={`${item.title}-${idx}`}>
+                    <h3 className="font-display text-base font-semibold text-fg">{item.title}</h3>
+                    <ul className="mt-3 space-y-2">
+                      {item.bullets.map((bullet, i) => (
+                        <li key={i} className="flex gap-2.5 text-[14.5px] leading-relaxed text-fg-muted">
+                          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: tone(i).c }} />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

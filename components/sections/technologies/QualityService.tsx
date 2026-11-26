@@ -1,3 +1,4 @@
+import { Heading, NumberedList, Section } from "@/components/ui/v4";
 import type { TechnologySimpleCardRecord } from "@/lib/content-types";
 
 type QualityServiceProps = {
@@ -51,43 +52,18 @@ const defaultPoints: TechnologySimpleCardRecord[] = [
 ];
 
 const QualityService = ({ eyebrow = "Quality-Focused Proficiency", title = "What makes Node.js ideal for scalable applications?", description = "Node.js demonstrates exceptional performance in creating scalable applications through its unique architecture. Its non-blocking I/O model, coupled with an event-driven approach and high concurrency capabilities, facilitates swift development and effective resource utilization, ensuring your applications grow while maintaining optimal performance.", points = defaultPoints }: QualityServiceProps) => {
-  const resolvedPoints = points.length > 0 ? points : defaultPoints;
-
+  const resolvedPoints = points.length ? points : defaultPoints;
   return (
-    <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }} />
-
-      <div className="relative grid grid-cols-1 xl:grid-cols-[599px_1fr] gap-[52px] max-w-[1350px] mx-auto px-4 xl:px-0">
-        <div className="flex flex-col gap-3.75 w-full xl:max-w-[599px]">
-          <h6 className="text-tech text-base md:text-lg font-medium">{eyebrow}</h6>
-          <h2 className="title heading-gradient text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
-          <p className="font-normal text-sm md:text-base leading-relaxed text-fg/80">{description}</p>
+    <Section id="quality-title" alt>
+      <div className="grid gap-10 lg:grid-cols-12">
+        <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+          <Heading id="quality-title" kicker={eyebrow} kickerTone="blue" title={title} subtitle={description} />
         </div>
-        <div className="flex flex-col w-full gap-6.25">
-          {resolvedPoints.map((point, index) => (
-            <div key={point.title} className={`flex flex-col gap-3 ${index < resolvedPoints.length - 1 ? "border-b pb-5 border-fg/50" : "pb-5 border-fg/50"}`}>
-              <h6 className="text-fg font-semibold text-base md:text-lg">
-                <div className="flex gap-2 items-center">
-                  <span
-                    style={{
-                      background: "linear-gradient(90deg, var(--tech) 0%, var(--gold) 100%)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span>{point.title}</span>
-                </div>
-              </h6>
-              <p className="ml-[32px] text-sm md:text-base leading-relaxed text-fg">{point.description}</p>
-            </div>
-          ))}
+        <div className="lg:col-span-8">
+          <NumberedList items={resolvedPoints.map((p) => ({ title: p.title, description: p.description }))} />
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

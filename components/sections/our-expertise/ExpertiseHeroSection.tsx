@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroBrandPanel from "@/components/sections/shared/HeroBrandPanel";
+import PageVisual, { type VisualKind } from "@/components/hero/PageVisuals";
 import PageHero from "@/components/sections/shared/PageHero";
 
 interface ExpertiseHeroSectionProps {
@@ -9,9 +9,10 @@ interface ExpertiseHeroSectionProps {
   ctaButtonLink?: string;
   logos?: string[];
   heroBackgroundImage?: string;
+  visual?: VisualKind;
 }
 
-const ExpertiseHeroSection = ({ title, description, ctaButtonText = "Book a Free Consultation", ctaButtonLink = "/contact-us", logos = [] }: ExpertiseHeroSectionProps) => {
+const ExpertiseHeroSection = ({ title, description, ctaButtonText = "Book a Free Consultation", ctaButtonLink = "/contact-us", logos = [], visual = "code" }: ExpertiseHeroSectionProps) => {
   // Only real logos uploaded in the CMS are shown; placeholder artwork is never presented as clients.
   const resolvedLogos = logos.filter((logo) => logo && !logo.includes("logoipsum"));
   return (
@@ -21,7 +22,7 @@ const ExpertiseHeroSection = ({ title, description, ctaButtonText = "Book a Free
       description={description}
       primary={{ label: ctaButtonText, href: ctaButtonLink }}
       secondary={{ label: "Explore technologies", href: "/technologies" }}
-      aside={<HeroBrandPanel />}
+      aside={<PageVisual kind={visual} />}
     >
       {resolvedLogos.length ? (
         <div className="mt-8 flex flex-wrap items-center gap-6 opacity-80">

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { FeatureCards, GoldButton, Heading, Section } from "@/components/ui/v4";
 
 import type { TechnologySimpleCardRecord } from "@/lib/content-types";
 
@@ -32,56 +32,22 @@ const defaultCards: TechnologySimpleCardRecord[] = [
   },
 ];
 
-function TalkCard({ card }: { card: TechnologySimpleCardRecord }) {
-  return (
-    <div className="relative w-full h-auto min-h-[140px] sm:min-h-[150px] md:h-[155px] lg:h-auto xl:h-[165px] rounded-[10px]">
-      <div
-        className="absolute inset-0 rounded-[10px] pointer-events-none"
-        style={{
-          background: "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
-          padding: "1px",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
-
-      <div className="relative z-10 p-4 sm:p-5 w-full h-full rounded-[10px]" style={{ background: "linear-gradient(179.84deg, color-mix(in srgb, var(--tech) 35%, transparent) -59.75%, rgba(24, 24, 24, 0) 99.86%)" }}>
-        <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
-          <h4 className="text-base sm:text-lg font-semibold">{card.title}</h4>
-          <p className="font-normal text-fg/80 text-xs sm:text-sm md:text-base leading-relaxed w-full">{card.description}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 const TalkToExpertSection = ({ title = "Expert Node.js Development: Making the Complex Effortlessly Simple", buttonLabel = "Talk With Expert", buttonHref = "/contact-us", cards = defaultCards }: TalkToExpertSectionProps) => {
-  const resolvedCards = cards.length > 0 ? cards : defaultCards;
-
   return (
-    <section className="sectionDefault pt-[100px]">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
-
-      <div className="container max-w-[1352px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 xl:gap-[58px]">
-          <div className="lg:sticky lg:top-0 lg:self-start order-1 lg:order-1">
-            <div className="flex flex-col items-center lg:items-start gap-4 md:gap-5">
-              <h2 className="title heading-gradient text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
-              <Link href={buttonHref} className="btn-brand w-full sm:w-auto">
-                {buttonLabel}
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4 md:gap-5 lg:gap-5 order-2 lg:order-2">
-            {resolvedCards.map((card, index) => (
-              <TalkCard key={`${card.title}-${index}`} card={card} />
-            ))}
+    <Section id="talk-title" alt>
+      <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+        <div className="lg:sticky lg:top-28 lg:col-span-5">
+          <Heading id="talk-title" kicker="Expertise" kickerTone="blue" title={title} />
+          <div className="mt-7">
+            <GoldButton href={buttonHref}>{buttonLabel}</GoldButton>
           </div>
         </div>
+        <div className="lg:col-span-7 [&>ul]:mt-0">
+          <FeatureCards cols={2} items={cards.map((c) => ({ title: c.title, description: c.description }))} />
+        </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

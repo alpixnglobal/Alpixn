@@ -1,4 +1,4 @@
-import HeroBrandPanel from "@/components/sections/shared/HeroBrandPanel";
+import PageVisual from "@/components/hero/PageVisuals";
 import PageHero from "@/components/sections/shared/PageHero";
 
 interface ProductHeroSectionProps {
@@ -27,7 +27,7 @@ const ProductHeroSection = ({
     }
     primary={{ label: buttonLabel, href: buttonHref }}
     secondary={{ label: "Talk to an expert", href: "/contact-us" }}
-    aside={<HeroBrandPanel />}
+    aside={<PageVisual kind="chatbot" />}
   />
 );
 
