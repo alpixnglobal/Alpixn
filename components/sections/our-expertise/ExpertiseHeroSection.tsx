@@ -19,7 +19,8 @@ const ExpertiseHeroSection = ({
   logos = ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"],
   heroBackgroundImage = "/images/expertise-hero-bg.png",
 }: ExpertiseHeroSectionProps) => {
-  const resolvedLogos = logos.length > 0 ? logos : ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"];
+  // Only real logos uploaded in the CMS are shown; placeholder artwork is never presented as clients.
+  const resolvedLogos = logos.filter((logo) => logo && !logo.includes("logoipsum"));
   const heroTitleClassName = `
     font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight
     bg-[linear-gradient(89.22deg,var(--heading-from)_1.35%,var(--heading-from)_58.47%,var(--tech-soft)_101.3%)]
@@ -103,18 +104,18 @@ const ExpertiseHeroSection = ({
           </Link>
 
           {/* Logos */}
-          <div className="flex gap-6.25 max-md:flex-wrap max-md:gap-4">
-            {resolvedLogos.filter(Boolean).map((logo, index) => (
+          {resolvedLogos.length ? <div className="flex gap-6.25 max-md:flex-wrap max-md:gap-4">
+            {resolvedLogos.map((logo, index) => (
               <Image
                 key={index}
                 src={logo}
-                alt={`client logo ${index + 1}`}
+                alt={`Client logo ${index + 1}`}
                 width={143}
                 height={27}
                 unoptimized={logo.startsWith("data:") || logo.startsWith("http")}
               />
             ))}
-          </div>
+          </div> : null}
         </div>
       </div>
     </section>

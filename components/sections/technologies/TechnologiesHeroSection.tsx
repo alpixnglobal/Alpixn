@@ -35,7 +35,8 @@ const TechnologiesHeroSection = ({
   secondaryButtonHref = "/contact-us",
   logos = imageLogos.map((logo) => ({ label: logo.alt, imageData: logo.src, href: logo.href })),
 }: TechnologiesHeroSectionProps) => {
-  const logoLoopItems = logos.map((logo) => ({ src: logo.imageData, alt: logo.label, href: logo.href }));
+  // Placeholder logos are filtered out so they are never presented as partners.
+  const logoLoopItems = logos.filter((logo) => logo.imageData && !logo.imageData.includes("logoipsum")).map((logo) => ({ src: logo.imageData, alt: logo.label, href: logo.href }));
 
   return (
     <section className="relative w-full h-158 flex items-center xl:block overflow-hidden">
@@ -77,7 +78,7 @@ const TechnologiesHeroSection = ({
       </div>
       {/* Bott
       {/* Bottom Logos */}
-      <div className="absolute bottom-0 w-full h-12.25 bg-canvas  flex items-center">
+      {logoLoopItems.length ? <div className="absolute bottom-0 w-full h-12.25 bg-canvas  flex items-center">
         <LogoLoop
           logos={logoLoopItems}
           speed={90}
@@ -89,7 +90,7 @@ const TechnologiesHeroSection = ({
           fadeOut
           ariaLabel="Technology partners"
         />
-      </div>
+      </div> : null}
 
       {/* Content */}
       <div className="relative w-full max-w-289.75 mx-auto flex flex-col items-center gap-6 mb-16 xl:pt-38 px-4 lg:px-0">

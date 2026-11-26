@@ -9,7 +9,6 @@ import FAQExpertiseSection from "./FAQExpertiseSection";
 import GuideToSofwareDevSection from "./GuideToSofwareDevSection";
 import IndustriesWeServeExpertiseSection from "./IndustriesWeServeExpertiseSection";
 import StartSofwareDevSection from "./StartSofwareDevSection";
-import StatsSection from "./StatsSection";
 // import TestimonialOurExpertise from "./TestimonialOurExpertise";
 import WhyChooseUsOurExpertiseSection from "./WhyChooseUsOurExpertiseSection";
 
@@ -32,14 +31,7 @@ export function ExpertisePageSections({
         logos={page.heroLogos}
         heroBackgroundImage={page.heroBackgroundImage}
       />
-      <StatsSection
-        data={{
-          mainTitle: page.statsTitle,
-          mainDescription: page.statsDescription,
-          gridItems: page.statsCards,
-          highlights: sharedHighlights,
-        }}
-      />
+      {/* Stats section removed: figures were unverified template data (2026 content review). */}
       {/* <CaseStudySection data={{ mainTitle: page.caseStudyTitle, mainSubtitle: page.caseStudySubtitle, caseStudies: page.caseStudyTabs }} /> */}
       <CustomSoftwareDevSection
         data={{

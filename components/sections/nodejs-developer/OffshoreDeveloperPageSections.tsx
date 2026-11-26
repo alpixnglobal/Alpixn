@@ -10,10 +10,8 @@ import ExcellenceOfNodeDev from "./ExcellenceOfNodeDev";
 import HireNodeDevSection from "./HireNodeDevSection";
 import NodejsHireGuide from "./NodejsHireGuide";
 import OffshoreHeroSection from "./OffshoreHeroSection";
-import PartnersLogo from "./PartnersLogo";
 import PartnerWithNodeTeam from "./PartnerWithNodeTeam";
 import StepsToHireNodeDevSection from "./StepsToHireNodeDevSection";
-import TestimonialSection from "./TestimonialSection";
 
 export function OffshoreDeveloperPageSections({
   page,
@@ -33,7 +31,7 @@ export function OffshoreDeveloperPageSections({
           technologies: page.heroTechnologies,
         }}
       />
-      <PartnersLogo logos={settings.partnerLogos} />
+      {/* Partner logo strip removed: placeholder logos implied clients (2026 content review). */}
       <ExcellenceOfNodeDev
         data={{
           mainTitle: page.excellenceTitle,
@@ -51,7 +49,7 @@ export function OffshoreDeveloperPageSections({
         }}
       />
       <BackendDeveloperSection data={{ title: page.developerGridTitle, developers: page.developerItems }} />
-      <TestimonialSection title={settings.testimonialTitle} subtitle={settings.testimonialSubtitle} items={settings.testimonials} />
+      {/* Testimonials removed until verified, client-approved quotes are available. */}
       <HireNodeDevSection data={{ title: page.hireTitle, subtitle: page.hireSubtitle, services: page.hireServices }} />
       <ContactExpert slug={page.slug} overrideTitle={page.contactTitle} overrideButtonText={page.contactButtonText} overrideButtonLink={page.contactButtonLink} />
       {/* <CaseStudySection title={settings.caseStudyTitle} subtitle={settings.caseStudySubtitle} cases={settings.caseStudies} /> */}
