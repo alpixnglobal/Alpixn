@@ -1,9 +1,8 @@
 import JsonLd from "@/components/seo/JsonLd";
-import { BigCta, CapabilityMarquee, HeroV3, InsightsRow, ProcessSteps, SelectedWork, ServicesBento } from "@/components/home/HomeV3";
+import { BigCta, CapabilityMarquee, HeroV3, InsightsRow, ProcessSteps, ServicesBento } from "@/components/home/HomeV3";
 import HomeIndustriesSection from "@/components/sections/HomeIndustriesSection";
 import TechStackSection from "@/components/sections/TechStackSection";
-import { getCachedHomeSettings, getCachedPublishedBlogPosts, getCachedPublishedPortfolioProjects } from "@/lib/content-service";
-import { toPortfolioCard } from "@/lib/portfolio/cards";
+import { getCachedHomeSettings, getCachedPublishedBlogPosts } from "@/lib/content-service";
 import { organizationJsonLd, pageMetadata, websiteJsonLd } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -16,9 +15,8 @@ export const metadata = pageMetadata({
 });
 
 const Home = async () => {
-  const [settings, posts, projects] = await Promise.all([getCachedHomeSettings(), getCachedPublishedBlogPosts(), getCachedPublishedPortfolioProjects()]);
+  const [settings, posts] = await Promise.all([getCachedHomeSettings(), getCachedPublishedBlogPosts()]);
 
-  const featured = [...projects].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured))).map(toPortfolioCard);
   const latest = posts.slice(0, 3).map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, category: p.category, readTime: p.readTime, publishedAt: p.publishedAt, imageData: p.imageData }));
 
   return (
@@ -32,10 +30,12 @@ const Home = async () => {
       />
       <CapabilityMarquee />
       <ServicesBento title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings} />
-      <SelectedWork projects={featured} />
-      <HomeIndustriesSection title={settings.industriesTitle} subtitle={settings.industriesSubtitle} tabs={settings.industriesTabs} />
+      {/* Industries + Tech Stack keep their original dark navy look in both themes */}
+      <div className="dark section-navy">
+        <HomeIndustriesSection title={settings.industriesTitle} subtitle={settings.industriesSubtitle} tabs={settings.industriesTabs} />
+        <TechStackSection title={settings.techStackTitle} description={settings.techStackDescription} tabs={settings.techStackTabs} />
+      </div>
       <ProcessSteps />
-      <TechStackSection title={settings.techStackTitle} description={settings.techStackDescription} tabs={settings.techStackTabs} />
       <InsightsRow posts={latest} />
       <BigCta />
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />

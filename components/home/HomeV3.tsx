@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, FlaskConical } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BrainCircuit, FlaskConical, Smartphone } from "lucide-react";
 import HeroVisual from "@/components/hero/HeroVisual";
 import { BlogCard, type BlogCardData } from "@/components/blog/BlogExplorer";
 import type { PortfolioCard } from "@/components/portfolio/PortfolioExplorer";
@@ -106,23 +106,30 @@ export function HeroV3({
             </div>
           </div>
 
-          <Link href="/resources/portfolio/docusense-document-ai" className="tile group md:col-span-5 min-h-[240px]">
-            <Image src="/portfolio/docusense-document-ai/desktop.webp" alt="DocuSense concept: AI document processing review screen" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover object-left-top opacity-90 transition-transform duration-700 group-hover:scale-[1.04]" />
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[var(--surface)] via-[var(--surface)]/40 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5">
-              <div>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-ink">AI software</span>
-                <p className="font-display text-xl font-semibold text-fg">Document intelligence</p>
-              </div>
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-gold-grad text-[#0d1526]">
+          <Link href="/our-expertise" className="tile group md:col-span-5 min-h-[240px] p-6">
+            <div className="flex items-start justify-between">
+              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-gold/15 text-gold-ink">
+                <BrainCircuit aria-hidden className="h-6 w-6" />
+              </span>
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-gold-grad text-[#0d1526] transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight aria-hidden className="h-5 w-5" />
               </span>
             </div>
+            <span className="mt-6 block text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-ink">AI software</span>
+            <p className="mt-1 font-display text-xl font-semibold text-fg">AI &amp; machine learning</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {["Generative AI", "Computer vision", "Document AI", "Predictive analytics"].map((t) => (
+                <li key={t} className="rounded-full border border-line bg-surface-2 px-3 py-1 text-xs text-fg-muted">
+                  {t}
+                </li>
+              ))}
+            </ul>
           </Link>
 
-          <Link href="/resources/portfolio/routepilot-delivery-app" className="tile group md:col-span-2 min-h-[220px] bg-surface-2">
-            <Image src="/portfolio/routepilot-delivery-app/mobile.webp" alt="RoutePilot concept: delivery driver mobile app" fill sizes="(max-width: 768px) 100vw, 20vw" className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]" />
-            <span className="absolute bottom-3 left-3 rounded-full bg-fg px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-canvas">Mobile</span>
+          <Link href="/our-expertise" className="tile group flex flex-col md:col-span-2 min-h-[220px] bg-fg p-5 text-canvas">
+            <Smartphone aria-hidden className="h-7 w-7 text-[#f6d77a]" />
+            <p className="mt-auto pt-16 font-display text-lg font-semibold leading-tight">Web &amp; mobile apps</p>
+            <p className="mt-1 text-xs opacity-70">iOS · Android · Web</p>
           </Link>
 
           <div className="tile md:col-span-3 min-h-[220px] bg-gold-grad !border-transparent p-5 text-[#0d1526]">
@@ -339,20 +346,20 @@ const STEPS = [
 
 export function ProcessSteps() {
   return (
-    <section aria-labelledby="process-title" className="bg-fg py-20 text-canvas sm:py-28 dark:bg-surface dark:text-fg">
+    <section aria-labelledby="process-title" className="bg-canvas-2 py-20 text-fg sm:py-28">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
-        <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-[#f6d77a]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#f6d77a]" /> How we work
+        <span className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.18em] text-gold-ink">
+          <span className="h-1.5 w-1.5 rounded-full bg-gold" /> How we work
         </span>
         <h2 id="process-title" className="display-lg mt-5 max-w-3xl">
           Five steps. <span className="text-gold-grad">No surprises.</span>
         </h2>
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-[28px] bg-white/10 sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-5">
           {STEPS.map(([title, text], i) => (
-            <li key={title} className="bg-fg p-7 dark:bg-surface">
+            <li key={title} className="bg-surface p-7">
               <span className="font-display text-6xl font-bold text-gold-grad">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-6 font-display text-xl font-bold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed opacity-70">{text}</p>
+              <p className="mt-2 text-sm leading-relaxed text-fg-muted">{text}</p>
             </li>
           ))}
         </ol>
@@ -429,8 +436,8 @@ export function BigCta() {
           <Link href="/contact-us" className="btn-brand !px-8 !py-4 text-base">
             Request a consultation <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
           </Link>
-          <Link href="/resources/portfolio" className="btn-ghost-brand !px-8 !py-4 text-base">
-            See our work
+          <Link href="/our-expertise" className="btn-ghost-brand !px-8 !py-4 text-base">
+            Explore our services
           </Link>
         </div>
       </div>
