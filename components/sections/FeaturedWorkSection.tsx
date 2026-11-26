@@ -10,7 +10,7 @@ export default function FeaturedWorkSection({ projects }: { projects: PortfolioC
   return (
     <section aria-labelledby="featured-work-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-tech/15 blur-[140px]" />
+        <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-azure/15 blur-[140px]" />
         <div className="absolute -right-20 bottom-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-[120px]" />
       </div>
       <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-10 xl:px-0">

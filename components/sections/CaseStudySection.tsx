@@ -118,7 +118,7 @@ const CaseStudySection = ({
   return (
     <section aria-labelledby="cases-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-tech/15 blur-[140px]" />
+        <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-azure/15 blur-[140px]" />
         <div className="absolute -right-20 bottom-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-[120px]" />
       </div>
 
@@ -140,7 +140,7 @@ const CaseStudySection = ({
               aria-label="Next case study"
               onClick={next}
               disabled={isLast}
-              className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-brand-royal to-brand-midnight text-white shadow-[var(--shadow-glow)] transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-35"
+              className="grid h-12 w-12 place-items-center rounded-full bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] text-[#071a33] shadow-[var(--shadow-glow)] transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-35"
             >
               <ArrowRight aria-hidden className="h-5 w-5" />
             </button>

@@ -176,7 +176,7 @@ const TechStackSection = ({
               <TabsPrimitive.Trigger
                 key={tab.value}
                 value={tab.value}
-                className="whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold text-fg-muted transition-all hover:text-fg data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-royal data-[state=active]:to-brand-midnight data-[state=active]:text-white data-[state=active]:shadow-[var(--shadow-glow)] sm:px-7"
+                className="whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold text-fg-muted transition-all hover:text-fg data-[state=active]:bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] data-[state=active]:text-[#071a33] data-[state=active]:shadow-[var(--shadow-glow)] sm:px-7"
               >
                 {tab.name}
               </TabsPrimitive.Trigger>

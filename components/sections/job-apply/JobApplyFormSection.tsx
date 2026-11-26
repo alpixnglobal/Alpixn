@@ -91,7 +91,7 @@ const JobApplyFormSection = ({
                     {summaryPrefix} <span className="font-semibold text-fg">{job.title}</span> at <span className="font-semibold text-fg">{job.company}</span>
                   </div>
                   <div className="col-span-1 lg:col-span-2">
-                    <button type="submit" className="h-12 w-full rounded-[10px] bg-tech px-6.25 py-2.5 text-sm text-white">
+                    <button type="submit" className="h-12 w-full rounded-[10px] bg-tech px-6.25 py-2.5 text-sm text-[#071a33]">
                       {submitLabel}
                     </button>
                   </div>

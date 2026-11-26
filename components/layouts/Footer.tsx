@@ -217,7 +217,7 @@ const Footer = ({ settings }: FooterProps) => {
     <footer className="relative w-full overflow-hidden bg-canvas text-fg">
       {/* Ambient brand lighting */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-tech/20 blur-[140px] dark:bg-tech/25" />
+        <div className="absolute -top-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-azure/20 blur-[140px] dark:bg-azure/25" />
         <div className="absolute -bottom-40 right-[-5%] h-[380px] w-[380px] rounded-full bg-gold/10 blur-[140px]" />
         <div className="absolute inset-0 bg-grid opacity-[0.35] [mask-image:radial-gradient(70%_60%_at_50%_0%,#000_20%,transparent_80%)]" />
       </div>

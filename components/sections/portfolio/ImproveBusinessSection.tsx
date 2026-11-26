@@ -46,7 +46,7 @@ const ImproveBusinessSection = ({ title = "Improve your business and make your w
             </p>
             <Link
               href={buttonHref}
-              className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-tech rounded-[10px] w-63 cursor-pointer"
+              className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-[#071a33] flex gap-2 items-center bg-tech rounded-[10px] w-63 cursor-pointer"
               style={{ boxShadow: "0px 4px 6px 0px #0000001A inset" }}
             >
               <span>{buttonLabel}</span>

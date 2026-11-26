@@ -140,7 +140,7 @@ export default function AboutPage() {
             {PILLARS.map(({ icon: Icon, title, text, links }, i) => (
               <Reveal key={title} delay={i * 100}>
                 <article className="border-glow flex h-full flex-col rounded-2xl bg-surface p-7 shadow-[var(--shadow-card)]">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-brand-royal to-brand-midnight text-white">
+                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] text-[#071a33]">
                     <Icon aria-hidden className="h-6 w-6" />
                   </span>
                   <h3 className="mt-6 font-display text-xl font-semibold text-fg">{title}</h3>

@@ -135,7 +135,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                       <Textarea placeholder="Describe Your Query" />
                     </div>
                     <div>
-                      <button className="w-full text-sm text-white py-2.5 px-6.25 bg-tech rounded-[5px] h-12 cursor-pointer">
+                      <button className="w-full text-sm text-[#071a33] py-2.5 px-6.25 bg-tech rounded-[5px] h-12 cursor-pointer">
                         Submit
                       </button>
                     </div>

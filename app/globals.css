@@ -39,6 +39,8 @@
   --color-line: var(--line);
   --color-line-gold: var(--line-gold);
   --color-tech: var(--tech);
+  --color-azure: var(--blue);
+  --color-azure-soft: var(--blue-soft);
   --color-tech-soft: var(--tech-soft);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
@@ -102,25 +104,28 @@
   --canvas-2: #eef2f9;
   --surface: #ffffff;
   --surface-2: #f1f4fa;
-  --glow: #dbe7f7;
+  --glow: #f5e6c4;
   --fg: #071a33;
   --fg-muted: #46576f;
   --fg-subtle: #6b7a90;
   --line: rgba(7, 26, 51, 0.1);
   --line-gold: rgba(154, 91, 8, 0.28);
-  --tech: #0878d1;
-  --tech-soft: #3f9be3;
+  /* Primary accent is gold (brand balance ≈ navy + gold); --blue keeps the technology highlight */
+  --tech: #a8680a;
+  --tech-soft: #d99a19;
+  --blue: #0878d1;
+  --blue-soft: #3f9be3;
   --gold: #c2860f;
   --gold-soft: #e9b949;
   --gold-ink: #8a5207;
   --on-accent: #ffffff;
   --shadow-card: 0 1px 2px rgba(7, 26, 51, 0.04), 0 12px 32px -12px rgba(7, 26, 51, 0.14);
-  --shadow-glow: 0 10px 40px -12px rgba(8, 120, 209, 0.35);
+  --shadow-glow: 0 12px 40px -12px rgba(217, 154, 25, 0.45);
   --glass: rgba(255, 255, 255, 0.72);
   --glass-border: rgba(7, 26, 51, 0.08);
   --header-bg: rgba(255, 255, 255, 0.82);
   --heading-from: #071a33;
-  --heading-via: #064a87;
+  --heading-via: #a8680a;
   --heading-to: #071a33;
   --hi-rgb: 7 26 51;
   --hi-scale: 0.35;
@@ -132,7 +137,7 @@
   --popover: var(--surface);
   --popover-foreground: var(--fg);
   --primary: var(--tech);
-  --primary-foreground: #ffffff;
+  --primary-foreground: #071a33;
   --secondary: var(--surface-2);
   --secondary-foreground: var(--fg);
   --muted: var(--surface-2);
@@ -168,25 +173,27 @@
   --canvas-2: #071a33;
   --surface: #0a2140;
   --surface-2: #0d2a50;
-  --glow: #0a3466;
+  --glow: #2a2410;
   --fg: #f3f6fb;
   --fg-muted: rgba(226, 234, 246, 0.74);
   --fg-subtle: rgba(226, 234, 246, 0.52);
   --line: rgba(160, 196, 240, 0.14);
   --line-gold: rgba(246, 215, 122, 0.3);
-  --tech: #2ea8ff;
-  --tech-soft: #7cc6ff;
+  --tech: #f0c14b;
+  --tech-soft: #f6d77a;
+  --blue: #2ea8ff;
+  --blue-soft: #7cc6ff;
   --gold: #e3a52a;
   --gold-soft: #f6d77a;
   --gold-ink: #f6d77a;
   --on-accent: #ffffff;
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -20px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 10px 50px -10px rgba(46, 168, 255, 0.45);
+  --shadow-glow: 0 12px 50px -10px rgba(240, 193, 75, 0.4);
   --glass: rgba(10, 33, 64, 0.55);
   --glass-border: rgba(160, 196, 240, 0.14);
   --header-bg: rgba(4, 13, 28, 0.72);
   --heading-from: #ffffff;
-  --heading-via: #cfe6ff;
+  --heading-via: #f6d77a;
   --heading-to: #ffffff;
   --hi-rgb: 255 255 255;
   --hi-scale: 1;
@@ -295,8 +302,8 @@ html.theme-ready section {
   /* Ambient brand background used by dark sections */
   .bg-ambient {
     background:
-      radial-gradient(60% 50% at 15% 0%, color-mix(in srgb, var(--tech) 14%, transparent) 0%, transparent 70%),
-      radial-gradient(50% 40% at 90% 10%, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 70%),
+      radial-gradient(60% 50% at 15% 0%, color-mix(in srgb, var(--blue) 14%, transparent) 0%, transparent 70%),
+      radial-gradient(55% 45% at 90% 10%, color-mix(in srgb, var(--gold) 16%, transparent) 0%, transparent 70%),
       var(--canvas);
   }
   .bg-grid {
@@ -337,14 +344,15 @@ html.theme-ready section {
   }
 
   .btn-brand {
-    color: #fff;
+    /* Metallic gold primary CTA (navy text for contrast) with a travelling blue/white light on the border */
+    color: #071a33;
     background:
-      linear-gradient(135deg, var(--brand-btn-from, #0878d1) 0%, var(--brand-btn-to, #064a87) 100%) padding-box,
+      linear-gradient(135deg, #fbe7a1 0%, #f0c14b 30%, #d99a19 62%, #b8740c 100%) padding-box,
       conic-gradient(
           from var(--border-angle),
           transparent 0deg,
-          #f6d77a 40deg,
-          #d99a19 80deg,
+          #ffffff 40deg,
+          #fff3c4 80deg,
           transparent 140deg,
           transparent 200deg,
           #2ea8ff 240deg,
@@ -355,8 +363,8 @@ html.theme-ready section {
     border: 1.5px solid transparent;
     animation: border-spin 4.5s linear infinite;
     box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--gold) 25%, transparent),
-      0 10px 30px -10px color-mix(in srgb, var(--tech) 70%, transparent);
+      0 0 0 1px color-mix(in srgb, var(--gold) 35%, transparent),
+      0 10px 30px -10px color-mix(in srgb, var(--gold) 75%, transparent);
   }
   .btn-brand::after {
     /* soft inner sheen */
@@ -372,8 +380,8 @@ html.theme-ready section {
     transform: translateY(-2px);
     box-shadow:
       0 0 0 1px color-mix(in srgb, var(--gold) 45%, transparent),
-      0 16px 40px -10px color-mix(in srgb, var(--tech) 85%, transparent),
-      0 0 30px -6px color-mix(in srgb, var(--gold) 50%, transparent);
+      0 16px 40px -10px color-mix(in srgb, var(--gold) 85%, transparent),
+      0 0 30px -6px color-mix(in srgb, var(--tech) 45%, transparent);
   }
   .btn-brand:active {
     transform: translateY(0) scale(0.98);
@@ -439,7 +447,7 @@ html.theme-ready section {
       color-mix(in srgb, var(--gold) 55%, transparent),
       transparent 30%,
       transparent 70%,
-      color-mix(in srgb, var(--tech) 60%, transparent)
+      color-mix(in srgb, var(--blue) 60%, transparent)
     );
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
@@ -548,7 +556,7 @@ html.theme-ready section {
     right: 0;
     bottom: -1px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 5%, color-mix(in srgb, var(--gold) 55%, transparent) 35%, color-mix(in srgb, var(--tech) 55%, transparent) 65%, transparent 95%);
+    background: linear-gradient(90deg, transparent 5%, color-mix(in srgb, var(--gold) 55%, transparent) 35%, color-mix(in srgb, var(--blue) 55%, transparent) 65%, transparent 95%);
     pointer-events: none;
   }
 

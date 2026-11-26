@@ -92,10 +92,10 @@ export default function BlogExplorer({ posts, categories, initialCategory = "All
                 setVisible(12);
               }}
               className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-all ${
-                category === c ? "border-transparent bg-gradient-to-br from-brand-royal to-brand-midnight text-white shadow-[var(--shadow-glow)]" : "border-line bg-surface text-fg-muted hover:border-gold/50 hover:text-fg"
+                category === c ? "border-transparent bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] text-[#071a33] shadow-[var(--shadow-glow)]" : "border-line bg-surface text-fg-muted hover:border-gold/50 hover:text-fg"
               }`}
             >
-              {c} <span className={category === c ? "text-white/70" : "text-fg-subtle"}>{counts[c] ?? 0}</span>
+              {c} <span className={category === c ? "text-[#071a33]/70" : "text-fg-subtle"}>{counts[c] ?? 0}</span>
             </button>
           ))}
         </div>

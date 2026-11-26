@@ -30,7 +30,7 @@ const Hero = ({
       {/* ---------- Background system ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-ambient" />
-        <div className="absolute right-[-10%] top-[-20%] h-[720px] w-[720px] rounded-full bg-tech/20 blur-[140px] dark:bg-tech/25" />
+        <div className="absolute right-[-10%] top-[-20%] h-[720px] w-[720px] rounded-full bg-azure/20 blur-[140px] dark:bg-azure/25" />
         <div className="absolute bottom-[-25%] left-[-10%] h-[520px] w-[520px] rounded-full bg-gold/10 blur-[140px]" />
         {/* perspective floor grid */}
         <div className="absolute inset-x-0 bottom-0 h-[55%] [perspective:900px]">

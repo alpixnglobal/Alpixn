@@ -62,7 +62,7 @@ const AboutHeroSection = ({
 
         {/* Buttons  */}
         <div className="flex flex-col md:flex-row gap-3 sm:gap-4 lg:gap-[25px] w-full md:w-auto">
-          <Link href={primaryAction.href} className="w-full md:w-auto px-6.25 py-2.5 bg-primary text-white text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center gap-2.5 cursor-pointer">
+          <Link href={primaryAction.href} className="w-full md:w-auto px-6.25 py-2.5 bg-primary text-[#071a33] text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center gap-2.5 cursor-pointer">
             <div>{primaryAction.label}</div>
             <div className="relative w-3.5 h-3.5 lg:w-4 lg:h-4">
               <Image src="/icons/arrow-right.svg" fill alt="Arrow Right" />

@@ -43,7 +43,7 @@ const FreeConsultationSection = ({ title = "Turn your ideas into stunning visual
           </p>
           <Link
             href={buttonHref}
-            className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-tech rounded-10 w-full sm:w-fit cursor-pointer"
+            className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-[#071a33] flex gap-2 items-center bg-tech rounded-10 w-full sm:w-fit cursor-pointer"
             style={{ boxShadow: "0px 4px 6px 0px #0000001A inset" }}
           >
             <span>{buttonLabel}</span>
