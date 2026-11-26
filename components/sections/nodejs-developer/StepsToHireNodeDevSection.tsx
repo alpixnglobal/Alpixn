@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+import { GoldButton, Heading, Section, tone } from "@/components/ui/v4";
 import { getHireStepsData } from "@/lib/offshore developer/hire-steps-data";
 import type { OffshoreStepRecord } from "@/lib/content-types";
 
@@ -25,84 +24,33 @@ const iconPaths = [
   "M9 2L17 6V10C17 14.5 13.9 18.74 10 20C6.1 18.74 3 14.5 3 10V6L10 2ZM9 14L14 9L12.59 7.58L9 11.17L7.41 9.59L6 11L9 14Z",
 ];
 
-function StepIcon({ index }: { index: number }) {
-  const path = iconPaths[index % iconPaths.length];
-  const viewBox = index % iconPaths.length === 0 ? "0 0 20 28" : "0 0 20 20";
-
-  return (
-    <div
-      className="flex items-center justify-center rounded-full z-10 w-[48px] h-[48px] lg:w-[67px] lg:h-[67px]"
-      style={{
-        background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
-        boxShadow: "0px 0px 23px 0px #4275AA",
-        position: "relative",
-      }}
-    >
-      <div
-        className="absolute inset-0 rounded-full pointer-events-none"
-        style={{
-          background: "linear-gradient(180deg, #4275AA 0%, var(--heading-from) 100%)",
-          padding: "1px",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-        }}
-      />
-
-      <svg width="20" height="20" viewBox={viewBox} fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 lg:w-5 lg:max-h-7 relative z-10">
-        <path d={path} fill="white" fillRule={index % iconPaths.length === 2 ? "evenodd" : undefined} clipRule={index % iconPaths.length === 2 ? "evenodd" : undefined} />
-      </svg>
-    </div>
-  );
-}
 
 const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSectionProps) => {
   const fallbackData = getHireStepsData(slug);
   const { mainTitle, buttonText, buttonLink, steps } = data ?? { ...fallbackData, steps: defaultSteps };
   const resolvedSteps = steps.length > 0 ? steps : defaultSteps;
-
   return (
-    <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }} />
-
-      <div className="relative w-full max-w-[1047px] gap-[50px] flex flex-col items-center mx-auto px-4 lg:px-0">
-        <h2 className="title heading-gradient text-left lg:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
-
-        <div className="relative w-full flex flex-col lg:flex-row lg:justify-between items-center gap-[60px] lg:gap-0">
-          {resolvedSteps.map((step, index) => (
-            <div key={`${step.stepLabel}-${index}`} className="relative flex flex-col items-center justify-center w-full max-w-[299px]">
-              <div className="py-2.5 px-[25px] text-xs border rounded-full bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] border-[color-mix(in_srgb,var(--tech)_45%,transparent)] mb-[35px]">
-                {step.stepLabel}
-              </div>
-
-              <StepIcon index={index} />
-
-              {index < resolvedSteps.length - 1 ? (
-                <div className="hidden lg:block absolute left-[61%] top-[44%]" style={{ width: "307px", height: "1px", background: "#FFFFFF33" }} />
-              ) : null}
-
-              <h5 className="text-fg font-medium text-base lg:text-xl text-center mt-[15px]">{step.title}</h5>
-              <p className="text-xs lg:text-base text-fg/80 text-center mt-[15px]">{step.description}</p>
-            </div>
-          ))}
+    <Section id="steps-title">
+      <Heading id="steps-title" kicker="How hiring works" kickerTone="blue" title={mainTitle} center />
+      <ol className="relative mt-14 grid gap-8 md:gap-5" style={{ gridTemplateColumns: `repeat(${Math.min(resolvedSteps.length, 4)}, minmax(0, 1fr))` }}>
+        <span aria-hidden className="absolute left-[12%] right-[12%] top-7 hidden h-1 rounded-full bg-brand-spectrum md:block" />
+        {resolvedSteps.map((step, i) => (
+          <li key={`${step.stepLabel}-${i}`} className="relative flex flex-col items-center text-center">
+            <span className="relative z-10 grid h-14 w-14 place-items-center rounded-full font-display text-lg font-bold ring-8 ring-[var(--canvas)]" style={{ background: tone(i).c, color: tone(i).ink }}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-fg-subtle">{step.stepLabel}</span>
+            <h3 className="mt-1 font-display text-lg font-semibold text-fg">{step.title}</h3>
+            <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-fg-muted">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+      {buttonText ? (
+        <div className="mt-12 flex justify-center">
+          <GoldButton href={buttonLink || "/contact-us"}>{buttonText}</GoldButton>
         </div>
-
-        <Link
-          href={buttonLink}
-          className="px-6.25 py-2.5 text-fg text-sm lg:text-base font-medium rounded-10 flex items-center justify-center cursor-pointer"
-          style={{
-            background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
-            border: "1.5px solid transparent",
-            backgroundImage:
-              "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
-            backgroundOrigin: "border-box",
-            backgroundClip: "padding-box, border-box",
-          }}
-        >
-          {buttonText}
-        </Link>
-      </div>
-    </section>
+      ) : null}
+    </Section>
   );
 };
 

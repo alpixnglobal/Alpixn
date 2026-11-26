@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, MoveRight } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Search, SlidersHorizontal } from "lucide-react";
 import { useDeferredValue, useState } from "react";
 
 import type { JobOpeningRecord } from "@/lib/content-types";
@@ -48,125 +47,81 @@ const SearchJobsSection = ({
     return matchesQuery && matchesType && matchesMode;
   });
 
+  const tones = ["#0878d1", "#d99a19", "#064a87", "#9a5b08"];
   return (
-    <section className="relative w-full py-12.5">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }} />
-
-      <div className="relative mx-auto w-full max-w-[1122px]">
-        <div className="flex flex-wrap justify-center gap-[15px] px-4 lg:justify-end lg:px-0">
-          <label className="relative h-[50px] w-full max-w-[400px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[64px]">
-            <div className="pointer-events-none absolute inset-y-0 right-5 flex items-center justify-between gap-[15px]">
-              <Image src="/icons/search.svg" width={18} height={18} alt="Search" className="h-[16px] w-[16px] lg:h-[18px] lg:w-[18px]" />
-            </div>
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder={searchPlaceholder}
-              className="h-full w-full bg-transparent px-5 text-sm md:text-base font-normal text-fg outline-none placeholder:text-fg/60"
-            />
-          </label>
-
-          <button
-            type="button"
-            onClick={() => setShowFilters((currentValue) => !currentValue)}
-            className="relative h-[50px] w-[62px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[64px]"
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Image src="/icons/burger.svg" width={18} height={12} alt="Toggle filters" className="h-[10px] w-[16px] lg:h-[12px] lg:w-[18px]" />
-            </div>
-          </button>
+    <section aria-labelledby="open-roles" className="bg-canvas py-16 sm:py-20">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#d99a19]/35 bg-[#f6d77a]/25 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#9a5b08] dark:bg-[#d99a19]/10 dark:text-[#f6d77a]">
+              <span className="h-1.5 w-1.5 rounded-full bg-current" /> Open roles
+            </span>
+            <h2 id="open-roles" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+              Find your <span className="text-brand-spectrum">next role</span>
+            </h2>
+          </div>
+          <div className="flex w-full gap-3 lg:w-auto">
+            <label className="relative flex h-12 flex-1 items-center rounded-full border border-line bg-surface px-5 shadow-[var(--shadow-card)] lg:w-[360px]">
+              <span className="sr-only">Search jobs</span>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder={searchPlaceholder} className="h-full w-full bg-transparent text-[15px] text-fg outline-none placeholder:text-fg-subtle" />
+              <Search aria-hidden className="h-4 w-4 text-fg-subtle" />
+            </label>
+            <button type="button" onClick={() => setShowFilters((v) => !v)} aria-expanded={showFilters} className="btn-ghost-brand !px-5">
+              <SlidersHorizontal aria-hidden className="h-4 w-4" /> Filters
+            </button>
+          </div>
         </div>
 
         {showFilters ? (
-          <div className="mx-4 mt-4 grid gap-4 rounded-[15px] border border-[color-mix(in_srgb,var(--tech)_25%,transparent)] bg-canvas-2/80 p-4 backdrop-blur-[15px] lg:mx-0 lg:grid-cols-2">
-            <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{typeLabel}</span>
-              <select
-                value={selectedType}
-                onChange={(event) => setSelectedType(event.target.value)}
-                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
-              >
+          <div className="mt-5 grid gap-4 rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] sm:grid-cols-2">
+            <label className="grid gap-2 text-sm text-fg-muted">
+              {typeLabel}
+              <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)} className="h-11 rounded-xl border border-line bg-canvas px-3 text-[15px] text-fg">
                 <option value="all">{allTypesLabel}</option>
-                {types.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
+                {types.map((t) => (
+                  <option key={t} value={t}>{t}</option>
                 ))}
               </select>
             </label>
-
-            <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{modeLabel}</span>
-              <select
-                value={selectedMode}
-                onChange={(event) => setSelectedMode(event.target.value)}
-                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
-              >
+            <label className="grid gap-2 text-sm text-fg-muted">
+              {modeLabel}
+              <select value={selectedMode} onChange={(e) => setSelectedMode(e.target.value)} className="h-11 rounded-xl border border-line bg-canvas px-3 text-[15px] text-fg">
                 <option value="all">{allModesLabel}</option>
-                {modes.map((mode) => (
-                  <option key={mode} value={mode}>
-                    {mode}
-                  </option>
+                {modes.map((m) => (
+                  <option key={m} value={m}>{m}</option>
                 ))}
               </select>
             </label>
           </div>
         ) : null}
 
-        <div className="mt-[35px] flex flex-col gap-[35px] px-4 xl:px-0">
-          {filteredJobs.map((job) => (
-            <Link key={job._id} href={`/resources/careers/${job.slug}`}>
-              <div
-                className="w-full cursor-pointer rounded-[15px] p-5 lg:p-[35px]"
-                style={{
-                  background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
-                  border: "1px solid #FFFFFF26",
-                }}
-              >
-                <div className="w-fit rounded-full bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] px-6.25 py-2.5 text-xs font-normal leading-relaxed text-fg">
-                  {job.company}
+        <ul className="mt-10 grid gap-4 md:grid-cols-2">
+          {filteredJobs.map((job, i) => (
+            <li key={job._id}>
+              <Link href={`/resources/careers/${job.slug}`} className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-line bg-surface p-6 shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-1">
+                <span aria-hidden className="absolute inset-x-0 top-0 h-1" style={{ background: tones[i % tones.length] }} />
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-xl font-bold text-fg">{job.title}</h3>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#fbe7a1,#d99a19)] text-[#071a33] transition-transform group-hover:rotate-45">
+                    <ArrowUpRight aria-hidden className="h-4 w-4" />
+                  </span>
                 </div>
-
-                <div className="mt-[35px] flex flex-wrap items-center justify-between">
-                  <h2 className="font-semibold leading-snug tracking-tight text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">{job.title}</h2>
-                  <div className="mt-4 flex flex-wrap gap-2.5 lg:mt-0 lg:gap-0">
-                    <div className="px-3.5 text-xs md:text-sm font-normal leading-relaxed text-fg/80 lg:border-r lg:border-white/20">{job.type}</div>
-                    <div className="px-3.5 text-xs md:text-sm font-normal leading-relaxed text-fg/80 lg:border-r lg:border-white/20">{job.mode}</div>
-                    <div className="pl-3.5 text-xs md:text-sm font-normal leading-relaxed text-fg/80">{job.salary}</div>
-                  </div>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {[job.type, job.mode, job.location, job.salary].filter(Boolean).map((v, k) => (
+                    <li key={`${v}-${k}`} className="rounded-full border border-line bg-surface-2 px-3 py-1 text-[12.5px] font-medium text-fg-muted">{v}</li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex items-center justify-between pt-6 text-sm">
+                  <span className="flex items-center gap-2 text-fg-subtle">
+                    <CalendarDays aria-hidden className="h-4 w-4" /> {job.posted}
+                  </span>
+                  <span className="font-semibold text-[#0878d1]">{viewDetailsLabel}</span>
                 </div>
-
-                <div className="mt-[35px] flex flex-wrap items-center justify-between gap-4">
-                  <div className="flex items-center gap-2.5 text-fg">
-                    <CalendarDays className="h-[14px] w-[14px] lg:h-[22px] lg:w-[22px]" />
-                    <div className="text-sm md:text-sm lg:text-base font-medium leading-snug">{job.posted}</div>
-                  </div>
-
-                  <div
-                    className="relative flex w-fit items-center gap-2 rounded-[10px] px-3.5 py-1.5 text-fg sm:px-4 lg:px-5 xl:px-5 lg:py-2.5"
-                    style={{
-                      background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
-                      border: "1.5px solid transparent",
-                      backgroundImage:
-                        "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, var(--heading-from) 92.69%)",
-                      backgroundOrigin: "border-box",
-                      backgroundClip: "padding-box, border-box",
-                    }}
-                  >
-                    <span className="text-xs md:text-sm lg:text-sm font-semibold leading-snug">{viewDetailsLabel}</span>
-                    <MoveRight className="h-[12px] w-[12px] lg:h-[16px] lg:w-[16px]" />
-                  </div>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </li>
           ))}
-
-          {filteredJobs.length === 0 ? (
-            <div className="rounded-[15px] border border-fg/10 bg-fg/[0.03] p-8 text-center text-base md:text-lg font-normal leading-relaxed text-fg/75">
-              {emptyMessage}
-            </div>
-          ) : null}
-        </div>
+        </ul>
+        {filteredJobs.length === 0 ? <p className="mt-8 rounded-3xl border border-line bg-surface p-8 text-center text-fg-muted">{emptyMessage}</p> : null}
       </div>
     </section>
   );

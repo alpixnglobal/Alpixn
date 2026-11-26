@@ -441,6 +441,7 @@ function withResourceUiSettingsDefaults(settings?: Partial<ResourceUiSettingsRec
   };
 }
 
+// Template intern entries are unpublished: real alumni are added in admin (never invented people).
 const internSeedData = [
   {
     slug: "priya-sharma-react-developer",
@@ -455,7 +456,7 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(250, 204, 21, 0.42), rgba(249, 115, 22, 0.18))",
     imageData: "/images/priya.svg",
     order: 1,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "rohan-mehta-ui-ux-design",
@@ -470,7 +471,7 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(140, 160, 167, 0.2))",
     imageData: "/images/rohan.svg",
     order: 2,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "aditya-verma-nodejs-developer",
@@ -485,7 +486,7 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(13, 56, 133, 0.4), rgba(56, 158, 255, 0.18))",
     imageData: "/images/verma.svg",
     order: 3,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "sneha-patel-quality-assurance",
@@ -500,7 +501,7 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.38), rgba(14, 165, 233, 0.16))",
     imageData: "",
     order: 4,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "mehul-shah-product-design",
@@ -515,7 +516,7 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(244, 114, 182, 0.38), rgba(59, 130, 246, 0.16))",
     imageData: "",
     order: 5,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "khushi-joshi-data-analyst",
@@ -530,10 +531,11 @@ const internSeedData = [
     accent: "linear-gradient(135deg, rgba(168, 85, 247, 0.38), rgba(14, 165, 233, 0.16))",
     imageData: "",
     order: 6,
-    isPublished: true,
+    isPublished: false,
   },
 ];
 
+// Template team entries are unpublished: real profiles are added in admin (never invented people).
 const teamSeedData = [
   {
     slug: "meena-iyer",
@@ -544,7 +546,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(14, 165, 233, 0.42), rgba(30, 41, 59, 0.18))",
     imageData: "/images/nair.svg",
     order: 1,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "priya-nair-cto",
@@ -555,7 +557,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(15, 23, 42, 0.22))",
     imageData: "/images/nair.svg",
     order: 2,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "amid-verma",
@@ -566,7 +568,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(244, 114, 182, 0.36), rgba(59, 130, 246, 0.18))",
     imageData: "/images/nair.svg",
     order: 3,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "rahul-sharma",
@@ -577,7 +579,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(16, 185, 129, 0.38), rgba(14, 165, 233, 0.16))",
     imageData: "/images/nair.svg",
     order: 4,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "ananya-gupta",
@@ -588,7 +590,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(251, 191, 36, 0.36), rgba(249, 115, 22, 0.18))",
     imageData: "/images/nair.svg",
     order: 5,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "karan-singh",
@@ -599,7 +601,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(99, 102, 241, 0.36), rgba(14, 165, 233, 0.18))",
     imageData: "/images/nair.svg",
     order: 6,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "nikhil-bansal",
@@ -610,7 +612,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(168, 85, 247, 0.36), rgba(59, 130, 246, 0.18))",
     imageData: "/images/nair.svg",
     order: 7,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "saurabh-jain",
@@ -621,7 +623,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(236, 72, 153, 0.36), rgba(168, 85, 247, 0.18))",
     imageData: "/images/nair.svg",
     order: 8,
-    isPublished: true,
+    isPublished: false,
   },
   {
     slug: "priya-nair-project-manager",
@@ -632,7 +634,7 @@ const teamSeedData = [
     accent: "linear-gradient(135deg, rgba(14, 165, 233, 0.36), rgba(236, 72, 153, 0.18))",
     imageData: "",
     order: 9,
-    isPublished: true,
+    isPublished: false,
   },
 ];
 

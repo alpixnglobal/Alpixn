@@ -70,12 +70,11 @@ const SearchInternsSection = ({
   ) as string[];
 
   return (
-    <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
+    <section className="bg-canvas py-16 sm:py-20">
 
-      <div className="container max-w-323.25">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
         <div className="flex flex-wrap gap-2.5">
-          <label className="relative h-[50px] w-full max-w-[320px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[62px]">
+          <label className="relative h-[50px] w-full max-w-[320px] rounded-full border border-line bg-surface shadow-[var(--shadow-card)] lg:h-[62px]">
             <div className="pointer-events-none absolute inset-y-0 left-5 flex items-center gap-[15px]">
               <Image src="/icons/search.svg" width={18} height={18} alt="Search" />
             </div>
@@ -90,7 +89,7 @@ const SearchInternsSection = ({
           <button
             type="button"
             onClick={() => setShowFilters((currentValue) => !currentValue)}
-            className="relative flex h-[50px] w-[62px] items-center justify-center rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[62px]"
+            className="relative flex h-[50px] w-[62px] items-center justify-center rounded-full border border-line bg-surface shadow-[var(--shadow-card)] lg:h-[62px]"
             aria-expanded={showFilters}
           >
             <Image src="/icons/burger.svg" width={18} height={12} alt="Toggle filters" />
@@ -98,7 +97,7 @@ const SearchInternsSection = ({
         </div>
 
         {showFilters ? (
-          <div className="mt-4 grid gap-4 rounded-[15px] border border-[color-mix(in_srgb,var(--tech)_25%,transparent)] bg-canvas-2/80 p-4 backdrop-blur-[15px] lg:grid-cols-2">
+          <div className="mt-4 grid gap-4 rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] lg:grid-cols-2">
             <label className="grid gap-2">
               <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{programLabel}</span>
               <select

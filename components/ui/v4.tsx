@@ -197,7 +197,6 @@ export function ModelCards({ items, ctaHref = "/contact-us", ctaLabel = "Discuss
             className={`relative flex flex-col overflow-hidden rounded-[30px] p-7 ${featured ? "bg-[linear-gradient(150deg,#071a33,#064a87_75%,#0878d1_130%)] text-white shadow-[0_40px_80px_-40px_rgba(7,26,51,0.8)] lg:-translate-y-3" : "border border-line bg-surface shadow-[var(--shadow-card)]"}`}
           >
             <span aria-hidden className="absolute inset-x-0 top-0 h-1.5" style={{ background: tone(i).c }} />
-            {featured ? <span className="mb-4 w-fit rounded-full bg-[#f6d77a] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#071a33]">Most chosen</span> : null}
             <h3 className={`font-display text-xl font-bold ${featured ? "text-white" : "text-fg"}`}>{m.title}</h3>
             <p className={`mt-3 text-[14.5px] leading-relaxed ${featured ? "text-white/80" : "text-fg-muted"}`}>{m.description}</p>
             <ul className="mt-6 space-y-2.5">

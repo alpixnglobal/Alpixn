@@ -7,41 +7,45 @@ type TeamPersonelSectionProps = {
 };
 
 const TeamPersonelSection = ({ members }: TeamPersonelSectionProps) => {
+  const tones = ["#0878d1", "#d99a19", "#064a87", "#9a5b08", "#071a33", "#f6d77a"];
   return (
-    <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
-
-      <div className="mx-auto w-full max-w-272.75">
-        <div className="grid grid-cols-1 gap-6.25 px-4 lg:grid-cols-2 xl:grid-cols-3 xl:px-0">
-          {members.map((member) => {
-            const hasImage = Boolean(member.imageData);
-
+    <section aria-labelledby="team-title" className="bg-canvas py-16 sm:py-20">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#0878d1]/30 bg-[#0878d1]/10 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#064a87] dark:text-[#7cc6ff]">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" /> The team
+          </span>
+          <h2 id="team-title" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+            People behind <span className="text-brand-spectrum">the work</span>
+          </h2>
+        </div>
+        {members.length === 0 ? (
+          <p className="mx-auto mt-10 max-w-xl rounded-3xl border border-line bg-surface p-8 text-center text-fg-muted shadow-[var(--shadow-card)]">
+            Team profiles will be published here soon. Meanwhile, tell us about your project and we will introduce the people who would work on it.
+          </p>
+        ) : null}
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {members.map((member, i) => {
+            const bg = tones[i % tones.length];
+            const lightBg = bg === "#d99a19" || bg === "#f6d77a";
             return (
-              <div key={member._id} className="group relative h-88.5 w-full overflow-hidden rounded-[15px]">
-                <div className="absolute inset-0">
-                  {hasImage ? (
-                    <Image
-                      src={member.imageData}
-                      alt={member.name}
-                      fill
-                      unoptimized={member.imageData.startsWith("data:") || member.imageData.startsWith("http")}
-                      className="rounded-[15px] object-cover grayscale transition-all duration-1000 ease-out group-hover:grayscale-0"
-                    />
+              <li key={member._id} className="group overflow-hidden rounded-[28px] border border-line bg-surface shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-1">
+                <div className="relative aspect-[4/4.2] overflow-hidden" style={{ background: bg }}>
+                  {member.imageData ? (
+                    <Image src={member.imageData} alt={member.name} fill sizes="(max-width: 640px) 100vw, 25vw" unoptimized={member.imageData.startsWith("data:") || member.imageData.startsWith("http")} className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center rounded-[15px]" style={{ background: member.accent }}>
-                      <span className="text-3xl md:text-4xl font-semibold leading-snug tracking-[0.24em] text-fg">{member.initials}</span>
-                    </div>
+                    <span className={`absolute inset-0 grid place-items-center font-display text-4xl font-bold tracking-[0.12em] ${lightBg ? "text-[#071a33]" : "text-white"}`}>{member.initials}</span>
                   )}
+                  <span aria-hidden className="absolute inset-x-0 bottom-0 h-1 bg-brand-spectrum" />
                 </div>
-
-                <div className="absolute bottom-2.5 left-1/2 z-10 flex h-18 w-81.75 -translate-x-1/2 translate-y-0 flex-col justify-center rounded-[10px] bg-white p-2.5 opacity-100 lg:translate-y-6 lg:opacity-0 lg:transition-all lg:duration-700 lg:ease-out lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
-                  <h6 className="text-sm md:text-base font-semibold leading-snug text-black">{member.name}</h6>
-                  <p className="text-sm font-normal leading-relaxed text-black/80">{member.role}</p>
+                <div className="p-5">
+                  <h3 className="font-display text-base font-semibold text-fg">{member.name}</h3>
+                  <p className="mt-1 text-sm text-fg-muted">{member.role}</p>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );

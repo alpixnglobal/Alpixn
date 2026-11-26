@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Heading, Section, tone } from "@/components/ui/v4";
 import { useState } from "react";
 import { getBackendDevelopersData } from "@/lib/offshore developer/backend-developers-data";
 import type { OffshoreDeveloperGridItemRecord } from "@/lib/content-types";
@@ -68,90 +69,24 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
   };
   const { title, developers } = resolvedData;
 
-  // Function to get border classes based on index
-  const getBorderClasses = (index: number, totalItems: number) => {
-    const isLastInRow = (index + 1) % 5 === 0;
-    const isFirstInRow = index % 5 === 0;
-    const rowIndex = Math.floor(index / 5);
-    const isLastRow = rowIndex === Math.floor((totalItems - 1) / 5);
-
-    let borderClasses = "";
-
-    // Horizontal borders
-    if (rowIndex === 0) {
-      // First row - no top border
-    } else {
-      borderClasses += " border-t ";
-    }
-
-    // Vertical borders
-    if (!isLastInRow && index !== totalItems - 1) {
-      borderClasses += " border-r ";
-    }
-
-    // Special cases for responsive borders
-    if (isFirstInRow) {
-      borderClasses += " sm:border-r ";
-    }
-
-    if (isLastInRow) {
-      borderClasses += " sm:border-r-0 md:border-r ";
-      if (rowIndex === 0) {
-        borderClasses += " border-r ";
-      }
-    }
-
-    // Last row special cases
-    if (isLastRow && isLastInRow) {
-      borderClasses += " border-r-0 ";
-    }
-
-    return borderClasses + " border-fg/10 ";
-  };
-
   return (
-    <section className="sectionDefault">
-      {/* Background Color */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
-        }}
-      />
-
-      {/* Container */}
-      <div className="container max-w-303.75">
-        {/* Heading */}
-        <h2 className="title heading-gradient max-w-[826px] mx-auto text-start sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
-
-        {/* Grid */}
-        <div className="mt-8 md:mt-10 lg:mt-12.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">
-          {developers.map((developer, index) => {
-            const borderClasses = getBorderClasses(index, developers.length);
-            const isFirstItem = index === 0;
-
-            return (
-              <Link
-                key={`${developer.name}-${index}`}
-                href={developer.link || "#"}
-                className={`
-                  flex flex-col items-center gap-[5px] p-3 lg:p-[15px] h-[100px] lg:h-[112px]
-                  hover:border-r-2 hover:border-b-2 hover:border-white/15
-                  bg-[linear-gradient(180deg,rgba(24,24,24,0.24)_0%,color-mix(in_srgb,var(--tech)_6%,transparent)_100%)]
-                  hover:bg-[linear-gradient(249.67deg,color-mix(in_srgb,var(--tech)_35%,transparent)_0%,rgba(24,24,24,0)_49.04%,color-mix(in_srgb,var(--tech)_35%,transparent)_100%)]
-                  hover:shadow-[0_0_20px_0_color-mix(in_srgb,var(--tech)_40%,transparent)]
-                  ${borderClasses}
-                  ${isFirstItem ? "hover:border-r-2 hover:border-b-2 hover:border-white/15" : ""}
-                `}
-              >
-                <DeveloperItem developer={developer} />
-                <p className="text-sm lg:text-base font-normal text-fg/80 text-center">{developer.name}</p>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <Section id="developer-grid" alt>
+      <Heading id="developer-grid" kicker="Tech stack" title={title} center />
+      <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        {developers.map((developer, i) => (
+          <li key={`${developer.name}-${i}`}>
+            <Link href={developer.link || "/contact-us"} className="group flex h-full flex-col items-center gap-3 rounded-3xl border border-line bg-surface p-5 text-center shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-1">
+              <span className="grid h-14 w-14 place-items-center rounded-2xl" style={{ background: `${tone(i).c}1f` }}>
+                {developer.imageData ? (
+                  <Image src={developer.imageData} alt={developer.alt || developer.name} width={34} height={34} unoptimized={developer.imageData.startsWith("data:") || developer.imageData.startsWith("http")} className="h-8 w-8 object-contain" />
+                ) : null}
+              </span>
+              <span className="font-display text-[14px] font-semibold text-fg">{developer.name}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 };
 

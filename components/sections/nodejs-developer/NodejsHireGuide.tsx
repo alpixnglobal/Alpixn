@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Heading, Section, tone } from "@/components/ui/v4";
 import clsx from "clsx";
 import { getHireGuideData } from "@/lib/offshore developer/hire-guide-data";
 import type { OffshoreGuideTabRecord } from "@/lib/content-types";
@@ -33,121 +34,46 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
   if (!tabs.length) return null;
 
   return (
-    <section className="sectionDefault">
-      {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }} />
-
-      {/* Container */}
-      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-[45px]">
-        <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
-
-        <div className="mt-[50px] flex flex-col xl:flex-row gap-5 items-stretch">
-          {/* LEFT – Tab List */}
-          <div
-            className="
-              w-full
-              xl:w-[422px]
-              h-auto
-              xl:h-[594px]
-              rounded-t-[10px]
-            "
-            style={{ background: "color-mix(in srgb, var(--tech) 5%, transparent)", backdropFilter: "blur(15px)" }}
-          >
-            {tabs.map((tab, index) => {
-              const isActive = active === tab.key;
-              const isFirstTab = index === 0;
-
-              return (
-                <div
-                  key={tab.key}
-                  onClick={() => setActive(tab.key)}
-                  className={clsx(
-                    "h-[80px] sm:h-[90px] xl:h-[99px] flex items-center cursor-pointer",
-                    isFirstTab && "rounded-t-[10px]",
-                  )}
-                  style={
-                    isActive
-                      ? {
-                          background: "linear-gradient(180deg, var(--tech) 0%, #064A87 100%)",
-                          borderBottom: "3px solid",
-                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, var(--heading-from) 0%, var(--tech) 100%)",
-                        }
-                      : {
-                          background: "color-mix(in srgb, var(--tech) 5%, transparent)",
-                          border: "1px solid #FFFFFF26",
-                          backdropFilter: "blur(15px)",
-                        }
-                  }
-                >
-                  <span className="ml-4 sm:ml-5 text-fg text-sm md:text-base font-medium font-roboto">
-                    {tab.label}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* RIGHT – Tab Content */}
-          <div
-            className="
-              w-full
-              xl:w-[908px]
-              h-[420px]
-              sm:h-[500px]
-              xl:h-[594px]
-              rounded-t-[10px]
-            "
-            style={{
-              background:
-                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24,24,24,0) 49%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
-              border: "2px solid #FFFFFF26",
-              backdropFilter: "blur(4px)",
-            }}
-          >
-            <div
-              className="p-4 sm:p-5 h-full overflow-y-scroll custom-scrollbar"
-              style={{
-                scrollbarWidth: "thin",
-                scrollbarColor: "var(--tech) #ffffff1a",
-              }}
-            >
-              <style jsx>{`
-                .custom-scrollbar::-webkit-scrollbar {
-                  width: 8px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-track {
-                  background: #ffffff1a;
-                  border-radius: 4px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                  background: var(--tech);
-                  border-radius: 4px;
-                }
-
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                  background: #1e88e5;
-                }
-              `}</style>
-
-              {activeContent && (
-                <>
-                  <h6 className="text-fg text-xs">{activeContent.section}</h6>
-
-                  {activeContent.items.map((item, idx) => (
-                    <div key={idx} className="mt-4 sm:mt-5">
-                      <h5 className="text-fg text-sm md:text-base font-semibold">{item.title}</h5>
-                      <p className="text-fg text-xs md:text-base leading-relaxed mt-2.5">{item.description}</p>
-                    </div>
-                  ))}
-                </>
-              )}
-            </div>
-          </div>
+    <Section id="hire-guide" alt>
+      <Heading id="hire-guide" kicker="Hiring guide" title={mainTitle} center />
+      <div className="mt-12 grid gap-5 lg:grid-cols-12">
+        <div role="tablist" aria-orientation="vertical" className="flex gap-2 overflow-x-auto pb-1 lg:col-span-4 lg:flex-col lg:overflow-visible">
+          {tabs.map((tab, index) => {
+            const isActive = active === tab.key;
+            return (
+              <button
+                key={tab.key}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(tab.key)}
+                className={`flex shrink-0 items-center gap-3 rounded-2xl border px-4 py-3.5 text-left text-[14.5px] font-semibold transition-all ${isActive ? "border-transparent text-white shadow-[0_20px_40px_-24px_rgba(7,26,51,0.7)]" : "border-line bg-surface text-fg hover:border-[#d99a19]/50"}`}
+                style={isActive ? { background: "linear-gradient(135deg,#071a33,#064a87)" } : undefined}
+              >
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full text-[11px] font-bold" style={{ background: tone(index).c, color: tone(index).ink }}>
+                  {index + 1}
+                </span>
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+        <div className="rounded-[28px] border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:col-span-8">
+          {activeContent ? (
+            <>
+              {activeContent.section ? <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#0878d1]">{activeContent.section}</p> : null}
+              <div className="mt-5 space-y-5">
+                {activeContent.items.map((item, idx) => (
+                  <div key={`${item.title}-${idx}`} className="border-l-2 pl-4" style={{ borderColor: tone(idx).c }}>
+                    <h3 className="font-display text-base font-semibold text-fg">{item.title}</h3>
+                    <p className="mt-1.5 text-[14.5px] leading-relaxed text-fg-muted">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

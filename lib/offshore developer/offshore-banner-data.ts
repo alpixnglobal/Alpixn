@@ -19,8 +19,8 @@ export const offshoreHeroData: Record<string, OffshoreHeroData> = {
       "Hire nodejs developers to build projects with real-time functionality, efficient data processing, and scalable architecture. Our dedicated Node.js developers specialize in creating data-intensive applications, custom web apps, RESTful APIs, SPAs, and more.",
     checklist: [
       "Advanced Node.js Expertise",
-      "100% Quality Assurance",
-      "5+ Years Avg Experience",
+      "Code review & QA on every release",
+      "Experienced, vetted developers",
       "NDA-Backed Confidentiality",
     ],
     formTitle: "Work with Top Node.js Developers",
@@ -46,8 +46,8 @@ export const offshoreHeroData: Record<string, OffshoreHeroData> = {
       "Our vetted Golang developers build modern applications and optimize existing ones. With expertise in cloud services, DevOps, and data science, they ensure scalable, high-performance solutions using industry best practices.",
     checklist: [
       "Advanced Golang Expertise",
-      "100% Quality Assurance",
-      "5+ Years Avg Experience",
+      "Code review & QA on every release",
+      "Experienced, vetted developers",
       "NDA-Backed Confidentiality",
     ],
     formTitle: "Work with Top Golang Developers",
@@ -76,8 +76,8 @@ export const offshoreHeroData: Record<string, OffshoreHeroData> = {
       "Hire dedicated developers to build projects with cutting-edge technology, efficient solutions, and scalable architecture. Our expert developers specialize in creating custom applications, APIs, and enterprise-grade solutions.",
     checklist: [
       "Advanced Technical Expertise",
-      "100% Quality Assurance",
-      "5+ Years Avg Experience",
+      "Code review & QA on every release",
+      "Experienced, vetted developers",
       "NDA-Backed Confidentiality",
     ],
     formTitle: "Work with Top Developers",
