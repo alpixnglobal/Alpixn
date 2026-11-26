@@ -82,19 +82,23 @@ export function HeroV4({
 
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-canvas">
+      {/* Soft brand-colour atmosphere */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-32 h-[480px] w-[480px] rounded-full bg-[#0878d1]/12 blur-[120px]" />
-        <div className="absolute right-0 top-10 h-[420px] w-[420px] rounded-full bg-[#f6d77a]/35 blur-[120px] dark:bg-[#d99a19]/12" />
+        <div className="absolute inset-0 bg-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,#000_30%,transparent_80%)]" />
+        <div className="absolute -left-40 top-24 h-[460px] w-[460px] rounded-full bg-[#0878d1]/14 blur-[130px]" />
+        <div className="absolute -right-40 top-40 h-[460px] w-[460px] rounded-full bg-[#f6d77a]/40 blur-[130px] dark:bg-[#d99a19]/14" />
+        <div className="absolute bottom-0 left-1/2 h-[300px] w-[700px] -translate-x-1/2 rounded-full bg-[#9a5b08]/10 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1320px] gap-10 px-4 pb-14 pt-10 sm:px-6 sm:pt-14 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-10 lg:pb-20 lg:pt-16">
-        <div className="lg:col-span-6">
+      <div className="relative mx-auto max-w-[1320px] px-4 pt-12 sm:px-6 sm:pt-16 lg:px-10 lg:pt-20">
+        {/* Centered message */}
+        <div className="mx-auto max-w-4xl text-center">
           <Kicker tone="blue">AI · Robotics · Software Engineering</Kicker>
-          <h1 id="hero-title" className="mt-5 font-display text-[clamp(2.2rem,4.4vw,3.8rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
+          <h1 id="hero-title" className="mt-6 font-display text-[clamp(2.2rem,4.8vw,4rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
             {lead} <span className="text-brand-spectrum">{tail}</span>
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-fg-muted">{description}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-fg-muted">{description}</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
               {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
             </Link>
@@ -102,44 +106,82 @@ export function HeroV4({
               {secondary.label}
             </Link>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-fg-muted">
-            <span className="font-medium text-fg">Serving clients in</span>
-            <span className="flex flex-wrap gap-1.5">
-              {MARKETS.map(([name, flag]) => (
-                <Image key={name} src={flag} alt={name} title={name} width={24} height={24} className="h-6 w-6 rounded-full object-cover ring-1 ring-black/10" />
+        </div>
+
+        {/* Orbit stage: robot in the centre, one capability per logo colour around it */}
+        <div className="relative mx-auto mt-10 h-[360px] max-w-[1180px] sm:h-[480px] lg:mt-6 lg:h-[560px]">
+          {/* Rings */}
+          <div aria-hidden className="absolute left-1/2 top-[54%] aspect-square w-[min(92vw,620px)] -translate-x-1/2 -translate-y-1/2">
+            <div className="absolute inset-0 rounded-full border border-line" />
+            <div className="absolute inset-[11%] rounded-full border border-dashed border-[#0878d1]/25" />
+            <div className="absolute inset-[3%] animate-[spin_40s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,#071a33,#064a87,#0878d1,#f6d77a,#d99a19,#9a5b08,#071a33)] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))]" />
+            <div className="absolute inset-[22%] rounded-full bg-[radial-gradient(circle,rgba(246,215,122,0.35)_0%,rgba(8,120,209,0.10)_55%,transparent_72%)]" />
+            {/* Orbiting dots in logo colours */}
+            <div className="absolute inset-[3%] animate-[spin_40s_linear_infinite]">
+              {[
+                ["#0878d1", "left-1/2 -top-1.5 -translate-x-1/2"],
+                ["#d99a19", "-right-1.5 top-1/2 -translate-y-1/2"],
+                ["#064a87", "left-1/2 -bottom-1.5 -translate-x-1/2"],
+                ["#9a5b08", "-left-1.5 top-1/2 -translate-y-1/2"],
+              ].map(([c, pos]) => (
+                <span key={c} className={`absolute h-3 w-3 rounded-full ring-4 ring-[var(--canvas)] ${pos}`} style={{ background: c }} />
               ))}
-            </span>
-            <span>9 countries</span>
+            </div>
           </div>
-        </div>
 
-        {/* Always-navy robotics panel */}
-        <div className="dark section-navy relative min-h-[380px] overflow-hidden rounded-[32px] !bg-[linear-gradient(150deg,#071a33_0%,#064a87_70%,#0878d1_120%)] shadow-[0_40px_90px_-40px_rgba(7,26,51,0.7)] sm:min-h-[460px] lg:col-span-6 lg:min-h-[540px]">
-          <div aria-hidden className="absolute inset-0 bg-grid opacity-40" />
-          <div aria-hidden className="absolute -bottom-24 left-1/2 h-64 w-[80%] -translate-x-1/2 rounded-full bg-[#d99a19]/30 blur-[90px]" />
-          <div className="absolute inset-0">
-            <HeroVisual fallbackImage={fallbackImage} forceTheme="dark" />
+          {/* Robot */}
+          <div className="absolute bottom-0 left-1/2 aspect-square h-full -translate-x-1/2 [mask-image:radial-gradient(circle_at_50%_52%,#000_48%,transparent_70%)]">
+            <HeroVisual fallbackImage={fallbackImage} showPanels={false} />
           </div>
-          <div aria-hidden className="absolute inset-x-0 bottom-0 h-1.5 bg-brand-spectrum" />
-        </div>
-      </div>
 
-      {/* Four pillars, one logo colour each */}
-      <div className="relative mx-auto max-w-[1320px] px-4 pb-16 sm:px-6 lg:px-10 lg:pb-20">
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PILLARS.map(({ icon: Icon, title: t, text, color, ink }, i) => (
-            <Reveal as="li" key={t} delay={i * 70}>
-              <div className="group relative h-full overflow-hidden rounded-3xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-1">
-                <span aria-hidden className="absolute inset-x-0 top-0 h-1" style={{ background: color }} />
-                <span className="grid h-12 w-12 place-items-center rounded-2xl" style={{ background: color, color: ink }}>
-                  <Icon aria-hidden className="h-6 w-6" />
+          {/* Floating capability cards (desktop) */}
+          {PILLARS.map(({ icon: Icon, title: t, text, color, ink }, i) => {
+            const pos = ["left-0 top-[12%]", "left-[4%] bottom-[10%]", "right-0 top-[12%]", "right-[4%] bottom-[10%]"][i];
+            return (
+              <div
+                key={t}
+                className={`glass absolute hidden w-[250px] items-start gap-3 rounded-2xl p-4 shadow-[var(--shadow-card)] lg:flex animate-float ${pos}`}
+                style={{ animationDelay: `${i * -1.5}s` }}
+              >
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl" style={{ background: color, color: ink }}>
+                  <Icon aria-hidden className="h-5 w-5" />
                 </span>
-                <h3 className="mt-5 font-display text-lg font-semibold text-fg">{t}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-fg-muted">{text}</p>
+                <span>
+                  <span className="block font-display text-[15px] font-semibold text-fg">{t}</span>
+                  <span className="mt-0.5 block text-[12.5px] leading-snug text-fg-muted">{text}</span>
+                </span>
               </div>
-            </Reveal>
+            );
+          })}
+        </div>
+
+        {/* Capability chips (mobile / tablet) */}
+        <ul className="mt-6 grid grid-cols-2 gap-3 lg:hidden">
+          {PILLARS.map(({ icon: Icon, title: t, color, ink }) => (
+            <li key={t} className="flex items-center gap-2.5 rounded-2xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg" style={{ background: color, color: ink }}>
+                <Icon aria-hidden className="h-4 w-4" />
+              </span>
+              <span className="font-display text-[13px] font-semibold leading-tight text-fg">{t}</span>
+            </li>
           ))}
         </ul>
+      </div>
+
+      {/* Markets strip */}
+      <div className="relative mt-10 border-y border-line bg-surface/70 backdrop-blur">
+        <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:justify-between lg:px-10">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-fg-subtle">Serving clients in 9 countries</span>
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2.5">
+            {MARKETS.map(([name, flag]) => (
+              <li key={name} className="flex items-center gap-1.5 text-sm font-medium text-fg-muted">
+                <Image src={flag} alt="" width={18} height={18} className="h-[18px] w-[18px] rounded-full object-cover ring-1 ring-black/10" />
+                {name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div aria-hidden className="h-1 bg-brand-spectrum" />
       </div>
     </section>
   );
