@@ -49,3 +49,9 @@ security-backup-*/
 
 # Local pre-change backups (may contain old defaults) — never commit
 *.before-*
+
+# cache
+.cache
+.eslintcache
+.turbo
+.swc
