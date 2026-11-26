@@ -3,6 +3,9 @@
 import { useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 import type { HomeIndustryTabRecord } from "@/lib/content-types";
 
@@ -540,93 +543,106 @@ export default function HomeIndustriesSection({
 }) {
   const resolvedTabs = tabs.length > 0 ? tabs : defaultTabs;
   const [active, setActive] = useState(resolvedTabs[0]?.id ?? "");
+  const activeIndex = Math.max(0, resolvedTabs.findIndex((t) => t.id === active));
+  const activeTab = resolvedTabs[activeIndex];
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (!["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"].includes(e.key)) return;
+    e.preventDefault();
+    const delta = e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1;
+    const nextTab = resolvedTabs[(activeIndex + delta + resolvedTabs.length) % resolvedTabs.length];
+    setActive(nextTab.id);
+    document.getElementById(`industry-tab-${nextTab.id}`)?.focus();
+  };
 
   return (
-    <section className="w-full py-8 md:py-10 lg:py-[50px]" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}>
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px]">
-        <div className="flex flex-col gap-2.5">
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
-        </div>
+    <section aria-labelledby="industries-title" className="relative w-full overflow-hidden bg-canvas-2 py-20 sm:py-24 lg:py-28">
+      <div aria-hidden className="absolute inset-x-0 top-0 rule-gold" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-[600px] w-[600px] rounded-full bg-tech/10 blur-[140px]" />
 
-        <div className="mt-8 md:mt-10 lg:mt-16.25 flex flex-col xl:flex-row xl:gap-1 xl:items-start">
-          <div className="hidden lg:block w-full xl:w-[467px] h-auto lg:h-[400px] xl:h-[540px] overflow-y-scroll scrollbar-left pr-2" style={{ direction: "rtl" }}>
-            <div style={{ direction: "ltr" }}>
-              {resolvedTabs.map((tab, index) => {
-                const isActive = active === tab.id;
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 2xl:px-[45px]">
+        <Reveal>
+          <SectionHeading id="industries-title" eyebrow="Industries" title={title} subtitle={subtitle} />
+        </Reveal>
 
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    onClick={() => setActive(tab.id)}
-                    className={clsx(
-                      "relative w-full h-16 lg:h-20 xl:h-[90px] px-4 flex items-center justify-between text-left text-base md:text-lg font-medium leading-snug border-b-[3px] transition-all duration-300",
-                      isActive
-                        ? `${index === 0 ? "rounded-t-[10px]" : ""} text-white bg-[linear-gradient(180deg,_var(--tech)_0%,_#064A87_100%)] border-transparent [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_var(--tech)_100%)] [border-image-slice:1]`
-                        : "text-fg border-fg/15 hover:text-white"
-                    )}
-                  >
-                    <span className="truncate text-sm md:text-base font-medium leading-snug">{tab.label}</span>
-                    <span className={clsx("mt-auto transition-opacity duration-300", isActive ? "opacity-100" : "opacity-0")}>
-                      <TabBadge label={tab.label} tabId={tab.id} tabIconUrl={tab.tabIconUrl} />
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="lg:hidden mb-6">
-            <div className="flex overflow-x-auto pb-2 space-x-2">
-              {resolvedTabs.map((tab) => (
+        <div className="mt-14 grid gap-6 lg:grid-cols-12 lg:gap-8">
+          {/* Industry rail */}
+          <div
+            role="tablist"
+            aria-label="Industries"
+            aria-orientation="vertical"
+            onKeyDown={onKeyDown}
+            className="-mx-4 flex snap-x gap-2 overflow-x-auto px-4 pb-2 lg:col-span-4 lg:mx-0 lg:flex-col lg:gap-1 lg:overflow-visible lg:px-0 lg:pb-0"
+          >
+            {resolvedTabs.map((tab, index) => {
+              const isActive = active === tab.id;
+              return (
                 <button
                   key={tab.id}
+                  id={`industry-tab-${tab.id}`}
                   type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`industry-panel-${tab.id}`}
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => setActive(tab.id)}
-                  className={clsx("px-4 py-3 rounded-lg text-sm md:text-base font-medium leading-snug whitespace-nowrap", active === tab.id ? "bg-blue-500 text-white" : "bg-gray-800 text-gray-300")}
+                  className={clsx(
+                    "group relative flex shrink-0 snap-start items-center gap-4 rounded-2xl px-4 py-3 text-left transition-all duration-300 lg:w-full lg:px-5 lg:py-4",
+                    isActive ? "bg-surface shadow-[var(--shadow-card)] ring-1 ring-line-gold" : "hover:bg-surface/60"
+                  )}
                 >
-                  {tab.label}
+                  <span
+                    aria-hidden
+                    className={clsx(
+                      "absolute left-0 top-1/2 hidden h-8 w-[3px] -translate-y-1/2 rounded-full bg-gradient-to-b from-gold to-tech transition-opacity lg:block",
+                      isActive ? "opacity-100" : "opacity-0"
+                    )}
+                  />
+                  <span className={clsx("font-mono text-xs tracking-[0.15em]", isActive ? "text-gold-ink" : "text-fg-subtle")}>{String(index + 1).padStart(2, "0")}</span>
+                  <span className={clsx("whitespace-nowrap text-[15px] font-medium lg:whitespace-normal", isActive ? "text-fg" : "text-fg-muted group-hover:text-fg")}>
+                    {tab.label}
+                  </span>
+                  <span className={clsx("ml-auto hidden text-xs lg:inline", isActive ? "text-tech" : "text-fg-subtle")}>{tab.items.length}</span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
-          <div className="flex-1 lg:mt-6 xl:mt-0">
-            {resolvedTabs.map(
-              (tab) =>
-                tab.id === active && (
-                  <div key={tab.id}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-3 xl:gap-2.5">
-                      {tab.items.map((item, index) => (
-                        <div
-                          key={`${tab.id}-${index}`}
-                          className="relative flex flex-col w-full h-32 md:h-44 lg:h-36 xl:h-[145px] justify-between p-4 lg:p-3 xl:p-2.5 rounded-lg lg:rounded-[8px] xl:rounded-[10px] transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--tech)_35%,transparent),_0_18px_45px_color-mix(in_srgb,var(--tech)_25%,transparent)]"
-                          style={{ background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)" }}
-                        >
-                          <div
-                            className="absolute inset-0 rounded-[10px] pointer-events-none transition-opacity duration-300 opacity-70 hover:opacity-100"
-                            style={{
-                              border: "1px solid transparent",
-                              background: "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, color-mix(in srgb, var(--tech) 80%, transparent) 100%) border-box",
-                              WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
-                              WebkitMaskComposite: "xor",
-                              maskComposite: "exclude",
-                              padding: "2px",
-                            }}
-                          />
+          {/* Active industry panel */}
+          {activeTab ? (
+            <div
+              key={activeTab.id}
+              id={`industry-panel-${activeTab.id}`}
+              role="tabpanel"
+              aria-labelledby={`industry-tab-${activeTab.id}`}
+              className="glass relative self-start overflow-hidden rounded-[28px] p-6 sm:p-8 lg:col-span-8 animate-in fade-in-0 slide-in-from-bottom-2 duration-500"
+            >
+              <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
+              <div className="relative flex items-center gap-4">
+                <TabBadge label={activeTab.label} tabId={activeTab.id} tabIconUrl={activeTab.tabIconUrl} />
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Sector focus</p>
+                  <h3 className="font-display text-xl font-semibold text-fg sm:text-2xl">{activeTab.label}</h3>
+                </div>
+              </div>
 
-                          <span className="text-xs md:text-sm font-normal leading-relaxed relative z-10 text-fg">{item.title}</span>
-                          <div className="flex-shrink-0 relative z-10 self-start">
-                            <ItemIcon title={item.title} iconUrl={item.iconUrl} />
-                          </div>
-                        </div>
-                      ))}
+              <ul className="relative mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {activeTab.items.map((item, index) => (
+                  <li
+                    key={`${activeTab.id}-${index}`}
+                    className="border-glow group flex min-h-[132px] flex-col justify-between rounded-2xl bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]"
+                    style={{ animationDelay: `${index * 40}ms` }}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <ItemIcon title={item.title} iconUrl={item.iconUrl} />
+                      <ArrowUpRight aria-hidden className="h-4 w-4 text-fg-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
                     </div>
-                  </div>
-                )
-            )}
-          </div>
+                    <span className="mt-4 text-[15px] font-medium leading-snug text-fg">{item.title}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

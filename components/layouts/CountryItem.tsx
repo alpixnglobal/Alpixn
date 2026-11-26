@@ -24,7 +24,7 @@ const CountryItem = ({ flag, name, alt = "Flag" }: { flag: string; name: string;
   const shouldUnoptimize = src.startsWith("data:") || src.startsWith("http://") || src.startsWith("https://");
 
   return (
-    <div className="flex w-full items-center gap-2 text-sm text-fg-muted">
+    <div className="flex items-center gap-2 text-sm text-fg-muted">
       <Image
         src={src}
         alt={alt}

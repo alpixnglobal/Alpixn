@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { HomeInsightCardRecord } from "@/lib/content-types";
-import { Button } from "../ui/buttonBtn";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const defaultPosts: HomeInsightCardRecord[] = [
   {
@@ -25,12 +27,6 @@ const defaultPosts: HomeInsightCardRecord[] = [
   },
 ];
 
-const cardFrames = [
-  { accent: "#A6D1FF", rotateClass: "rotate-[9deg]", roundedClass: "rounded-[5px]", imageClass: "object-contain" },
-  { accent: "#A6F2FF", rotateClass: "-rotate-[9deg]", roundedClass: "rounded-[6px]", imageClass: "object-contain" },
-  { accent: "#A6BBFF", rotateClass: "rotate-[9deg]", roundedClass: "rounded-[6px]", imageClass: "object-cover" },
-] as const;
-
 type InsightSectionProps = {
   title?: string;
   subtitle?: string;
@@ -49,72 +45,61 @@ const InsightSection = ({
   const resolvedPosts = (posts.length > 0 ? posts : defaultPosts).slice(0, 3);
 
   return (
-    <section className="sectionDefault overflow-x-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
+    <section aria-labelledby="insights-title" className="relative w-full overflow-hidden bg-canvas-2 py-20 sm:py-24 lg:py-28">
+      <div aria-hidden className="absolute inset-x-0 top-0 rule-gold" />
+      <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-10 xl:px-0">
+        <Reveal className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <SectionHeading id="insights-title" align="left" eyebrow="Insights" title={title} subtitle={subtitle} />
+          <Link href={buttonHref} className="btn-brand shrink-0 self-start md:self-auto">
+            {buttonText}
+            <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
+          </Link>
+        </Reveal>
 
-      <div className="container max-w-[1350px]">
-        <div className="flex flex-col gap-2.5">
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
-        </div>
-
-        <div className="mt-12 flex flex-col items-center justify-center gap-12 px-4 py-[30px] lg:flex-row lg:flex-wrap lg:justify-around lg:gap-5 xl:px-0">
+        <div className="mt-12 grid gap-5 lg:grid-cols-12">
           {resolvedPosts.map((post, index) => {
-            const frame = cardFrames[index] ?? cardFrames[cardFrames.length - 1];
             const imageSrc = post.imageData || defaultPosts[index]?.imageData || "/images/prompt-to-flowchart.png";
             const shouldUnoptimize = imageSrc.startsWith("data:") || imageSrc.startsWith("http");
+            const featured = index === 0;
 
             return (
-              <Link key={`${post.title}-${index}`} href={post.href || buttonHref} className="flex w-full flex-col gap-10 lg:w-auto">
-                <div className="relative h-[212px] w-full overflow-visible lg:w-[408px]">
-                  <div className={`absolute inset-0 ${frame.roundedClass} ${frame.rotateClass} z-0`} style={{ background: frame.accent }} />
-
-                  <div className="relative z-10 h-full w-full overflow-hidden rounded-[5px]">
+              <Reveal
+                key={`${post.title}-${index}`}
+                delay={index * 100}
+                className={featured ? "lg:col-span-7 lg:row-span-2" : "lg:col-span-5"}
+              >
+                <Link
+                  href={post.href || buttonHref}
+                  className={`group relative flex h-full overflow-hidden rounded-3xl border border-line bg-surface shadow-[var(--shadow-card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)] ${featured ? "flex-col" : "flex-col sm:flex-row"}`}
+                >
+                  <div className={`relative shrink-0 overflow-hidden bg-brand-navy ${featured ? "aspect-[16/9] w-full lg:aspect-auto lg:flex-1" : "aspect-[16/9] w-full sm:aspect-auto sm:w-[44%]"}`}>
                     <Image
                       src={imageSrc}
-                      alt={post.title}
+                      alt=""
                       fill
-                      className={frame.imageClass}
-                      priority
-                      sizes="(max-width: 768px) 100vw, 408px"
+                      className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
+                      sizes={featured ? "(max-width: 1024px) 100vw, 56vw" : "(max-width: 640px) 100vw, 20vw"}
                       unoptimized={shouldUnoptimize}
                     />
+                    <span className="absolute left-4 top-4 rounded-full bg-[#040d1c]/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f6d77a] backdrop-blur">
+                      Insight
+                    </span>
                   </div>
-                </div>
-
-                <div
-                  className="relative flex w-full flex-col gap-2.5 overflow-hidden rounded-[5px] p-5 backdrop-blur-[4px] lg:w-[408px]"
-                  style={{ background: "linear-gradient(277.65deg, var(--tech) -25%, transparent 51.07%, var(--tech) 125.99%)" }}
-                >
-                  <span
-                    className="absolute inset-0 rounded-[5px] pointer-events-none"
-                    style={{
-                      padding: "1px",
-                      background: "linear-gradient(90deg, var(--tech) 0%, #FFFFFF 100%)",
-                      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      WebkitMaskComposite: "xor",
-                      mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      maskComposite: "exclude",
-                    }}
-                  />
-
-                  <div className="relative z-10">
-                    <div className="text-sm md:text-base font-semibold leading-snug text-fg">{post.title}</div>
-                    <p className="text-xs md:text-sm font-normal leading-relaxed text-[#C8C8C8]">By {post.author}</p>
+                  <div className={`flex flex-1 flex-col justify-between gap-5 ${featured ? "p-7 sm:p-8" : "p-6"}`}>
+                    <h3 className={`font-display font-semibold leading-snug text-fg transition-colors group-hover:text-tech ${featured ? "text-xl sm:text-2xl" : "text-[17px]"}`}>
+                      {post.title}
+                    </h3>
+                    <div className="flex items-center justify-between gap-4">
+                      <p className="text-sm text-fg-muted">By {post.author}</p>
+                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line text-fg transition-all duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-[#071a33]">
+                        <ArrowUpRight aria-hidden className="h-4 w-4" />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Link>
+                </Link>
+              </Reveal>
             );
           })}
-        </div>
-
-        <div className="flex justify-center py-7.5">
-          <Link href={buttonHref}>
-            <Button className="w-full cursor-pointer rounded-[3px] text-sm md:text-base font-medium leading-snug lg:px-6.25 lg:py-2.5 md:w-fit">
-              {buttonText}
-              <Image src="/icons/arrow-right.svg" width={14} height={14} alt="Arrow" className="ml-2.5" />
-            </Button>
-          </Link>
         </div>
       </div>
     </section>

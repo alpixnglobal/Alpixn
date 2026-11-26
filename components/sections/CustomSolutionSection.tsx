@@ -1,4 +1,8 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
+import TiltCard from "@/components/ui/TiltCard";
 
 type SolutionCard = {
   title: string;
@@ -34,16 +38,13 @@ const defaultCards: SolutionCard[] = [
   },
 ];
 
-const sizePatterns = [
-  "lg:aspect-[665/385] lg:h-auto",
-  "lg:aspect-[665/260] lg:h-auto",
-  "lg:aspect-[665/260] lg:h-auto",
-  "lg:aspect-[665/385] lg:h-auto",
+// Bento layout: first card is the hero tile, last of the first four is a wide banner.
+const spans = [
+  "lg:col-span-7 lg:row-span-2 min-h-[340px] lg:min-h-[540px]",
+  "lg:col-span-5 min-h-[260px]",
+  "lg:col-span-5 min-h-[260px]",
+  "lg:col-span-12 min-h-[260px] lg:min-h-[280px]",
 ];
-
-const blurPatterns = ["blur(2px)", "blur(7px)", "blur(7px)", "blur(7px)"];
-
-const baseHeights = ["sm:h-87.5 md:h-100", "sm:h-[280px] md:h-[300px]", "sm:h-[280px] md:h-[300px]", "sm:h-[350px] md:h-[400px]"];
 
 const CustomSolutionSection = ({
   title = "Custom Solutions Tailored to Your Business Needs",
@@ -56,64 +57,61 @@ const CustomSolutionSection = ({
 }) => {
   const resolvedCards = cards.length > 0 ? cards : defaultCards;
 
-  const renderCard = (card: SolutionCard, index: number) => {
-    const image = card.imageData || defaultCards[index % defaultCards.length].imageData;
-    const alt = card.alt || card.title || `Solution ${index + 1}`;
-    const shouldUnoptimize = image.startsWith("data:") || image.startsWith("http");
-
-    return (
-      <div
-        key={`${card.title}-${index}`}
-        className={`h-62.5 ${baseHeights[index % baseHeights.length]} ${sizePatterns[index % sizePatterns.length]} rounded-lg w-full border border-line overflow-hidden`}
-      >
-        <div className="relative text-fg h-full">
-          <Image
-            src={image}
-            alt={alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            unoptimized={shouldUnoptimize}
-          />
-          <h2 className="absolute inset-0 ml-5 mt-5 text-xl md:text-2xl font-semibold leading-snug">{card.title}</h2>
-          <div
-            className="absolute inset-x-0 bottom-0 border-t border-fg/10"
-            style={{
-              background: "linear-gradient(180deg, rgba(24, 24, 24, 0.05) 0%, rgba(24, 24, 24, 0.05) 100%)",
-              backdropFilter: blurPatterns[index % blurPatterns.length],
-            }}
-          >
-            <p className="m-5 text-base font-normal leading-relaxed text-fg text-start">{card.description}</p>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
-    <section
-      className="py-[50px] w-full overflow-x-hidden"
-      style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }}
-    >
-      <div className="max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px] mx-auto relative">
-        <div className="flex flex-col gap-2.5">
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
-        </div>
+    <section aria-labelledby="solutions-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-tech/10 blur-[120px]" />
+      </div>
 
-        {/* Custom Solution Grid - matching original layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 mt-[35px]">
-          {/* Left Column */}
-          <div className="flex flex-col gap-4 sm:gap-5">
-            {resolvedCards[0] && renderCard(resolvedCards[0], 0)}
-            {resolvedCards[1] && renderCard(resolvedCards[1], 1)}
-          </div>
+      <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-10 2xl:px-[45px]">
+        <Reveal>
+          <SectionHeading id="solutions-title" eyebrow="Custom solutions" title={title} subtitle={subtitle} />
+        </Reveal>
 
-          {/* Right Column */}
-          <div className="flex flex-col gap-4 sm:gap-5">
-            {resolvedCards[2] && renderCard(resolvedCards[2], 2)}
-            {resolvedCards[3] && renderCard(resolvedCards[3], 3)}
-          </div>
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:auto-rows-[minmax(250px,auto)] lg:grid-cols-12">
+          {resolvedCards.map((card, index) => {
+            const image = card.imageData || defaultCards[index % defaultCards.length].imageData;
+            const alt = card.alt || card.title || `Solution ${index + 1}`;
+            const shouldUnoptimize = image.startsWith("data:") || image.startsWith("http");
+            const span = spans[index] ?? "lg:col-span-6 min-h-[260px]";
+            const isFeature = index === 0;
+
+            return (
+              <Reveal key={`${card.title}-${index}`} delay={index * 90} className={`${span} ${isFeature ? "sm:col-span-2 lg:col-span-7" : ""}`}>
+                <TiltCard className="group h-full overflow-hidden rounded-3xl border border-line bg-brand-navy shadow-[var(--shadow-card)]">
+                  <article className="relative flex h-full min-h-[inherit] flex-col justify-end">
+                    <Image
+                      src={image}
+                      alt={alt}
+                      fill
+                      className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.06]"
+                      sizes={isFeature ? "(max-width: 1024px) 100vw, 58vw" : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 42vw"}
+                      unoptimized={shouldUnoptimize}
+                    />
+                    {/* media scrim — card text sits on imagery in both themes */}
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#040d1c] via-[#040d1c]/70 to-[#040d1c]/5" />
+                    <div aria-hidden className="absolute inset-0 bg-[radial-gradient(80%_60%_at_100%_0%,rgba(8,120,209,0.35),transparent_60%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <span aria-hidden className="hud-corners" />
+
+                    <div className="relative z-[2] flex items-start justify-between p-6 sm:p-7">
+                      <span className="font-mono text-xs tracking-[0.2em] text-[#f6d77a]">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="grid h-10 w-10 place-items-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur transition-all duration-300 group-hover:border-[#f6d77a]/70 group-hover:bg-[#d99a19] group-hover:text-[#071a33]">
+                        <ArrowUpRight aria-hidden className="h-4 w-4" />
+                      </span>
+                    </div>
+
+                    <div className="relative z-[2] mt-auto p-6 pt-0 sm:p-7 sm:pt-0" style={{ transform: "translateZ(30px)" }}>
+                      <h3 className={`font-display font-semibold leading-tight text-white ${isFeature ? "text-2xl sm:text-[1.9rem]" : "text-xl sm:text-2xl"}`}>
+                        {card.title}
+                      </h3>
+                      <p className={`mt-3 max-w-[560px] text-[15px] leading-relaxed text-white/75 ${isFeature ? "" : "line-clamp-3"}`}>{card.description}</p>
+                      <div aria-hidden className="mt-5 h-px w-16 bg-gradient-to-r from-[#f6d77a] to-transparent transition-all duration-500 group-hover:w-32" />
+                    </div>
+                  </article>
+                </TiltCard>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -37,7 +37,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
       data-slot="tabs-trigger"
       className={cn(
         "mx-auto",
-        "border-b-2 border-transparent hover:text-white transition-colors duration-200 p-2.5",
+        "border-b-2 border-transparent hover:text-tech transition-colors duration-200 p-2.5",
         " data-[state=active]:border-tech data-[state=active]:border-b-2 data-[state=active]:bg-[color-mix(in_srgb,var(--tech)_20%,transparent)] data-[state=active]:rounded-t-[5px]",
         "text-fg overflow-hidden",
         className,

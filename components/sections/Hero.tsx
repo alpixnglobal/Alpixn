@@ -1,6 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, BrainCircuit, Bot, Code2 } from "lucide-react";
+import HeroVisual from "@/components/hero/HeroVisual";
 
+/**
+ * Homepage hero. Copy, CTAs and the fallback image all come from Home Settings (CMS);
+ * the 3D robotics scene is a progressive enhancement layered on top.
+ */
 const Hero = ({
   title = "Building Digital Solutions That Scale with You",
   description = "Custom software, AI, and web solutions tailored to your growth journey",
@@ -14,110 +19,77 @@ const Hero = ({
   secondaryAction?: { label: string; href: string };
   heroImageData?: string;
 }) => {
+  const pillars = [
+    { icon: BrainCircuit, label: "Artificial Intelligence" },
+    { icon: Bot, label: "Robotics & Automation" },
+    { icon: Code2, label: "Software Engineering" },
+  ];
+
   return (
-    <section className="relative w-full min-h-[628px] md:h-[628px] overflow-hidden">
-      {/* Background Color */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_left,var(--glow)_0%,var(--canvas-2)_70%)]"
-        // style={{ background: "radial-gradient(circle, var(--canvas) 20%, var(--glow) 100%)" }}
-        style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }}
-      />
-
-      {/* Grid */}
-      <div
-        className="absolute inset-0 w-full h-full"
-        style={{
-          backgroundImage: "url('/images/grid.svg')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "bottom",
-          opacity: 0.92,
-        }}
-      ></div>
-
-      {/* Vectors */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Image
-          src="/images/vector-top.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-90 transform -translate-y-28"
-        />
-        <Image src="/images/vector-middle.png" alt="" fill sizes="100vw" className="object-cover opacity-80 translate-y-8" />
-        <Image
-          src="/images/vector-bottom.png"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-60 translate-y-28"
-        />
+    <section aria-labelledby="hero-title" className="relative isolate w-full overflow-hidden bg-canvas">
+      {/* ---------- Background system ---------- */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-ambient" />
+        <div className="absolute right-[-10%] top-[-20%] h-[720px] w-[720px] rounded-full bg-tech/20 blur-[140px] dark:bg-tech/25" />
+        <div className="absolute bottom-[-25%] left-[-10%] h-[520px] w-[520px] rounded-full bg-gold/10 blur-[140px]" />
+        {/* perspective floor grid */}
+        <div className="absolute inset-x-0 bottom-0 h-[55%] [perspective:900px]">
+          <div className="absolute inset-0 origin-bottom bg-grid opacity-60 [transform:rotateX(62deg)] [mask-image:linear-gradient(to_top,#000_10%,transparent_85%)]" />
+        </div>
+        {/* scanning light */}
+        <div className="absolute inset-0 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_20%,#000_80%,transparent)]">
+          <div className="absolute inset-x-0 h-40 bg-gradient-to-b from-transparent via-tech/10 to-transparent [animation:scan-line_7s_ease-in-out_infinite]" />
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-px rule-gold" />
       </div>
 
-      {/* Hero Image */}
-      <div
-        className="
-    absolute
-    right-0
-    top-0
-    h-full
-    w-full
-    md:w-[45%]
-    md:max-w-160
-    min-[1440px]:md:max-w-[640px]
-  "
-      >
-        <Image
-          src={heroImageData}
-          alt="Hero"
-          fill
-          priority
-          sizes="640px"
-          className="
-      object-cover
-      object-bottom
-      [mask-image:linear-gradient(to_left,black_60%,transparent_100%)]
-    "
-          unoptimized={heroImageData.startsWith("data:")}
-        />
-      </div>
+      <div className="mx-auto grid w-full max-w-[1440px] items-center gap-6 px-4 pb-10 pt-10 sm:px-6 sm:pt-14 lg:min-h-[calc(100svh-84px)] lg:max-h-[940px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-4 lg:px-10 lg:pb-16 lg:pt-8 2xl:px-[45px]">
+        {/* ---------- Copy ---------- */}
+        <div className="relative z-10 flex flex-col items-start">
+          <span className="eyebrow glass rounded-full !px-4 py-2 before:!hidden">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse-dot" />
+            AI · Robotics · Software Engineering
+          </span>
 
-      {/* Content */}
-      <div className="relative z-30 h-full max-w-360 mx-auto flex flex-col md:flex-row items-center justify-center md:justify-start px-4 md:px-12">
-        <div className="max-w-197.25 text-fg text-center sm:text-left mt-16 md:mt-0">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight heading-gradient text-left">
+          <h1
+            id="hero-title"
+            className="heading-gradient mt-6 max-w-[640px] text-[2.35rem] font-semibold !leading-[1.06] sm:text-5xl lg:text-[3.6rem] xl:text-[4.1rem]"
+          >
             {title}
           </h1>
 
-          <p className="mt-5 text-base md:text-lg font-normal leading-relaxed text-left">
-            {description}
-          </p>
+          <div aria-hidden className="mt-6 h-[3px] w-24 rounded-full bg-gradient-to-r from-gold via-gold-soft to-tech" />
 
-          <div className="mt-5 flex flex-col sm:flex-row gap-4 md:gap-6">
-            <Link href={primaryAction.href} className="px-6.25 py-2.5 bg-primary text-white text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center gap-2.5 cursor-pointer">
-              <div>{primaryAction.label}</div>
-              <div className="relative w-3.5 h-3.5 lg:w-4 lg:h-4">
-                <Image src="/icons/arrow-right.svg" fill alt="Arrow Right" />
-              </div>
+          <p className="mt-6 max-w-[540px] text-base leading-relaxed text-fg-muted sm:text-lg">{description}</p>
+
+          <div className="mt-9 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
+            <Link href={primaryAction.href} className="btn-brand">
+              {primaryAction.label}
+              <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
             </Link>
-
-            <Link
-              href={secondaryAction.href}
-              className="px-6.25 py-2.5 text-fg text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center cursor-pointer"
-              style={{
-                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
-                border: "1.5px solid transparent",
-                backgroundImage:
-                  "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
-                backgroundOrigin: "border-box",
-                backgroundClip: "padding-box, border-box",
-              }}
-            >
+            <Link href={secondaryAction.href} className="btn-ghost-brand">
               {secondaryAction.label}
             </Link>
           </div>
+
+          <ul className="mt-10 grid w-full max-w-[560px] grid-cols-1 gap-2.5 sm:grid-cols-3">
+            {pillars.map(({ icon: Icon, label }) => (
+              <li key={label} className="glass flex items-center gap-2.5 rounded-xl px-3 py-2.5">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-tech/20 to-gold/20 ring-1 ring-line-gold">
+                  <Icon aria-hidden className="h-4 w-4 text-tech" />
+                </span>
+                <span className="text-[13px] font-medium leading-tight text-fg">{label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ---------- 3D robotics visual ---------- */}
+        <div className="relative -mx-4 h-[380px] sm:mx-0 sm:h-[480px] lg:h-full lg:min-h-[560px]">
+          <HeroVisual fallbackImage={heroImageData} />
         </div>
       </div>
+
     </section>
   );
 };

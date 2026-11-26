@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Reveal from "@/components/ui/Reveal";
 
 const caseStudies = [
   {
@@ -77,9 +80,6 @@ const caseStudies = [
   },
 ];
 
-const BTN_SIZE = 50;
-const BTN_GAP = 20;
-
 type CaseStudyRecord = {
   title: string;
   description: string;
@@ -102,188 +102,118 @@ const CaseStudySection = ({
   const resolvedCases = (cases?.length ? cases : caseStudies.map((item) => ({ ...item, imageData: item.image }))) as CaseStudyRecord[];
 
   const active = resolvedCases[activeIndex];
+  const total = resolvedCases.length;
   const isFirst = activeIndex === 0;
-  const isLast = activeIndex === resolvedCases.length - 1;
+  const isLast = activeIndex === total - 1;
 
-  const next = () => {
-    if (!isLast) {
-      setDirection("next");
-      setActiveIndex((p) => p + 1);
-    }
+  const goTo = (index: number) => {
+    if (index === activeIndex || index < 0 || index >= total) return;
+    setDirection(index > activeIndex ? "next" : "prev");
+    setActiveIndex(index);
   };
-
-  const prev = () => {
-    if (!isFirst) {
-      setDirection("prev");
-      setActiveIndex((p) => p - 1);
-    }
-  };
+  const next = () => goTo(activeIndex + 1);
+  const prev = () => goTo(activeIndex - 1);
+  const features = [...active.featuresLeft, ...active.featuresRight];
 
   return (
-    <section className="sectionDefault overflow-x-hidden relative">
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)",
-        }}
-      />
+    <section aria-labelledby="cases-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-40 top-1/3 h-[520px] w-[520px] rounded-full bg-tech/15 blur-[140px]" />
+        <div className="absolute -right-20 bottom-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-[120px]" />
+      </div>
 
-      <div className="container max-w-337.5 relative">
-        {/* Title */}
-        <div className="flex flex-col gap-2.5">
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">
-            {title}
-          </h2>
-          <p className="max-w-[963px] mx-auto text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">
-            {subtitle}
-          </p>
-        </div>
-
-        {/* Content */}
-        <div
-          key={activeIndex}
-          className={`
-            grid grid-cols-1 xl:grid-cols-[451px__52px_847px] mt-[60px] items-center
-            ${direction === "next" ? "animate-slide-in-right" : ""}
-            ${direction === "prev" ? "animate-slide-in-left" : ""}
-          `}
-          onAnimationEnd={() => setDirection(null)}
-        >
-          {/* Left */}
-          <div className="relative w-full h-full max-w-[451px] aspect-square mx-auto">
-            <Image src={active.imageData} fill priority alt="Phone" className="object-contain object-top" unoptimized={active.imageData.startsWith("data:") || active.imageData.startsWith("http")} />
-          </div>
-
-          {/* Empty Space */}
-          <div className=""></div>
-
-          {/* Right */}
-          <div className="flex flex-col gap-8">
-            <h2 className="text-xl md:text-2xl font-semibold text-fg leading-snug">
-              {active.title}
-            </h2>
-
-            <p className="text-base md:text-lg font-normal text-fg leading-relaxed">
-              {active.description}
-            </p>
-
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-4 xl:gap-10 max-w-[677px]">
-              {/* Left Features */}
-              <div className="flex flex-col gap-4 xl:gap-10">
-                {active.featuresLeft.map((item, i) => (
-                  <FeatureItem key={i} text={item} />
-                ))}
-              </div>
-
-              {/* Divider */}
-              <div className="hidden lg:block w-[1px] h-full bg-gradient-to-b from-white/50 via-[#BCEDEF]/50 to-white/50" />
-
-              {/* Right Features */}
-              <div className="flex flex-col gap-4 xl:gap-10">
-                {active.featuresRight.map((item, i) => (
-                  <FeatureItem key={i} text={item} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <div className="mt-6 flex justify-end">
-          <div
-            className="relative"
-            style={{ width: BTN_SIZE * 2 + BTN_GAP, height: BTN_SIZE }}
-            data-state={isLast ? "last" : "normal"}
-          >
-            {/* PREVIOUS */}
+      <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-10 xl:px-0">
+        <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading id="cases-title" align="left" eyebrow="Case studies" title={title} subtitle={subtitle} />
+          <div className="flex shrink-0 items-center gap-3">
             <button
               type="button"
               aria-label="Previous case study"
               onClick={prev}
-              className={`
-                bg-[#F0F0F0] active:!bg-blue-100
-                  border border-[#E2E2E2] active:!border-blue-100
-                  nav-btn prev-btn
-                  group cursor-pointer
-                  flex items-center justify-center
-                  rounded-full
-                  transition-all duration-150
-                  ${isFirst ? "opacity-0 pointer-events-none" : "opacity-100"}
-        
-      `}
+              disabled={isFirst}
+              className="grid h-12 w-12 place-items-center rounded-full border border-line bg-surface text-fg transition-all hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
             >
-              <ArrowLeft className="transition-transform group-active:scale-75" />
+              <ArrowLeft aria-hidden className="h-5 w-5" />
             </button>
-
-            {/* NEXT */}
             <button
               type="button"
               aria-label="Next case study"
               onClick={next}
-              className={`
-                bg-[#F0F0F0] active:!bg-blue-100
-                  border border-[#E2E2E2] active:!border-blue-100
-                  nav-btn next-btn
-                  group cursor-pointer
-                  flex items-center justify-center
-                  rounded-full
-                  w-[50px] h-[50px]
-                  transition-all duration-150
-                  ${isLast ? "opacity-0 pointer-events-none" : "opacity-100"}
-      `}
+              disabled={isLast}
+              className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-brand-royal to-brand-midnight text-white shadow-[var(--shadow-glow)] transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-35"
             >
-              <ArrowRight className="transition-transform group-active:scale-75" />
+              <ArrowRight aria-hidden className="h-5 w-5" />
             </button>
           </div>
+        </Reveal>
+
+        <div className="glass mt-12 overflow-hidden rounded-[28px] shadow-[var(--shadow-card)]">
+          <div
+            key={activeIndex}
+            className={`grid lg:grid-cols-12 ${direction === "next" ? "animate-slide-in-right" : ""} ${direction === "prev" ? "animate-slide-in-left" : ""}`}
+            onAnimationEnd={() => setDirection(null)}
+            aria-live="polite"
+          >
+            {/* Image panel */}
+            <div className="group relative min-h-[320px] overflow-hidden bg-[radial-gradient(90%_80%_at_50%_100%,#0a3466_0%,#071a33_55%,#040d1c_100%)] sm:min-h-[400px] lg:col-span-5 lg:min-h-[520px]">
+              <div aria-hidden className="absolute inset-0 bg-grid opacity-30" />
+              <div aria-hidden className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2ea8ff]/25 blur-[80px]" />
+              <span aria-hidden className="hud-corners" />
+              <div className="absolute inset-8 sm:inset-12">
+                <Image
+                  src={active.imageData}
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 40vw"
+                  alt={active.title}
+                  className="object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.45)] transition-transform duration-700 group-hover:scale-[1.04]"
+                  unoptimized={active.imageData.startsWith("data:") || active.imageData.startsWith("http")}
+                />
+              </div>
+              <div className="absolute bottom-5 left-6 font-mono text-xs tracking-[0.2em] text-[#f6d77a]">
+                {String(activeIndex + 1).padStart(2, "0")} <span className="text-white/40">/ {String(total).padStart(2, "0")}</span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="flex flex-col gap-6 p-6 sm:p-10 lg:col-span-7 lg:p-12">
+              <h3 className="font-display text-xl font-semibold leading-snug text-fg sm:text-2xl lg:text-[1.75rem]">{active.title}</h3>
+              <p className="text-base leading-relaxed text-fg-muted">{active.description}</p>
+              <div className="rule-gold" />
+              <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                {features.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span aria-hidden className="mt-1.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-gradient-to-br from-gold/25 to-tech/25 ring-1 ring-line-gold">
+                      <span className="h-1.5 w-1.5 rotate-45 bg-gold" />
+                    </span>
+                    <p className="text-[15px] leading-relaxed text-fg">{item}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Segmented progress / direct navigation */}
+        <div className="mt-6 flex items-center gap-2" role="tablist" aria-label="Case studies">
+          {resolvedCases.map((item, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={i === activeIndex}
+              aria-label={`Case study ${i + 1}: ${item.title}`}
+              onClick={() => goTo(i)}
+              className="group relative h-6 flex-1"
+            >
+              <span className="absolute inset-x-0 top-1/2 h-[3px] -translate-y-1/2 overflow-hidden rounded-full bg-line">
+                <span className={`block h-full rounded-full bg-gradient-to-r from-gold to-tech transition-all duration-500 ${i <= activeIndex ? "w-full" : "w-0 group-hover:w-1/3"}`} />
+              </span>
+            </button>
+          ))}
         </div>
       </div>
     </section>
   );
 };
-
-const FeatureItem = ({ text }: { text: string }) => (
-  <div className="flex gap-[13.75px] items-start ">
-    <Image src="/icons/filled-arrow-right.svg" width={23} height={23} alt="Arrow" />
-    <p className="text-fg text-base font-normal leading-relaxed">{text}</p>
-  </div>
-);
-
-const ArrowLeft = ({ className }: { className?: string }) => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path
-      d="M19.1504 9.84961H1.15039"
-      stroke="#181818"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10.1504 18.8496L1.15039 9.84961L10.1504 0.849609"
-      stroke="#181818"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const ArrowRight = ({ className }: { className?: string }) => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path
-      d="M0.849609 9.84961H18.8496"
-      stroke="#181818"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M9.84961 0.849609L18.8496 9.84961L9.84961 18.8496"
-      stroke="#181818"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
 
 export default CaseStudySection;

@@ -6,7 +6,6 @@ import OfferSection from "@/components/sections/OfferSection";
 import TechStackSection from "@/components/sections/TechStackSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import Hero from "@/components/sections/Hero";
-import BlackbarBg from "@/components/sections/blog/BlackbarBg";
 import { getCachedHomeSettings } from "@/lib/content-service";
 
 const Home = async () => {
@@ -34,7 +33,6 @@ const Home = async () => {
         buttonHref={settings.insightSection.buttonHref}
         posts={settings.insightCards}
       />
-      <BlackbarBg />
     </main>
   );
 }

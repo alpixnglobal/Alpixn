@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+import Reveal from "@/components/ui/Reveal";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 import type { ExpertiseTechStackItemRecord, ExpertiseTechStackTabRecord } from "@/lib/content-types";
 
@@ -97,52 +99,7 @@ function resolveTechLogo(item: ExpertiseTechStackItemRecord) {
   return fallbackLogoByLabel[key] ?? "/images/logoipsum.png";
 }
 
-const rowLayouts: Record<string, { counts: number[]; wrapperClasses: string[]; gridClasses: string[]; iconSizes: number[] }> = {
-  languages: {
-    counts: [8, 6, 4],
-    wrapperClasses: ["", "w-full max-w-[684px] mx-auto mt-[50px]", "w-full max-w-[435px] mx-auto mt-[50px]"],
-    gridClasses: [
-      "grid grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-[49px]",
-      "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-[49px]",
-      "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[49px]",
-    ],
-    iconSizes: [70, 71, 75],
-  },
-  databases: {
-    counts: [6, 4],
-    wrapperClasses: ["", ""],
-    gridClasses: [
-      "grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-[49px]",
-      "grid grid-cols-3 md:grid-cols-4 mt-[50px]",
-    ],
-    iconSizes: [64, 64],
-  },
-  framework: {
-    counts: [6, 4],
-    wrapperClasses: ["", ""],
-    gridClasses: [
-      "grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-[49px]",
-      "grid grid-cols-3 md:grid-cols-4 mt-[50px]",
-    ],
-    iconSizes: [64, 64],
-  },
-};
-
-function splitIntoRows<T>(items: T[], counts: number[]) {
-  const rows: T[][] = [];
-  let cursor = 0;
-  for (const count of counts) {
-    if (cursor >= items.length) break;
-    rows.push(items.slice(cursor, cursor + count));
-    cursor += count;
-  }
-  if (cursor < items.length) {
-    rows.push(items.slice(cursor));
-  }
-  return rows;
-}
-
-function TechItem({ item, size }: { item: ExpertiseTechStackItemRecord; size: number }) {
+function TechItem({ item, index }: { item: ExpertiseTechStackItemRecord; index: number }) {
   const [src, setSrc] = useState(() => resolveTechLogo(item));
 
   const handleError = () => {
@@ -156,19 +113,24 @@ function TechItem({ item, size }: { item: ExpertiseTechStackItemRecord; size: nu
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-[5px]">
-      <Image
-        src={src}
-        alt={item.label}
-        width={size}
-        height={size}
-        className="object-contain"
-        style={{ width: `${size}px`, height: `${size}px` }}
-        unoptimized={src.startsWith("data:") || src.startsWith("http")}
-        onError={handleError}
-      />
-      <span className="text-fg text-sm md:text-base font-normal leading-relaxed text-center">{item.label}</span>
-    </div>
+    <li
+      className="group flex flex-col items-center gap-3 animate-in fade-in-0 zoom-in-95 duration-500 fill-mode-both"
+      style={{ animationDelay: `${index * 35}ms` }}
+    >
+      <span className="relative grid h-[76px] w-[76px] place-items-center rounded-2xl bg-[radial-gradient(circle_at_30%_20%,#0d2a50,#071a33_70%)] ring-1 ring-[rgba(246,215,122,0.28)] shadow-[0_10px_30px_-12px_rgba(4,13,28,0.55)] transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[rgba(246,215,122,0.7)] group-hover:shadow-[0_16px_40px_-12px_rgba(46,168,255,0.55)] sm:h-[84px] sm:w-[84px]">
+        <span aria-hidden className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_50%_120%,rgba(46,168,255,0.35),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <Image
+          src={src}
+          alt=""
+          width={44}
+          height={44}
+          className="relative h-10 w-10 object-contain sm:h-11 sm:w-11"
+          unoptimized={src.startsWith("data:") || src.startsWith("http")}
+          onError={handleError}
+        />
+      </span>
+      <span className="text-center text-[13px] font-medium leading-tight text-fg-muted transition-colors group-hover:text-fg sm:text-sm">{item.label}</span>
+    </li>
   );
 }
 
@@ -184,58 +146,56 @@ const TechStackSection = ({
   const resolvedTabs = tabs.length > 0 ? tabs : defaultTabs;
 
   return (
-    <section className="sectionDefault overflow-x-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
+    <section aria-labelledby="techstack-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
+      {/* Animated circuit connections */}
+      <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-60" preserveAspectRatio="none" viewBox="0 0 1440 800">
+        <defs>
+          <linearGradient id="ts-line" x1="0" x2="1">
+            <stop offset="0" stopColor="#2EA8FF" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#2EA8FF" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#D99A19" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {["M0 160 H360 L420 220 H760", "M1440 260 H1080 L1020 320 H700", "M0 620 H300 L360 560 H640", "M1440 660 H1120 L1060 600 H820"].map((d, i) => (
+          <g key={i}>
+            <path d={d} fill="none" stroke="url(#ts-line)" strokeWidth="1" />
+            <path d={d} fill="none" stroke="#F6D77A" strokeWidth="1.5" strokeDasharray="6 220" className="[animation:ts-flow_6s_linear_infinite]" style={{ animationDelay: `${i * -1.4}s` }} />
+          </g>
+        ))}
+      </svg>
+      <div aria-hidden className="absolute left-1/2 top-1/2 h-[480px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-tech/10 blur-[120px]" />
 
-      <div className="container mx-auto max-w-[1190px]">
-        <div className="flex flex-col gap-2.5">
-          <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
-          <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{description}</p>
-        </div>
+      <div className="relative mx-auto max-w-[1190px] px-4 sm:px-6">
+        <Reveal>
+          <SectionHeading id="techstack-title" eyebrow="Technology" title={title} subtitle={description} />
+        </Reveal>
 
-        <div className="w-full mt-12.5">
-          <Tabs defaultValue={resolvedTabs[0]?.value}>
-            <TabsList className="max-w-[576px] mx-auto">
-              {resolvedTabs.map((tab) => (
-                <TabsTrigger key={tab.value} value={tab.value} className="font-semibold text-base md:text-xl">
-                  {tab.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+        <TabsPrimitive.Root defaultValue={resolvedTabs[0]?.value} className="mt-12">
+          <TabsPrimitive.List aria-label="Technology categories" className="glass mx-auto flex w-fit max-w-full gap-1 overflow-x-auto rounded-full p-1.5">
+            {resolvedTabs.map((tab) => (
+              <TabsPrimitive.Trigger
+                key={tab.value}
+                value={tab.value}
+                className="whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-semibold text-fg-muted transition-all hover:text-fg data-[state=active]:bg-gradient-to-br data-[state=active]:from-brand-royal data-[state=active]:to-brand-midnight data-[state=active]:text-white data-[state=active]:shadow-[var(--shadow-glow)] sm:px-7"
+              >
+                {tab.name}
+              </TabsPrimitive.Trigger>
+            ))}
+          </TabsPrimitive.List>
 
-            <div className="w-full border-b max-w-[576px] mx-auto mt-2.5 border-[#D8D8D8]" />
-
-            {resolvedTabs.map((tab) => {
-              const layout = rowLayouts[tab.value] ?? {
-                counts: [tab.items.length],
-                wrapperClasses: [""],
-                gridClasses: ["grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-[49px]"],
-                iconSizes: [64],
-              };
-              const rows = splitIntoRows(tab.items, layout.counts);
-
-              return (
-                <TabsContent key={tab.value} value={tab.value} className="justify-center mt-[86px]">
-                  <div className="flex flex-col gap-0">
-                    {rows.map((row, rowIndex) => (
-                      <div key={`${tab.value}-row-${rowIndex}`} className={layout.wrapperClasses[rowIndex] ?? "mt-[50px]"}>
-                        <div className={layout.gridClasses[rowIndex] ?? "grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-[49px]"}>
-                          {row.map((item, itemIndex) => (
-                            <TechItem key={`${tab.value}-${item.label}-${itemIndex}`} item={item} size={layout.iconSizes[rowIndex] ?? 64} />
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </TabsContent>
-              );
-            })}
-          </Tabs>
-        </div>
+          {resolvedTabs.map((tab) => (
+            <TabsPrimitive.Content key={tab.value} value={tab.value} className="mt-14 focus-visible:outline-none">
+              <ul className="mx-auto grid max-w-[1000px] grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+                {tab.items.map((item, itemIndex) => (
+                  <TechItem key={`${tab.value}-${item.label}-${itemIndex}`} item={item} index={itemIndex} />
+                ))}
+              </ul>
+            </TabsPrimitive.Content>
+          ))}
+        </TabsPrimitive.Root>
       </div>
     </section>
   );
 };
 
 export default TechStackSection;
-

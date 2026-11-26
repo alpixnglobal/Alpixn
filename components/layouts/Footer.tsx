@@ -278,7 +278,7 @@ const Footer = ({ settings }: FooterProps) => {
         {sortedOffices.length ? (
           <div className="border-t border-line py-8">
             <p className="sr-only">Our offices</p>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-9">
+            <div className="flex flex-wrap gap-x-8 gap-y-4 lg:justify-between">
               {sortedOffices.map((office, index) => (
                 <CountryItem
                   key={index}
