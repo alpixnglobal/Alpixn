@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Button } from "../ui/buttonBtn";
 import { InputField } from "../ui/Input";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { BrandLogo } from "../brand/BrandLogo";
+import { FacebookIcon, InstagramIcon, LinkedInIcon, XIcon, YouTubeIcon } from "../brand/SocialIcons";
 import CountryItem from "./CountryItem";
 import type { SiteSettings, FooterColumn, OfficeLocation } from "@/lib/content-types";
 
@@ -96,19 +97,6 @@ type FooterProps = {
   settings?: Partial<SiteSettings>;
 };
 
-const originalFooterColumnWidths = ["154px", "207px", "184px", "206px", "102px"];
-const originalOfficeWidths = ["72px", "142px", "164px", "117px", "121px", "115px", "100px", "128px", "93px"];
-const originalOfficeWidthByName: Record<string, string> = {
-  India: "72px",
-  "New York, USA": "142px",
-  "Sydney, Australia": "164px",
-  "Dubai, UAE": "117px",
-  "London, UK": "121px",
-  "Milan, Italy": "115px",
-  Thailand: "100px",
-  "South Africa": "128px",
-  Canada: "93px",
-};
 const legacyOffshoreLabels = [
   "Hire Node.js Developer",
   "Hire React Developer",
@@ -211,211 +199,129 @@ const Footer = ({ settings }: FooterProps) => {
     twitter: "#",
     youtube: "#",
   };
+  const footerDescription = settings?.footerDescription;
 
   // Sort columns and offices by order
   const sortedColumns = normalizeFooterColumns([...footerColumns]).sort((a, b) => a.order - b.order);
   const sortedOffices = [...offices].sort((a, b) => a.order - b.order);
-  const useOriginalColumnLayout = sortedColumns.length === originalFooterColumnWidths.length;
-  const useOriginalOfficeLayout = sortedOffices.length === originalOfficeWidths.length;
-  const originalOfficeGridTemplate = sortedOffices
-    .flatMap((office, index) => {
-      const normalizedOfficeName = normalizeOfficeName(office.name);
-      const width = originalOfficeWidthByName[normalizedOfficeName] ?? originalOfficeWidths[index] ?? "120px";
-      return index < sortedOffices.length - 1 ? [width, "auto"] : [width];
-    })
-    .join(" ");
 
-  const renderColumn = (column?: FooterColumn, addTopMargin = false) => {
-    if (!column) return null;
-
-    return (
-      <div className={`flex flex-col ${addTopMargin ? "mt-6 lg:mt-0" : ""}`}>
-        <p className="font-semibold text-xl sm:text-2xl leading-snug">{column.title}</p>
-        <div className="mt-4 sm:mt-5 flex flex-col gap-3 sm:gap-4">
-          {[...column.links].sort((a, b) => a.order - b.order).map((link, linkIndex) => (
-            <Link href={link.href} key={linkIndex} className="font-normal text-base leading-relaxed hover:text-blue-300 transition-colors">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    );
-  };
+  const socials = [
+    { href: socialMedia.instagram, label: "Instagram", Icon: InstagramIcon },
+    { href: socialMedia.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
+    { href: socialMedia.facebook, label: "Facebook", Icon: FacebookIcon },
+    { href: socialMedia.twitter, label: "X", Icon: XIcon },
+    { href: socialMedia.youtube, label: "YouTube", Icon: YouTubeIcon },
+  ];
 
   return (
-    <footer
-      className="relative w-full text-white pt-12.5 overflow-hidden"
-      style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}
-    >
-      <div className="absolute top-0 z-[-2] h-screen w-screen bg-gradient-to-t from-[#0c1822] to-[rgba(0,0,0,0.15)]" />
-      <div className="absolute top-0 z-[-1] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
+    <footer className="relative w-full overflow-hidden bg-canvas text-fg">
+      {/* Ambient brand lighting */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 left-[-10%] h-[420px] w-[420px] rounded-full bg-tech/20 blur-[140px] dark:bg-tech/25" />
+        <div className="absolute -bottom-40 right-[-5%] h-[380px] w-[380px] rounded-full bg-gold/10 blur-[140px]" />
+        <div className="absolute inset-0 bg-grid opacity-[0.35] [mask-image:radial-gradient(70%_60%_at_50%_0%,#000_20%,transparent_80%)]" />
+      </div>
+      <div aria-hidden className="rule-gold relative" />
 
-      <div
-        className="absolute w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] 
-                   left-[-40px] sm:left-[-60px] lg:left-[-79px] top-[-40px] sm:top-[-60px] lg:top-[-80px] 
-                   bg-[#389EFF] opacity-[0.53] rounded-full"
-        style={{ filter: "blur(250px)" }}
-      />
-      <div
-        className="absolute w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] 
-                   right-[-40px] sm:right-[-60px] lg:right-[calc(100%-1183px)] top-[-40px] sm:top-[-60px] lg:top-[-80px] 
-                   bg-[#389EFF] opacity-[0.53] rounded-full"
-        style={{ filter: "blur(250px)" }}
-      />
-      <div
-        className="absolute w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] 
-                   left-[-40px] sm:left-[-60px] lg:left-[-79px] bottom-[-40px] sm:bottom-[-60px] lg:top-[680px] 
-                   bg-[#389EFF] opacity-[0.53] rounded-full"
-        style={{ filter: "blur(250px)" }}
-      />
-      <div
-        className="absolute w-[120px] h-[120px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] 
-                   right-[-40px] sm:right-[-60px] lg:right-[calc(100%-1183px)] bottom-[-40px] sm:bottom-[-60px] lg:top-[680px] 
-                   bg-[#389EFF] opacity-[0.53] rounded-full"
-        style={{ filter: "blur(250px)" }}
-      />
+      <div className="relative mx-auto w-full max-w-[1350px] px-4 sm:px-6 lg:px-8 xl:px-0">
+        {/* Brand + newsletter band */}
+        <div className="grid gap-10 border-b border-line py-12 sm:py-14 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div className="flex flex-col gap-5">
+            <BrandLogo src={settings?.logoUrl} alt={settings?.logoAlt} height={48} />
+            {footerDescription ? (
+              <p className="max-w-[460px] text-sm sm:text-[15px] leading-relaxed text-fg-muted">{footerDescription}</p>
+            ) : null}
+          </div>
 
-      {/* Newsletter Section */}
-      <div className="container max-w-[1350px]">
-        <div className="flex flex-col gap-5 sm:gap-0">
-          <p className="text-left sm:text-center font-semibold text-xl sm:text-2xl sm:mb-6">{newsletterTitle}</p>
-          <div className="flex flex-col sm:flex-row w-full max-w-[469px] mx-auto items-center justify-center">
-            <InputField
-              type="email"
-              label="Email Address"
-              className="h-12 sm:h-[60px] border-r-0 rounded-l-[3px] w-full rounded-r-[3px] sm:rounded-r-none  bg-white"
-              labelClassName="!text-[#6F6F6F] !font-medium"
-            />
-            <Button
-              type="submit"
-              className="rounded-l-none h-12 sm:h-[60px] rounded-l-[3px] sm:rounded-l-none rounded-r-[3px] w-full sm:w-auto sm:max-w-[134px] font-medium px-8 mt-1 sm:mt-0 text-sm sm:text-base"
-            >
-              Subscribe
-            </Button>
+          <div className="glass rounded-2xl p-5 sm:p-6">
+            <p className="font-display text-lg sm:text-xl font-semibold leading-snug">{newsletterTitle}</p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <InputField
+                type="email"
+                name="newsletterEmail"
+                label="Email Address"
+                autoComplete="email"
+                className="h-12 sm:h-[52px] rounded-full !border-line !bg-[var(--surface)] px-5 !text-fg"
+                labelClassName="!left-5"
+              />
+              <button type="submit" className="btn-brand shrink-0 !py-0 h-12 sm:h-[52px]">
+                Subscribe
+                <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Links Grid - Dynamic columns */}
-        {useOriginalColumnLayout ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[154px_207px_184px_206px_102px] gap-6 lg:gap-10 justify-between mt-6 sm:mt-20">
-            {renderColumn(sortedColumns[0])}
-            {renderColumn(sortedColumns[1], true)}
-            {renderColumn(sortedColumns[2], true)}
-            {renderColumn(sortedColumns[3], true)}
-            {renderColumn(sortedColumns[4], true)}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 justify-between mt-6 sm:mt-20">
-            {sortedColumns.map((column, colIndex) => (
-              <div key={colIndex}>{renderColumn(column, colIndex > 0)}</div>
-            ))}
-          </div>
-        )}
+        {/* Link columns (CMS driven) */}
+        <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-10 py-12 sm:grid-cols-3 lg:grid-cols-5 lg:gap-8">
+          {sortedColumns.map((column, colIndex) => (
+            <div key={colIndex} className="flex flex-col">
+              <p className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-gold-ink">{column.title}</p>
+              <ul className="mt-5 flex flex-col gap-3">
+                {[...column.links].sort((a, b) => a.order - b.order).map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <Link
+                      href={link.href}
+                      className="group inline-flex items-center gap-1.5 text-[15px] leading-snug text-fg-muted transition-colors hover:text-fg"
+                    >
+                      <span aria-hidden className="h-px w-0 bg-gold transition-all duration-300 group-hover:w-3" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </nav>
 
-        {/* Countries Grid - Dynamic offices */}
-        {useOriginalOfficeLayout ? (
-          <div
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 xl:gap-0 justify-between my-8 sm:my-12.5"
-            style={{ gridTemplateColumns: originalOfficeGridTemplate }}
-          >
-            {sortedOffices.map((office, index) => (
-              <div key={index} className="contents">
+        {/* Offices (CMS driven) */}
+        {sortedOffices.length ? (
+          <div className="border-t border-line py-8">
+            <p className="sr-only">Our offices</p>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 md:grid-cols-5 xl:grid-cols-9">
+              {sortedOffices.map((office, index) => (
                 <CountryItem
+                  key={index}
                   flag={normalizeOfficeFlag(office.flagImage, office.name)}
                   name={normalizeOfficeName(office.name)}
                   alt={`${normalizeOfficeName(office.name).split(",")[0]} Flag`}
                 />
-                {index < sortedOffices.length - 1 ? <div className="hidden lg:block" /> : null}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 gap-4 justify-between my-8 sm:my-12.5">
-            {sortedOffices.map((office, index) => (
-              <CountryItem
-                key={index}
-                flag={normalizeOfficeFlag(office.flagImage, office.name)}
-                name={normalizeOfficeName(office.name)}
-                alt={`${normalizeOfficeName(office.name).split(",")[0]} Flag`}
-              />
-            ))}
-          </div>
-        )}
+        ) : null}
       </div>
 
-      {/* Footer Bottom */}
-      <div className="relative border-t border-t-white/20 min-h-[77px] w-full flex items-center">
-        <div className="w-full max-w-[1350px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
-          {/* Mobile layout */}
-          <div className="flex flex-col items-center gap-4 py-4 xl:hidden">
-            <div className="flex items-center gap-3">
-              <span className="font-medium text-xs text-white/80">Follow:</span>
-              <div className="flex items-center gap-3">
-                <Link href={socialMedia.instagram || "#"} aria-label="Instagram">
-                  <Image src="/images/ig.svg" alt="IG" width={20} height={20} className="w-5 h-5" />
-                </Link>
-                <Link href={socialMedia.linkedin || "#"} aria-label="LinkedIn">
-                  <Image src="/images/in.svg" alt="IN" width={20} height={20} className="w-5 h-5" />
-                </Link>
-                <Link href={socialMedia.facebook || "#"} aria-label="Facebook">
-                  <Image src="/images/fb.svg" alt="FB" width={20} height={20} className="w-5 h-5" />
-                </Link>
-                <Link href={socialMedia.twitter || "#"} aria-label="X">
-                  <Image src="/images/x.svg" alt="X" width={20} height={20} className="w-5 h-5" />
-                </Link>
-                <Link href={socialMedia.youtube || "#"} aria-label="YouTube">
-                  <Image src="/images/yt.svg" alt="YT" width={20} height={20} className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-            <div className="font-normal text-xs text-white/80 whitespace-nowrap">{copyrightText}</div>
-            <div className="flex items-center gap-4">
-              <Link href="/privacy-policy" className="uppercase font-medium text-xs hover:text-blue-300 text-white/80">
-                Privacy Policy
-              </Link>
-              <div className="h-4 border-l border-white/40" />
-              <Link href="/sitemap" className="uppercase font-medium text-xs hover:text-blue-300 text-white/80">
-                Sitemap
-              </Link>
-            </div>
+      {/* Bottom bar */}
+      <div className="relative border-t border-line">
+        <div className="mx-auto flex w-full max-w-[1350px] flex-col items-center gap-5 px-4 py-6 sm:px-6 lg:px-8 xl:flex-row xl:justify-between xl:px-0">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-medium uppercase tracking-[0.16em] text-fg-subtle">Follow</span>
+            <ul className="flex items-center gap-2">
+              {socials.map(({ href, label, Icon }) => (
+                <li key={label}>
+                  <Link
+                    href={href || "#"}
+                    aria-label={label}
+                    className="grid h-9 w-9 place-items-center rounded-full border border-line text-fg-muted transition-all hover:-translate-y-0.5 hover:border-gold/60 hover:text-gold"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* XL layout */}
-          <div className="hidden xl:grid xl:grid-cols-[269px_auto_174px_auto_190px] items-center justify-between h-[77px]">
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-sm text-white/80">Follow Us :</span>
-              <div className="flex items-center justify-between gap-[5px] flex-1">
-                <Link href={socialMedia.instagram || "#"} aria-label="Instagram">
-                  <Image src="/images/ig.svg" alt="IG" width={25} height={25} />
-                </Link>
-                <Link href={socialMedia.linkedin || "#"} aria-label="LinkedIn">
-                  <Image src="/images/in.svg" alt="IN" width={24.79} height={24.79} />
-                </Link>
-                <Link href={socialMedia.facebook || "#"} aria-label="Facebook">
-                  <Image src="/images/fb.svg" alt="FB" width={26} height={26} />
-                </Link>
-                <Link href={socialMedia.twitter || "#"} aria-label="X">
-                  <Image src="/images/x.svg" alt="X" width={26} height={23} />
-                </Link>
-                <Link href={socialMedia.youtube || "#"} aria-label="YouTube">
-                  <Image src="/images/yt.svg" alt="YT" width={29} height={20} />
-                </Link>
-              </div>
-            </div>
-            <div></div>
-            <div className="font-normal text-sm text-center text-white/80 whitespace-nowrap">{copyrightText}</div>
-            <div></div>
-            <div className="flex items-center justify-between">
-              <Link href="/privacy-policy" className="uppercase font-medium text-sm hover:text-blue-300 text-white/80">
-                Privacy Policy
-              </Link>
-              <div className="flex justify-center">
-                <div className="h-[19px] border-l border-white/40" />
-              </div>
-              <Link href="/sitemap" className="uppercase font-medium text-sm hover:text-blue-300 text-white/80">
-                Sitemap
-              </Link>
-            </div>
+          <div className="text-center text-xs sm:text-sm text-fg-subtle [&_a]:text-fg-muted [&_a:hover]:text-gold">{copyrightText}</div>
+
+          <div className="flex items-center gap-4 text-xs sm:text-sm font-medium uppercase tracking-[0.12em]">
+            <Link href="/privacy-policy" className="text-fg-muted transition-colors hover:text-gold">
+              Privacy Policy
+            </Link>
+            <span aria-hidden className="h-4 w-px bg-line" />
+            <Link href="/sitemap" className="text-fg-muted transition-colors hover:text-gold">
+              Sitemap
+            </Link>
           </div>
         </div>
       </div>

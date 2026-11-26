@@ -44,7 +44,7 @@ const TransfromCustomerEngagement = ({
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 35%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }} />
 
       <div className="container max-w-337.75">
         <div className="flex flex-col gap-[15px]">
@@ -63,12 +63,12 @@ const TransfromCustomerEngagement = ({
                 className="relative flex flex-col gap-5 p-5 z-10"
                 style={{
                   borderRadius: "10px",
-                  background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                  background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                   border: "1px solid #FFFFFF26",
                 }}
               >
-                <h6 className="text-white font-semibold text-base md:text-lg">{card.title}</h6>
-                <p className="text-xs md:text-sm text-white/80 leading-relaxed font-normal z-10">{card.description}</p>
+                <h6 className="text-fg font-semibold text-base md:text-lg">{card.title}</h6>
+                <p className="text-xs md:text-sm text-fg/80 leading-relaxed font-normal z-10">{card.description}</p>
                 <Image src={resolvedImage} alt={card.title} width={97.48} height={104.44} className="absolute right-2 bottom-0 z-0" unoptimized={shouldUnoptimize} />
               </div>
             );

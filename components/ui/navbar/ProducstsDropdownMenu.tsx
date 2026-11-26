@@ -22,14 +22,14 @@ type ProductMenuCopy = {
 
 function ProductList({ items }: { items: ProductNavItem[] }) {
   return (
-    <div className="text-white flex flex-col gap-6 h-full border-l border-[#FFFFFF33] ml-[57.2px] font-normal text-base w-full">
+    <div className="text-fg flex flex-col gap-6 h-full border-l border-[#FFFFFF33] ml-[57.2px] font-normal text-base w-full">
       {items.map((item) => (
         <NavigationMenuLink asChild key={item.label}>
           <Link
             href={item.href}
             className="group transition-all duration-200 hover:opacity-80 hover:translate-x-1"
           >
-            <BulletItem className="pl-14 cursor-pointer hover:text-[#389EFF]">{item.label}</BulletItem>
+            <BulletItem className="pl-14 cursor-pointer hover:text-tech">{item.label}</BulletItem>
           </Link>
         </NavigationMenuLink>
       ))}
@@ -50,9 +50,9 @@ const ProductsDropdownMenu = ({
   return (
     <div className="grid grid-cols-[38%_1fr_1fr] items-center h-full px-[25px] py-[35px]">
       <div className="flex flex-col gap-[20px] h-full ml-[25px] w-full max-w-[525px]">
-        <h6 className="text-white font-medium text-lg">{menu.title}</h6>
-        <p className="text-white/80 font-normal text-base">{menu.description}</p>
-        <p className="text-white opacity-80">{menu.descriptionSecondary}</p>
+        <h6 className="text-fg font-medium text-lg">{menu.title}</h6>
+        <p className="text-fg/80 font-normal text-base">{menu.description}</p>
+        <p className="text-fg opacity-80">{menu.descriptionSecondary}</p>
         <NavigationMenuLink asChild>
           <Link href={menu.buttonHref}>
             <Button className="w-[143px] h-[48px] cursor-pointer">
@@ -65,7 +65,7 @@ const ProductsDropdownMenu = ({
 
       <ProductList items={items} />
 
-      <div className="text-white flex">
+      <div className="text-fg flex">
         <Image src={menuImage} alt="Contact Image" width={429} height={347} unoptimized={shouldUnoptimizeMenuImage} />
       </div>
     </div>

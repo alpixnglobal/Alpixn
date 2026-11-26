@@ -391,7 +391,7 @@ export function BlogFields({ values = {} }: { values?: BlogValues }) {
         <AdminInput name="category" required defaultValue={values.category} placeholder="AI Engineering" />
       </AdminField>
       <AdminField label="Author">
-        <AdminInput name="author" required defaultValue={values.author} placeholder="Axaon Company" />
+        <AdminInput name="author" required defaultValue={values.author} placeholder="ALPIXN" />
       </AdminField>
       <AdminField label="Read time">
         <AdminInput name="readTime" required defaultValue={values.readTime} placeholder="2 min read" />

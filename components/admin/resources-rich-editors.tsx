@@ -67,7 +67,7 @@ function InlineImageUpload({
       <div className="flex gap-3 items-start">
         <label
           htmlFor={inputId}
-          className="flex-shrink-0 w-20 h-20 cursor-pointer rounded-full border border-dashed border-white/20 bg-white/[0.03] flex items-center justify-center overflow-hidden hover:border-cyan-300/40 transition"
+          className="flex-shrink-0 w-20 h-20 cursor-pointer rounded-full border border-dashed border-white/20 bg-white/[0.03] flex items-center justify-center overflow-hidden hover:border-sky-300/40 transition"
         >
           {value ? (
             <img src={value} alt="Preview" className="w-full h-full object-cover" />
@@ -85,7 +85,7 @@ function InlineImageUpload({
               setStatusText(e.target.value ? "URL/path set" : "No image");
             }}
             placeholder="https://... or /images/..."
-            className="w-full h-9 rounded-lg border border-white/10 bg-white/6 px-3 text-sm text-slate-100 outline-none focus:border-cyan-300/40"
+            className="w-full h-9 rounded-lg border border-white/10 bg-white/6 px-3 text-sm text-slate-100 outline-none focus:border-sky-300/40"
           />
           <div className="flex gap-2 items-center">
             {value && (
@@ -333,7 +333,7 @@ export function BlogRichEditor({ values = {} }: { values?: Partial<BlogPostRecor
     <>
       <AdminField label="Title"><AdminInput name="title" required defaultValue={values.title} placeholder="Understanding Similarity Scoring in RAG Systems" /></AdminField>
       <AdminField label="Category"><AdminInput name="category" required defaultValue={values.category} placeholder="AI Engineering" /></AdminField>
-      <AdminField label="Author"><AdminInput name="author" required defaultValue={values.author} placeholder="Axaon Company" /></AdminField>
+      <AdminField label="Author"><AdminInput name="author" required defaultValue={values.author} placeholder="ALPIXN" /></AdminField>
       <AdminField label="Read time"><AdminInput name="readTime" required defaultValue={values.readTime} placeholder="2 min read" /></AdminField>
       <AdminField label="Accent"><AdminInput name="accent" defaultValue={values.accent} placeholder="linear-gradient(160deg, rgba(56, 189, 248, 0.28), rgba(14, 116, 144, 0.12))" /></AdminField>
       <AdminField label="Display order"><AdminInput name="order" type="number" min="0" defaultValue={String(values.order ?? 1)} /></AdminField>

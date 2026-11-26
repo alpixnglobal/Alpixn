@@ -523,7 +523,7 @@ function TabBadge({ label, tabId, tabIconUrl }: { label: string; tabId: string; 
   }
   // Fallback to text badge
   return (
-    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(255,255,255,0.2)] text-sm font-medium leading-snug text-white">
+    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(255,255,255,0.2)] text-sm font-medium leading-snug text-fg">
       {label.slice(0, 2).toUpperCase()}
     </div>
   );
@@ -542,11 +542,11 @@ export default function HomeIndustriesSection({
   const [active, setActive] = useState(resolvedTabs[0]?.id ?? "");
 
   return (
-    <section className="w-full py-8 md:py-10 lg:py-[50px]" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}>
+    <section className="w-full py-8 md:py-10 lg:py-[50px]" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}>
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px]">
         <div className="flex flex-col gap-2.5">
           <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">{subtitle}</p>
+          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
         </div>
 
         <div className="mt-8 md:mt-10 lg:mt-16.25 flex flex-col xl:flex-row xl:gap-1 xl:items-start">
@@ -563,8 +563,8 @@ export default function HomeIndustriesSection({
                     className={clsx(
                       "relative w-full h-16 lg:h-20 xl:h-[90px] px-4 flex items-center justify-between text-left text-base md:text-lg font-medium leading-snug border-b-[3px] transition-all duration-300",
                       isActive
-                        ? `${index === 0 ? "rounded-t-[10px]" : ""} text-white bg-[linear-gradient(180deg,_#389EFF_0%,_#003098_100%)] border-transparent [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_#389EFF_100%)] [border-image-slice:1]`
-                        : "text-white border-white/15 hover:text-white"
+                        ? `${index === 0 ? "rounded-t-[10px]" : ""} text-white bg-[linear-gradient(180deg,_var(--tech)_0%,_#064A87_100%)] border-transparent [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_var(--tech)_100%)] [border-image-slice:1]`
+                        : "text-fg border-fg/15 hover:text-white"
                     )}
                   >
                     <span className="truncate text-sm md:text-base font-medium leading-snug">{tab.label}</span>
@@ -601,14 +601,14 @@ export default function HomeIndustriesSection({
                       {tab.items.map((item, index) => (
                         <div
                           key={`${tab.id}-${index}`}
-                          className="relative flex flex-col w-full h-32 md:h-44 lg:h-36 xl:h-[145px] justify-between p-4 lg:p-3 xl:p-2.5 rounded-lg lg:rounded-[8px] xl:rounded-[10px] transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_rgba(56,158,255,0.35),_0_18px_45px_rgba(56,158,255,0.25)]"
-                          style={{ background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)" }}
+                          className="relative flex flex-col w-full h-32 md:h-44 lg:h-36 xl:h-[145px] justify-between p-4 lg:p-3 xl:p-2.5 rounded-lg lg:rounded-[8px] xl:rounded-[10px] transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--tech)_35%,transparent),_0_18px_45px_color-mix(in_srgb,var(--tech)_25%,transparent)]"
+                          style={{ background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)" }}
                         >
                           <div
                             className="absolute inset-0 rounded-[10px] pointer-events-none transition-opacity duration-300 opacity-70 hover:opacity-100"
                             style={{
                               border: "1px solid transparent",
-                              background: "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(56,158,255,0.8) 100%) border-box",
+                              background: "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, color-mix(in srgb, var(--tech) 80%, transparent) 100%) border-box",
                               WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                               WebkitMaskComposite: "xor",
                               maskComposite: "exclude",
@@ -616,7 +616,7 @@ export default function HomeIndustriesSection({
                             }}
                           />
 
-                          <span className="text-xs md:text-sm font-normal leading-relaxed relative z-10 text-white">{item.title}</span>
+                          <span className="text-xs md:text-sm font-normal leading-relaxed relative z-10 text-fg">{item.title}</span>
                           <div className="flex-shrink-0 relative z-10 self-start">
                             <ItemIcon title={item.title} iconUrl={item.iconUrl} />
                           </div>

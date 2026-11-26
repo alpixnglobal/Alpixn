@@ -72,7 +72,7 @@ export function ImageUploadField({
 
       <label
         htmlFor={inputId}
-        className="flex min-h-44 cursor-pointer flex-col items-center justify-center gap-3 rounded-[24px] border border-dashed border-white/12 bg-white/[0.03] px-4 py-6 text-center transition hover:border-cyan-300/30 hover:bg-white/[0.05]"
+        className="flex min-h-44 cursor-pointer flex-col items-center justify-center gap-3 rounded-[24px] border border-dashed border-white/12 bg-white/[0.03] px-4 py-6 text-center transition hover:border-sky-300/30 hover:bg-white/[0.05]"
       >
         {preview ? (
           <img src={preview} alt={label} className="max-h-48 w-full rounded-[18px] object-cover" />
@@ -104,7 +104,7 @@ export function ImageUploadField({
             );
           }}
           placeholder="https://example.com/image.png or /images/file.png"
-          className="h-11 w-full rounded-[16px] border border-white/10 bg-white/6 px-4 text-sm text-slate-100 outline-none transition focus:border-cyan-300/40"
+          className="h-11 w-full rounded-[16px] border border-white/10 bg-white/6 px-4 text-sm text-slate-100 outline-none transition focus:border-sky-300/40"
         />
       </div>
 

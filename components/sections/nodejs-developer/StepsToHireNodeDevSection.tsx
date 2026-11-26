@@ -33,7 +33,7 @@ function StepIcon({ index }: { index: number }) {
     <div
       className="flex items-center justify-center rounded-full z-10 w-[48px] h-[48px] lg:w-[67px] lg:h-[67px]"
       style={{
-        background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+        background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
         boxShadow: "0px 0px 23px 0px #4275AA",
         position: "relative",
       }}
@@ -63,7 +63,7 @@ const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSection
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 35%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }} />
 
       <div className="relative w-full max-w-[1047px] gap-[50px] flex flex-col items-center mx-auto px-4 lg:px-0">
         <h2 className="title heading-gradient text-left lg:text-center">{mainTitle}</h2>
@@ -71,7 +71,7 @@ const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSection
         <div className="relative w-full flex flex-col lg:flex-row lg:justify-between items-center gap-[60px] lg:gap-0">
           {resolvedSteps.map((step, index) => (
             <div key={`${step.stepLabel}-${index}`} className="relative flex flex-col items-center justify-center w-full max-w-[299px]">
-              <div className="py-2.5 px-[25px] text-xs border rounded-full bg-[#389EFF0D] border-[#389EFF73] mb-[35px]">
+              <div className="py-2.5 px-[25px] text-xs border rounded-full bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] border-[color-mix(in_srgb,var(--tech)_45%,transparent)] mb-[35px]">
                 {step.stepLabel}
               </div>
 
@@ -81,20 +81,20 @@ const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSection
                 <div className="hidden lg:block absolute left-[61%] top-[44%]" style={{ width: "307px", height: "1px", background: "#FFFFFF33" }} />
               ) : null}
 
-              <h5 className="text-white font-medium text-base lg:text-xl text-center mt-[15px]">{step.title}</h5>
-              <p className="text-xs lg:text-base text-white/80 text-center mt-[15px]">{step.description}</p>
+              <h5 className="text-fg font-medium text-base lg:text-xl text-center mt-[15px]">{step.title}</h5>
+              <p className="text-xs lg:text-base text-fg/80 text-center mt-[15px]">{step.description}</p>
             </div>
           ))}
         </div>
 
         <Link
           href={buttonLink}
-          className="px-6.25 py-2.5 text-white text-sm lg:text-base font-medium rounded-10 flex items-center justify-center cursor-pointer"
+          className="px-6.25 py-2.5 text-fg text-sm lg:text-base font-medium rounded-10 flex items-center justify-center cursor-pointer"
           style={{
-            background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+            background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
             border: "1.5px solid transparent",
             backgroundImage:
-              "linear-gradient(360deg, #002348 0%, #00141F 100%), linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+              "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
             backgroundOrigin: "border-box",
             backgroundClip: "padding-box, border-box",
           }}

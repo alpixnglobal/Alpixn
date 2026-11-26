@@ -25,7 +25,7 @@ function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimi
         overflow-x-hidden
 
         border-l
-        border-white/15
+        border-fg/15
 
         bg-transparent
         p-0
@@ -55,7 +55,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
         items-center
         justify-start
 
-        text-white
+        text-fg
         text-2xl
         font-medium
 
@@ -63,13 +63,13 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
         rounded-none
 
         border-b-[3px]
-        border-white/15
+        border-fg/15
 
         transition-colors
 
-        data-[state=active]:bg-[linear-gradient(180deg,_#389EFF_0%,_#003098_100%)]
+        data-[state=active]:bg-[linear-gradient(180deg,_var(--tech)_0%,_#064A87_100%)]
         data-[state=active]:border-transparent
-        data-[state=active]:[border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_#389EFF_100%)]
+        data-[state=active]:[border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_var(--tech)_100%)]
         data-[state=active]:[border-image-slice:1]
         `,
         className

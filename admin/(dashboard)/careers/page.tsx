@@ -167,7 +167,7 @@ export default async function AdminCareersPage({ searchParams }: PageProps) {
                       {application.jobTitle} at {application.company}
                     </p>
                   </div>
-                  <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100">
+                  <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-100">
                     {application.status}
                   </span>
                 </div>
@@ -177,16 +177,16 @@ export default async function AdminCareersPage({ searchParams }: PageProps) {
                   <div>Phone: {application.phone}</div>
                   <div>Location: {application.location}</div>
                   <div>
-                    CV: <a href={application.cvDriveLink} target="_blank" rel="noreferrer" className="text-cyan-100 underline-offset-4 hover:underline">Open drive link</a>
+                    CV: <a href={application.cvDriveLink} target="_blank" rel="noreferrer" className="text-sky-100 underline-offset-4 hover:underline">Open drive link</a>
                   </div>
                   {application.linkedInUrl ? (
                     <div>
-                      LinkedIn: <a href={application.linkedInUrl} target="_blank" rel="noreferrer" className="text-cyan-100 underline-offset-4 hover:underline">Open profile</a>
+                      LinkedIn: <a href={application.linkedInUrl} target="_blank" rel="noreferrer" className="text-sky-100 underline-offset-4 hover:underline">Open profile</a>
                     </div>
                   ) : null}
                   {application.portfolioUrl ? (
                     <div>
-                      Portfolio: <a href={application.portfolioUrl} target="_blank" rel="noreferrer" className="text-cyan-100 underline-offset-4 hover:underline">Open portfolio</a>
+                      Portfolio: <a href={application.portfolioUrl} target="_blank" rel="noreferrer" className="text-sky-100 underline-offset-4 hover:underline">Open portfolio</a>
                     </div>
                   ) : null}
                 </div>

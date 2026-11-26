@@ -7,10 +7,10 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     <textarea
       data-slot="textarea"
       className={cn(
-        "selection:bg-primary selection:text-primary-foreground placeholder:text-white/80 placeholder:pl-3.75",
+        "selection:bg-primary selection:text-primary-foreground placeholder:text-fg/80 placeholder:pl-3.75",
         "dark:bg-input/30 border-input",
-        "min-h-32.25 w-full rounded-[5px] border border-white/25",
-        "bg-[#152E46]  pt-3.75 text-sm shadow-xs",
+        "min-h-32.25 w-full rounded-[5px] border border-fg/25",
+        "bg-surface-2  pt-3.75 text-sm shadow-xs",
         "transition-[color,box-shadow] outline-none",
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
@@ -37,7 +37,7 @@ function TextareaInput({ label, required, asteriskColor = "#FF4040", className, 
         {...props}
         required={required}
         className={cn(
-          "peer w-full rounded-[5px] border border-white/25 bg-[#152E46] px-3 pt-7 pb-2 text-sm text-white/80 placeholder-transparent outline-none",
+          "peer w-full rounded-[5px] border border-fg/25 bg-surface-2 px-3 pt-7 pb-2 text-sm text-fg/80 placeholder-transparent outline-none",
           className,
         )}
         placeholder=" "
@@ -48,11 +48,11 @@ function TextareaInput({ label, required, asteriskColor = "#FF4040", className, 
         className={cn(
           "absolute left-3 pointer-events-none transition-all duration-150",
           // Default (has value): float at top-left, small
-          "top-2 translate-y-0 text-xs text-white/60",
+          "top-2 translate-y-0 text-xs text-fg/60",
           // When empty (placeholder shown): at top but normal size
-          "peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-sm peer-placeholder-shown:text-white/60",
+          "peer-placeholder-shown:top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-sm peer-placeholder-shown:text-fg/60",
           // When focused: always float up
-          "peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-white/60",
+          "peer-focus:top-2 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-fg/60",
         )}
       >
         {label}

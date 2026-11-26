@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Boxes, BriefcaseBusiness, BriefcaseIcon, ChevronDown, Cpu, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
 
 import { PersistentScrollArea } from "@/components/admin/persistent-scroll-area";
 
 export const adminCardClassName =
-  "rounded-[28px] border border-cyan-100 bg-white shadow-[0_30px_100px_-60px_rgba(34,211,238,0.2)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.88),rgba(2,6,23,0.92))] dark:shadow-[0_30px_100px_-60px_rgba(34,211,238,0.45)]";
+  "rounded-[28px] border border-sky-100 bg-white shadow-[0_30px_100px_-60px_rgba(8,120,209,0.2)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.88),rgba(2,6,23,0.92))] dark:shadow-[0_30px_100px_-60px_rgba(8,120,209,0.45)]";
 
 type AdminShellProps = {
   children: ReactNode;
@@ -113,18 +114,18 @@ const adminLinks: AdminNavLink[] = [
 
 export function AdminShell({ children, title, description, activePath, topActions }: AdminShellProps) {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-white">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_32%),radial-gradient(circle_at_top_right,rgba(168,85,247,0.14),transparent_24%)] dark:opacity-100 opacity-50" />
+    <div className="relative min-h-screen overflow-hidden bg-canvas text-fg">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(8,120,209,0.14),transparent_32%),radial-gradient(circle_at_top_right,rgba(217,154,25,0.14),transparent_24%)] dark:opacity-100 opacity-50" />
       <div className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col gap-6 px-4 py-4 sm:px-6 xl:flex-row xl:px-8">
         <aside className={`${adminCardClassName} shrink-0 xl:sticky xl:top-4 xl:h-[calc(100vh-2rem)] xl:w-80 flex flex-col`}>
           <div className="flex flex-col gap-8 p-6 flex-1 overflow-hidden">
             <div className="space-y-4 shrink-0">
               <div className="flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-200 bg-cyan-50 dark:border-cyan-400/20 dark:bg-cyan-400/10 text-sm font-semibold tracking-[0.24em] text-cyan-800 dark:text-cyan-100">
-                  AX
+                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[color:var(--line-gold)] bg-[var(--surface-2)]">
+                  <Image src="/brand/alpixn-emblem.webp" alt="ALPIXN" width={36} height={36} className="h-9 w-9 object-contain" />
                 </span>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">Separate Admin</p>
+                  <p className="text-xs uppercase tracking-[0.22em] text-gold-ink">ALPIXN Admin</p>
                   <h2 className="text-lg font-semibold tracking-[-0.03em] text-slate-900 dark:text-white">Content Control</h2>
                 </div>
               </div>
@@ -157,7 +158,7 @@ export function AdminShell({ children, title, description, activePath, topAction
                       <summary
                         className={
                           activeGroup
-                            ? "flex cursor-pointer list-none items-center gap-3 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/12 dark:text-cyan-50 shadow-[0_18px_40px_-28px_rgba(34,211,238,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(34,211,238,0.8)]"
+                            ? "flex cursor-pointer list-none items-center gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 px-4 py-2.5 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50 shadow-[0_18px_40px_-28px_rgba(8,120,209,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(8,120,209,0.8)]"
                             : "flex cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
                         }
                       >
@@ -178,7 +179,7 @@ export function AdminShell({ children, title, description, activePath, topAction
                               scroll={false}
                               className={
                                 activeChild
-                                  ? "flex items-center gap-3 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm font-semibold text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/12 dark:text-cyan-50"
+                                  ? "flex items-center gap-3 rounded-xl border border-sky-500/30 bg-sky-500/10 px-4 py-2 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50"
                                   : "flex items-center gap-3 rounded-xl px-4 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/8 dark:hover:text-white"
                               }
                             >
@@ -201,7 +202,7 @@ export function AdminShell({ children, title, description, activePath, topAction
                     scroll={false}
                     className={
                       active
-                        ? "flex items-center gap-3 rounded-2xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-2.5 text-sm font-semibold text-cyan-900 dark:border-cyan-400/30 dark:bg-cyan-400/12 dark:text-cyan-50 shadow-[0_18px_40px_-28px_rgba(34,211,238,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(34,211,238,0.8)] shrink-0"
+                        ? "flex items-center gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 px-4 py-2.5 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50 shadow-[0_18px_40px_-28px_rgba(8,120,209,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(8,120,209,0.8)] shrink-0"
                         : "flex items-center gap-3 rounded-2xl px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white shrink-0"
                     }
                   >
@@ -219,7 +220,7 @@ export function AdminShell({ children, title, description, activePath, topAction
           <header className={`${adminCardClassName} overflow-hidden p-6 sm:p-8`}>
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="space-y-4">
-                <span className="inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
+                <span className="inline-flex rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100">
                   Admin Workspace
                 </span>
                 <div>
@@ -292,12 +293,12 @@ export function AdminRecordLink({
       scroll={false}
       className={
         active
-          ? "flex items-start gap-4 rounded-[22px] border border-cyan-400/30 bg-cyan-400/10 px-4 py-4 text-slate-900 dark:text-white"
+          ? "flex items-start gap-4 rounded-[22px] border border-sky-400/30 bg-sky-400/10 px-4 py-4 text-slate-900 dark:text-white"
           : "flex items-start gap-4 rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-slate-900 dark:text-white transition hover:border-white/16 hover:bg-white/[0.05]"
       }
     >
       {leading ? (
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-sm font-semibold text-cyan-100">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-sm font-semibold text-sky-100">
           {leading}
         </div>
       ) : null}
@@ -329,7 +330,7 @@ export function AdminInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className={`w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/35 ${props.className ?? ""}`}
+      className={`w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-sky-300/35 ${props.className ?? ""}`}
     />
   );
 }
@@ -338,7 +339,7 @@ export function AdminTextarea(props: React.TextareaHTMLAttributes<HTMLTextAreaEl
   return (
     <textarea
       {...props}
-      className={`min-h-32 w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/35 ${props.className ?? ""}`}
+      className={`min-h-32 w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-sky-300/35 ${props.className ?? ""}`}
     />
   );
 }
@@ -354,7 +355,7 @@ export function AdminCheckbox({
 }) {
   return (
     <label className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200">
-      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-cyan-400" />
+      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-sky-400" />
       {label}
     </label>
   );

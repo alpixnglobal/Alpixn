@@ -167,7 +167,7 @@ function TechItem({ item, size }: { item: ExpertiseTechStackItemRecord; size: nu
         unoptimized={src.startsWith("data:") || src.startsWith("http")}
         onError={handleError}
       />
-      <span className="text-white text-sm md:text-base font-normal leading-relaxed text-center">{item.label}</span>
+      <span className="text-fg text-sm md:text-base font-normal leading-relaxed text-center">{item.label}</span>
     </div>
   );
 }
@@ -185,7 +185,7 @@ const TechStackSection = ({
 
   return (
     <section className="sectionDefault overflow-x-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
 
       <div className="container mx-auto max-w-[1190px]">
         <div className="flex flex-col gap-2.5">

@@ -10,12 +10,12 @@ const CareerDetailsHeroSection = ({ title, type, location, salary }: CareerDetai
     <section
       className="relative w-full h-[391px] overflow-hidden"
       style={{
-        // background: "radial-gradient(circle, #00070E 55%, #002348 100%)"
-        // background: "#00070E",
-        //   background: "#00070E",
+        // background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)"
+        // background: "var(--canvas)",
+        //   background: "var(--canvas)",
         // background: "linear-gradient(90deg,rgba(2, 0, 36, 1) 20%, rgba(9, 9, 121, 1) 35%, rgba(2, 0, 36, 1) 80%)",
-        // background: "linear-gradient(180deg, #00070E -7.46%, rgba(0, 35, 72, 0.15) 100%)"
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+        // background: "linear-gradient(180deg, var(--canvas) -7.46%, color-mix(in srgb, var(--glow) 15%, transparent) 100%)"
+        background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
       }}
     >
       {/* First Ellipse (Pink - Top Left) */}
@@ -40,7 +40,7 @@ const CareerDetailsHeroSection = ({ title, type, location, salary }: CareerDetai
           height: "83%",
           left: "-7%",
           top: "103%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -54,7 +54,7 @@ const CareerDetailsHeroSection = ({ title, type, location, salary }: CareerDetai
           height: "83%",
           right: "-7%",
           top: "-29%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -78,13 +78,13 @@ const CareerDetailsHeroSection = ({ title, type, location, salary }: CareerDetai
       <div className="relative w-full max-w-[1295px] mx-auto flex flex-col gap-[25px] mt-32 lg:mt-33.75 z-10 px-4 xl:px-0">
         <h1 className="font-extrabold text-2xl sm:text-3xl md:text-[32px] lg:text-[40px] text-left sm:text-center heading-gradient-white leading-tight">{title}</h1>
         <div className="flex flex-wrap sm:justify-center mt-4 lg:mt-0 gap-2.5 sm:gap-0">
-          <div className="sm:px-3.5 lg:border-r border-white/20 font-normal text-sm md:text-base text-white/80">
+          <div className="sm:px-3.5 lg:border-r border-fg/20 font-normal text-sm md:text-base text-fg/80">
             {type}
           </div>
-          <div className="px-3.5 lg:border-r border-white/20 font-normal text-sm md:text-base text-white/80">
+          <div className="px-3.5 lg:border-r border-fg/20 font-normal text-sm md:text-base text-fg/80">
             {location}
           </div>
-          <div className="sm:pl-3.5 border-white/20 font-normal text-sm md:text-base text-white/80">
+          <div className="sm:pl-3.5 border-fg/20 font-normal text-sm md:text-base text-fg/80">
             {salary}
           </div>
         </div>

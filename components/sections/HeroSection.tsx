@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section
       className="relative w-full overflow-hidden max-h-[628px] max-w-[1440px]"
       style={{
-        background: "radial-gradient(circle, rgba(0,20,31,1) 1.27%, rgba(0,35,72,1) 98.73%)",
+        background: "radial-gradient(circle, var(--canvas-2) 1.27%, var(--glow) 98.73%)",
       }}
     >
       {/* BACKGROUND PNG ELLIPSES  */}
@@ -48,11 +48,11 @@ const HeroSection = () => {
       <div className="relative z-20 container mx-auto grid min-h-[628px] items-center">
         {/* Left Column */}
         <div className="flex flex-col items-start ml-[45px] max-w-[789px]">
-          <h1 className="text-white font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="text-fg font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
             Building Digital Solutions That Scale with You
           </h1>
 
-          <p className="mt-5 mb-8 text-white font-normal text-base md:text-lg leading-relaxed">
+          <p className="mt-5 mb-8 text-fg font-normal text-base md:text-lg leading-relaxed">
             Custom software, AI, and web solutions tailored to your growth journey
           </p>
 

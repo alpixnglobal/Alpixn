@@ -8,7 +8,7 @@ const PartnersLogo = ({ logos }: { logos?: TechnologyLogoRecord[] }) => {
     : partnerLogos;
 
   return (
-    <section className="relative w-full bg-[#02070d] h-20 lg:h-[149px] flex items-center">
+    <section className="relative w-full bg-canvas h-20 lg:h-[149px] flex items-center">
       <LogoLoop
         logos={resolvedLogos}
         speed={90}

@@ -50,12 +50,12 @@ const InsightSection = ({
 
   return (
     <section className="sectionDefault overflow-x-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1350px]">
         <div className="flex flex-col gap-2.5">
           <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">{subtitle}</p>
+          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-center gap-12 px-4 py-[30px] lg:flex-row lg:flex-wrap lg:justify-around lg:gap-5 xl:px-0">
@@ -84,13 +84,13 @@ const InsightSection = ({
 
                 <div
                   className="relative flex w-full flex-col gap-2.5 overflow-hidden rounded-[5px] p-5 backdrop-blur-[4px] lg:w-[408px]"
-                  style={{ background: "linear-gradient(277.65deg, #389EFF -25%, rgba(0, 20, 31, 0) 51.07%, #389EFF 125.99%)" }}
+                  style={{ background: "linear-gradient(277.65deg, var(--tech) -25%, transparent 51.07%, var(--tech) 125.99%)" }}
                 >
                   <span
                     className="absolute inset-0 rounded-[5px] pointer-events-none"
                     style={{
                       padding: "1px",
-                      background: "linear-gradient(90deg, #389EFF 0%, #FFFFFF 100%)",
+                      background: "linear-gradient(90deg, var(--tech) 0%, #FFFFFF 100%)",
                       WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                       WebkitMaskComposite: "xor",
                       mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -99,7 +99,7 @@ const InsightSection = ({
                   />
 
                   <div className="relative z-10">
-                    <div className="text-sm md:text-base font-semibold leading-snug text-white">{post.title}</div>
+                    <div className="text-sm md:text-base font-semibold leading-snug text-fg">{post.title}</div>
                     <p className="text-xs md:text-sm font-normal leading-relaxed text-[#C8C8C8]">By {post.author}</p>
                   </div>
                 </div>

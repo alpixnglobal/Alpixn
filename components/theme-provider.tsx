@@ -1,64 +1,53 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { ThemeProvider as NextThemesProvider, useTheme as useNextTheme } from "next-themes";
 
-type Theme = "dark" | "light";
+/**
+ * ALPIXN global theme system (single source of truth).
+ *
+ * - Uses `next-themes`, which injects a tiny blocking script so the saved theme
+ *   is applied to <html class="dark|light"> before first paint (no flash, no
+ *   hydration mismatch).
+ * - Persists the visitor's choice in localStorage under THEME_STORAGE_KEY.
+ * - Dark is the brand default; light is a fully designed alternative.
+ */
+export const THEME_STORAGE_KEY = "alpixn-theme";
 
-type ThemeContextType = {
-  theme: Theme;
-  toggleTheme: () => void;
-  setTheme: (theme: Theme) => void;
-};
+export type Theme = "dark" | "light";
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-const STORAGE_KEY = "axaon-theme";
+function ThemeReadyFlag() {
+  // Enable colour cross-fade only after the first paint so initial load never animates.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => document.documentElement.classList.add("theme-ready"));
+    return () => cancelAnimationFrame(id);
+  }, []);
+  return null;
+}
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (stored === "light" || stored === "dark") {
-      setThemeState(stored);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.add("light");
-      root.classList.remove("dark");
-    } else {
-      root.classList.add("dark");
-      root.classList.remove("light");
-    }
-    localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme, mounted]);
-
-  const toggleTheme = () => {
-    setThemeState((prev) => (prev === "dark" ? "light" : "dark"));
-  };
-
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-  };
-
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="dark"
+      themes={["dark", "light"]}
+      enableSystem={false}
+      storageKey={THEME_STORAGE_KEY}
+      disableTransitionOnChange={false}
+    >
+      <ThemeReadyFlag />
       {children}
-    </ThemeContext.Provider>
+    </NextThemesProvider>
   );
 }
 
+/** Thin wrapper kept for backwards compatibility with the previous custom context API. */
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
+  const { resolvedTheme, setTheme } = useNextTheme();
+  const theme: Theme = resolvedTheme === "light" ? "light" : "dark";
+  return {
+    theme,
+    setTheme: (next: Theme) => setTheme(next),
+    toggleTheme: () => setTheme(theme === "dark" ? "light" : "dark"),
+  };
 }

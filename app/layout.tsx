@@ -1,27 +1,58 @@
-import type { Metadata } from "next";
-import { Manrope, Roboto } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
-import DisableDarkMode from "@/components/DisableDarkMode";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
+import { ThemeProvider } from "@/components/theme-provider";
 import { getCachedSiteSettings } from "@/lib/content-service";
 
-const manRope = Manrope({
-  variable: "--font-man-rope",
+// Brand typography (ALPIXN brand guidelines): Sora for headings, Inter for body & UI.
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://alpixn.com";
+const siteTitle = "ALPIXN – AI, Robotics & Software Technology Company";
+const siteDescription =
+  "ALPIXN is an AI, robotics and software technology company delivering custom software, AI-powered solutions, intelligent automation, scalable web and mobile apps for startups and enterprises.";
 
 export const metadata: Metadata = {
-  title: "Alpixn – Software, Web Development, Mobile Apps & AI Solutions Company",
-  description: "Alpixn is a leading Software, web and mobile app development company offering custom software, AI-powered solutions, scalable web apps, and business automation services to help startups and enterprises grow faster.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: "%s | ALPIXN",
+  },
+  description: siteDescription,
+  applicationName: "ALPIXN",
+  keywords: ["ALPIXN", "AI development", "robotics", "intelligent automation", "software development", "web development", "mobile apps", "machine learning"],
+  openGraph: {
+    type: "website",
+    siteName: "ALPIXN",
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#040d1c" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fc" },
+  ],
 };
 
 export default async function RootLayout({
@@ -32,12 +63,20 @@ export default async function RootLayout({
   const siteSettings = await getCachedSiteSettings();
 
   return (
+    // suppressHydrationWarning: next-themes sets the theme class on <html> before hydration.
     <html lang="en" suppressHydrationWarning>
-      <body className={`${manRope.variable} ${roboto.variable} antialiased`} suppressHydrationWarning>
-        <DisableDarkMode />
-        <Header />
-        {children}
-        <Footer settings={siteSettings} />
+      <body className={`${sora.variable} ${inter.variable} antialiased`} suppressHydrationWarning>
+        <ThemeProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-[var(--surface)] focus:px-4 focus:py-2 focus:text-fg focus:shadow-lg"
+          >
+            Skip to content
+          </a>
+          <Header />
+          <div id="main-content">{children}</div>
+          <Footer settings={siteSettings} />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ const IntensAlumniHeroSection = ({ title = "Our Internship Candidates", descript
     <section
       className="relative w-full h-[391px] overflow-hidden"
       style={{
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+        background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
       }}
     >
       {/* First Ellipse (Pink - Top Left) */}
@@ -33,7 +33,7 @@ const IntensAlumniHeroSection = ({ title = "Our Internship Candidates", descript
           height: "83%",
           left: "-7%",
           top: "103%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -47,7 +47,7 @@ const IntensAlumniHeroSection = ({ title = "Our Internship Candidates", descript
           height: "83%",
           right: "-7%",
           top: "-29%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -70,7 +70,7 @@ const IntensAlumniHeroSection = ({ title = "Our Internship Candidates", descript
       {/* Container */}
       <div className="relative w-full max-w-[1295px] mx-auto flex flex-col gap-[25px] items-center mt-10 sm:mt-32 lg:mt-28.75 z-10 px-4 xl:px-0">
          <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-left sm:text-center text-gradient leading-tight">{title}</h1>
-         <p className="text-sm md:text-base font-normal leading-relaxed text-left sm:text-center text-white/90">
+         <p className="text-sm md:text-base font-normal leading-relaxed text-left sm:text-center text-fg/90">
            {description}
          </p>
        </div>

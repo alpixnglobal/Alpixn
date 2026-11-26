@@ -10,7 +10,7 @@ type OurTeamSectionProps = {
 const OurTeamSection = ({ members, title = "Meet Our Team" }: OurTeamSectionProps) => {
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1297px]">
         <div className="title heading-gradient text-left sm:text-center">{title}</div>
@@ -29,12 +29,12 @@ const OurTeamSection = ({ members, title = "Meet Our Team" }: OurTeamSectionProp
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center" style={{ background: member.accent }}>
-                    <span className="text-3xl font-semibold tracking-[0.18em] text-white">{member.initials}</span>
+                    <span className="text-3xl font-semibold tracking-[0.18em] text-fg">{member.initials}</span>
                   </div>
                 )}
               </div>
-              <div className="text-lg font-medium text-white xl:text-2xl">{member.name}</div>
-              <div className="text-base text-white/80 md:text-lg">{member.role}</div>
+              <div className="text-lg font-medium text-fg xl:text-2xl">{member.name}</div>
+              <div className="text-base text-fg/80 md:text-lg">{member.role}</div>
             </div>
           ))}
         </div>

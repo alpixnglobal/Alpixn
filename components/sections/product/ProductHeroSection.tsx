@@ -36,7 +36,7 @@ const ProductHeroSection = ({
           height: "284px",
           top: "-115px",
           left: "-56px",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -51,7 +51,7 @@ const ProductHeroSection = ({
           height: "284px",
           top: "-115px",
           left: "1220px",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -66,7 +66,7 @@ const ProductHeroSection = ({
           height: "254px",
           top: "582px",
           left: "-56px",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -81,7 +81,7 @@ const ProductHeroSection = ({
           height: "254px",
           top: "582px",
           left: "1220px",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -98,7 +98,7 @@ const ProductHeroSection = ({
           top: "532px",
           left: "50%",
           transform: "translateX(0%) translateX(-376px)",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: 0.71,
           filter: "blur(202.85px)",
         }}
@@ -113,7 +113,7 @@ const ProductHeroSection = ({
           top: "-143px",
           left: "50%",
           transform: "translateX(0%) translateX(27px)",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: 0.71,
           filter: "blur(202.85px)",
         }}
@@ -143,7 +143,7 @@ const ProductHeroSection = ({
           top: "497px",
           left: "50%",
           transform: "translateX(-0%) translateX(-691px)",
-          background: "linear-gradient(0deg, #002348, #002348)",
+          background: "linear-gradient(0deg, var(--glow), var(--glow))",
           opacity: 0.71,
           filter: "blur(166.15px)",
         }}
@@ -158,7 +158,7 @@ const ProductHeroSection = ({
           top: "543px",
           left: "50%",
           transform: "translateX(-0%) translateX(314px)",
-          background: "linear-gradient(0deg, #002348, #002348)",
+          background: "linear-gradient(0deg, var(--glow), var(--glow))",
           opacity: 0.71,
           filter: "blur(166.15px)",
         }}
@@ -182,7 +182,7 @@ const ProductHeroSection = ({
       {/* Container */}
       <div className="container max-w-[237.25rem] flex flex-col gap-[25px] sm:items-center pt-0 lg:pt-36.5 z-10">
         {/* Subtitle */}
-        <h6 className="text-white/85 text-sm md:text-base">{subtitle}</h6>
+        <h6 className="text-fg/85 text-sm md:text-base">{subtitle}</h6>
 
         {/* Title */}
         <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gradient leading-tight">{title}</h1>

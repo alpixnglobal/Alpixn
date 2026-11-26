@@ -11,7 +11,7 @@ const BackgroundVectors = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <g opacity="0.53" filter="url(#blurGlow1)">
-          <circle cx="660" cy="140" r="160" fill="#389EFF" />
+          <circle cx="660" cy="140" r="160" fill="#2EA8FF" />
         </g>
         <defs>
           <filter id="blurGlow1" x="-500" y="-500" width="1600" height="1600">
@@ -47,7 +47,7 @@ const BackgroundVectors = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <g opacity="0.53" filter="url(#blurGlow2)">
-          <circle cx="104" cy="660" r="160" fill="#389EFF" />
+          <circle cx="104" cy="660" r="160" fill="#2EA8FF" />
         </g>
         <defs>
           <filter id="blurGlow2" x="-500" y="-500" width="1600" height="1600">

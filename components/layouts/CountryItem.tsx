@@ -24,13 +24,13 @@ const CountryItem = ({ flag, name, alt = "Flag" }: { flag: string; name: string;
   const shouldUnoptimize = src.startsWith("data:") || src.startsWith("http://") || src.startsWith("https://");
 
   return (
-    <div className="flex w-full items-center gap-[5px] text-xs sm:text-base">
+    <div className="flex w-full items-center gap-2 text-sm text-fg-muted">
       <Image
         src={src}
         alt={alt}
         width={30}
         height={30}
-        className="w-[24px] h-[24px] lg:w-[30px] lg:h-[30px]"
+        className="h-6 w-6 rounded-full object-cover ring-1 ring-line"
         unoptimized={shouldUnoptimize}
         onError={() => {
           if (src !== fallbackByName) {

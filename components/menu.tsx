@@ -1,13 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import { Drawer, DrawerContent, DrawerTrigger, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
-import { MenuIcon } from "lucide-react";
-import Image from "next/image";
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
+import { ArrowUpRight, MenuIcon, X } from "lucide-react";
 import NavbarItems from "./ui/navbar/NavbarItems";
 import Link from "next/link";
-import { breakpoints } from "@/lib/breakpoints";
-import { Button } from "./ui/button";
+import { BrandLogo } from "./brand/BrandLogo";
+import { ThemeToggle } from "./theme-toggle";
 import * as Accordion from "@radix-ui/react-accordion";
 import { mobileNavigation, withDynamicExpertiseNavigation, withDynamicOffshoreNavigation, withDynamicProductsNavigation } from "@/lib/mobileNavigation";
 import { MobileNavItem } from "./ui/navbar/MobileNavItem";
@@ -76,10 +74,6 @@ const MainMenu = ({
   logoUrl?: string;
   logoAlt?: string;
 }) => {
-  const resolvedLogoUrl = logoUrl || "/images/logo.png";
-  const resolvedLogoAlt = logoAlt || "Logo";
-  const shouldUnoptimizeLogo = resolvedLogoUrl.startsWith("data:") || resolvedLogoUrl.startsWith("http");
-  const isDesktop = useMediaQuery(`(min-width: ${breakpoints.xl}px)`);
   const [open, setOpen] = useState(false);
   const productNavigation = products.length > 0 ? withDynamicProductsNavigation(products, mobileNavigation) : mobileNavigation;
   const expertiseNavigation =
@@ -105,108 +99,116 @@ const MainMenu = ({
         )
       : expertiseNavigation;
 
-  return isDesktop ? (
-    <nav className="max-w-[1440px] px-[45px] mx-0 mx-auto flex items-center h-[84px]">
-      {/* Logo - Left side */}
-      <div className="flex-shrink-0 relative w-[180px] md:w-[200px] lg:w-[214px] h-[60px] md:h-[70px] lg:h-[82px]">
-        <Link href="/" className="block w-full h-full">
-          <Image src={resolvedLogoUrl} alt={resolvedLogoAlt} fill className="object-contain" priority unoptimized={shouldUnoptimizeLogo} />
-        </Link>
-      </div>
+  return (
+    <>
+      {/* Desktop (xl+) — layout switched with CSS so there is no hydration flash */}
+      <nav aria-label="Main" className="hidden xl:flex max-w-[1440px] mx-auto h-[84px] items-center gap-6 px-8 2xl:px-[45px]">
+        <BrandLogo src={logoUrl} alt={logoAlt} height={64} priority />
 
-      {/* Navigation items - Centered */}
-      <NavbarItems
-        products={products}
-        productMenu={productMenu}
-        resourcesMenu={resourcesMenu}
-        expertiseCategories={expertiseCategories}
-        offshoreCategories={offshoreCategories}
-      />
+        <div className="flex flex-1 justify-center">
+          <NavbarItems
+            products={products}
+            productMenu={productMenu}
+            resourcesMenu={resourcesMenu}
+            expertiseCategories={expertiseCategories}
+            offshoreCategories={offshoreCategories}
+          />
+        </div>
 
-      {/* Contact button - Right side */}
-      <div className="flex-shrink-0">
-        <Link href="/contact-us">
-          <Button className="w-[125px] h-[52px] text-sm md:text-base font-medium leading-snug cursor-pointer">Contact Us</Button>
-        </Link>
-      </div>
-    </nav>
-  ) : (
-    // Mobile
-    <nav className="container flex justify-between items-center h-[70px]">
-      {/* Logo - Left side */}
-      <div className="relative w-[140px] sm:w-[160px] h-[50px] sm:h-[60px]">
-        <Link href="/" className="block w-full h-full">
-          <Image src={resolvedLogoUrl} alt={resolvedLogoAlt} fill className="object-contain" priority unoptimized={shouldUnoptimizeLogo} />
-        </Link>
-      </div>
-      {/* MenuIcon - Right side */}
-      <Drawer direction="right" open={open} onOpenChange={setOpen}>
-        <DrawerTrigger asChild>
-          <button type="button" aria-label="Open navigation menu" className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <MenuIcon size={28} className="text-black" />
-          </button>
-        </DrawerTrigger>
-        <DrawerContent className="h-full w-full sm:w-[400px] bg-white">
-          <DrawerHeader className="border-b bg-white">
-            <DrawerTitle className="flex justify-center py-4">
-              <Link href="/" onClick={() => setOpen(false)}>
-                <div className="relative w-[180px] h-[70px]">
-                  <Image src={resolvedLogoUrl} alt={resolvedLogoAlt} fill className="object-contain" unoptimized={shouldUnoptimizeLogo} />
-                </div>
-              </Link>
-            </DrawerTitle>
-          </DrawerHeader>
-          {/* Navigation Items */}
-          <div className="flex-1 overflow-y-auto">
-            <nav className="p-6">
-              <Accordion.Root type="multiple" className="w-full flex flex-col gap-2">
-                {resolvedMobileNavigation.map((item) =>
-                  hasChildren(item) ? (
-                    <MobileNavItem key={item.label} label={item.label} onNavigate={() => setOpen(false)}>
-                      {item.children.map((child) =>
-                        hasChildren(child) ? (
-                          <MobileNavItem key={child.label} label={child.label} onNavigate={() => setOpen(false)}>
-                            {child.children.map((subChild) => (
+        <div className="flex shrink-0 items-center gap-3">
+          <ThemeToggle />
+          <Link href="/contact-us" className="btn-brand !px-5 !py-3 text-sm">
+            Contact Us
+            <ArrowUpRight aria-hidden className="btn-arrow h-4 w-4" />
+          </Link>
+        </div>
+      </nav>
+
+      {/* Mobile & tablet */}
+      <nav aria-label="Main" className="xl:hidden flex h-[68px] items-center justify-between gap-3 px-4 sm:px-6">
+        <BrandLogo src={logoUrl} alt={logoAlt} height={44} priority />
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Drawer direction="right" open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <button
+                type="button"
+                aria-label="Open navigation menu"
+                className="grid h-10 w-10 place-items-center rounded-full border border-line bg-surface/60 text-fg transition-colors hover:border-gold/60 hover:text-gold"
+              >
+                <MenuIcon aria-hidden size={20} />
+              </button>
+            </DrawerTrigger>
+            <DrawerContent className="h-full w-full sm:w-[420px] bg-canvas text-fg border-l border-line">
+              <DrawerHeader className="flex flex-row items-center justify-between border-b border-line px-5 py-4">
+                <DrawerTitle className="m-0">
+                  <BrandLogo src={logoUrl} alt={logoAlt} height={30} onClick={() => setOpen(false)} />
+                </DrawerTitle>
+                <DrawerDescription className="sr-only">Site navigation</DrawerDescription>
+                <DrawerClose asChild>
+                  <button
+                    type="button"
+                    aria-label="Close navigation menu"
+                    className="grid h-10 w-10 place-items-center rounded-full border border-line text-fg hover:text-gold"
+                  >
+                    <X aria-hidden size={18} />
+                  </button>
+                </DrawerClose>
+              </DrawerHeader>
+
+              <div className="flex-1 overflow-y-auto">
+                <div className="px-5 py-4">
+                  <Accordion.Root type="multiple" className="w-full flex flex-col">
+                    {resolvedMobileNavigation.map((item) =>
+                      hasChildren(item) ? (
+                        <MobileNavItem key={item.label} label={item.label} onNavigate={() => setOpen(false)}>
+                          {item.children.map((child) =>
+                            hasChildren(child) ? (
+                              <MobileNavItem key={child.label} label={child.label} onNavigate={() => setOpen(false)}>
+                                {child.children.map((subChild) => (
+                                  <MobileNavItem
+                                    key={subChild.label}
+                                    label={subChild.label}
+                                    href={subChild.href}
+                                    onNavigate={() => setOpen(false)}
+                                  />
+                                ))}
+                              </MobileNavItem>
+                            ) : (
                               <MobileNavItem
-                                key={subChild.label}
-                                label={subChild.label}
-                                href={subChild.href}
+                                key={child.label}
+                                label={child.label}
+                                href={child.href}
                                 onNavigate={() => setOpen(false)}
                               />
-                            ))}
-                          </MobileNavItem>
-                        ) : (
-                          <MobileNavItem
-                            key={child.label}
-                            label={child.label}
-                            href={child.href}
-                            onNavigate={() => setOpen(false)}
-                          />
-                        ),
-                      )}
-                    </MobileNavItem>
-                  ) : (
-                    <MobileNavItem
-                      key={item.label}
-                      label={item.label}
-                      href={item.href}
-                      onNavigate={() => setOpen(false)}
-                    />
-                  ),
-                )}
-              </Accordion.Root>
-            </nav>
-          </div>
+                            ),
+                          )}
+                        </MobileNavItem>
+                      ) : (
+                        <MobileNavItem
+                          key={item.label}
+                          label={item.label}
+                          href={item.href}
+                          onNavigate={() => setOpen(false)}
+                        />
+                      ),
+                    )}
+                  </Accordion.Root>
+                </div>
+              </div>
 
-          {/* Add contact button in drawer */}
-          <div className="p-6 border-t bg-white">
-            <Link href="/contact-us" onClick={() => setOpen(false)}>
-              <Button className="w-full rounded-[10px] h-[48px] py-3 text-sm md:text-base font-medium leading-snug">Contact Us</Button>
-            </Link>
-          </div>
-        </DrawerContent>
-      </Drawer>
-    </nav>
+              <div className="flex items-center gap-3 border-t border-line p-5">
+                <Link href="/contact-us" onClick={() => setOpen(false)} className="btn-brand flex-1">
+                  Contact Us
+                  <ArrowUpRight aria-hidden className="btn-arrow h-4 w-4" />
+                </Link>
+              </div>
+            </DrawerContent>
+          </Drawer>
+        </div>
+      </nav>
+    </>
   );
 };
 

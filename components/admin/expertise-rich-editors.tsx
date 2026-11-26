@@ -187,7 +187,7 @@ export function ExpertisePageRichEditor({ values }: { values?: Partial<Expertise
             <AdminTextarea name="statsDescription" defaultValue={values?.statsDescription} className="min-h-28" />
           </AdminField>
         </div>
-        <div className="lg:col-span-2 rounded-[18px] border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
+        <div className="lg:col-span-2 rounded-[18px] border border-sky-400/20 bg-sky-400/10 p-4 text-sm leading-7 text-sky-100">
           The top stat strip is managed globally from <strong>Admin Settings → Shared Stats</strong>.
           This page still controls the section title, description, and stat cards below.
         </div>

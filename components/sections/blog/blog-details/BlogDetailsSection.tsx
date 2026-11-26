@@ -27,7 +27,7 @@ const BlogDetailsSection = ({
 
   return (
     <section className="relative w-full py-12.5">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }} />
 
       <div className="relative mx-auto w-full max-w-[1350px] px-4 xl:px-0">
         <div className="grid grid-cols-1 gap-10 xl:grid-cols-[850px_43px_auto]">
@@ -48,16 +48,16 @@ const BlogDetailsSection = ({
               )}
             </div>
 
-            <div className="text-sm text-white/75 lg:text-base">
+            <div className="text-sm text-fg/75 lg:text-base">
               {post.category} - By {post.author} - {post.readTime}
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] font-extrabold leading-tight text-white">{post.title}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] font-extrabold leading-tight text-fg">{post.title}</h1>
 
-            <p className="text-sm leading-relaxed text-white sm:text-base">{post.excerpt}</p>
+            <p className="text-sm leading-relaxed text-fg sm:text-base">{post.excerpt}</p>
 
             {paragraphs.map((paragraph, index) => (
-              <p key={`${post._id}-${index}`} className="text-sm leading-relaxed text-white sm:text-base">
+              <p key={`${post._id}-${index}`} className="text-sm leading-relaxed text-fg sm:text-base">
                 {paragraph}
               </p>
             ))}
@@ -65,7 +65,7 @@ const BlogDetailsSection = ({
             <div
               className="rounded-[10px] p-[40px]"
               style={{
-                background: "linear-gradient(85.85deg, #389EFF 0%, #003098 48.27%, #A200FF 98.56%)",
+                background: "linear-gradient(85.85deg, var(--tech) 0%, #064A87 48.27%, #A200FF 98.56%)",
               }}
             >
               <div className="grid grid-cols-1 gap-[22px] xl:grid-cols-[194px_auto]">
@@ -77,9 +77,9 @@ const BlogDetailsSection = ({
                     .slice(0, 2)}
                 </div>
                 <div className="flex flex-col gap-[17px]">
-                  <div className="mt-1 text-base font-semibold text-white md:text-lg">{post.author}</div>
-                  <p className="text-sm leading-relaxed text-white md:text-base">{authorSummaryTemplate.replace("{category}", post.category)}</p>
-                  <div className="flex flex-wrap gap-5 text-sm font-medium text-white xl:text-base">
+                  <div className="mt-1 text-base font-semibold text-fg md:text-lg">{post.author}</div>
+                  <p className="text-sm leading-relaxed text-fg md:text-base">{authorSummaryTemplate.replace("{category}", post.category)}</p>
+                  <div className="flex flex-wrap gap-5 text-sm font-medium text-fg xl:text-base">
                     <span>{post.category}</span>
                     <span>{post.readTime}</span>
                     <span>{post.isPublished ? "Published" : "Draft"}</span>
@@ -95,14 +95,14 @@ const BlogDetailsSection = ({
             <div
               className="rounded-[15px] p-5"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 44.95%, #002348 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 44.95%, var(--glow) 100%)",
                 border: "1px solid #FFFFFF26",
                 boxShadow: "0px 0px 15px 0px #FFFFFF40",
               }}
             >
-              <h3 className="border-b border-white/20 py-[15px] text-base font-semibold text-white md:text-lg">{detailsTitle}</h3>
+              <h3 className="border-b border-fg/20 py-[15px] text-base font-semibold text-fg md:text-lg">{detailsTitle}</h3>
 
-              <div className="mt-6.25 flex flex-col gap-5 text-white/90">
+              <div className="mt-6.25 flex flex-col gap-5 text-fg/90">
                 <div>
                   <span className="text-sm font-semibold md:text-base">Category:</span>
                   <div className="mt-2 text-sm md:text-base">{post.category}</div>
@@ -121,22 +121,22 @@ const BlogDetailsSection = ({
             <div
               className="rounded-[15px] p-5"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 44.95%, #002348 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 44.95%, var(--glow) 100%)",
                 border: "1px solid #FFFFFF26",
                 boxShadow: "0px 0px 15px 0px #FFFFFF40",
               }}
             >
-              <h3 className="border-b border-white/20 py-[15px] text-base font-semibold text-white md:text-lg">{relatedTitle}</h3>
+              <h3 className="border-b border-fg/20 py-[15px] text-base font-semibold text-fg md:text-lg">{relatedTitle}</h3>
 
               <div className="mt-6 grid gap-4">
                 {relatedPosts.map((relatedPost) => (
-                  <Link key={relatedPost._id} href={`/resources/blogs/${relatedPost.slug}`} className="rounded-[10px] border border-white/10 bg-white/[0.03] p-4 transition hover:bg-white/[0.06]">
-                    <div className="text-sm font-semibold text-white">{relatedPost.title}</div>
-                    <div className="mt-2 text-xs text-white/65">{relatedPost.category}</div>
+                  <Link key={relatedPost._id} href={`/resources/blogs/${relatedPost.slug}`} className="rounded-[10px] border border-fg/10 bg-fg/[0.03] p-4 transition hover:bg-white/[0.06]">
+                    <div className="text-sm font-semibold text-fg">{relatedPost.title}</div>
+                    <div className="mt-2 text-xs text-fg/65">{relatedPost.category}</div>
                   </Link>
                 ))}
 
-                {relatedPosts.length === 0 ? <div className="text-sm text-white/65">{noRelatedMessage}</div> : null}
+                {relatedPosts.length === 0 ? <div className="text-sm text-fg/65">{noRelatedMessage}</div> : null}
               </div>
             </div>
           </aside>

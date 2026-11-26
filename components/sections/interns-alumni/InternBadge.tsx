@@ -25,7 +25,7 @@ const BADGE_STYLES: Record<
     textColor: "#0B1F26",
   },
   royalBlue: {
-    background: "linear-gradient(278.66deg, #0D3885 -86%, #389EFF 100%)",
+    background: "linear-gradient(278.66deg, #0D3885 -86%, var(--tech) 100%)",
     foldColor: "#08285F",
     textColor: "#FFFFFF",
   },
@@ -69,8 +69,8 @@ const InternBadge = ({ variant = "gold", label = "Gold", code = "AXANO/INT/2025/
           }}
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
-            <span className="font-medium text-xs md:text-sm leading-snug text-white">{label}</span>
-            <span className="text-white text-xs font-normal leading-relaxed">{code}</span>
+            <span className="font-medium text-xs md:text-sm leading-snug text-fg">{label}</span>
+            <span className="text-fg text-xs font-normal leading-relaxed">{code}</span>
           </div>
         </div>
 

@@ -5,14 +5,14 @@ const WhatChooseUsSection = () => {
     <section
       className="w-full py-12.5"
       style={{
-        background: "radial-gradient(circle, #00070E 35%, #002348 100%)",
+        background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)",
       }}
     >
       {/* Container */}
       <div className="w-full max-w-337.75 mx-auto">
         {/* Title & Subtitle */}
         <h2 className="text-gradient heading">Transform Your Customer Engagement with JFT AI Chatbot</h2>
-        <p className="text-white/80 font-normal text-base md:text-lg leading-relaxed text-center mt-3.75 px-4 lg:px-0">
+        <p className="text-fg/80 font-normal text-base md:text-lg leading-relaxed text-center mt-3.75 px-4 lg:px-0">
           Trusted by businesses across industries, JFT AI Chatbot is more than just an automated response tool. It’s a
           strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through
           intelligent customer interactions.
@@ -26,12 +26,12 @@ const WhatChooseUsSection = () => {
             style={{
               borderRadius: "10px",
               background:
-                "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               border: "1px solid #FFFFFF26",
             }}
           >
-            <h6 className="text-white font-semibold text-xl">Organizations</h6>
-            <p className="text-sm text-white/80 leading-relaxed font-normal z-10">
+            <h6 className="text-fg font-semibold text-xl">Organizations</h6>
+            <p className="text-sm text-fg/80 leading-relaxed font-normal z-10">
               Streamline operations and enhance customer satisfaction with AI-powered, real-time support for seamless
               interactions.
             </p>
@@ -50,12 +50,12 @@ const WhatChooseUsSection = () => {
             style={{
               borderRadius: "10px",
               background:
-                "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               border: "1px solid #FFFFFF26",
             }}
           >
-            <h6 className="text-white font-semibold text-xl">Educational Institutions</h6>
-            <p className="text-sm text-white/80 leading-relaxed font-normal z-10">
+            <h6 className="text-fg font-semibold text-xl">Educational Institutions</h6>
+            <p className="text-sm text-fg/80 leading-relaxed font-normal z-10">
               Provide instant academic and administrative support 24/7, improving student engagement and leveling user
               satisfaction.
             </p>
@@ -74,12 +74,12 @@ const WhatChooseUsSection = () => {
             style={{
               borderRadius: "10px",
               background:
-                "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               border: "1px solid #FFFFFF26",
             }}
           >
-            <h6 className="text-white font-semibold text-xl">Customer Support Teams</h6>
-            <p className="text-sm text-white/80 leading-relaxed font-normal z-10">
+            <h6 className="text-fg font-semibold text-xl">Customer Support Teams</h6>
+            <p className="text-sm text-fg/80 leading-relaxed font-normal z-10">
               Automate routine queries, reduce response times, and focus on more complex issues with AI-driven
               assistance.
             </p>
@@ -98,12 +98,12 @@ const WhatChooseUsSection = () => {
             style={{
               borderRadius: "10px",
               background:
-                "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               border: "1px solid #FFFFFF26",
             }}
           >
-            <h6 className="text-white font-semibold text-xl">HR & Recruitment Teams</h6>
-            <p className="text-sm text-white/80 leading-relaxed font-normal z-10">
+            <h6 className="text-fg font-semibold text-xl">HR & Recruitment Teams</h6>
+            <p className="text-sm text-fg/80 leading-relaxed font-normal z-10">
               Simplify candidate interactions, automate query responses, and ensure faster, more efficient hiring
               processes.
             </p>

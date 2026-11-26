@@ -47,7 +47,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
       {/* Background Color  */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 35%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }}
       />
 
       {/* Container */}
@@ -77,7 +77,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
           <div
             className="relative z-10 w-full h-full rounded-[20px]"
             style={{
-              background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+              background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
             }}
           >
             {/* Tabs Grid */}
@@ -118,17 +118,17 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                       py-3 px-6 sm:px-10 lg:px-14 xl:py-3.75 xl:px-17.5
                       rounded-[10px]
                       transition-all duration-200
-                      ${activeTab === tab.id ? "text-white" : "text-white/80"}
+                      ${activeTab === tab.id ? "text-fg" : "text-fg/80"}
                     `}
                     style={
                       activeTab === tab.id
                         ? {
                             background:
-                              "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                              "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                           }
                         : {
                             background:
-                              "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+                              "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
                             border: "1px solid #FFFFFF1A",
                           }
                     }
@@ -145,10 +145,10 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                 {/* Left */}
                 <div className="w-full">
                   <div className="flex flex-col gap-5 w-full max-w-[743px]">
-                    <h2 className="text-xl sm:text-2xl text-white">
+                    <h2 className="text-xl sm:text-2xl text-fg">
                       <span className="font-semibold">{activeCaseStudy.heading}</span>
                     </h2>
-                    <p className="font-normal text-xs sm:text-base text-white leading-relaxed">
+                    <p className="font-normal text-xs sm:text-base text-fg leading-relaxed">
                       {activeCaseStudy.description}
                     </p>
                   </div>
@@ -164,7 +164,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                           height={18}
                           className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5"
                         />
-                        <div className="font-medium text-xs sm:text-base leading-relaxed text-white">{feature}</div>
+                        <div className="font-medium text-xs sm:text-base leading-relaxed text-fg">{feature}</div>
                       </div>
                     ))}
                   </div>
@@ -184,7 +184,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                       <button
                         className="
                       relative w-full sm:w-fit
-                      text-white font-medium
+                      text-fg font-medium
                       text-xs sm:text-base
                       rounded-10
                       py-2.5 px-6.25
@@ -192,7 +192,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                       hover:opacity-90 transition-opacity
                       "
                         style={{
-                          background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                          background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                           border: "1px solid rgba(255, 255, 255, 0.1)",
                         }}
                       >

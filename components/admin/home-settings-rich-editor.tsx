@@ -152,7 +152,7 @@ function IndustryItemEditor({
       <div className="flex items-start gap-3">
         {/* Icon preview/upload */}
         <label htmlFor={inputId} className="flex-shrink-0 cursor-pointer">
-          <div className="w-12 h-12 rounded-full bg-white/10 border border-white/12 flex items-center justify-center overflow-hidden hover:border-cyan-300/30 transition">
+          <div className="w-12 h-12 rounded-full bg-white/10 border border-white/12 flex items-center justify-center overflow-hidden hover:border-sky-300/30 transition">
             {item.iconUrl ? (
               <img src={item.iconUrl} alt={item.title} className="w-full h-full object-cover" />
             ) : (
@@ -169,7 +169,7 @@ function IndustryItemEditor({
             value={item.title}
             onChange={(e) => onUpdate({ ...item, title: e.target.value })}
             placeholder={`Item ${index + 1} title`}
-            className="w-full h-10 rounded-[12px] border border-white/10 bg-white/6 px-3 text-sm text-white outline-none transition focus:border-cyan-300/40 placeholder:text-slate-500"
+            className="w-full h-10 rounded-[12px] border border-white/10 bg-white/6 px-3 text-sm text-white outline-none transition focus:border-sky-300/40 placeholder:text-slate-500"
           />
           {item.iconUrl && (
             <button
@@ -499,7 +499,7 @@ export function HomeSettingsRichEditor({ values }: { values: HomeSettingsRecord 
                       )
                     )
                   }
-                  className="w-fit rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 transition hover:bg-cyan-400/20"
+                  className="w-fit rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-sky-200 transition hover:bg-sky-400/20"
                 >
                   Add item
                 </button>

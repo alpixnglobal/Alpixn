@@ -8,7 +8,7 @@ const PortfolioDetailsHeroSection = ({title, description}: PortfolioDetailsHeroS
     <section
       className="relative w-full h-[391px] overflow-hidden"
       style={{
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+        background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
       }}
     >
       {/* Ellipse Right */}
@@ -19,7 +19,7 @@ const PortfolioDetailsHeroSection = ({title, description}: PortfolioDetailsHeroS
           height: "320px",
           right: "-5%",
           top: "36.6%", // 143px / 391px ≈ 36.6%
-          background: "linear-gradient(180deg, #D42190 0%, #389EFF 0%)",
+          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 0%)",
           opacity: "1",
           filter: "blur(250px)",
         }}
@@ -33,7 +33,7 @@ const PortfolioDetailsHeroSection = ({title, description}: PortfolioDetailsHeroS
           height: "320px",
           left: "-5%",
           top: "36.6%", // 143px / 391px ≈ 36.6%
-          background: "linear-gradient(180deg, #D42190 0%, #389EFF 0%)",
+          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 0%)",
           opacity: "1",
           filter: "blur(250px)",
         }}
@@ -44,7 +44,7 @@ const PortfolioDetailsHeroSection = ({title, description}: PortfolioDetailsHeroS
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0, 35, 72, 0.15) 7.02%, rgba(212, 33, 144, 0.25) 69.23%, rgba(56, 158, 255, 0.2) 97.81%)",
+            "linear-gradient(180deg, color-mix(in srgb, var(--glow) 15%, transparent) 7.02%, rgba(212, 33, 144, 0.25) 69.23%, color-mix(in srgb, var(--tech) 20%, transparent) 97.81%)",
           backdropFilter: "blur(150px)",
         }}
       />

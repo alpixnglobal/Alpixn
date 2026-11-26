@@ -18,7 +18,7 @@ const CtaSection = ({ slug = "default", data }: CtaSectionProps) => {
   return (
     <section
       className="relative w-full h-auto min-h-[168px] lg:h-42 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #389EFF -2%, #003098 152.12%)" }}
+      style={{ background: "linear-gradient(180deg, var(--tech) -2%, #064A87 152.12%)" }}
     >
       {/* Background Ellipse Top Right */}
       <div className="absolute w-[199.3px] h-[199.3px] -right-[3%] -top-[30%] z-0 hidden lg:block">
@@ -45,18 +45,18 @@ const CtaSection = ({ slug = "default", data }: CtaSectionProps) => {
       <div className="relative w-full max-w-[337.5px] lg:max-w-[1350px] mx-auto h-full z-10 lg:px-0">
         <div className="flex flex-col xl:flex-row items-center justify-between h-full px-4 lg:px-0 py-8 lg:py-0">
           {/* Heading - Dynamic */}
-          <h2 className="font-bold text-2xl md:text-3xl text-white text-left sm:text-center lg:text-left mb-6 lg:mb-0">
+          <h2 className="font-bold text-2xl md:text-3xl text-fg text-left sm:text-center lg:text-left mb-6 lg:mb-0">
             {title}
           </h2>
           {/* Button as Link - Dynamic */}
           <Link
             href={buttonLink}
-            className="flex items-center justify-center gap-3 lg:gap-[14px] w-full lg:w-[292px] bg-white rounded-[10px] text-[#389EFF] py-3 lg:py-[15px] px-4 lg:px-[25px] font-medium text-sm lg:text-base hover:bg-gray-50 transition-colors cursor-pointer"
+            className="flex items-center justify-center gap-3 lg:gap-[14px] w-full lg:w-[292px] bg-white rounded-[10px] text-tech py-3 lg:py-[15px] px-4 lg:px-[25px] font-medium text-sm lg:text-base hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <div>{buttonText}</div>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 8H15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M8 1L15 8L8 15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M1 8H15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M8 1L15 8L8 15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
         </div>

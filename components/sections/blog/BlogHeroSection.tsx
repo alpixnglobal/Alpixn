@@ -15,7 +15,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
   return (
     <section className="relative w-full h-[658px]">
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,#002348_0%,#00141f_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,var(--glow)_0%,var(--canvas-2)_70%)]" />
 
       {/* Background Image */}
       <div
@@ -29,7 +29,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
         }}
       ></div>
 
-      <div className="absolute bottom-4 left-1/2 w-full max-w-[1440px] -translate-x-1/2 px-4 text-xs text-white/80 sm:px-6 sm:text-sm md:px-8 md:text-base lg:px-[45px] lg:text-base">
+      <div className="absolute bottom-4 left-1/2 w-full max-w-[1440px] -translate-x-1/2 px-4 text-xs text-fg/80 sm:px-6 sm:text-sm md:px-8 md:text-base lg:px-[45px] lg:text-base">
         By: {featuredPost.author} | {featuredPost.readTime}
       </div>
 
@@ -38,9 +38,9 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
         <div className="flex flex-col justify-center items-start sm:items-center gap-[25px] pt-[100px] px-4 sm:px-0">
           {/* Button */}
           <button
-            className="relative flex items-center gap-2.5 py-2.5 px-5 rounded-full text-white overflow-hidden sm:self-center"
+            className="relative flex items-center gap-2.5 py-2.5 px-5 rounded-full text-fg overflow-hidden sm:self-center"
             style={{
-              background: "linear-gradient(0.63deg, #389EFF 2.69%, #003098 97.31%)",
+              background: "linear-gradient(0.63deg, var(--tech) 2.69%, #064A87 97.31%)",
             }}
           >
             {/* Gradient border overlay */}
@@ -48,7 +48,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{
                 padding: "1px",
-                background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, #389EFF 100%)",
+                background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -70,14 +70,14 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               />
             </svg>
 
-            <span className="relative z-10 text-xs font-medium text-white lg:text-base">{featuredPost.category}</span>
+            <span className="relative z-10 text-xs font-medium text-fg lg:text-base">{featuredPost.category}</span>
           </button>
 
           <h1 className="text-gradient text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] font-extrabold leading-tight text-left sm:text-center">
             {featuredPost.title}
           </h1>
 
-          <p className="font-normal text-white leading-relaxed text-left sm:text-center text-sm md:text-base">
+          <p className="font-normal text-fg leading-relaxed text-left sm:text-center text-sm md:text-base">
             {featuredPost.excerpt}
           </p>
 
@@ -93,7 +93,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               className="absolute inset-0 rounded-[10px] pointer-events-none"
               style={{
                 padding: "1.5px",
-                background: "linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+                background: "linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
                 WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
                 mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
@@ -101,7 +101,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
               }}
             />
 
-            <span className="relative z-10 text-sm font-medium text-white xl:text-base">{readButtonLabel}</span>
+            <span className="relative z-10 text-sm font-medium text-fg xl:text-base">{readButtonLabel}</span>
             <svg className="relative z-10" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 8H15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M8 1L15 8L8 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

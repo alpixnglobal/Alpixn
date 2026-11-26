@@ -106,14 +106,14 @@ const WorkShowcaseSection = ({
 
   return (
     <section className="relative w-full py-12.5">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="relative mx-auto h-full w-full max-w-[1350px]">
         <div className="flex flex-wrap items-center justify-between px-4 xl:px-0">
           <h2 className="heading-gradient text-xl md:text-2xl font-bold leading-snug text-start">{title}</h2>
 
           <div className="mt-4 flex flex-wrap gap-2.5 xl:mt-0">
-            <label className="relative h-[50px] w-[230px] rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] backdrop-blur-[15px] sm:w-[320px] md:h-[62px]">
+            <label className="relative h-[50px] w-[230px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] sm:w-[320px] md:h-[62px]">
               <div className="pointer-events-none absolute inset-y-0 left-5 flex items-center gap-[15px]">
                 <Image src="/icons/search.svg" width={18} height={18} alt="Search" className="h-[14px] w-[14px] md:h-[18px] md:w-[18px]" />
               </div>
@@ -124,14 +124,14 @@ const WorkShowcaseSection = ({
                   setCurrentPage(1);
                 }}
                 placeholder={searchPlaceholder}
-                className="h-full w-full bg-transparent pl-14 pr-5 text-sm md:text-base font-normal text-white outline-none placeholder:text-white/60"
+                className="h-full w-full bg-transparent pl-14 pr-5 text-sm md:text-base font-normal text-fg outline-none placeholder:text-fg/60"
               />
             </label>
 
             <button
               type="button"
               onClick={() => setShowFilters((currentValue) => !currentValue)}
-              className="relative flex h-[50px] w-[62px] items-center justify-center rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] backdrop-blur-[15px] md:h-[62px]"
+              className="relative flex h-[50px] w-[62px] items-center justify-center rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] md:h-[62px]"
             >
               <Image src="/icons/burger.svg" width={18} height={12} alt="Toggle filters" className="h-[10px] w-[16px] md:h-[12px] md:w-[18px]" />
             </button>
@@ -139,16 +139,16 @@ const WorkShowcaseSection = ({
         </div>
 
         {showFilters ? (
-          <div className="mx-4 mt-4 grid gap-4 rounded-[15px] border border-[#389EFF40] bg-[#00141F]/80 p-4 backdrop-blur-[15px] xl:mx-0 lg:grid-cols-2">
+          <div className="mx-4 mt-4 grid gap-4 rounded-[15px] border border-[color-mix(in_srgb,var(--tech)_25%,transparent)] bg-canvas-2/80 p-4 backdrop-blur-[15px] xl:mx-0 lg:grid-cols-2">
             <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-white/80">{selectedIndustryLabel}</span>
+              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{selectedIndustryLabel}</span>
               <select
                 value={selectedIndustry}
                 onChange={(event) => {
                   setSelectedIndustry(event.target.value);
                   setCurrentPage(1);
                 }}
-                className="h-12 rounded-[10px] border border-white/10 bg-[#020B14] px-4 text-sm md:text-base font-normal text-white outline-none"
+                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
               >
                 <option value="all">{allIndustriesLabel}</option>
                 {industries.map((industry) => (
@@ -160,14 +160,14 @@ const WorkShowcaseSection = ({
             </label>
 
             <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-white/80">{selectedTagLabel}</span>
+              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{selectedTagLabel}</span>
               <select
                 value={selectedTag}
                 onChange={(event) => {
                   setSelectedTag(event.target.value);
                   setCurrentPage(1);
                 }}
-                className="h-12 rounded-[10px] border border-white/10 bg-[#020B14] px-4 text-sm md:text-base font-normal text-white outline-none"
+                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
               >
                 <option value="all">{allTagsLabel}</option>
                 {tags.map((tag) => (
@@ -181,14 +181,14 @@ const WorkShowcaseSection = ({
         ) : null}
 
         <div className="mt-8.75 flex flex-wrap items-center gap-2.5 px-4 xl:px-0">
-          <div className="text-sm md:text-base font-normal leading-relaxed text-white">{filteredProjects.length} {resultsLabel}</div>
+          <div className="text-sm md:text-base font-normal leading-relaxed text-fg">{filteredProjects.length} {resultsLabel}</div>
 
           {activeFilters.map((filter) => (
             <button
               key={filter}
               type="button"
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "linear-gradient(360deg, #002348 0%, #00141F 100%)", border: "1px solid #FFFFFF40" }}
+              style={{ background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)", border: "1px solid #FFFFFF40" }}
             >
               <span className="text-sm md:text-base font-normal leading-relaxed">{filter}</span>
             </button>
@@ -198,7 +198,7 @@ const WorkShowcaseSection = ({
             <button
               type="button"
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "linear-gradient(360deg, #002348 0%, #00141F 100%)", border: "1px solid #FFFFFF40" }}
+              style={{ background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)", border: "1px solid #FFFFFF40" }}
             >
               <span className="text-sm md:text-base font-normal leading-relaxed">{query.trim()}</span>
             </button>
@@ -214,7 +214,7 @@ const WorkShowcaseSection = ({
                 setCurrentPage(1);
               }}
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "#389EFF", border: "1px solid #389EFF40" }}
+              style={{ background: "var(--tech)", border: "1px solid color-mix(in srgb, var(--tech) 25%, transparent)" }}
             >
               <span className="text-sm md:text-base font-medium leading-snug">{clearAllLabel}</span>
               <Image src="/icons/exite.svg" width={10} height={10} alt="Clear filters" />
@@ -236,7 +236,7 @@ const WorkShowcaseSection = ({
             ))}
           </div>
         ) : (
-          <div className="mx-4 mt-8.75 rounded-[15px] border border-white/10 bg-white/[0.03] p-8 text-center text-sm md:text-base font-normal leading-relaxed text-white/75 xl:mx-0">
+          <div className="mx-4 mt-8.75 rounded-[15px] border border-fg/10 bg-fg/[0.03] p-8 text-center text-sm md:text-base font-normal leading-relaxed text-fg/75 xl:mx-0">
             {emptyMessage}
           </div>
         )}
@@ -248,9 +248,9 @@ const WorkShowcaseSection = ({
                 <PaginationItem>
                   <PaginationPrevious
                     onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-                    className="cursor-pointer rounded-[25.5px] h-[39px] w-[39px] hover:bg-[#389EFF0D] hover:text-white"
+                    className="cursor-pointer rounded-[25.5px] h-[39px] w-[39px] hover:bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] hover:text-white"
                     style={{
-                      background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                      background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                       border: "1px solid #FFFFFF26",
                       backdropFilter: "blur(15px)",
                       boxShadow: "0px 0px 15px 0px #FFFFFF26",
@@ -260,12 +260,12 @@ const WorkShowcaseSection = ({
                 {getPageNumbers(resolvedPage, totalPages).map((page, index) => (
                   <PaginationItem key={`${page}-${index}`}>
                     {page === "..." ? (
-                      <span className="text-white">...</span>
+                      <span className="text-fg">...</span>
                     ) : (
                       <PaginationLink
                         onClick={() => setCurrentPage(page as number)}
                         isActive={resolvedPage === page}
-                        className={`border-none bg-none text-white ${resolvedPage === page ? "text-[#389EFF]" : ""}`}
+                        className={`border-none bg-none text-fg ${resolvedPage === page ? "text-tech" : ""}`}
                       >
                         {page}
                       </PaginationLink>
@@ -275,9 +275,9 @@ const WorkShowcaseSection = ({
                 <PaginationItem>
                   <PaginationNext
                     onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
-                    className="cursor-pointer rounded-[25.5px] h-[39px] w-[39px] hover:bg-[#389EFF0D] hover:text-white"
+                    className="cursor-pointer rounded-[25.5px] h-[39px] w-[39px] hover:bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] hover:text-white"
                     style={{
-                      background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                      background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                       border: "1px solid #FFFFFF26",
                       backdropFilter: "blur(15px)",
                       boxShadow: "0px 0px 15px 0px #FFFFFF26",
@@ -311,7 +311,7 @@ export const PortfolioCard = ({ slug, imageUrl, title, description, className = 
     <div
       className={`min-h-[442px] overflow-hidden rounded-10 md:h-full ${className}`}
       style={{
-        background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+        background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
         border: "1px solid #FFFFFF40",
       }}
     >
@@ -334,8 +334,8 @@ export const PortfolioCard = ({ slug, imageUrl, title, description, className = 
         </div>
 
         <div className="flex flex-1 flex-col justify-center gap-2.5 p-4">
-          <h5 className="text-base md:text-lg font-semibold leading-snug text-white">{title}</h5>
-          <p className="w-full max-w-[98%] text-sm md:text-base font-normal leading-relaxed text-white/75">{description}</p>
+          <h5 className="text-base md:text-lg font-semibold leading-snug text-fg">{title}</h5>
+          <p className="w-full max-w-[98%] text-sm md:text-base font-normal leading-relaxed text-fg/75">{description}</p>
         </div>
       </Link>
     </div>

@@ -18,9 +18,9 @@ const Hero = ({
     <section className="relative w-full min-h-[628px] md:h-[628px] overflow-hidden">
       {/* Background Color */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_left,#002348_0%,#00141f_70%)]"
-        // style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 20%, rgba(0, 35, 72, 1) 100%)" }}
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)" }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_left,var(--glow)_0%,var(--canvas-2)_70%)]"
+        // style={{ background: "radial-gradient(circle, var(--canvas) 20%, var(--glow) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }}
       />
 
       {/* Grid */}
@@ -84,7 +84,7 @@ const Hero = ({
 
       {/* Content */}
       <div className="relative z-30 h-full max-w-360 mx-auto flex flex-col md:flex-row items-center justify-center md:justify-start px-4 md:px-12">
-        <div className="max-w-197.25 text-white text-center sm:text-left mt-16 md:mt-0">
+        <div className="max-w-197.25 text-fg text-center sm:text-left mt-16 md:mt-0">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight heading-gradient text-left">
             {title}
           </h1>
@@ -103,12 +103,12 @@ const Hero = ({
 
             <Link
               href={secondaryAction.href}
-              className="px-6.25 py-2.5 text-white text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center cursor-pointer"
+              className="px-6.25 py-2.5 text-fg text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center cursor-pointer"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                 border: "1.5px solid transparent",
                 backgroundImage:
-                  "linear-gradient(360deg, #002348 0%, #00141F 100%), linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+                  "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
                 backgroundOrigin: "border-box",
                 backgroundClip: "padding-box, border-box",
               }}

@@ -20,7 +20,7 @@ const ContactExpert = ({ slug, overrideTitle, overrideButtonText, overrideButton
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "linear-gradient(180deg, #389EFF -2%, #003098 152.12%)" }}
+        style={{ background: "linear-gradient(180deg, var(--tech) -2%, #064A87 152.12%)" }}
       />
 
       {/* Background Ellipse Top Right */}
@@ -48,13 +48,13 @@ const ContactExpert = ({ slug, overrideTitle, overrideButtonText, overrideButton
       <div className="relative w-full lg:max-w-[1350px] mx-auto h-full z-10 px-4 xl:px-0">
         <div className="flex flex-col lg:flex-row text-start sm:items-center justify-between h-full px-4 lg:px-0 py-8 lg:py-0">
           {/* Heading - Dynamic */}
-          <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-white text-left sm:text-center lg:text-left mb-6 lg:mb-0 w-full max-w-4xl">
+          <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl text-fg text-left sm:text-center lg:text-left mb-6 lg:mb-0 w-full max-w-4xl">
             {title}
           </h2>
           {/* Button */}
           <Link
             href={buttonLink}
-            className="flex items-center justify-center gap-3 lg:gap-[14px] w-fit bg-white rounded-10 text-[#389EFF] py-3 lg:py-[15px] px-4 lg:px-[25px] font-medium text-sm lg:text-base hover:bg-gray-50 transition-colors cursor-pointer"
+            className="flex items-center justify-center gap-3 lg:gap-[14px] w-fit bg-white rounded-10 text-tech py-3 lg:py-[15px] px-4 lg:px-[25px] font-medium text-sm lg:text-base hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <div>{buttonText}</div>
             <svg
@@ -65,8 +65,8 @@ const ContactExpert = ({ slug, overrideTitle, overrideButtonText, overrideButton
               xmlns="http://www.w3.org/2000/svg"
               className="w-2.5 h-2.5 lg:w-4 lg:h-4"
             >
-              <path d="M1 8H15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M8 1L15 8L8 15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M1 8H15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M8 1L15 8L8 15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
         </div>

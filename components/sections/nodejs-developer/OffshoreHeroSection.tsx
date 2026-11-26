@@ -34,7 +34,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
       {/* Background Color  */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 25%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 25%, var(--glow) 100%)" }}
       />
       {/* Background Left */}
       <div className="absolute hidden md:block w-[400px] md:w-[500px] lg:w-[698.52px] h-[400px] md:h-[500px] lg:h-[666px] top-0 -left-[10%] md:-left-[8%] lg:-left-[6%] z-0">
@@ -71,7 +71,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                 {title}
               </h1>
               {/* Hero Desc */}
-              <p className="font-normal text-base md:text-lg leading-relaxed text-white">
+              <p className="font-normal text-base md:text-lg leading-relaxed text-fg">
                 {description}
               </p>
               {/* Hero Check List */}
@@ -81,7 +81,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                     <div className="relative w-3.5 h-3.5 lg:h-5 lg:w-5">
                       <Image src="/icons/bullet.svg" alt="bullet-list" fill />
                     </div>
-                    <p className="font-normal text-sm md:text-base leading-relaxed text-white">
+                    <p className="font-normal text-sm md:text-base leading-relaxed text-fg">
                       {item}
                     </p>
                   </div>
@@ -135,7 +135,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                       <Textarea placeholder="Describe Your Query" />
                     </div>
                     <div>
-                      <button className="w-full text-sm text-white py-2.5 px-6.25 bg-[#389EFF] rounded-[5px] h-12 cursor-pointer">
+                      <button className="w-full text-sm text-white py-2.5 px-6.25 bg-tech rounded-[5px] h-12 cursor-pointer">
                         Submit
                       </button>
                     </div>

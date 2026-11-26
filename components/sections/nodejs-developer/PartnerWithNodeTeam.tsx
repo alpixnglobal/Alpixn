@@ -21,7 +21,7 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
     <section
       className="w-full py-10 lg:py-12.5"
       style={{
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 25%, rgba(0, 35, 72, 1) 100%)",
+        background: "radial-gradient(circle, var(--canvas) 25%, var(--glow) 100%)",
       }}
     >
       {/* Container */}
@@ -32,9 +32,9 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
 
           <Link
             href={buttonLink}
-            className="w-full lg:w-fit py-2.5 px-6.25 rounded-10 text-xs lg:text-base font-medium text-white cursor-pointer text-center"
+            className="w-full lg:w-fit py-2.5 px-6.25 rounded-10 text-xs lg:text-base font-medium text-fg cursor-pointer text-center"
             style={{
-              background: "#389EFF",
+              background: "var(--tech)",
               boxShadow: "0px 4px 6px 0px #0000001A inset",
             }}
           >
@@ -49,7 +49,7 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
               key={index}
               className="relative flex flex-col rounded-[10px]"
               style={{
-                background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+                background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
               }}
             >
               {/* Gradient Border */}
@@ -72,15 +72,15 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                     className="relative flex justify-center items-center w-5 h-5 rounded-full"
                     style={{
                       background:
-                        "linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(360deg, #002348 0%, #00141F 100%)",
-                      boxShadow: "0px 0px 15px 0px #389EFFA6",
+                        "linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
+                      boxShadow: "0px 0px 15px 0px color-mix(in srgb, var(--tech) 65%, transparent)",
                     }}
                   >
                     {/* Gradient border for outer circle */}
                     <div
                       className="absolute inset-0 rounded-full"
                       style={{
-                        background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, #389EFF 100%)",
+                        background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
                         padding: "1.2px",
                         WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                         WebkitMaskComposite: "xor",
@@ -92,14 +92,14 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                     <div
                       className="relative w-2 h-2 rounded-full z-10"
                       style={{
-                        background: "linear-gradient(0.63deg, #389EFF 2.69%, #003098 97.31%)",
+                        background: "linear-gradient(0.63deg, var(--tech) 2.69%, #064A87 97.31%)",
                       }}
                     >
                       {/* Gradient border for inner circle */}
                       <div
                         className="absolute inset-0 rounded-full"
                         style={{
-                          background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, #389EFF 100%)",
+                          background: "radial-gradient(42.58% 56.52% at 94.52% -14.13%, #FFFFFF 0%, var(--tech) 100%)",
                           padding: "1px",
                           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
                           WebkitMaskComposite: "xor",
@@ -108,10 +108,10 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
                       />
                     </div>
                   </div>
-                  <h3 className="subtitleMeXl80 text-left text-white">{item.title}</h3>
+                  <h3 className="subtitleMeXl80 text-left text-fg">{item.title}</h3>
                 </div>
 
-                <p className="font-normal text-xs lg:text-sm leading-relaxed text-white/80">{"description" in item ? item.description : item.text}</p>
+                <p className="font-normal text-xs lg:text-sm leading-relaxed text-fg/80">{"description" in item ? item.description : item.text}</p>
               </div>
             </div>
           ))}

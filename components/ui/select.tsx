@@ -40,7 +40,7 @@ function SelectValueAsteriks({ placeholder, required, className, ...props }: Sel
         </span>
       }
       data-slot="select-value"
-      className={cn("text-white/80 text-sm pointer-events-none flex items-center", className)}
+      className={cn("text-fg/80 text-sm pointer-events-none flex items-center", className)}
     />
   );
 }
@@ -58,15 +58,15 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        "selection:bg-primary selection:text-primary-foreground placeholder:text-white/80",
+        "selection:bg-primary selection:text-primary-foreground placeholder:text-fg/80",
         "dark:bg-input/30 border-input",
-        "h-12.5 w-full min-w-0 rounded-[5px] border border-white/25",
-        "bg-[#152E46] px-3 py-1 text-sm shadow-xs",
+        "h-12.5 w-full min-w-0 rounded-[5px] border border-fg/25",
+        "bg-surface-2 px-3 py-1 text-sm shadow-xs",
         "transition-[color,box-shadow] outline-none",
         "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        "data-[placeholder]:text-white/80",
+        "data-[placeholder]:text-fg/80",
         "[&_svg:not([class*='text-'])]:text-white/80",
         "flex items-center justify-between gap-2 whitespace-nowrap",
         "*:data-[slot=select-value]:line-clamp-1",
@@ -79,7 +79,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="size-6 text-white" />
+        <ChevronDownIcon className="size-6 text-fg" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );

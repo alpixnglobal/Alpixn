@@ -71,11 +71,11 @@ const SearchInternsSection = ({
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="container max-w-323.25">
         <div className="flex flex-wrap gap-2.5">
-          <label className="relative h-[50px] w-full max-w-[320px] rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] backdrop-blur-[15px] lg:h-[62px]">
+          <label className="relative h-[50px] w-full max-w-[320px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[62px]">
             <div className="pointer-events-none absolute inset-y-0 left-5 flex items-center gap-[15px]">
               <Image src="/icons/search.svg" width={18} height={18} alt="Search" />
             </div>
@@ -83,14 +83,14 @@ const SearchInternsSection = ({
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder={searchPlaceholder}
-              className="h-full w-full bg-transparent pl-14 pr-5 text-sm md:text-base font-normal text-white outline-none placeholder:text-white/60"
+              className="h-full w-full bg-transparent pl-14 pr-5 text-sm md:text-base font-normal text-fg outline-none placeholder:text-fg/60"
             />
           </label>
 
           <button
             type="button"
             onClick={() => setShowFilters((currentValue) => !currentValue)}
-            className="relative flex h-[50px] w-[62px] items-center justify-center rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] backdrop-blur-[15px] lg:h-[62px]"
+            className="relative flex h-[50px] w-[62px] items-center justify-center rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] lg:h-[62px]"
             aria-expanded={showFilters}
           >
             <Image src="/icons/burger.svg" width={18} height={12} alt="Toggle filters" />
@@ -98,13 +98,13 @@ const SearchInternsSection = ({
         </div>
 
         {showFilters ? (
-          <div className="mt-4 grid gap-4 rounded-[15px] border border-[#389EFF40] bg-[#00141F]/80 p-4 backdrop-blur-[15px] lg:grid-cols-2">
+          <div className="mt-4 grid gap-4 rounded-[15px] border border-[color-mix(in_srgb,var(--tech)_25%,transparent)] bg-canvas-2/80 p-4 backdrop-blur-[15px] lg:grid-cols-2">
             <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-white/80">{programLabel}</span>
+              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{programLabel}</span>
               <select
                 value={selectedProgram}
                 onChange={(event) => setSelectedProgram(event.target.value)}
-                className="h-12 rounded-[10px] border border-white/10 bg-[#020B14] px-4 text-sm md:text-base font-normal text-white outline-none"
+                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
               >
                 <option value="all">{allProgramsLabel}</option>
                 {programs.map((program) => (
@@ -116,11 +116,11 @@ const SearchInternsSection = ({
             </label>
 
             <label className="grid gap-2">
-              <span className="text-sm md:text-base font-normal leading-relaxed text-white/80">{trackLabel}</span>
+              <span className="text-sm md:text-base font-normal leading-relaxed text-fg/80">{trackLabel}</span>
               <select
                 value={selectedTrack}
                 onChange={(event) => setSelectedTrack(event.target.value)}
-                className="h-12 rounded-[10px] border border-white/10 bg-[#020B14] px-4 text-sm md:text-base font-normal text-white outline-none"
+                className="h-12 rounded-[10px] border border-fg/10 bg-canvas px-4 text-sm md:text-base font-normal text-fg outline-none"
               >
                 <option value="all">{allTracksLabel}</option>
                 {tracks.map((track) => (
@@ -134,14 +134,14 @@ const SearchInternsSection = ({
         ) : null}
 
         <div className="mt-6.25 flex flex-wrap items-center gap-2.5">
-          <div className="text-sm md:text-base font-normal leading-relaxed text-white">{filteredInterns.length} {resultsLabel}</div>
+          <div className="text-sm md:text-base font-normal leading-relaxed text-fg">{filteredInterns.length} {resultsLabel}</div>
 
           {activeFilters.map((filter) => (
             <button
               key={filter}
               type="button"
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "linear-gradient(360deg, #002348 0%, #00141F 100%)", border: "1px solid #FFFFFF40" }}
+              style={{ background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)", border: "1px solid #FFFFFF40" }}
             >
               <span className="text-sm md:text-base font-normal leading-relaxed">{filter}</span>
             </button>
@@ -151,7 +151,7 @@ const SearchInternsSection = ({
             <button
               type="button"
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "linear-gradient(360deg, #002348 0%, #00141F 100%)", border: "1px solid #FFFFFF40" }}
+              style={{ background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)", border: "1px solid #FFFFFF40" }}
             >
               <span className="text-sm md:text-base font-normal leading-relaxed">{query.trim()}</span>
             </button>
@@ -166,7 +166,7 @@ const SearchInternsSection = ({
                 setSelectedTrack("all");
               }}
               className="flex items-center gap-2.5 rounded-[5px] px-3.75 py-1.25"
-              style={{ background: "#389EFF", border: "1px solid #389EFF40" }}
+              style={{ background: "var(--tech)", border: "1px solid color-mix(in srgb, var(--tech) 25%, transparent)" }}
             >
               <span className="text-sm md:text-base font-medium leading-snug">{clearAllLabel}</span>
               <Image src="/icons/exite.svg" width={10} height={10} alt="Clear filters" />
@@ -192,7 +192,7 @@ const SearchInternsSection = ({
             ))}
           </div>
         ) : (
-          <div className="mt-12.5 rounded-[15px] border border-white/10 bg-white/[0.03] p-8 text-center text-base md:text-lg font-normal leading-relaxed text-white/75">
+          <div className="mt-12.5 rounded-[15px] border border-fg/10 bg-fg/[0.03] p-8 text-center text-base md:text-lg font-normal leading-relaxed text-fg/75">
             {emptyMessage}
           </div>
         )}

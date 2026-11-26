@@ -124,7 +124,7 @@ const CaseStudySection = ({
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)",
         }}
       />
 
@@ -134,7 +134,7 @@ const CaseStudySection = ({
           <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">
             {title}
           </h2>
-          <p className="max-w-[963px] mx-auto text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">
+          <p className="max-w-[963px] mx-auto text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">
             {subtitle}
           </p>
         </div>
@@ -159,11 +159,11 @@ const CaseStudySection = ({
 
           {/* Right */}
           <div className="flex flex-col gap-8">
-            <h2 className="text-xl md:text-2xl font-semibold text-white leading-snug">
+            <h2 className="text-xl md:text-2xl font-semibold text-fg leading-snug">
               {active.title}
             </h2>
 
-            <p className="text-base md:text-lg font-normal text-white leading-relaxed">
+            <p className="text-base md:text-lg font-normal text-fg leading-relaxed">
               {active.description}
             </p>
 
@@ -244,7 +244,7 @@ const CaseStudySection = ({
 const FeatureItem = ({ text }: { text: string }) => (
   <div className="flex gap-[13.75px] items-start ">
     <Image src="/icons/filled-arrow-right.svg" width={23} height={23} alt="Arrow" />
-    <p className="text-white text-base font-normal leading-relaxed">{text}</p>
+    <p className="text-fg text-base font-normal leading-relaxed">{text}</p>
   </div>
 );
 

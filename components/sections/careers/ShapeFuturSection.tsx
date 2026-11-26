@@ -11,13 +11,13 @@ type ShapeFuturSectionProps = {
 
 const ShapeFuturSection = ({ title = "Shape the Future With Us", description = "Join a team that’s redefining innovation. Explore open roles and start your journey today.", buttonLabel = "Apply Now", buttonHref = "/resources/careers" }: ShapeFuturSectionProps) => {
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-[50px] " style={{ background: "#00070E" }}>
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-[50px] " style={{ background: "var(--canvas)" }}>
       <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* Card */}
         <div
           className="w-full max-w-full lg:max-w-273.5 mx-auto p-6 sm:p-8 md:p-12 lg:p-21.25 rounded-xl sm:rounded-2xl lg:rounded-[20px]"
           style={{
-            background: "linear-gradient(277.65deg, #389EFF -120%, rgba(0, 20, 31, 0) 51.07%, #389EFF 190.99%)",
+            background: "linear-gradient(277.65deg, var(--tech) -120%, transparent 51.07%, var(--tech) 190.99%)",
           }}
         >
           <div className="w-full max-w-231 mx-auto grid grid-cols-1 justify-between xl:grid-cols-2">
@@ -26,7 +26,7 @@ const ShapeFuturSection = ({ title = "Shape the Future With Us", description = "
               <h2 className="heading-gradient-white text-start text-2xl md:text-3xl xl:text-4xl font-bold leading-tight">
                 {title}
               </h2>
-              <p className="text-base md:text-lg font-normal leading-relaxed text-white">
+              <p className="text-base md:text-lg font-normal leading-relaxed text-fg">
                 {description}
               </p>
               <Link href={buttonHref}>

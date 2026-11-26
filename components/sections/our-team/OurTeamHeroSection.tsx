@@ -8,7 +8,7 @@ const OurTeamHeroSection = ({ title = "The Innovators, Creators, and Dreamers", 
     <section
       className="relative w-full h-[391px] overflow-hidden"
       style={{
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+        background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
       }}
     >
       {/* Gradient Blur Overlay */}
@@ -16,7 +16,7 @@ const OurTeamHeroSection = ({ title = "The Innovators, Creators, and Dreamers", 
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(56, 158, 255, 0.7) 0%, rgba(212, 33, 144, 0.35) 35%, rgba(0, 35, 72, 0.15) 100%)",
+            "linear-gradient(180deg, color-mix(in srgb, var(--tech) 70%, transparent) 0%, rgba(212, 33, 144, 0.35) 35%, color-mix(in srgb, var(--glow) 15%, transparent) 100%)",
           filter: "blur(75px)",
         }}
       />
@@ -26,7 +26,7 @@ const OurTeamHeroSection = ({ title = "The Innovators, Creators, and Dreamers", 
         <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl heading-gradient-white leading-tight text-left sm:text-center">
           {title}
         </h1>
-        <p className="text-sm md:text-base font-normal leading-relaxed text-white/90 text-center text-left sm:text-center">
+        <p className="text-sm md:text-base font-normal leading-relaxed text-fg/90 text-center text-left sm:text-center">
           {description}
         </p>
       </div>

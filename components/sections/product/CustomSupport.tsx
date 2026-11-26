@@ -17,7 +17,7 @@ const CustomSupport = ({
   return (
     <section className="sectionDefault">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
       {/* Decorative Ellipses - Corners */}
       {/* Top Left */}
       {/* <div
@@ -27,7 +27,7 @@ const CustomSupport = ({
           height: "284px",
           top: "-115px",
           left: "calc(-56px + 0vw)",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -42,7 +42,7 @@ const CustomSupport = ({
           height: "284px",
           top: "-115px",
           left: "calc(100% - 1220px)",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -57,7 +57,7 @@ const CustomSupport = ({
           height: "254px",
           top: "582px",
           left: "calc(-56px + 0vw)",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",
@@ -72,7 +72,7 @@ const CustomSupport = ({
           height: "254px",
           top: "582px",
           left: "calc(100% - 1220px)",
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 1,
           filter: "blur(500px)",
           borderRadius: "50%",

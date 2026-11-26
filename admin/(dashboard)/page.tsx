@@ -140,7 +140,7 @@ export default async function AdminDashboardPage() {
       {/* Quick Stats - Grouped by category */}
       <div className="space-y-4">
         <div className="flex items-center gap-2 px-1">
-          <FileText className="h-4 w-4 text-cyan-400" />
+          <FileText className="h-4 w-4 text-sky-400" />
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Pages</span>
         </div>
         <section className="grid gap-4 md:grid-cols-2">
@@ -236,16 +236,16 @@ export default async function AdminDashboardPage() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 transition hover:border-cyan-400/30 hover:bg-cyan-400/5"
+                    className="group flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 transition hover:border-sky-400/30 hover:bg-sky-400/5"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-cyan-300 transition group-hover:border-cyan-400/30 group-hover:bg-cyan-400/10">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-sky-300 transition group-hover:border-sky-400/30 group-hover:bg-sky-400/10">
                       <ItemIcon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h3 className="font-semibold text-slate-900 dark:text-white">{item.title}</h3>
                       <p className="mt-1 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{item.description}</p>
                     </div>
-                    <span className="shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-cyan-300">→</span>
+                    <span className="shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-sky-300">→</span>
                   </Link>
                 );
               })}

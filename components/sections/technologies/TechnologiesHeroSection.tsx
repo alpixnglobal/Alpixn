@@ -40,13 +40,13 @@ const TechnologiesHeroSection = ({
   return (
     <section className="relative w-full h-158 flex items-center xl:block overflow-hidden">
       {/* Background Base */}
-      <div className="absolute inset-0 bg-[#00070E]" />
+      <div className="absolute inset-0 bg-canvas" />
 
       {/* Top Left Ellipse */}
       <div
         className="absolute -top-[10%] -left-[10%] w-[320px] h-80 rounded-full"
         style={{
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 0.53,
           filter: "blur(150px)",
         }}
@@ -55,7 +55,7 @@ const TechnologiesHeroSection = ({
       <div
         className="absolute -top-[10%] -right-[10%] w-[320px] h-80 rounded-full"
         style={{
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 0.53,
           filter: "blur(150px)",
         }}
@@ -65,7 +65,7 @@ const TechnologiesHeroSection = ({
       <div
         className="absolute top-0 left-0 w-full h-10 pointer-events-none"
         style={{
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 0.66,
           filter: "blur(60px)",
           transform: "scaleY(-1)",
@@ -77,7 +77,7 @@ const TechnologiesHeroSection = ({
       </div>
       {/* Bott
       {/* Bottom Logos */}
-      <div className="absolute bottom-0 w-full h-12.25 bg-[#02070d]  flex items-center">
+      <div className="absolute bottom-0 w-full h-12.25 bg-canvas  flex items-center">
         <LogoLoop
           logos={logoLoopItems}
           speed={90}
@@ -94,7 +94,7 @@ const TechnologiesHeroSection = ({
       {/* Content */}
       <div className="relative w-full max-w-289.75 mx-auto flex flex-col items-center gap-6 mb-16 xl:pt-38 px-4 lg:px-0">
         {/* Subtitle - Now using prop */}
-        <h6 className="text-sm sm:text-base text-white/85 text-left sm:text-center">{subtitle}</h6>
+        <h6 className="text-sm sm:text-base text-fg/85 text-left sm:text-center">{subtitle}</h6>
 
         {/* Title - Now using prop */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gradient font-extrabold leading-tight text-left sm:text-center">{title}</h1>
@@ -120,12 +120,12 @@ const TechnologiesHeroSection = ({
           </Link>
           <Link
             href={secondaryButtonHref}
-            className="px-6.25 py-2.5 text-white text-sm lg:text-base font-medium rounded-10 flex items-center justify-center w-full md:w-fit cursor-pointer"
+            className="px-6.25 py-2.5 text-fg text-sm lg:text-base font-medium rounded-10 flex items-center justify-center w-full md:w-fit cursor-pointer"
             style={{
-              background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+              background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
               border: "1.5px solid transparent",
               backgroundImage:
-                "linear-gradient(360deg, #002348 0%, #00141F 100%), linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+                "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
               backgroundOrigin: "border-box",
               backgroundClip: "padding-box, border-box",
             }}

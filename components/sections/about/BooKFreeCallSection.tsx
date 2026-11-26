@@ -16,22 +16,22 @@ const BooKFreeCallSection = ({
   return (
     <section className="sectionDefault">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "#00070E" }} />
+      <div className="absolute inset-0" style={{ background: "var(--canvas)" }} />
 
       <div className="container max-w-[1440px]">
         {/* Card */}
         <div
           className="w-full max-w-full lg:max-w-[1094px] mx-auto p-6 sm:p-8 md:p-12 lg:p-[85px] rounded-xl sm:rounded-2xl lg:rounded-[20px]"
           style={{
-            background: "linear-gradient(277.65deg, #389EFF -120%, rgba(0, 20, 31, 0) 51.07%, #389EFF 190.99%)",
+            background: "linear-gradient(277.65deg, var(--tech) -120%, transparent 51.07%, var(--tech) 190.99%)",
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="text-2xl md:text-3xl font-bold leading-snug text-white text-left sm:text-center">
+            <h2 className="text-2xl md:text-3xl font-bold leading-snug text-fg text-left sm:text-center">
               {title}
             </h2>
 
-            <p className="text-base md:text-lg font-normal leading-relaxed text-left sm:text-center text-white max-w-full sm:max-w-[90%] lg:max-w-[80%]">
+            <p className="text-base md:text-lg font-normal leading-relaxed text-left sm:text-center text-fg max-w-full sm:max-w-[90%] lg:max-w-[80%]">
               {description}
             </p>
 

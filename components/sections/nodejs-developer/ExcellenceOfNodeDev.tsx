@@ -13,11 +13,11 @@ interface OfferingCardProps {
 
 const OfferingCard = ({ title, description, image, alt, width, height }: OfferingCardProps) => (
   <div
-    className="flex flex-col justify-between text-white rounded-[10px] w-full h-fit lg:h-full p-4 md:p-5 gap-3 md:gap-5"
+    className="flex flex-col justify-between text-fg rounded-[10px] w-full h-fit lg:h-full p-4 md:p-5 gap-3 md:gap-5"
     style={{
-      background: "linear-gradient(180deg, rgba(56, 158, 255, 0.35) -30.91%, rgba(24, 24, 24, 0) 100%)",
+      background: "linear-gradient(180deg, color-mix(in srgb, var(--tech) 35%, transparent) -30.91%, rgba(24, 24, 24, 0) 100%)",
       backdropFilter: "blur(4px)",
-      borderBottom: "3px solid #389EFF",
+      borderBottom: "3px solid var(--tech)",
     }}
   >
     <div className="w-fit">
@@ -31,8 +31,8 @@ const OfferingCard = ({ title, description, image, alt, width, height }: Offerin
       />
     </div>
 
-    <h6 className="font-semibold text-base md:text-lg text-white">{title}</h6>
-    <p className="text-white/80 text-xs lg:text-sm font-normal leading-relaxed">{description}</p>
+    <h6 className="font-semibold text-base md:text-lg text-fg">{title}</h6>
+    <p className="text-fg/80 text-xs lg:text-sm font-normal leading-relaxed">{description}</p>
     <div className="flex justify-end mt-auto"></div>
   </div>
 );
@@ -67,7 +67,7 @@ const ExcellenceOfDev = ({ slug = "default", data }: ExcellenceOfDevProps) => {
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 25%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 25%, var(--glow) 100%)" }}
       />
       {/* Container */}
       <div className="container max-w-[1350px]">

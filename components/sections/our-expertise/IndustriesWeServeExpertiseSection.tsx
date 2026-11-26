@@ -29,7 +29,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -57,13 +57,13 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
             // Apply borders based on position
             if (isFirstRow) {
               if (!isLastInRow) {
-                borderClasses += " border-r border-white/10 ";
+                borderClasses += " border-r border-fg/10 ";
               }
               if (index === 3) {
                 borderClasses += " border-r-0 ";
               }
             } else if (isSecondRow) {
-              borderClasses += " border-t border-white/10 ";
+              borderClasses += " border-t border-fg/10 ";
               if (!isLastInRow) {
                 borderClasses += " border-r ";
               }
@@ -71,7 +71,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
                 borderClasses += " border-r-0 ";
               }
             } else if (isThirdRow) {
-              borderClasses += " border-t border-white/10 ";
+              borderClasses += " border-t border-fg/10 ";
               if (!isLastInRow && index !== totalItems - 1) {
                 borderClasses += " border-r ";
               }
@@ -85,7 +85,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
                 key={industry.id}
                 className={`p-3.75 gap-1.25 flex flex-col items-center justify-center h-[112px] ${borderClasses}`}
                 style={{
-                  background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+                  background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
                 }}
               >
                 {industry.icon ? (
@@ -98,7 +98,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
                     unoptimized={industry.icon.startsWith("data:") || industry.icon.startsWith("http")}
                   />
                 ) : null}
-                <p className="text-sm lg:text-base font-normal text-white/80 text-center">{industry.name}</p>
+                <p className="text-sm lg:text-base font-normal text-fg/80 text-center">{industry.name}</p>
               </div>
             );
           })}

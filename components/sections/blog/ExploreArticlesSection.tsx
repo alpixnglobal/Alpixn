@@ -52,7 +52,7 @@ const ExploreArticlesSection = ({
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1351px]">
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -66,7 +66,7 @@ const ExploreArticlesSection = ({
                 setCurrentPage(1);
               }}
               placeholder={searchPlaceholder}
-              className="h-12 w-full rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] px-4 text-sm text-white outline-none placeholder:text-white/60 sm:w-[260px]"
+              className="h-12 w-full rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] px-4 text-sm text-fg outline-none placeholder:text-fg/60 sm:w-[260px]"
             />
             <Select
               value={selectedCategory}
@@ -75,15 +75,15 @@ const ExploreArticlesSection = ({
                 setCurrentPage(1);
               }}
             >
-              <SelectTrigger className="h-12 rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] px-4 text-sm text-white outline-none sm:min-w-[180px]">
+              <SelectTrigger className="h-12 rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] px-4 text-sm text-fg outline-none sm:min-w-[180px]">
                 <SelectValue placeholder={allCategoriesLabel} />
               </SelectTrigger>
-              <SelectContent className="border border-[#389EFF73] bg-[#00141F] text-white shadow-[0_0_24px_rgba(56,158,255,0.12)]">
-                <SelectItem value="all" className="text-white focus:bg-[#0051A8] focus:text-white">
+              <SelectContent className="border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-canvas-2 text-fg shadow-[0_0_24px_color-mix(in_srgb,var(--tech)_12%,transparent)]">
+                <SelectItem value="all" className="text-fg focus:bg-[#0051A8] focus:text-fg">
                   {allCategoriesLabel}
                 </SelectItem>
                 {categories.map((category) => (
-                  <SelectItem key={category} value={category} className="text-white focus:bg-[#0051A8] focus:text-white">
+                  <SelectItem key={category} value={category} className="text-fg focus:bg-[#0051A8] focus:text-fg">
                     {category}
                   </SelectItem>
                 ))}
@@ -92,7 +92,7 @@ const ExploreArticlesSection = ({
           </div>
         </div>
 
-        <div className="mt-4 text-sm text-white/75">{filteredPosts.length} {articlesFoundSuffix}</div>
+        <div className="mt-4 text-sm text-fg/75">{filteredPosts.length} {articlesFoundSuffix}</div>
 
         {pageItems.length > 0 ? (
           <div className="mt-8 grid grid-cols-1 items-center gap-4 sm:grid-cols-2 sm:gap-[25px] lg:grid-cols-6 sm:mt-12.5">
@@ -102,7 +102,7 @@ const ExploreArticlesSection = ({
                 className={`col-span-1 h-[250px] rounded-[10px] sm:h-[270px] ${spanPattern[index % spanPattern.length]}`}
                 style={{
                   background:
-                    "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                    "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                   border: "1px solid #FFFFFF40",
                 }}
               >
@@ -123,15 +123,15 @@ const ExploreArticlesSection = ({
                   </div>
 
                   <div className="mt-2 flex flex-col gap-2 p-3 sm:mt-2.5 sm:gap-2.5 sm:p-2.5">
-                    <div className="line-clamp-2 text-sm font-medium text-white sm:text-base">{post.title}</div>
-                    <div className="text-xs tracking-[3%] text-white/75 sm:text-sm">By: {post.author}</div>
+                    <div className="line-clamp-2 text-sm font-medium text-fg sm:text-base">{post.title}</div>
+                    <div className="text-xs tracking-[3%] text-fg/75 sm:text-sm">By: {post.author}</div>
                   </div>
                 </Link>
               </div>
             ))}
           </div>
         ) : (
-          <div className="mt-8 rounded-[10px] border border-white/10 bg-white/[0.03] p-6 text-white/75 sm:mt-12.5">
+          <div className="mt-8 rounded-[10px] border border-fg/10 bg-fg/[0.03] p-6 text-fg/75 sm:mt-12.5">
             {emptyMessage}
           </div>
         )}
@@ -143,7 +143,7 @@ const ExploreArticlesSection = ({
               onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
               className="flex h-[39px] w-[39px] items-center justify-center rounded-[25.5px]"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                 border: "1px solid #FFFFFF26",
                 backdropFilter: "blur(15px)",
                 boxShadow: "0px 0px 15px 0px #FFFFFF26",
@@ -154,7 +154,7 @@ const ExploreArticlesSection = ({
               </svg>
             </button>
 
-            <div className="text-sm text-white">
+            <div className="text-sm text-fg">
               {resolvedPage} / {totalPages}
             </div>
 
@@ -163,7 +163,7 @@ const ExploreArticlesSection = ({
               onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
               className="flex h-[39px] w-[39px] items-center justify-center rounded-[25.5px]"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                 border: "1px solid #FFFFFF26",
                 backdropFilter: "blur(15px)",
                 boxShadow: "0px 0px 15px 0px #FFFFFF26",

@@ -18,7 +18,7 @@ export function MobileNavItem({ label, href, onNavigate, children }: MobileNavIt
       <Link
         href={href!}
         onClick={onNavigate}
-        className="py-2 text-sm font-medium text-gray-900 border-b border-gray-200 hover:text-blue-600 transition-colors"
+        className="block py-3 text-[15px] font-medium text-fg border-b border-line hover:text-tech transition-colors"
       >
         {label}
       </Link>
@@ -27,16 +27,16 @@ export function MobileNavItem({ label, href, onNavigate, children }: MobileNavIt
 
   // If there are nested items, render an accordion
   return (
-    <Accordion.Item value={label} className="border-b border-gray-200">
+    <Accordion.Item value={label} className="border-b border-line">
       <Accordion.Header>
-        <Accordion.Trigger className="group flex w-full items-center justify-between py-4 text-sm font-medium text-gray-900">
+        <Accordion.Trigger className="group flex w-full items-center justify-between py-4 text-[15px] font-semibold text-fg data-[state=open]:text-tech">
           {label}
-          <ChevronDown className="h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+          <ChevronDown aria-hidden className="h-4 w-4 text-gold transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Accordion.Trigger>
       </Accordion.Header>
 
       <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-        <div className="flex flex-col pl-4 pb-2">{children}</div>
+        <div className="flex flex-col pl-4 pb-2 [&_a]:text-fg-muted [&_a]:font-normal">{children}</div>
       </Accordion.Content>
     </Accordion.Item>
   );

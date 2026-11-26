@@ -4,7 +4,7 @@ const FAQSection = () => {
   return (
     <section className="sectionDefault">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       {/* Container */}
       <div className="container max-w-[1349px]">
@@ -72,7 +72,7 @@ const FAQSection = () => {
           <AccordionItem value="item-5">
             <AccordionTrigger>What is the cost of node.js development?</AccordionTrigger>
             <AccordionContent className="flex flex-col gap-4 text-balance">
-              <p className="text-sm md:text-base text-white leading-relaxed">
+              <p className="text-sm md:text-base text-fg leading-relaxed">
                 The cost of Node.js development varies based on project complexity, scope, and developer rates. Factors
                 like whether you hire a Node.js developer or engage a Node.js development company can influence costs.
                 Consulting with Node.js experts can provide a more accurate estimate.

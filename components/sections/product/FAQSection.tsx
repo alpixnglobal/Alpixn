@@ -48,7 +48,7 @@ const FAQSection = ({
   questionClassName?: string;
 }) => {
   return (
-    <div className="w-full py-12.5" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }}>
+    <div className="w-full py-12.5" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }}>
       {/* Container */}
       <div className="w-full max-w-[1349px] mx-auto">
         {/* Title */}
@@ -60,7 +60,7 @@ const FAQSection = ({
             <AccordionItem key={item.question} value={`item-${index + 1}`}>
               <AccordionTrigger className={`cursor-pointer ${questionClassName}`.trim()}>{item.question}</AccordionTrigger>
               <AccordionContent className="flex flex-col gap-4">
-                <p className="text-base text-white leading-relaxed">{item.answer}</p>
+                <p className="text-base text-fg leading-relaxed">{item.answer}</p>
               </AccordionContent>
             </AccordionItem>
           ))}

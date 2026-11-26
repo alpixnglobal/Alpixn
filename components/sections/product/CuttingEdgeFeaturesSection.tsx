@@ -56,23 +56,23 @@ function FeatureCard({ card, reversed = false, fallbackImage }: { card: ProductF
           />
         </div>
 
-        <div className="relative w-full h-full rounded-[21px] overflow-hidden" style={{ background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.06) 0%, rgba(24, 24, 24, 0) 100%)" }}>
+        <div className="relative w-full h-full rounded-[21px] overflow-hidden" style={{ background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 6%, transparent) 0%, rgba(24, 24, 24, 0) 100%)" }}>
           <Image src={resolvedImage} alt={card.title} fill className="object-cover sm:object-contain p-4" unoptimized={shouldUnoptimize} />
         </div>
       </div>
 
       <div className={`flex flex-col ${reversed ? "items-start sm:items-center xl:items-end xl:mr-6.25" : "sm:items-center xl:items-start xl:ml-6.25"} gap-5 px-4 sm:px-6 xl:px-0 w-full max-w-[600px] sm:max-w-[700px] xl:max-w-none mx-auto xl:mx-0 ${reversed ? "order-2 xl:order-1" : ""}`}>
-        <h3 className={`font-semibold text-lg md:text-xl text-white ${reversed ? "text-left sm:text-center xl:text-right" : "text-start lg:text-center xl:text-start"}`}>
+        <h3 className={`font-semibold text-lg md:text-xl text-fg ${reversed ? "text-left sm:text-center xl:text-right" : "text-start lg:text-center xl:text-start"}`}>
           {card.title}
         </h3>
-        <p className={`text-white/80 text-sm md:text-base leading-relaxed font-normal ${reversed ? "text-left sm:text-center xl:text-right" : "text-left sm:text-center xl:text-start"}`}>
+        <p className={`text-fg/80 text-sm md:text-base leading-relaxed font-normal ${reversed ? "text-left sm:text-center xl:text-right" : "text-left sm:text-center xl:text-start"}`}>
           {card.description}
         </p>
         <div className={`relative w-full sm:max-w-[280px] xl:w-44 ${reversed ? "xl:mr-6.25" : ""}`}>
           <div
             className="absolute inset-0 pointer-events-none rounded-[8px] sm:rounded-[9px] xl:rounded-[10px]"
             style={{
-              background: "linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+              background: "linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
               padding: "1px sm:1.25px xl:1.5px",
               WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
               WebkitMaskComposite: "xor",
@@ -81,9 +81,9 @@ function FeatureCard({ card, reversed = false, fallbackImage }: { card: ProductF
           />
           <Link
             href={card.buttonHref || "#"}
-            className="relative flex w-full items-center justify-center text-white border font-medium text-sm sm:text-base rounded-[10px] py-2 sm:py-2.5 xl:py-2.5 px-4 sm:px-5 xl:px-6.25 cursor-pointer"
+            className="relative flex w-full items-center justify-center text-fg border font-medium text-sm sm:text-base rounded-[10px] py-2 sm:py-2.5 xl:py-2.5 px-4 sm:px-5 xl:px-6.25 cursor-pointer"
             style={{
-              background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+              background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
               border: "1px sm:1.25px xl:1.5px solid transparent",
             }}
           >
@@ -104,7 +104,7 @@ const CuttingEdgeFeaturesSection = ({
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 35%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }} />
 
       <div className="container max-w-337.75">
         <div className="flex flex-col gap-[15px]">

@@ -55,22 +55,22 @@ const QualityService = ({ eyebrow = "Quality-Focused Proficiency", title = "What
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 65%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }} />
 
       <div className="relative grid grid-cols-1 xl:grid-cols-[599px_1fr] gap-[52px] max-w-[1350px] mx-auto px-4 xl:px-0">
         <div className="flex flex-col gap-3.75 w-full xl:max-w-[599px]">
-          <h6 className="text-[#389EFF] text-base md:text-lg font-medium">{eyebrow}</h6>
+          <h6 className="text-tech text-base md:text-lg font-medium">{eyebrow}</h6>
           <h2 className="title heading-gradient text-start">{title}</h2>
-          <p className="font-normal text-sm md:text-base leading-relaxed text-white/80">{description}</p>
+          <p className="font-normal text-sm md:text-base leading-relaxed text-fg/80">{description}</p>
         </div>
         <div className="flex flex-col w-full gap-6.25">
           {resolvedPoints.map((point, index) => (
-            <div key={point.title} className={`flex flex-col gap-3 ${index < resolvedPoints.length - 1 ? "border-b pb-5 border-white/50" : "pb-5 border-white/50"}`}>
-              <h6 className="text-white font-semibold text-base md:text-lg">
+            <div key={point.title} className={`flex flex-col gap-3 ${index < resolvedPoints.length - 1 ? "border-b pb-5 border-fg/50" : "pb-5 border-fg/50"}`}>
+              <h6 className="text-fg font-semibold text-base md:text-lg">
                 <div className="flex gap-2 items-center">
                   <span
                     style={{
-                      background: "linear-gradient(90deg, #389EFF 0%, #9747FF 100%)",
+                      background: "linear-gradient(90deg, var(--tech) 0%, var(--gold) 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
@@ -82,7 +82,7 @@ const QualityService = ({ eyebrow = "Quality-Focused Proficiency", title = "What
                   <span>{point.title}</span>
                 </div>
               </h6>
-              <p className="ml-[32px] text-sm md:text-base leading-relaxed text-white">{point.description}</p>
+              <p className="ml-[32px] text-sm md:text-base leading-relaxed text-fg">{point.description}</p>
             </div>
           ))}
         </div>

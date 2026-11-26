@@ -22,7 +22,7 @@ const ExpertiseHeroSection = ({
   const resolvedLogos = logos.length > 0 ? logos : ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"];
   const heroTitleClassName = `
     font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight
-    bg-[linear-gradient(89.22deg,#FFFFFF_1.35%,#FFFFFF_58.47%,#BCDEFF_101.3%)]
+    bg-[linear-gradient(89.22deg,#FFFFFF_1.35%,#FFFFFF_58.47%,var(--tech-soft)_101.3%)]
     bg-clip-text text-transparent
   `;
 
@@ -32,7 +32,7 @@ const ExpertiseHeroSection = ({
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -73,7 +73,7 @@ const ExpertiseHeroSection = ({
           {/* Description */}
           <p
             className="
-            font-normal text-base md:text-lg leading-relaxed text-white
+            font-normal text-base md:text-lg leading-relaxed text-fg
           "
           >
             {description}

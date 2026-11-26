@@ -64,9 +64,9 @@ const CustomSolutionSection = ({
     return (
       <div
         key={`${card.title}-${index}`}
-        className={`h-62.5 ${baseHeights[index % baseHeights.length]} ${sizePatterns[index % sizePatterns.length]} rounded-lg w-full border border-[#303030] overflow-hidden`}
+        className={`h-62.5 ${baseHeights[index % baseHeights.length]} ${sizePatterns[index % sizePatterns.length]} rounded-lg w-full border border-line overflow-hidden`}
       >
-        <div className="relative text-white h-full">
+        <div className="relative text-fg h-full">
           <Image
             src={image}
             alt={alt}
@@ -77,13 +77,13 @@ const CustomSolutionSection = ({
           />
           <h2 className="absolute inset-0 ml-5 mt-5 text-xl md:text-2xl font-semibold leading-snug">{card.title}</h2>
           <div
-            className="absolute inset-x-0 bottom-0 border-t border-white/10"
+            className="absolute inset-x-0 bottom-0 border-t border-fg/10"
             style={{
               background: "linear-gradient(180deg, rgba(24, 24, 24, 0.05) 0%, rgba(24, 24, 24, 0.05) 100%)",
               backdropFilter: blurPatterns[index % blurPatterns.length],
             }}
           >
-            <p className="m-5 text-base font-normal leading-relaxed text-white text-start">{card.description}</p>
+            <p className="m-5 text-base font-normal leading-relaxed text-fg text-start">{card.description}</p>
           </div>
         </div>
       </div>
@@ -93,12 +93,12 @@ const CustomSolutionSection = ({
   return (
     <section
       className="py-[50px] w-full overflow-x-hidden"
-      style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }}
+      style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }}
     >
       <div className="max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px] mx-auto relative">
         <div className="flex flex-col gap-2.5">
           <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">{subtitle}</p>
+          <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
         </div>
 
         {/* Custom Solution Grid - matching original layout */}

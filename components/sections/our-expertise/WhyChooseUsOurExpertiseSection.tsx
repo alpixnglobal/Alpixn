@@ -25,7 +25,7 @@ const WhyChooseUsOurExpertiseSection = ({ slug = "software-development", data }:
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, #00070E 35%, #002348 100%)",
+          background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)",
         }}
       />
 
@@ -46,12 +46,12 @@ const WhyChooseUsOurExpertiseSection = ({ slug = "software-development", data }:
               style={{
                 borderRadius: "10px",
                 background:
-                  "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                  "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                 border: "1px solid #FFFFFF26",
               }}
             >
-              <h6 className="text-white font-semibold text-lg md:text-xl">{feature.title}</h6>
-              <p className="text-xs md:text-sm text-white/80 leading-relaxed font-normal z-10">{feature.description}</p>
+              <h6 className="text-fg font-semibold text-lg md:text-xl">{feature.title}</h6>
+              <p className="text-xs md:text-sm text-fg/80 leading-relaxed font-normal z-10">{feature.description}</p>
               {feature.icon ? (
                 <Image
                   src={feature.icon}

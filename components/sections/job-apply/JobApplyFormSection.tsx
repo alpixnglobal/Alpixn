@@ -19,7 +19,7 @@ type JobApplyFormSectionProps = {
 };
 
 const fieldClassName =
-  "w-full rounded-[10px] border border-white/10 bg-[#00141F] px-4 py-3 text-sm text-white outline-none placeholder:text-white/45";
+  "w-full rounded-[10px] border border-fg/10 bg-canvas-2 px-4 py-3 text-sm text-fg outline-none placeholder:text-fg/45";
 
 const JobApplyFormSection = ({
   job,
@@ -41,7 +41,7 @@ const JobApplyFormSection = ({
   return (
     <section className="relative w-full py-12.5">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       {/* Content */}
       <div className="relative w-full max-w-[1350px] mx-auto px-4 xl:px-0">
@@ -50,7 +50,7 @@ const JobApplyFormSection = ({
           {/* Left */}
           <div className="flex flex-col gap-[25px]">
             <h2 className="text-gradient heading text-left">{introTitle}</h2>
-            <p className="text-white/80 text-base md:text-lg leading-relaxed">
+            <p className="text-fg/80 text-base md:text-lg leading-relaxed">
               {introDescription}
             </p>
           </div>
@@ -87,11 +87,11 @@ const JobApplyFormSection = ({
                       className={`${fieldClassName} min-h-[180px]`}
                     />
                   </div>
-                  <div className="col-span-1 lg:col-span-2 rounded-[10px] border border-white/10 bg-[#00141F] px-4 py-3 text-sm text-white/70">
-                    {summaryPrefix} <span className="font-semibold text-white">{job.title}</span> at <span className="font-semibold text-white">{job.company}</span>
+                  <div className="col-span-1 lg:col-span-2 rounded-[10px] border border-fg/10 bg-canvas-2 px-4 py-3 text-sm text-fg/70">
+                    {summaryPrefix} <span className="font-semibold text-fg">{job.title}</span> at <span className="font-semibold text-fg">{job.company}</span>
                   </div>
                   <div className="col-span-1 lg:col-span-2">
-                    <button type="submit" className="h-12 w-full rounded-[10px] bg-[#389EFF] px-6.25 py-2.5 text-sm text-white">
+                    <button type="submit" className="h-12 w-full rounded-[10px] bg-tech px-6.25 py-2.5 text-sm text-white">
                       {submitLabel}
                     </button>
                   </div>

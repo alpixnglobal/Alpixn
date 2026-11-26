@@ -9,7 +9,7 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       type={type}
       data-slot="input"
       className={cn(
-        "file:text-foreground placeholder:text-white/80 selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-12.5 w-full min-w-0 rounded-[5px] border border-white/25 bg-[#152E46] px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "file:text-foreground placeholder:text-fg/80 selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-12.5 w-full min-w-0 rounded-[5px] border border-white/25 bg-surface-2 px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
         "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
         className
@@ -37,7 +37,7 @@ function  InputField({ label, required, asteriskColor = "#FF4040", className, la
         id={resolvedId}
         required={required}
         className={cn(
-          "peer h-12.5 w-full rounded-[5px] border border-white/25 bg-[#152E46] px-3 pt-5 pb-1 text-sm text-white/80 placeholder-transparent outline-none",
+          "peer h-12.5 w-full rounded-[5px] border border-fg/25 bg-surface-2 px-3 pt-5 pb-1 text-sm text-fg/80 placeholder-transparent outline-none",
           className,
         )}
         placeholder=" "
@@ -48,11 +48,11 @@ function  InputField({ label, required, asteriskColor = "#FF4040", className, la
         className={cn(
           "absolute left-3 pointer-events-none transition-all duration-150",
           // Default (has value): float at top-left, small
-          "top-1.5 translate-y-0 text-xs text-white/60",
+          "top-1.5 translate-y-0 text-xs text-fg/60",
           // When empty (placeholder shown): center, normal size
-          "peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-white/60",
+          "peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-fg/60",
           // When focused: always float up
-          "peer-focus:top-1.5 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-white/60",
+          "peer-focus:top-1.5 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-fg/60",
           labelClassName
         )}
       >
@@ -78,7 +78,7 @@ function InputDateField({ label, required, className, ...props }: InputFieldProp
         id={resolvedId}
         required={required}
         className={cn(
-          "h-12.5 w-full rounded-[5px] border border-white/25 bg-[#152E46] px-3 text-sm text-white/80 placeholder-transparent outline-none",
+          "h-12.5 w-full rounded-[5px] border border-fg/25 bg-surface-2 px-3 text-sm text-fg/80 placeholder-transparent outline-none",
           className
         )}
         placeholder=" "
@@ -87,7 +87,7 @@ function InputDateField({ label, required, className, ...props }: InputFieldProp
         }}
       />
 
-      <label htmlFor={resolvedId} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 text-sm pointer-events-none">
+      <label htmlFor={resolvedId} className="absolute left-3 top-1/2 -translate-y-1/2 text-fg/80 text-sm pointer-events-none">
         {label}
         {required && <span className="text-[#FF4040] ml-1">*</span>}
       </label>
@@ -117,7 +117,7 @@ function InputLink({ label, required, className, ...props }: InputLinkProps) {
         type={props.type}
         data-slot="input"
         className={cn(
-          "file:text-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-12.5 w-full min-w-0 rounded-[5px] border border-white/25 bg-[#152E46] px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          "file:text-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-12.5 w-full min-w-0 rounded-[5px] border border-white/25 bg-surface-2 px-3 py-1 text-sm shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
           className
@@ -125,7 +125,7 @@ function InputLink({ label, required, className, ...props }: InputLinkProps) {
         {...props}
       />
 
-      <label htmlFor={resolvedId} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 text-sm pointer-events-none flex items-center gap-1">
+      <label htmlFor={resolvedId} className="absolute left-3 top-1/2 -translate-y-1/2 text-fg/80 text-sm pointer-events-none flex items-center gap-1">
         {label}
         {required && <span className="text-[#FF4040]">*</span>}
       </label>
@@ -176,7 +176,7 @@ function FileInput({ required, className, ...props }: FileInputProps) {
         aria-label="Upload resume"
         onClick={() => inputRef.current?.click()}
         className={cn(
-          "relative h-12.5 w-full rounded-[5px] bg-[#152E46] pl-10 pr-3 text-left text-sm text-white/80 flex items-center gap-2.5",
+          "relative h-12.5 w-full rounded-[5px] bg-surface-2 pl-10 pr-3 text-left text-sm text-fg/80 flex items-center gap-2.5",
           className
         )}
         style={{
@@ -213,7 +213,7 @@ function FileInput({ required, className, ...props }: FileInputProps) {
       >
         Upload Resume{" "}
         {required && (
-          <span className="mb-1 block text-white/80 text-sm font-medium">
+          <span className="mb-1 block text-fg/80 text-sm font-medium">
             <span className="text-[#FF4040]">*</span>
           </span>
         )}

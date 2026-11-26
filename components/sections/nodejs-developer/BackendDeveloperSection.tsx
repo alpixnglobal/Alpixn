@@ -106,7 +106,7 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
       borderClasses += " border-r-0 ";
     }
 
-    return borderClasses + " border-white/10 ";
+    return borderClasses + " border-fg/10 ";
   };
 
   return (
@@ -115,7 +115,7 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -137,15 +137,15 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
                 className={`
                   flex flex-col items-center gap-[5px] p-3 lg:p-[15px] h-[100px] lg:h-[112px]
                   hover:border-r-2 hover:border-b-2 hover:border-white/15
-                  bg-[linear-gradient(180deg,rgba(24,24,24,0.24)_0%,rgba(56,158,255,0.06)_100%)]
-                  hover:bg-[linear-gradient(249.67deg,rgba(56,158,255,0.35)_0%,rgba(24,24,24,0)_49.04%,rgba(56,158,255,0.35)_100%)]
-                  hover:shadow-[0_0_20px_0_rgba(56,158,255,0.4)]
+                  bg-[linear-gradient(180deg,rgba(24,24,24,0.24)_0%,color-mix(in_srgb,var(--tech)_6%,transparent)_100%)]
+                  hover:bg-[linear-gradient(249.67deg,color-mix(in_srgb,var(--tech)_35%,transparent)_0%,rgba(24,24,24,0)_49.04%,color-mix(in_srgb,var(--tech)_35%,transparent)_100%)]
+                  hover:shadow-[0_0_20px_0_color-mix(in_srgb,var(--tech)_40%,transparent)]
                   ${borderClasses}
                   ${isFirstItem ? "hover:border-r-2 hover:border-b-2 hover:border-white/15" : ""}
                 `}
               >
                 <DeveloperItem developer={developer} />
-                <p className="text-sm lg:text-base font-normal text-white/80 text-center">{developer.name}</p>
+                <p className="text-sm lg:text-base font-normal text-fg/80 text-center">{developer.name}</p>
               </Link>
             );
           })}

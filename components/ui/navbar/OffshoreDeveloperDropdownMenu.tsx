@@ -34,14 +34,14 @@ function OurOfferingsGrid({ items }: { items: OffshoreItem[] }) {
   const columns = buildColumns(items);
 
   return (
-    <div className="grid grid-cols-3 text-white mt-[25px]">
+    <div className="grid grid-cols-3 text-fg mt-[25px]">
       {columns.map((columnItems, colIndex) => (
         <div
           key={colIndex}
           className={[
             "flex flex-col gap-5",
-            colIndex === 0 && "border-r border-white/20 mr-20",
-            colIndex === 1 && "border-r ml-12 border-white/20 mr-16",
+            colIndex === 0 && "border-r border-fg/20 mr-20",
+            colIndex === 1 && "border-r ml-12 border-fg/20 mr-16",
             colIndex === 2 && "ml-12",
           ]
             .filter(Boolean)
@@ -78,7 +78,7 @@ export function OffshoreDeveloperDropdownMenu({ categories }: { categories: Offs
             </TabsTrigger>
           ))}
         </TabsList>
-        <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-[25px] border-b w-[1182px] border-white/20" />
+        <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-[25px] border-b w-[1182px] border-fg/20" />
       </div>
 
       {resolvedCategories.map((category) => (

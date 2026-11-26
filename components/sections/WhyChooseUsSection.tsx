@@ -14,13 +14,13 @@ const WhyChooseUsSection = ({
   return (
     <section
       className="relative w-full py-[200px] overflow-hidden"
-      style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 20%, rgba(0, 35, 72, 1) 100%)" }}
+      style={{ background: "radial-gradient(circle, var(--canvas) 20%, var(--glow) 100%)" }}
     >
       {/* Background Gradient */}
       <div
         className="absolute inset-0 z-0"
         style={{
-          background: "radial-gradient(circle, rgba(0,7,14,1) 75%, rgba(0,35,72,1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)",
         }}
       />
 
@@ -49,8 +49,8 @@ const WhyChooseUsSection = ({
               opacity: ellipse.opacity ?? 1,
               filter: `blur(${ellipse.blur ?? 2.25}px)`,
               background: ellipse.opacity
-                ? "#389EFF"
-                : "radial-gradient(71.79% 71.79% at 50% 28.21%, #389EFF 0%, #003098 100%)",
+                ? "var(--tech)"
+                : "radial-gradient(71.79% 71.79% at 50% 28.21%, var(--tech) 0%, #064A87 100%)",
               boxShadow: ellipse.opacity
                 ? "none"
                 : "0px 0px 55px rgba(64,116,171,0.2), inset 0px -11px 27.7px rgba(0,0,0,0.25)",
@@ -67,7 +67,7 @@ const WhyChooseUsSection = ({
             className="relative rounded-[40px] border border-black overflow-hidden"
             style={{
               background:
-                "linear-gradient(249.67deg, rgba(56,158,255,0.35) 0%, rgba(24,24,24,0) 49.04%, rgba(56,158,255,0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24,24,24,0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               transform: `
                 translateX(40px)
                 translateY(-30px)
@@ -96,7 +96,7 @@ const WhyChooseUsSection = ({
                 </div>
 
                 {/* Centered Text */}
-                <p className="text-white text-base md:text-lg xl:text-xl font-normal text-center leading-relaxed w-[787px] p-5">
+                <p className="text-fg text-base md:text-lg xl:text-xl font-normal text-center leading-relaxed w-[787px] p-5">
                   {quote}
                 </p>
 
@@ -111,9 +111,9 @@ const WhyChooseUsSection = ({
 
               {/* Manager Info */}
               <div className="mt-12 w-full max-w-[285px] mx-auto lg:mx-0 flex flex-col items-center text-center">
-                  <h3 className="text-base md:text-lg font-semibold leading-snug text-white">{author}</h3>
+                  <h3 className="text-base md:text-lg font-semibold leading-snug text-fg">{author}</h3>
 
-                  <p className="mt-[5px] text-sm md:text-base font-normal leading-relaxed text-white">{role}</p>
+                  <p className="mt-[5px] text-sm md:text-base font-normal leading-relaxed text-fg">{role}</p>
 
                 {/* Stars */}
                 <div className="mt-3 flex gap-[5px] justify-center">
@@ -134,7 +134,7 @@ const WhyChooseUsSection = ({
             className="relative rounded-[40px] border border-black overflow-hidden mx-auto max-w-[90%]"
             style={{
               background:
-                "linear-gradient(249.67deg, rgba(56,158,255,0.35) 0%, rgba(24,24,24,0) 49.04%, rgba(56,158,255,0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24,24,24,0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
             }}
           >
             <div className="py-[60px] px-[20px]">
@@ -155,7 +155,7 @@ const WhyChooseUsSection = ({
                 </div>
 
                 {/* Centered Text */}
-                <p className="text-white text-base md:text-lg font-normal text-center leading-relaxed p-4">
+                <p className="text-fg text-base md:text-lg font-normal text-center leading-relaxed p-4">
                   {quote}
                 </p>
 
@@ -170,9 +170,9 @@ const WhyChooseUsSection = ({
 
               {/* Manager Info */}
               <div className="mt-12 w-full max-w-[285px] mx-auto flex flex-col items-center text-center">
-                  <h2 className="text-lg md:text-xl font-bold leading-snug text-white">{author}</h2>
+                  <h2 className="text-lg md:text-xl font-bold leading-snug text-fg">{author}</h2>
 
-                  <p className="mt-[5px] text-sm md:text-base font-normal leading-relaxed text-white">{role}</p>
+                  <p className="mt-[5px] text-sm md:text-base font-normal leading-relaxed text-fg">{role}</p>
 
                 {/* Stars */}
                 <div className="mt-3 flex gap-[5px] justify-center">

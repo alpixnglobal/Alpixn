@@ -24,7 +24,7 @@ const TestimonialOurExpertise = ({
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)",
         }}
       />
 
@@ -45,7 +45,7 @@ const TestimonialOurExpertise = ({
               className="flex flex-col gap-5 p-5 rounded-10"
               style={{
                 background:
-                  "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                  "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                 border: "1px solid #FFFFFF26",
               }}
             >
@@ -57,7 +57,7 @@ const TestimonialOurExpertise = ({
                 className="w-[20px] h-[30px] lg:w-[35px] lg:h-[46px]"
               />
 
-              <p className="text-white/80 text-xs sm:text-base font-normal leading-relaxed">"{testimonial.quote}"</p>
+              <p className="text-fg/80 text-xs sm:text-base font-normal leading-relaxed">"{testimonial.quote}"</p>
 
               <div className="flex items-center gap-2.5">
                 {testimonial.avatar ? (
@@ -71,8 +71,8 @@ const TestimonialOurExpertise = ({
                   />
                 ) : null}
                 <div className="flex flex-col gap-[5px]">
-                  <div className="font-medium text-sm sm:text-base text-white">{testimonial.author}</div>
-                  <div className="font-normal text-white/80 text-xs">
+                  <div className="font-medium text-sm sm:text-base text-fg">{testimonial.author}</div>
+                  <div className="font-normal text-fg/80 text-xs">
                     {testimonial.position}, {testimonial.company}
                   </div>
                 </div>

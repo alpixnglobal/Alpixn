@@ -20,7 +20,7 @@ type ProductListProps = {
 
 function ProductList({ listItems }: ProductListProps) {
   return (
-    <div className="text-white flex flex-col gap-[26px] h-full border-l border-[#FFFFFF33] ml-20 font-normal size-4 w-full">
+    <div className="text-fg flex flex-col gap-[26px] h-full border-l border-[#FFFFFF33] ml-20 font-normal size-4 w-full">
       {listItems.map((item, index) => (
         <NavigationMenuLink asChild key={item.href}>
           <Link key={index} href={item.href} className="hover:opacity-80 transition-opacity">
@@ -58,9 +58,9 @@ const ResourcesDropdownMenu = ({
   return (
     <div className="grid grid-cols-[38%_1fr_1fr] items-center h-full px-6.25 py-8.75">
       <div className="flex flex-col h-full ml-6.25 w-full max-w-131.25">
-        <h6 className="text-white font-semibold">{menu.title}</h6>
-        <p className="text-white opacity-80 mt-5">{menu.description}</p>
-        <p className="text-white opacity-80 mt-4">{menu.descriptionSecondary}</p>
+        <h6 className="text-fg font-semibold">{menu.title}</h6>
+        <p className="text-fg opacity-80 mt-5">{menu.description}</p>
+        <p className="text-fg opacity-80 mt-4">{menu.descriptionSecondary}</p>
         <Link href={menu.buttonHref}>
           <Button className="lg:max-w-35.75 mt-5">
             {menu.buttonLabel}
@@ -69,7 +69,7 @@ const ResourcesDropdownMenu = ({
         </Link>
       </div>
       <ProductList listItems={items} />
-      <div className="text-white flex">
+      <div className="text-fg flex">
         <Image src={menuImage} alt="Resource Image" width={429} height={347} unoptimized={menuImage.startsWith("data:") || menuImage.startsWith("http")} />
       </div>
     </div>

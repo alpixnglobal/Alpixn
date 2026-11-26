@@ -11,7 +11,7 @@ const ViewMoreWorkSection = ({ items, title = "View Our More Projects" }: ViewMo
   return (
     <section className="relative w-full py-12.5">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       {/* Content */}
       <div className="container max-w-[1350px]">

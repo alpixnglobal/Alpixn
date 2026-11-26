@@ -1402,7 +1402,7 @@ export default function IndustriesWeServeSection() {
   return (
     <section
       className="w-full py-8 md:py-10 lg:py-[50px]"
-      style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}
+      style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}
     >
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px]">
         {/* Title and Subtitle */}
@@ -1436,14 +1436,14 @@ export default function IndustriesWeServeSection() {
                       "border-b-[3px] transition-all duration-300",
                       isActive
                         ? `
-  text-white
+  text-fg
   ${index === 0 ? "rounded-t-[10px]" : ""}
-  bg-[linear-gradient(180deg,_#389EFF_0%,_#003098_100%)]
+  bg-[linear-gradient(180deg,_var(--tech)_0%,_#064A87_100%)]
   border-transparent
-  [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_#389EFF_100%)]
+  [border-image-source:radial-gradient(50%_1289.19%_at_50%_100%,_#FFFFFF_0%,_var(--tech)_100%)]
   [border-image-slice:1]
 `
-                        : "text-white border-white/15 hover:text-white",
+                        : "text-fg border-fg/15 hover:text-white",
                     )}
                   >
                     {/* LABEL */}
@@ -1507,11 +1507,11 @@ export default function IndustriesWeServeSection() {
                             transition-shadow
                             duration-300
                             ease-out
-                            hover:shadow-[0_0_0_1px_rgba(56,158,255,0.35),_0_18px_45px_rgba(56,158,255,0.25)]
+                            hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--tech)_35%,transparent),_0_18px_45px_color-mix(in_srgb,var(--tech)_25%,transparent)]
                           "
                           style={{
                             background:
-                              "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                              "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                           }}
                         >
                           {/* Gradient Border */}
@@ -1529,7 +1529,7 @@ export default function IndustriesWeServeSection() {
                             style={{
                               border: "1px solid transparent",
                               background:
-                                "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(56,158,255,0.8) 100%) border-box",
+                                "linear-gradient(180deg, rgba(255,255,255,0.5) 0%, color-mix(in srgb, var(--tech) 80%, transparent) 100%) border-box",
                               WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                               WebkitMaskComposite: "xor",
                               maskComposite: "exclude",
@@ -1537,7 +1537,7 @@ export default function IndustriesWeServeSection() {
                             }}
                           />
 
-                          <span className="text-sm font-semibold relative z-10 text-white">
+                          <span className="text-sm font-semibold relative z-10 text-fg">
                             {item.title}
                           </span>
 

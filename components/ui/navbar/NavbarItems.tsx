@@ -91,9 +91,9 @@ export default function Navbar({
 
   return (
     <NavigationMenu className="" viewport={false}>
-      <NavigationMenuList className="xl:gap-[10px]">
+      <NavigationMenuList className="gap-0.5 2xl:gap-1.5">
         <NavigationMenuItem>
-          <NavigationMenuLink asChild className="text-black text-base font-medium leading-snug hover:text-blue-600 transition-colors px-3 py-2">
+          <NavigationMenuLink asChild className="nav-link">
             <Link href="/">
               Home
             </Link>
@@ -101,7 +101,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuLink asChild className="text-black text-base font-medium leading-snug hover:text-blue-600 transition-colors px-3 py-2">
+          <NavigationMenuLink asChild className="nav-link">
             <Link href="/about">
               About
             </Link>
@@ -109,7 +109,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-base font-medium leading-snug hover:text-blue-600 data-[state=open]:text-blue-600 bg-transparent hover:bg-transparent px-3 py-2">
+          <NavigationMenuTrigger className="nav-link bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
             <span className="flex items-center gap-2">Our Expertise</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="dropdown-content-menu-panel">
@@ -118,7 +118,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-base font-medium leading-snug hover:text-blue-600 data-[state=open]:text-blue-600 bg-transparent hover:bg-transparent px-3 py-2">
+          <NavigationMenuTrigger className="nav-link bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
             <span className="flex items-center gap-2">Offshore Developer</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="dropdown-content-menu-panel flex items-center">
@@ -127,7 +127,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-base font-medium leading-snug hover:text-blue-600 data-[state=open]:text-blue-600 bg-transparent hover:bg-transparent px-3 py-2">
+          <NavigationMenuTrigger className="nav-link bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
             <span className="flex items-center gap-2">Products</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="dropdown-content-menu-panel flex items-center">
@@ -136,7 +136,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-base font-medium leading-snug hover:text-blue-600 data-[state=open]:text-blue-600 bg-transparent hover:bg-transparent px-3 py-2">
+          <NavigationMenuTrigger className="nav-link bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
             <span className="flex items-center gap-2">Technologies</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="dropdown-content-menu-panel flex items-center">
@@ -145,7 +145,7 @@ export default function Navbar({
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-black text-base font-medium leading-snug hover:text-blue-600 data-[state=open]:text-blue-600 bg-transparent hover:bg-transparent px-3 py-2">
+          <NavigationMenuTrigger className="nav-link bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
             <span className="flex items-center gap-2">Resources</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="dropdown-content-menu-panel flex items-center">

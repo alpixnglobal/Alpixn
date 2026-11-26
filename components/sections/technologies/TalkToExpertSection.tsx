@@ -46,10 +46,10 @@ function TalkCard({ card }: { card: TechnologySimpleCardRecord }) {
         }}
       />
 
-      <div className="relative z-10 p-4 sm:p-5 w-full h-full rounded-[10px]" style={{ background: "linear-gradient(179.84deg, rgba(56, 158, 255, 0.35) -59.75%, rgba(24, 24, 24, 0) 99.86%)" }}>
+      <div className="relative z-10 p-4 sm:p-5 w-full h-full rounded-[10px]" style={{ background: "linear-gradient(179.84deg, color-mix(in srgb, var(--tech) 35%, transparent) -59.75%, rgba(24, 24, 24, 0) 99.86%)" }}>
         <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
           <h4 className="text-base sm:text-lg font-semibold">{card.title}</h4>
-          <p className="font-normal text-white/80 text-xs sm:text-sm md:text-base leading-relaxed w-full">{card.description}</p>
+          <p className="font-normal text-fg/80 text-xs sm:text-sm md:text-base leading-relaxed w-full">{card.description}</p>
         </div>
       </div>
     </div>
@@ -61,14 +61,14 @@ const TalkToExpertSection = ({ title = "Expert Node.js Development: Making the C
 
   return (
     <section className="sectionDefault pt-[100px]">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1352px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 xl:gap-[58px]">
           <div className="lg:sticky lg:top-0 lg:self-start order-1 lg:order-1">
             <div className="flex flex-col items-center lg:items-start gap-4 md:gap-5">
               <h2 className="title heading-gradient text-left">{title}</h2>
-              <Link href={buttonHref} className="py-2.5 px-6.25 bg-[#389EFF] rounded-10 text-base font-medium w-full sm:w-auto cursor-pointer">
+              <Link href={buttonHref} className="py-2.5 px-6.25 bg-tech rounded-10 text-base font-medium w-full sm:w-auto cursor-pointer">
                 {buttonLabel}
               </Link>
             </div>

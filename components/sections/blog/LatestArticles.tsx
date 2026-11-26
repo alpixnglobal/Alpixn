@@ -22,7 +22,7 @@ const LatestArticles = ({
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1350px]">
         <div className="grid grid-cols-1 justify-between xl:grid-cols-[auto_66px_412px]">
@@ -34,7 +34,7 @@ const LatestArticles = ({
                 <Link
                   key={post._id}
                   href={`/resources/blogs/${post.slug}`}
-                  className={`grid grid-cols-1 gap-[15px] items-stretch lg:grid-cols-[497px_1fr] ${index < latestPosts.length - 1 ? "mt-12.5 border-b border-white/25 pb-[35px]" : "mt-[35px]"}`}
+                  className={`grid grid-cols-1 gap-[15px] items-stretch lg:grid-cols-[497px_1fr] ${index < latestPosts.length - 1 ? "mt-12.5 border-b border-fg/25 pb-[35px]" : "mt-[35px]"}`}
                 >
                   <div className="relative h-[251px] w-full">
                     {post.imageData ? (
@@ -46,14 +46,14 @@ const LatestArticles = ({
 
                   <div className="flex flex-col gap-2.5">
                     <div className="text-sm font-medium md:text-base">{post.title}</div>
-                    <div className="text-xs tracking-[3%] text-white/75">By: {post.author}</div>
-                    <p className="text-sm leading-relaxed text-white/70">{post.excerpt}</p>
+                    <div className="text-xs tracking-[3%] text-fg/75">By: {post.author}</div>
+                    <p className="text-sm leading-relaxed text-fg/70">{post.excerpt}</p>
                   </div>
                 </Link>
               ))}
 
               {latestPosts.length === 0 ? (
-                <div className="mt-12.5 rounded-[10px] border border-white/10 bg-white/[0.03] p-6 text-white/75">{emptyMessage}</div>
+                <div className="mt-12.5 rounded-[10px] border border-fg/10 bg-fg/[0.03] p-6 text-fg/75">{emptyMessage}</div>
               ) : null}
             </div>
           </div>
@@ -67,7 +67,7 @@ const LatestArticles = ({
               {categories.map((category) => (
                 <div
                   key={category}
-                  className="flex items-center rounded-[10px] border border-[#389EFF73] bg-[#389EFF0D] p-5 text-xs sm:text-sm lg:text-base"
+                  className="flex items-center rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] p-5 text-xs sm:text-sm lg:text-base"
                   style={{ backdropFilter: "blur(15px)" }}
                 >
                   {category}

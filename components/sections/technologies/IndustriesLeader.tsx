@@ -30,11 +30,11 @@ function StatCard({ item, className = "" }: { item: TechnologyStatRecord; classN
       <div
         className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-[10px] gap-2"
         style={{
-          background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+          background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
         }}
       >
-        <div className="font-semibold text-center text-2xl md:text-4xl text-white">{item.value}</div>
-        <div className="text-center text-sm  md:text-base text-white">{item.label}</div>
+        <div className="font-semibold text-center text-2xl md:text-4xl text-fg">{item.value}</div>
+        <div className="text-center text-sm  md:text-base text-fg">{item.label}</div>
       </div>
     </div>
   );
@@ -47,7 +47,7 @@ const IndustriesLeader = ({ title = "What Makes Us an Industry Leader?", stats =
 
   return (
     <div className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }} />
 
       <div className="container max-w-196.25">
         <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>

@@ -121,7 +121,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)",
         }}
       />
 
@@ -154,11 +154,11 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
 
           {/* Right */}
           <div className="flex flex-col gap-8">
-            <h2 className="font-semibold text-xl sm:text-2xl lg:text-3xl text-white leading-snug">
+            <h2 className="font-semibold text-xl sm:text-2xl lg:text-3xl text-fg leading-snug">
               {active.title}
             </h2>
 
-            <p className="font-normal text-sm sm:text-base text-white leading-relaxed">
+            <p className="font-normal text-sm sm:text-base text-fg leading-relaxed">
               {active.description}
             </p>
 
@@ -235,7 +235,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
 const FeatureItem = ({ text }: { text: string }) => (
   <div className="flex gap-[13.75px] items-start ">
     <Image src="/icons/filled-arrow-right.svg" width={23} height={23} alt="Arrow" />
-    <p className="text-white font-normal text-sm sm:text-base">{text}</p>
+    <p className="text-fg font-normal text-sm sm:text-base">{text}</p>
   </div>
 );
 

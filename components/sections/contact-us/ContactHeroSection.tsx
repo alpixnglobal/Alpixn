@@ -14,7 +14,7 @@ const ContactHeroSection = ({
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }}
       />
 
       {/* Rectangle 9545 */}
@@ -32,7 +32,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[1440px] h-[191px] left-0 top-[338px]"
         style={{
-          background: "#389EFF",
+          background: "var(--tech)",
           opacity: 0.66,
           filter: "blur(72.5px)",
         }}
@@ -42,7 +42,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[320px] h-[320px] left-[1183px] top-[143px]"
         style={{
-          background: "linear-gradient(180deg, #D42190 0%, #389EFF 100%)",
+          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 100%)",
           opacity: 0.53,
           filter: "blur(250px)",
         }}
@@ -52,7 +52,7 @@ const ContactHeroSection = ({
       <div
         className="absolute w-[320px] h-[320px] left-[-79px] top-[143px]"
         style={{
-          background: "linear-gradient(180deg, #D42190 0%, #389EFF 100%)",
+          background: "linear-gradient(180deg, #D42190 0%, var(--tech) 100%)",
           opacity: 0.53,
           filter: "blur(250px)",
         }}

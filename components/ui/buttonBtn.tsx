@@ -12,9 +12,9 @@ const buttonVariants = cva(
       variant: {
         // Your custom variants
         primary:
-          "bg-[#389EFF] text-white border-2 border-[#389EFF] hover:bg-[#2980db] hover:border-[#2980db] shadow-[0_2px_10px_rgba(157,216,255,0.1)]",
+          "bg-tech text-white border-2 border-tech hover:bg-[#2980db] hover:border-[#2980db] shadow-[0_2px_10px_rgba(157,216,255,0.1)]",
         secondary: "bg-gray-100 text-gray-800 border-2 border-gray-300 hover:bg-gray-200 hover:border-gray-400",
-        outlined: "bg-transparent text-white border-2 border-[#389EFF] hover:bg-[#389EFF] hover:text-white",
+        outlined: "bg-transparent text-white border-2 border-tech hover:bg-tech hover:text-white",
         // Keep shadcn's defaults
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",

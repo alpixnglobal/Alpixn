@@ -59,16 +59,16 @@ function WideCard({ card }: { card: TechnologyChallengeCardRecord }) {
   return (
     <div className="relative h-[370px] w-full rounded-[10px] lg:max-w-[637px]">
       <BorderOverlay />
-      <div className="relative z-10 h-full w-full overflow-hidden rounded-[9px]" style={{ background: "linear-gradient(180deg, rgba(24,24,24,0.24) 0%, rgba(56,158,255,0.06) 100%)" }}>
+      <div className="relative z-10 h-full w-full overflow-hidden rounded-[9px]" style={{ background: "linear-gradient(180deg, rgba(24,24,24,0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)" }}>
         <div className="relative z-30 ml-5 mt-5 flex max-w-[397px] flex-col gap-[15px]">
           <h6 className="font-semibold text-base md:text-lg">{card.title}</h6>
-          <p className="text-white/80 font-normal text-xs md:text-sm leading-relaxed">{card.description}</p>
+          <p className="text-fg/80 font-normal text-xs md:text-sm leading-relaxed">{card.description}</p>
           {card.linkLabel ? (
-            <button type="button" className="flex gap-2.5 items-center text-[#389EFF] hover:text-blue-300 transition-colors">
+            <button type="button" className="flex gap-2.5 items-center text-tech hover:text-blue-300 transition-colors">
               <span className="text-xs md:text-base">{card.linkLabel}</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[14] h-[14] md:w-[16px] md:h-[16px]">
-                <path d="M1 8H15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M8 1L15 8L8 15" stroke="#389EFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M1 8H15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8 1L15 8L8 15" stroke="#2EA8FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
           ) : null}
@@ -88,10 +88,10 @@ function NarrowCard({ card }: { card: TechnologyChallengeCardRecord }) {
   return (
     <div className="relative h-[370px] w-full rounded-[10px] lg:max-w-[431px]">
       <BorderOverlay />
-      <div className="relative z-10 h-full w-full overflow-hidden rounded-[9px]" style={{ background: "linear-gradient(180deg, rgba(24,24,24,0.24) 0%, rgba(56,158,255,0.06) 100%)" }}>
+      <div className="relative z-10 h-full w-full overflow-hidden rounded-[9px]" style={{ background: "linear-gradient(180deg, rgba(24,24,24,0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)" }}>
         <div className="relative z-30 ml-5 mr-5 mt-5 flex flex-col gap-[15px] lg:mr-0 lg:max-w-[397px]">
           <h6 className="font-semibold text-base md:text-lg">{card.title}</h6>
-          <p className="text-white/80 font-normal text-xs md:text-sm leading-relaxed">{card.description}</p>
+          <p className="text-fg/80 font-normal text-xs md:text-sm leading-relaxed">{card.description}</p>
           <div className="relative h-[158px] w-full lg:w-[391px]">
             <Image src={card.imageData} alt={card.title} fill priority className="object-cover rounded-[5px]" unoptimized={shouldUnoptimize} />
           </div>
@@ -107,7 +107,7 @@ const ChallengesResolveSection = ({ title = "Challenges We'll Assist You Resolve
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1171px]">
         <h2 className="title heading-gradient-white text-left sm:text-center">

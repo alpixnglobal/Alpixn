@@ -94,7 +94,7 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
                   trailing={
                     <div className="flex flex-wrap gap-2">
                       {item.featured ? (
-                        <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+                        <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-sky-100">
                           Featured
                         </span>
                       ) : null}

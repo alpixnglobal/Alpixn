@@ -10,7 +10,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -35,8 +35,8 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
         <div
           className="w-full h-full rounded-full"
           style={{
-            background: "linear-gradient(180deg, rgba(0, 35, 72, 0.92) -7.03%, #00070E 20.94%)",
-            boxShadow: "inset 0px 5px 126px rgba(56, 158, 255, 0.88), inset 0px 69px 78px rgba(20, 39, 170, 0.1)",
+            background: "linear-gradient(180deg, color-mix(in srgb, var(--glow) 92%, transparent) -7.03%, var(--canvas) 20.94%)",
+            boxShadow: "inset 0px 5px 126px color-mix(in srgb, var(--tech) 88%, transparent), inset 0px 69px 78px rgba(20, 39, 170, 0.1)",
           }}
         />
       </div>
@@ -58,8 +58,8 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
         <div
           className="w-full h-full rounded-full"
           style={{
-            background: "linear-gradient(180deg, rgba(0, 35, 72, 0.92) -7.03%, #00070E 20.94%)",
-            boxShadow: "inset 0px 5px 90px rgba(56, 158, 255, 0.8), inset 0px 40px 60px rgba(20, 39, 170, 0.1)",
+            background: "linear-gradient(180deg, color-mix(in srgb, var(--glow) 92%, transparent) -7.03%, var(--canvas) 20.94%)",
+            boxShadow: "inset 0px 5px 90px color-mix(in srgb, var(--tech) 80%, transparent), inset 0px 40px 60px rgba(20, 39, 170, 0.1)",
           }}
         />
       </div>
@@ -77,7 +77,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
           left: "50%",
           top: "461px",
           transform: "translateX(-50%)",
-          background: "#389EFF",
+          background: "var(--tech)",
           filter: "blur(100px)",
           opacity: 0.72,
           animation: "careers-earth-open 2.2s cubic-bezier(0.22, 1, 0.36, 1) both, careers-earth-glow 12s ease-in-out 2.2s infinite",
@@ -93,7 +93,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
           left: "50%",
           top: "62%",
           transform: "translateX(-50%)",
-          background: "#389EFF",
+          background: "var(--tech)",
           filter: "blur(90px)",
           opacity: 0.68,
           animation: "careers-earth-open 2.2s cubic-bezier(0.22, 1, 0.36, 1) both, careers-earth-glow 12s ease-in-out 2.2s infinite",
@@ -114,7 +114,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
             {title}
           </h1>
 
-          <p className="max-w-[680px] text-base md:text-lg font-normal leading-relaxed text-white/90 text-left sm:mx-auto sm:text-center [text-shadow:0_2px_16px_rgba(0,0,0,0.45)]">
+          <p className="max-w-[680px] text-base md:text-lg font-normal leading-relaxed text-fg/90 text-left sm:mx-auto sm:text-center [text-shadow:0_2px_16px_rgba(0,0,0,0.45)]">
             {description}
           </p>
         </div>

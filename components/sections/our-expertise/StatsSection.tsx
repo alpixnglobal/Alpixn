@@ -44,7 +44,7 @@ const StatsSection = ({ slug = "software-development", data }: StatsSectionProps
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}
       />
 
       {/* Container */}
@@ -57,11 +57,11 @@ const StatsSection = ({ slug = "software-development", data }: StatsSectionProps
           >
             {highlights.map((highlight, index) => (
               <div key={`${highlight.value}-${index}`} className={`relative flex flex-col items-center gap-1.5 xl:gap-2 ${itemPaddingClass}`}>
-                <div className={`text-white font-semibold leading-none ${valueTextClass}`}>
+                <div className={`text-fg font-semibold leading-none ${valueTextClass}`}>
                   {highlight.value}
                 </div>
-                <div className={`text-center text-white/95 leading-snug lg:whitespace-nowrap ${labelTextClass}`}>{highlight.label}</div>
-                {index < highlights.length - 1 ? <div className="hidden lg:block absolute right-0 top-0 bottom-0 border-r border-white/25" /> : null}
+                <div className={`text-center text-fg/95 leading-snug lg:whitespace-nowrap ${labelTextClass}`}>{highlight.label}</div>
+                {index < highlights.length - 1 ? <div className="hidden lg:block absolute right-0 top-0 bottom-0 border-r border-fg/25" /> : null}
               </div>
             ))}
           </div>
@@ -94,12 +94,12 @@ const StatsSection = ({ slug = "software-development", data }: StatsSectionProps
                 className="relative z-10 p-5 w-full h-full rounded-[10px]"
                 style={{
                   background:
-                    "linear-gradient(179.84deg, rgba(56, 158, 255, 0.35) -59.75%, rgba(24, 24, 24, 0) 99.86%)",
+                    "linear-gradient(179.84deg, color-mix(in srgb, var(--tech) 35%, transparent) -59.75%, rgba(24, 24, 24, 0) 99.86%)",
                 }}
               >
                 <div className="flex flex-col gap-5">
                   <h4 className="text-lg md:text-xl font-semibold max-w-[369px]">{item.title}</h4>
-                  <p className="font-normal text-white/80 text-xs xl:text-sm leading-relaxed">{item.description}</p>
+                  <p className="font-normal text-fg/80 text-xs xl:text-sm leading-relaxed">{item.description}</p>
                 </div>
               </div>
             </div>

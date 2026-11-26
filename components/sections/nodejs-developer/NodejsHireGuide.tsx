@@ -35,7 +35,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
   return (
     <section className="sectionDefault">
       {/* Background Color */}
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 75%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }} />
 
       {/* Container */}
       <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-[45px]">
@@ -51,7 +51,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
               xl:h-[594px]
               rounded-t-[10px]
             "
-            style={{ background: "#389EFF0D", backdropFilter: "blur(15px)" }}
+            style={{ background: "color-mix(in srgb, var(--tech) 5%, transparent)", backdropFilter: "blur(15px)" }}
           >
             {tabs.map((tab, index) => {
               const isActive = active === tab.key;
@@ -68,18 +68,18 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
                   style={
                     isActive
                       ? {
-                          background: "linear-gradient(180deg, #389EFF 0%, #003098 100%)",
+                          background: "linear-gradient(180deg, var(--tech) 0%, #064A87 100%)",
                           borderBottom: "3px solid",
-                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, #FFFFFF 0%, #389EFF 100%)",
+                          borderImageSource: "radial-gradient(50% 1289.19% at 50% 100%, #FFFFFF 0%, var(--tech) 100%)",
                         }
                       : {
-                          background: "#389EFF0D",
+                          background: "color-mix(in srgb, var(--tech) 5%, transparent)",
                           border: "1px solid #FFFFFF26",
                           backdropFilter: "blur(15px)",
                         }
                   }
                 >
-                  <span className="ml-4 sm:ml-5 text-white text-sm md:text-base font-medium font-roboto">
+                  <span className="ml-4 sm:ml-5 text-fg text-sm md:text-base font-medium font-roboto">
                     {tab.label}
                   </span>
                 </div>
@@ -99,7 +99,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
             "
             style={{
               background:
-                "linear-gradient(249.67deg, rgba(56,158,255,0.35) 0%, rgba(24,24,24,0) 49%, rgba(56,158,255,0.35) 100%)",
+                "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24,24,24,0) 49%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
               border: "2px solid #FFFFFF26",
               backdropFilter: "blur(4px)",
             }}
@@ -108,7 +108,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
               className="p-4 sm:p-5 h-full overflow-y-scroll custom-scrollbar"
               style={{
                 scrollbarWidth: "thin",
-                scrollbarColor: "#389EFF #ffffff1a",
+                scrollbarColor: "var(--tech) #ffffff1a",
               }}
             >
               <style jsx>{`
@@ -122,7 +122,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
                 }
 
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                  background: #389eff;
+                  background: var(--tech);
                   border-radius: 4px;
                 }
 
@@ -133,12 +133,12 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
 
               {activeContent && (
                 <>
-                  <h6 className="text-white text-xs">{activeContent.section}</h6>
+                  <h6 className="text-fg text-xs">{activeContent.section}</h6>
 
                   {activeContent.items.map((item, idx) => (
                     <div key={idx} className="mt-4 sm:mt-5">
-                      <h5 className="text-white text-sm md:text-base font-semibold">{item.title}</h5>
-                      <p className="text-white text-xs md:text-base leading-relaxed mt-2.5">{item.description}</p>
+                      <h5 className="text-fg text-sm md:text-base font-semibold">{item.title}</h5>
+                      <p className="text-fg text-xs md:text-base leading-relaxed mt-2.5">{item.description}</p>
                     </div>
                   ))}
                 </>

@@ -70,7 +70,7 @@ const SuccessPropelSection = ({ title = "Node.js Development Services That Prope
 
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 65%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }} />
 
       <div className="container max-w-316.75">
         <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
@@ -89,10 +89,10 @@ const SuccessPropelSection = ({ title = "Node.js Development Services That Prope
                 }}
               />
 
-              <div className={`relative z-10 p-4 sm:p-5 w-full h-full ${cornerClasses[index % cornerClasses.length]}`} style={{ background: "linear-gradient(179.84deg, rgba(56, 158, 255, 0.35) -59.75%, rgba(24, 24, 24, 0) 99.86%)" }}>
+              <div className={`relative z-10 p-4 sm:p-5 w-full h-full ${cornerClasses[index % cornerClasses.length]}`} style={{ background: "linear-gradient(179.84deg, color-mix(in srgb, var(--tech) 35%, transparent) -59.75%, rgba(24, 24, 24, 0) 99.86%)" }}>
                 <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
                   <h4 className="text-base sm:text-lg font-semibold">{card.title}</h4>
-                  <p className="font-normal text-white/80 text-xs sm:text-sm leading-relaxed w-full">{card.description}</p>
+                  <p className="font-normal text-fg/80 text-xs sm:text-sm leading-relaxed w-full">{card.description}</p>
                 </div>
               </div>
             </div>

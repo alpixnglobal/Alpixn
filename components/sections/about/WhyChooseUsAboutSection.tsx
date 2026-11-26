@@ -33,7 +33,7 @@ const WhyChooseUsAboutSection = ({
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 45%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 45%, var(--glow) 100%)" }}
       />
 
       {/* Container */}
@@ -42,7 +42,7 @@ const WhyChooseUsAboutSection = ({
         <div className="flex flex-col">
           <div className="flex flex-col gap-[15px] items-center w-full mx-auto max-w-full lg:max-w-[723px]">
             <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center mr-auto sm:mr-0">{title}</h2>
-            <p className="text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">
+            <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">
               {subtitle}
             </p>
           </div>
@@ -55,7 +55,7 @@ const WhyChooseUsAboutSection = ({
             className="relative flex flex-col items-center h-[323px] min-h-[323px] w-full max-w-[436.33px] py-[25px] px-[20px] gap-2.5 lg:gap-[20px]"
             style={{
               borderRadius: "10px",
-              background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.06) 0%, rgba(24, 24, 24, 0) 100%)",
+              background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 6%, transparent) 0%, rgba(24, 24, 24, 0) 100%)",
             }}
             onMouseEnter={() => setIsCirleHovered(true)}
             onMouseLeave={() => setIsCirleHovered(false)}
@@ -159,8 +159,8 @@ const WhyChooseUsAboutSection = ({
                     y2="203.5"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.24" />
-                    <stop offset="1" stopColor="#001528" stopOpacity="0" />
+                    <stop stopColor="#064A87" stopOpacity="0.24" />
+                    <stop offset="1" stopColor="#071A33" stopOpacity="0" />
                   </linearGradient>
                   <linearGradient
                     id="paint1_linear_6546_545"
@@ -181,8 +181,8 @@ const WhyChooseUsAboutSection = ({
                     y2="52.4775"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint3_linear_6546_545"
@@ -203,11 +203,11 @@ const WhyChooseUsAboutSection = ({
             </div>
 
             {/* Heading and Description */}
-            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-white" style={{ zIndex: 2 }}>
+            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-fg" style={{ zIndex: 2 }}>
               {primaryCards[0].title}
             </h5>
             <p
-              className="text-center text-white/80 text-base font-normal leading-relaxed"
+              className="text-center text-fg/80 text-base font-normal leading-relaxed"
               style={{ zIndex: 2 }}
             >
               {primaryCards[0].description}
@@ -219,7 +219,7 @@ const WhyChooseUsAboutSection = ({
             className="relative flex flex-col items-center h-[323px] w-full max-w-[436.33px] py-[25px] px-[20px] gap-[20px]"
             style={{
               borderRadius: "10px",
-              background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.06) 0%, rgba(24, 24, 24, 0) 100%)",
+              background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 6%, transparent) 0%, rgba(24, 24, 24, 0) 100%)",
             }}
             onMouseEnter={() => setIsBarHovered(true)}
             onMouseLeave={() => setIsBarHovered(false)}
@@ -333,8 +333,8 @@ const WhyChooseUsAboutSection = ({
                     y2="23.6623"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint1_linear_6546_595"
@@ -355,8 +355,8 @@ const WhyChooseUsAboutSection = ({
                     y2="105.454"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint3_linear_6546_595"
@@ -377,8 +377,8 @@ const WhyChooseUsAboutSection = ({
                     y2="77.5503"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint5_linear_6546_595"
@@ -399,8 +399,8 @@ const WhyChooseUsAboutSection = ({
                     y2="42.5746"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint7_linear_6546_595"
@@ -417,12 +417,12 @@ const WhyChooseUsAboutSection = ({
               </svg>
             </div>
 
-            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-white" style={{ zIndex: 2 }}>
+            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-fg" style={{ zIndex: 2 }}>
               {primaryCards[1].title}
             </h5>
 
             <p
-              className="text-center text-white/80 text-base font-normal leading-relaxed max-w-[396px]"
+              className="text-center text-fg/80 text-base font-normal leading-relaxed max-w-[396px]"
               style={{ zIndex: 2 }}
             >
               {primaryCards[1].description}
@@ -434,7 +434,7 @@ const WhyChooseUsAboutSection = ({
             className="relative flex flex-col items-center h-[323px] w-full max-w-[436.33px] py-[25px] px-[20px] gap-[20px]"
             style={{
               borderRadius: "10px",
-              background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.06) 0%, rgba(24, 24, 24, 0) 100%)",
+              background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 6%, transparent) 0%, rgba(24, 24, 24, 0) 100%)",
             }}
             onMouseEnter={() => setIsCellHovered(true)}
             onMouseLeave={() => setIsCellHovered(false)}
@@ -711,8 +711,8 @@ const WhyChooseUsAboutSection = ({
                     y2="82.0996"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint1_linear_6546_566"
@@ -722,8 +722,8 @@ const WhyChooseUsAboutSection = ({
                     y2="25.8666"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint2_radial_6546_566"
@@ -744,8 +744,8 @@ const WhyChooseUsAboutSection = ({
                     y2="167.301"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint4_linear_6546_566"
@@ -755,8 +755,8 @@ const WhyChooseUsAboutSection = ({
                     y2="118.104"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint5_radial_6546_566"
@@ -777,8 +777,8 @@ const WhyChooseUsAboutSection = ({
                     y2="208.096"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint7_linear_6546_566"
@@ -788,8 +788,8 @@ const WhyChooseUsAboutSection = ({
                     y2="161.413"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint8_radial_6546_566"
@@ -810,8 +810,8 @@ const WhyChooseUsAboutSection = ({
                     y2="210.725"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint10_linear_6546_566"
@@ -821,8 +821,8 @@ const WhyChooseUsAboutSection = ({
                     y2="161.755"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint11_radial_6546_566"
@@ -843,8 +843,8 @@ const WhyChooseUsAboutSection = ({
                     y2="131.584"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint13_linear_6546_566"
@@ -854,8 +854,8 @@ const WhyChooseUsAboutSection = ({
                     y2="75.806"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint14_radial_6546_566"
@@ -876,8 +876,8 @@ const WhyChooseUsAboutSection = ({
                     y2="77.9805"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <linearGradient
                     id="paint16_linear_6546_566"
@@ -887,8 +887,8 @@ const WhyChooseUsAboutSection = ({
                     y2="19.8048"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint17_radial_6546_566"
@@ -909,8 +909,8 @@ const WhyChooseUsAboutSection = ({
                     y2="115.757"
                     gradientUnits="userSpaceOnUse"
                   >
-                    <stop stopColor="#00519F" stopOpacity="0.02" />
-                    <stop offset="1" stopColor="#001528" />
+                    <stop stopColor="#064A87" stopOpacity="0.02" />
+                    <stop offset="1" stopColor="#071A33" />
                   </linearGradient>
                   <radialGradient
                     id="paint19_radial_6546_566"
@@ -927,12 +927,12 @@ const WhyChooseUsAboutSection = ({
               </svg>
             </div>
 
-            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-white" style={{ zIndex: 2 }}>
+            <h5 className="text-xl md:text-2xl font-semibold leading-snug text-fg" style={{ zIndex: 2 }}>
               {primaryCards[2].title}
             </h5>
 
             <p
-              className="text-center text-white/80 text-base font-normal leading-relaxed max-w-[396px]"
+              className="text-center text-fg/80 text-base font-normal leading-relaxed max-w-[396px]"
               style={{ zIndex: 2 }}
             >
               {primaryCards[2].description}
@@ -947,7 +947,7 @@ const WhyChooseUsAboutSection = ({
                 key={`${card.title}-${index}`}
                 className="relative flex min-h-[220px] flex-col gap-4 rounded-[10px] px-5 py-6"
                 style={{
-                  background: "linear-gradient(249.67deg, rgba(56, 158, 255, 0.06) 0%, rgba(24, 24, 24, 0) 100%)",
+                  background: "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 6%, transparent) 0%, rgba(24, 24, 24, 0) 100%)",
                 }}
               >
                 <div
@@ -962,8 +962,8 @@ const WhyChooseUsAboutSection = ({
                     maskComposite: "exclude",
                   }}
                 />
-                <h5 className="relative z-10 text-xl md:text-2xl font-semibold leading-snug text-white">{card.title}</h5>
-                <p className="relative z-10 text-base font-normal leading-relaxed text-white/80">{card.description}</p>
+                <h5 className="relative z-10 text-xl md:text-2xl font-semibold leading-snug text-fg">{card.title}</h5>
+                <p className="relative z-10 text-base font-normal leading-relaxed text-fg/80">{card.description}</p>
               </div>
             ))}
           </div>

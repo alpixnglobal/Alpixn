@@ -32,7 +32,7 @@ const CustomSoftwareDevSection = ({ slug = "software-development", data }: CaseS
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)",
         }}
       />
 
@@ -83,12 +83,12 @@ const CustomSoftwareDevSection = ({ slug = "software-development", data }: CaseS
           {/* Right – Benefits List */}
           <div className="flex flex-col gap-6.25 px-4 lg:px-0">
             {resolvedData.benefits.map((benefit) => (
-              <div key={benefit.id} className="flex flex-col gap-3 border-b pb-5 border-white/50">
-                <h6 className="text-white font-semibold text-lg md:text-xl">
+              <div key={benefit.id} className="flex flex-col gap-3 border-b pb-5 border-fg/50">
+                <h6 className="text-fg font-semibold text-lg md:text-xl">
                   <div className="flex gap-2">
                     <span
                       style={{
-                        background: "linear-gradient(90deg, #389EFF 0%, #9747FF 100%)",
+                        background: "linear-gradient(90deg, var(--tech) 0%, var(--gold) 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
@@ -100,7 +100,7 @@ const CustomSoftwareDevSection = ({ slug = "software-development", data }: CaseS
                     <span>{benefit.title}</span>
                   </div>
                 </h6>
-                <p className="ml-[30px] text-xs sm:text-lg md:text-xl leading-relaxed text-white">
+                <p className="ml-[30px] text-xs sm:text-lg md:text-xl leading-relaxed text-fg">
                   {benefit.description}
                 </p>
               </div>

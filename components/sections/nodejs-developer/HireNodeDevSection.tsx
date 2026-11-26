@@ -25,7 +25,7 @@ const HireDeveloperSection = ({ slug = "default", data }: HireDeveloperSectionPr
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)",
         }}
       />
 
@@ -48,7 +48,7 @@ const HireDeveloperSection = ({ slug = "default", data }: HireDeveloperSectionPr
                 key={index}
                 className="relative flex flex-col gap-5 p-5 w-full lg:max-w-[calc(45vw-2rem)] xl:max-w-[533px] rounded-[10px]"
                 style={{
-                  background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+                  background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
                 }}
               >
                 {/* Gradient Border */}
@@ -65,8 +65,8 @@ const HireDeveloperSection = ({ slug = "default", data }: HireDeveloperSectionPr
                 />
 
                 <div className="relative z-10 flex flex-col gap-5">
-                  <h3 className="font-semibold text-base lg:text-xl text-white">{service.title}</h3>
-                  <p className="font-normal text-white/80 text-xs lg:text-base leading-relaxed">{service.description}</p>
+                  <h3 className="font-semibold text-base lg:text-xl text-fg">{service.title}</h3>
+                  <p className="font-normal text-fg/80 text-xs lg:text-base leading-relaxed">{service.description}</p>
                 </div>
               </div>
             ))}

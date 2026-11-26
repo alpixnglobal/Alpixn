@@ -16,7 +16,7 @@ const WhoWeAreSection = ({
   return (
     <section
       className="sectionDefault overflow-hidden"
-      style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}
+      style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}
     >
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px]">
         {/* Mobile/Tablet Layout */}
@@ -49,7 +49,7 @@ const WhoWeAreSection = ({
                   gradientUnits="userSpaceOnUse"
                 >
                   <stop stopColor="white" />
-                  <stop offset="0.475962" stopColor="#BCDEFF" />
+                  <stop offset="0.475962" stopColor="#7CC6FF" />
                   <stop offset="1" stopColor="white" />
                 </linearGradient>
               </defs>
@@ -57,7 +57,7 @@ const WhoWeAreSection = ({
               <span
                 className="text-gradient font-bold text-2xl md:text-3xl leading-snug"
               style={{
-                background: "linear-gradient(89.81deg, #FFFFFF 19.79%, #FFFFFF 76.65%, #BCDEFF 93.54%)",
+                background: "linear-gradient(89.81deg, #FFFFFF 19.79%, #FFFFFF 76.65%, var(--tech-soft) 93.54%)",
                 WebkitBackgroundClip: "text",
                 backgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -82,10 +82,10 @@ const WhoWeAreSection = ({
           </div>
 
           <div className="flex flex-col gap-4 sm:gap-6">
-            <p className="font-normal text-base md:text-lg text-white leading-relaxed">
+            <p className="font-normal text-base md:text-lg text-fg leading-relaxed">
               {paragraphOne}
             </p>
-            <p className="font-normal text-base md:text-lg text-white leading-relaxed">
+            <p className="font-normal text-base md:text-lg text-fg leading-relaxed">
               {paragraphTwo}
             </p>
           </div>
@@ -101,7 +101,7 @@ const WhoWeAreSection = ({
               <div
                 className="w-[86px] h-[2px]"
                 style={{
-                  background: "linear-gradient(90deg, #FFFFFF 0%, #BCDEFF 47.6%, #FFFFFF 100%)",
+                  background: "linear-gradient(90deg, #FFFFFF 0%, var(--tech-soft) 47.6%, #FFFFFF 100%)",
                 }}
               />
 
@@ -109,10 +109,10 @@ const WhoWeAreSection = ({
               </div>
 
             {/* Paragraph 1 */}
-            <p className="font-normal text-base md:text-lg leading-relaxed text-white/90">
+            <p className="font-normal text-base md:text-lg leading-relaxed text-fg/90">
               {paragraphOne}
             </p>
-            <p className="font-normal text-base md:text-lg leading-relaxed text-white/90">
+            <p className="font-normal text-base md:text-lg leading-relaxed text-fg/90">
               {paragraphTwo}
             </p>
           </div>

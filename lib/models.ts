@@ -72,16 +72,16 @@ const sharedStatSchema = new Schema(
 const siteSettingsSchema = new Schema(
   {
     key: { type: String, required: true, unique: true, index: true },
-    companyName: { type: String, default: "Axaon Company" },
-    shortName: { type: String, default: "AX" },
+    companyName: { type: String, default: "ALPIXN" },
+    shortName: { type: String, default: "ALPIXN" },
     experienceLabel: { type: String, default: "10+ Years" },
     headerTagline: { type: String, default: "Digital product engineering for ambitious teams." },
     footerDescription: { type: String, default: "Product, engineering, and growth support for modern teams." },
     newsletterTitle: { type: String, default: "Stay in the loop" },
     newsletterDescription: { type: String, default: "Get updates about product thinking, engineering, and company news." },
     // Logo
-    logoUrl: { type: String, default: "/images/logo.png" },
-    logoAlt: { type: String, default: "Axaon Company Logo" },
+    logoUrl: { type: String, default: "/brand/alpixn-logo-horizontal.webp" },
+    logoAlt: { type: String, default: "ALPIXN" },
     // Contact information
     contactEmail: { type: String, default: "info@axano.in" },
     contactPhone: { type: String, default: "+91 0000000000" },

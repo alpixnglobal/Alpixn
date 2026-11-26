@@ -75,7 +75,7 @@ export default function ApplicationStatusToast() {
         >
           {isSuccess ? successMessage.title : "Submission Failed"}
         </span>
-        <span className="text-xs text-white/70 leading-relaxed">
+        <span className="text-xs text-fg/70 leading-relaxed">
           {isSuccess
             ? successMessage.body
             : decodeURIComponent(error ?? "Something went wrong. Please try again.")}
@@ -88,7 +88,7 @@ export default function ApplicationStatusToast() {
           setLeaving(true);
           setTimeout(() => setVisible(false), 400);
         }}
-        className="ml-auto shrink-0 text-white/40 hover:text-white/80 transition-colors"
+        className="ml-auto shrink-0 text-fg/40 hover:text-white/80 transition-colors"
         aria-label="Close notification"
       >
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

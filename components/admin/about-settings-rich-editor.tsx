@@ -162,7 +162,7 @@ export function AboutSettingsRichEditor({ values }: { values: AboutSettingsRecor
             <AdminTextarea name="visionDescription" defaultValue={values.visionDescription} className="min-h-24" />
           </AdminField>
         </div>
-        <div className="lg:col-span-2 rounded-[18px] border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm leading-7 text-cyan-100">
+        <div className="lg:col-span-2 rounded-[18px] border border-sky-400/20 bg-sky-400/10 p-4 text-sm leading-7 text-sky-100">
           The number strip in this section is now managed globally from <strong>Admin Settings → Shared Stats</strong>.
           Changes there update both the About page and all Our Expertise pages.
         </div>

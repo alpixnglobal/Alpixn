@@ -14,7 +14,7 @@ const ImproveBusinessSection = ({ title = "Improve your business and make your w
       <div
         className="absolute inset-0 "
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -41,12 +41,12 @@ const ImproveBusinessSection = ({ title = "Improve your business and make your w
           {/* 1 */}
           <div className="flex flex-col bt-12.5 w-full max-w-full lg:max-w-175 gap-6.25 px-4 xl:px-5">
             <h2 className="heading-gradient text-left text-xl md:text-2xl lg:text-3xl font-bold leading-tight">{title}</h2>
-            <p className="text-sm md:text-base font-normal leading-relaxed text-white/80">
+            <p className="text-sm md:text-base font-normal leading-relaxed text-fg/80">
               {description}
             </p>
             <Link
               href={buttonHref}
-              className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-[#389EFF] rounded-[10px] w-63 cursor-pointer"
+              className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-tech rounded-[10px] w-63 cursor-pointer"
               style={{ boxShadow: "0px 4px 6px 0px #0000001A inset" }}
             >
               <span>{buttonLabel}</span>

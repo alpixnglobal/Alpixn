@@ -7,12 +7,12 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
     <section
       className="relative w-full h-[391px] overflow-hidden"
       style={{
-        // background: "radial-gradient(circle, #00070E 55%, #002348 100%)"
-        // background: "#00070E",
-        //   background: "#00070E",
+        // background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)"
+        // background: "var(--canvas)",
+        //   background: "var(--canvas)",
         // background: "linear-gradient(90deg,rgba(2, 0, 36, 1) 20%, rgba(9, 9, 121, 1) 35%, rgba(2, 0, 36, 1) 80%)",
-        // background: "linear-gradient(180deg, #00070E -7.46%, rgba(0, 35, 72, 0.15) 100%)"
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+        // background: "linear-gradient(180deg, var(--canvas) -7.46%, color-mix(in srgb, var(--glow) 15%, transparent) 100%)"
+        background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
       }}
     >
       {/* Background Image */}
@@ -49,7 +49,7 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
           height: "83%",
           left: "-7%",
           top: "103%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}
@@ -63,7 +63,7 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
           height: "83%",
           right: "-7%",
           top: "-29%",
-          background: "linear-gradient(0deg, #389EFF, #389EFF)",
+          background: "linear-gradient(0deg, var(--tech), var(--tech))",
           opacity: "0.71",
           filter: "blur(202.85px)",
         }}

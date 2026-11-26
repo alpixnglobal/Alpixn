@@ -12,10 +12,7 @@ const Header = async () => {
   ]);
 
   return (
-    <header
-      className="w-full border-b bg-white/95 backdrop-blur-sm sticky top-0 z-40"
-      style={{ boxShadow: "0px 2px 20px 0px #389EFF59" }}
-    >
+    <header className="site-header sticky top-0 z-40 w-full">
       <MainMenu
         products={products.map((product) => ({ label: product.navLabel, href: `/products/${product.slug}` }))}
         productMenu={{

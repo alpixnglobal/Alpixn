@@ -74,17 +74,17 @@ const defaultSharedStats = [
 
 const defaultSiteSettings: SiteSettings = {
   key: "site-settings",
-  companyName: "Axaon Company",
-  shortName: "AX",
+  companyName: "ALPIXN",
+  shortName: "ALPIXN",
   experienceLabel: "10+ Years",
   headerTagline: "Engineering modern digital products and growth systems.",
   footerDescription:
-    "Axaon Company helps teams design, build, and scale products with product strategy, engineering, AI, and digital growth support.",
+    "ALPIXN helps teams design, build, and scale products with product strategy, engineering, AI, and digital growth support.",
   newsletterTitle: "Insights worth reading",
   newsletterDescription: "Follow updates across engineering, careers, portfolio work, and product thinking.",
   // Logo
-  logoUrl: "/images/logo.png",
-  logoAlt: "Axaon Company Logo",
+  logoUrl: "/brand/alpixn-logo-horizontal.webp",
+  logoAlt: "ALPIXN",
   // Contact information
   contactEmail: "info@axano.in",
   contactPhone: "+91 0000000000",
@@ -194,7 +194,7 @@ const defaultSiteSettings: SiteSettings = {
       ...defaultPageCopy,
       heroTitle: "Our Internship Candidates",
       heroDescription:
-        "We are proud of the interns who completed their training journey with Axaon Company.",
+        "We are proud of the interns who completed their training journey with ALPIXN.",
       ctaTitle: "Want To Be Part Of The Next Batch?",
       ctaDescription: "Join our growing team of innovators and gain real-world experience through hands-on projects and mentorship.",
       ctaButtonLabel: "Apply for Internship",
@@ -881,7 +881,7 @@ const blogSeedData = [
       "How structured prompt pipelines make FastAPI services more composable, testable, and easier to evolve inside AI-backed systems.",
     content:
       "Prompt orchestration becomes much easier to reason about when the control flow is explicit. LCEL gives teams a consistent way to compose prompts, retrieval, and model calls without burying that logic across multiple service layers.\n\nIn FastAPI projects, that matters because the API surface stays clean while the prompt chain remains modular. Teams can iterate on prompts, add routing logic, and test individual branches without turning the request lifecycle into a black box.\n\nA good implementation treats prompt chains like application logic instead of magic strings. That usually means better observability, safer rollouts, and simpler maintenance for product teams building AI features in production.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "4 min read",
     category: "AI Engineering",
     featured: true,
@@ -897,7 +897,7 @@ const blogSeedData = [
       "Choosing between a monolith and microservices depends less on trends and more on delivery shape, team structure, and product complexity.",
     content:
       "Architecture decisions usually fail when teams make them too early or for the wrong reasons. A monolith can be the fastest path for a product that still needs validation, while microservices become useful when teams need clearer ownership boundaries and isolated scaling.\n\nThe practical tradeoff is operational complexity. Microservices create more moving parts, more deployment surfaces, and more coordination overhead. If the organization is not ready for that, the architecture will hurt velocity instead of helping it.\n\nThe right answer comes from product maturity, deployment frequency, and how independently teams need to move. Architecture should support the business, not compete with it.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "5 min read",
     category: "Architecture",
     featured: false,
@@ -912,7 +912,7 @@ const blogSeedData = [
     excerpt: "Malformed JSON shows up often in real integrations. The value is in recovering safely without hiding upstream issues.",
     content:
       "Broken JSON appears in LLM outputs, vendor payloads, and partially formatted exports. Recovery tools are useful, but they work best when teams also log and classify what failed.\n\nUsing a repair step inside Python services can reduce downstream crashes and keep automation flows moving. Still, repaired output should be treated as a mitigation, not a replacement for proper validation and schema checks.\n\nThe healthiest approach is usually repair first, validate second, and report the failure path so the source can eventually be fixed.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "3 min read",
     category: "Python",
     featured: false,
@@ -927,7 +927,7 @@ const blogSeedData = [
     excerpt: "Legal NLP can accelerate review and research, but only when teams stay strict about accuracy, provenance, and human review.",
     content:
       "The legal domain benefits from NLP where the work is repetitive, document-heavy, and time-sensitive. Search, summarization, clause extraction, and issue spotting all become faster when language systems are applied carefully.\n\nThe challenge is that legal work has a low tolerance for ambiguity. Systems need traceability, confidence checks, and review workflows so that automation supports experts instead of replacing their judgment.\n\nThe best legal NLP products create leverage for practitioners by reducing manual effort while preserving accountability.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "4 min read",
     category: "NLP",
     featured: false,
@@ -942,7 +942,7 @@ const blogSeedData = [
     excerpt: "Retail teams are using generative AI where speed and personalization directly affect conversion and retention.",
     content:
       "Retail adoption succeeds when AI improves a measurable customer or operations workflow. Merchandising copy, personalized recommendations, customer support, and internal search are common places where generative systems already create value.\n\nWhat matters most is operational fit. Retail systems need guardrails for pricing, inventory, and policy-sensitive messaging, especially when AI touches customer-facing surfaces.\n\nWhen implemented with those constraints in mind, generative AI can increase content velocity and improve buying journeys without degrading brand consistency.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "4 min read",
     category: "Retail AI",
     featured: false,
@@ -958,7 +958,7 @@ const blogSeedData = [
       "Healthcare NLP creates leverage across records, documentation, and decision support when paired with strong clinical review.",
     content:
       "Healthcare organizations sit on large amounts of unstructured text. NLP helps transform that text into usable signals for coding, triage, documentation, and patient support workflows.\n\nThe opportunity is large, but healthcare teams also need privacy, auditability, and clinical safety. Systems should be built to support care teams, not create hidden failure points.\n\nTeams that combine domain expertise with careful product design can make NLP genuinely useful in care delivery and operations.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "4 min read",
     category: "Healthcare AI",
     featured: false,
@@ -973,7 +973,7 @@ const blogSeedData = [
     excerpt: "Text-based optimization is useful when teams need iterative prompt improvement with clearer feedback loops.",
     content:
       "Optimization frameworks like TextGrad are interesting because they formalize how prompts evolve. Instead of manual tweaking, teams can structure experimentation and use model-generated feedback as part of the iteration loop.\n\nThat does not eliminate evaluation discipline. Teams still need strong task definitions, human review, and success metrics to prevent the optimization process from drifting away from the actual product goal.\n\nUsed carefully, these frameworks can turn prompt work from ad hoc craft into a more repeatable engineering process.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "5 min read",
     category: "LLM Systems",
     featured: false,
@@ -988,7 +988,7 @@ const blogSeedData = [
     excerpt: "These two AI categories solve different business problems, and product teams should treat them that way.",
     content:
       "Generative AI creates new outputs while predictive AI estimates what is likely to happen next. The overlap in tooling can make them look similar, but the product and business use cases are different.\n\nPredictive systems usually power decisions such as forecasting, risk scoring, and demand planning. Generative systems are better suited to content, assistance, and interface-level intelligence.\n\nTeams make better bets when they start with the workflow they need to improve, then pick the AI pattern that actually fits it.",
-    author: "Axaon Company",
+    author: "ALPIXN",
     readTime: "4 min read",
     category: "AI Strategy",
     featured: false,

@@ -25,7 +25,7 @@ const TestimonialSection = ({ title = "What Our Clients Say", subtitle = "Real b
     <section
       className="w-full py-10 lg:py-12.5"
       style={{
-        background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)",
+        background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)",
       }}
     >
       {/* Container */}
@@ -45,7 +45,7 @@ const TestimonialSection = ({ title = "What Our Clients Say", subtitle = "Real b
               className="flex flex-col gap-5 p-5 rounded-[10px]"
               style={{
                 background:
-                  "linear-gradient(249.67deg, rgba(56, 158, 255, 0.35) 0%, rgba(24, 24, 24, 0) 49.04%, rgba(56, 158, 255, 0.35) 100%)",
+                  "linear-gradient(249.67deg, color-mix(in srgb, var(--tech) 35%, transparent) 0%, rgba(24, 24, 24, 0) 49.04%, color-mix(in srgb, var(--tech) 35%, transparent) 100%)",
                 border: "1px solid #FFFFFF26",
               }}
             >
@@ -53,7 +53,7 @@ const TestimonialSection = ({ title = "What Our Clients Say", subtitle = "Real b
                 <Image src={item.starsImageData} fill alt="rating stars" unoptimized={item.starsImageData.startsWith("data:") || item.starsImageData.startsWith("http")} />
               </div>
 
-              <p className="text-white/80 text-xs sm:text-base font-normal leading-relaxed">
+              <p className="text-fg/80 text-xs sm:text-base font-normal leading-relaxed">
                 “{item.quote}”
               </p>
 
@@ -62,8 +62,8 @@ const TestimonialSection = ({ title = "What Our Clients Say", subtitle = "Real b
                   <Image src={item.avatarImageData} fill alt="avatar" unoptimized={item.avatarImageData.startsWith("data:") || item.avatarImageData.startsWith("http")} />
                 </div>
                 <div className="flex flex-col">
-                  <div className="font-medium text-sm lg:text-base text-white">{item.name}</div>
-                  <div className="font-normal text-white/80 text-xs">{item.role}</div>
+                  <div className="font-medium text-sm lg:text-base text-fg">{item.name}</div>
+                  <div className="font-normal text-fg/80 text-xs">{item.role}</div>
                 </div>
               </div>
             </div>

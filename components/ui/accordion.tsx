@@ -14,7 +14,7 @@ function AccordionItem({ className, ...props }: React.ComponentProps<typeof Acco
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={cn("border-b last:border-b-0 border-white/20 pt-11 px-4 lg:px-0", className)}
+      className={cn("border-b last:border-b-0 border-fg/20 pt-11 px-4 lg:px-0", className)}
       {...props}
     />
   );
@@ -27,13 +27,13 @@ function AccordionTrigger({ className, children, ...props }: React.ComponentProp
         data-slot="accordion-trigger"
         className={cn(
           "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-3 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
-          "text-white/80 text-lg md:text-2xl",
+          "text-fg/80 text-lg md:text-2xl",
           className
         )}
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-white/80 pointer-events-none size-7 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        <ChevronDownIcon className="text-fg/80 pointer-events-none size-7 shrink-0 translate-y-0.5 transition-transform duration-200" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );

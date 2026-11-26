@@ -21,12 +21,12 @@ const JobDetailsSection = ({
 }: JobDetailsSectionProps) => {
   return (
     <div className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="container max-w-337.25">
         <div className="flex flex-col gap-[25px]">
           <h2 className="heading-gradient-white text-xl md:text-2xl font-bold leading-snug text-start">{overviewTitle}</h2>
-          <p className="text-sm leading-relaxed text-white/80 xl:text-base">{job.overview}</p>
+          <p className="text-sm leading-relaxed text-fg/80 xl:text-base">{job.overview}</p>
         </div>
 
         <div className="mt-12.5 flex flex-col gap-[25px]">
@@ -34,8 +34,8 @@ const JobDetailsSection = ({
           <ul className="flex flex-col">
             {job.responsibilities.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">
-                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/80 lg:mt-4" />
-                <p className="text-sm leading-relaxed text-white/80 xl:text-base">{point}</p>
+                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-fg/80 lg:mt-4" />
+                <p className="text-sm leading-relaxed text-fg/80 xl:text-base">{point}</p>
               </li>
             ))}
           </ul>
@@ -46,8 +46,8 @@ const JobDetailsSection = ({
           <ul className="flex flex-col">
             {job.requirements.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">
-                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/80 lg:mt-4" />
-                <p className="text-sm leading-relaxed text-white/80 xl:text-base">{point}</p>
+                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-fg/80 lg:mt-4" />
+                <p className="text-sm leading-relaxed text-fg/80 xl:text-base">{point}</p>
               </li>
             ))}
           </ul>
@@ -58,23 +58,23 @@ const JobDetailsSection = ({
           <ul className="flex flex-col">
             {job.benefits.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">
-                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-white/80 lg:mt-4" />
-                <p className="text-sm leading-relaxed text-white/80 xl:text-base">{point}</p>
+                <span className="mt-[9px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-fg/80 lg:mt-4" />
+                <p className="text-sm leading-relaxed text-fg/80 xl:text-base">{point}</p>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="mt-12.5 flex items-center justify-between gap-4">
-          <div className="text-sm font-medium text-white lg:text-base">{job.posted}</div>
+          <div className="text-sm font-medium text-fg lg:text-base">{job.posted}</div>
           <Link href={`/resources/careers/job-apply?job=${job.slug}`}>
             <button
-              className="relative flex w-fit cursor-pointer items-center gap-2.5 rounded-[8px] border px-4 py-2 text-white sm:rounded-[9px] sm:px-5 sm:py-2.5 xl:rounded-[10px] xl:px-6.25 xl:py-2.5"
+              className="relative flex w-fit cursor-pointer items-center gap-2.5 rounded-[8px] border px-4 py-2 text-fg sm:rounded-[9px] sm:px-5 sm:py-2.5 xl:rounded-[10px] xl:px-6.25 xl:py-2.5"
               style={{
-                background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+                background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)",
                 border: "1.5px solid transparent",
                 backgroundImage:
-                  "linear-gradient(360deg, #002348 0%, #00141F 100%), linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+                  "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%), linear-gradient(166.72deg, var(--tech) -20.31%, #FFFFFF 92.69%)",
                 backgroundOrigin: "border-box",
                 backgroundClip: "padding-box, border-box",
               }}

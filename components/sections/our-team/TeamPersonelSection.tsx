@@ -9,7 +9,7 @@ type TeamPersonelSectionProps = {
 const TeamPersonelSection = ({ members }: TeamPersonelSectionProps) => {
   return (
     <section className="sectionDefault">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, #00070E 55%, #002348 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="mx-auto w-full max-w-272.75">
         <div className="grid grid-cols-1 gap-6.25 px-4 lg:grid-cols-2 xl:grid-cols-3 xl:px-0">
@@ -29,7 +29,7 @@ const TeamPersonelSection = ({ members }: TeamPersonelSectionProps) => {
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center rounded-[15px]" style={{ background: member.accent }}>
-                      <span className="text-3xl md:text-4xl font-semibold leading-snug tracking-[0.24em] text-white">{member.initials}</span>
+                      <span className="text-3xl md:text-4xl font-semibold leading-snug tracking-[0.24em] text-fg">{member.initials}</span>
                     </div>
                   )}
                 </div>

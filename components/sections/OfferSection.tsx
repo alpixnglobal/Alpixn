@@ -63,16 +63,16 @@ const OfferingCard = ({ title, description, imageData, alt, width, height }: Hom
 
   return (
   <div
-    className="relative flex flex-col justify-between text-white rounded-10 w-full mx-auto h-55 sm:h-70  lg:h-77.25 p-5"
+    className="relative flex flex-col justify-between text-fg rounded-10 w-full mx-auto h-55 sm:h-70  lg:h-77.25 p-5"
     style={{
-      background: "linear-gradient(180deg, rgba(56, 158, 255, 0.35) -30.91%, rgba(24, 24, 24, 0) 100%)",
+      background: "linear-gradient(180deg, color-mix(in srgb, var(--tech) 35%, transparent) -30.91%, rgba(24, 24, 24, 0) 100%)",
       backdropFilter: "blur(4px)",
-      borderBottom: "3px solid #389EFF",
+      borderBottom: "3px solid var(--tech)",
     }}
   >
     <div className="flex flex-col gap-5">
       <p className="text-xl md:text-2xl font-semibold leading-snug">{title}</p>
-      <p className="text-white text-sm md:text-base font-normal leading-relaxed">{description}</p>
+      <p className="text-fg text-sm md:text-base font-normal leading-relaxed">{description}</p>
       <div className="flex justify-end mt-auto"></div>
     </div>
 
@@ -108,7 +108,7 @@ const OfferSection = ({
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 75%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 75%, var(--glow) 100%)" }}
       />
 
       {/* Container */}
@@ -116,7 +116,7 @@ const OfferSection = ({
         {/* Titlte and Subtitle */}
         <div className="flex flex-col gap-3.5">
           <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
-          <p className="max-w-[963px] mx-auto text-base md:text-lg font-normal leading-relaxed text-white/80 text-left sm:text-center">{subtitle}</p>
+          <p className="max-w-[963px] mx-auto text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{subtitle}</p>
         </div>
 
         {/* Grid */}

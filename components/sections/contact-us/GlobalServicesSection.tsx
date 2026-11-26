@@ -53,7 +53,7 @@ const GlobalServicesSection = ({
       {/* Background Color */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 65%, rgba(0, 35, 72, 1) 100%)" }}
+        style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }}
       />
       {/* Container */}
       <div className="container max-w-[1122px]">
@@ -76,7 +76,7 @@ const GlobalServicesSection = ({
                   key={index}
                   className="p-5 w-full h-[182px] rounded-[10px] relative"
                   style={{
-                    background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, rgba(56, 158, 255, 0.06) 100%)",
+                    background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
                   }}
                 >
                   {/* Gradient border overlay */}
@@ -98,7 +98,7 @@ const GlobalServicesSection = ({
                       <div className="w-7 h-7 lg:w-9 lg:h-9 relative flex-shrink-0">
                         <Image src={resolvedFlag} alt={office.name} fill className="object-contain" unoptimized={shouldUnoptimizeFlag} />
                       </div>
-                      <span className="font-semibold text-white text-lg lg:text-xl">{office.name}</span>
+                      <span className="font-semibold text-fg text-lg lg:text-xl">{office.name}</span>
                     </div>
 
                     <div className="flex gap-2.5 items-center">
@@ -128,7 +128,7 @@ const GlobalServicesSection = ({
                         />
                       </svg>
 
-                      <span className="font-normal text-white/80 text-sm lg:text-base">{office.email}</span>
+                      <span className="font-normal text-fg/80 text-sm lg:text-base">{office.email}</span>
                     </div>
 
                     <div className="flex gap-2.5 items-center">
@@ -136,7 +136,7 @@ const GlobalServicesSection = ({
                         <Image src="/icons/map.svg" alt="location" fill className="object-contain" />
                       </div>
 
-                      <span className="font-normal text-white/80 text-sm lg:text-base">{office.address}</span>
+                      <span className="font-normal text-fg/80 text-sm lg:text-base">{office.address}</span>
                     </div>
                   </div>
                 </div>

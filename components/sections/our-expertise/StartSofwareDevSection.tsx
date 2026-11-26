@@ -18,21 +18,21 @@ const StartDevelopmentSection = ({ slug = "software-development", data }: StartD
   const { title, subtitle, buttonText, buttonLink } = data ?? { ...fallbackData, buttonLink: "/contact-us" };
 
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-[100px]" style={{ background: "#00070E" }}>
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-[100px]" style={{ background: "var(--canvas)" }}>
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
         {/* Card */}
         <div
           className="w-full max-w-full lg:max-w-[1094px] mx-auto p-6 sm:p-8 md:p-12 lg:p-[85px] rounded-xl sm:rounded-2xl lg:rounded-[20px]"
           style={{
-            background: "linear-gradient(277.65deg, #389EFF -120%, rgba(0, 20, 31, 0) 51.07%, #389EFF 190.99%)",
+            background: "linear-gradient(277.65deg, var(--tech) -120%, transparent 51.07%, var(--tech) 190.99%)",
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug">
+            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-fg text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug">
               {title}
             </h2>
 
-            <p className="font-normal text-base md:text-lg leading-relaxed text-left sm:text-center text-white">
+            <p className="font-normal text-base md:text-lg leading-relaxed text-left sm:text-center text-fg">
               {subtitle}
             </p>
 

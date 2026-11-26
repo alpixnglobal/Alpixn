@@ -36,7 +36,7 @@ function OurOfferingsGrid({ items }: { items: ExpertiseItem[] }) {
   const columnCount = columns.length;
 
   return (
-    <div className="grid text-white relative" style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)`, columnGap: "5rem" }}>
+    <div className="grid text-fg relative" style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)`, columnGap: "5rem" }}>
       {columns.map((columnItems, colIndex) => (
         <div key={colIndex} className="flex flex-col gap-5">
           {columnItems.map((item) => (
@@ -55,7 +55,7 @@ function OurOfferingsGrid({ items }: { items: ExpertiseItem[] }) {
           className="absolute top-0 h-full flex justify-center"
           style={{ left: `${(100 / columnCount) * (index + 1)}%`, transform: "translateX(-1.5rem)" }}
         >
-          <div className="h-full w-px bg-white/20" />
+          <div className="h-full w-px bg-fg/20" />
         </div>
       ))}
     </div>
@@ -83,12 +83,12 @@ export function OurExpertiseDropdownMenu({ categories }: { categories: Expertise
         </TabsList>
       </div>
 
-      <div className="border-b border-white/20 w-full max-w-[1182px] mx-auto mt-[25px]" />
+      <div className="border-b border-fg/20 w-full max-w-[1182px] mx-auto mt-[25px]" />
 
       {resolvedCategories.map((category) => (
         <TabsContent key={category.key} value={category.key} className="w-full max-w-[1122px] mx-auto">
           <div className="w-full">
-            <div className="font-normal text-sm w-full text-[#FFFFFFCC] my-6">{category.menuHeading}</div>
+            <div className="font-normal text-sm w-full text-fg/80 my-6">{category.menuHeading}</div>
             <OurOfferingsGrid items={category.items} />
           </div>
         </TabsContent>

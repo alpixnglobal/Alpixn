@@ -14,7 +14,7 @@ const FreeConsultationSection = ({ title = "Turn your ideas into stunning visual
       <div
         className="absolute inset-0 "
         style={{
-          background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)",
+          background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)",
         }}
       />
 
@@ -38,12 +38,12 @@ const FreeConsultationSection = ({ title = "Turn your ideas into stunning visual
         {/* Content */}
         <div className="relative w-full max-w-[704px] flex flex-col gap-6.25 sm:ml-[45px]">
           <h2 className="text-gradient text-xl md:text-2xl font-bold leading-snug text-start">{title}</h2>
-          <p className="text-sm md:text-base font-normal leading-relaxed text-left text-white/80">
+          <p className="text-sm md:text-base font-normal leading-relaxed text-left text-fg/80">
             {description}
           </p>
           <Link
             href={buttonHref}
-            className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-[#389EFF] rounded-10 w-full sm:w-fit cursor-pointer"
+            className="py-2.5 px-6.25 text-sm md:text-base font-medium leading-snug text-white flex gap-2 items-center bg-tech rounded-10 w-full sm:w-fit cursor-pointer"
             style={{ boxShadow: "0px 4px 6px 0px #0000001A inset" }}
           >
             <span>{buttonLabel}</span>
