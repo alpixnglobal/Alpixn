@@ -70,8 +70,10 @@ const VIDEO = {
   light: { webm: "/media/hero/robotics-loop-light.webm", mp4: "/media/hero/robotics-loop-light.mp4" },
 };
 
-export default function HeroVisual({ fallbackImage, showPanels = true }: { fallbackImage?: string; showPanels?: boolean }) {
-  const { theme } = useTheme();
+export default function HeroVisual({ fallbackImage, showPanels = true, forceTheme }: { fallbackImage?: string; showPanels?: boolean; forceTheme?: "dark" | "light" }) {
+  const { theme: siteTheme } = useTheme();
+  // A section can pin the scene to one look (e.g. the always-navy hero panel).
+  const theme = forceTheme ?? siteTheme;
   const capability = useCapability();
   const quality = useQuality();
   const wrapRef = useRef<HTMLDivElement>(null);

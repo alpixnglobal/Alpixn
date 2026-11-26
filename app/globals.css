@@ -1368,3 +1368,19 @@ html.theme-ready section {
   background: #040d1c;
   color: var(--fg);
 }
+
+/* All six logo colours in one band: navy, deep blue, electric blue, light gold, gold, bronze. */
+.bg-brand-spectrum {
+  background: linear-gradient(90deg, #071a33 0%, #064a87 20%, #0878d1 40%, #f6d77a 60%, #d99a19 80%, #9a5b08 100%);
+}
+.text-brand-spectrum {
+  background: linear-gradient(90deg, #0878d1 0%, #064a87 30%, #d99a19 65%, #9a5b08 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.dark .text-brand-spectrum {
+  background-image: linear-gradient(90deg, #3f9be3 0%, #7cc6ff 30%, #f6d77a 65%, #d99a19 100%);
+}
+
