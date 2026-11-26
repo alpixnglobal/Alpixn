@@ -85,7 +85,6 @@ const ContactFromSection = ({
             </div>
           </div>
 
-          <div />
 
           <div className="flex flex-col gap-[25px] rounded-[32px] border border-line bg-surface-2 p-6 shadow-[var(--shadow-card)] sm:p-8">
             <div className="flex flex-col gap-[25px]">

@@ -208,8 +208,8 @@ const defaultSiteSettings: SiteSettings = {
       heroTitle: "The Innovators, Creators, and Dreamers",
       heroDescription:
         "Our philosophy is simple: hire great people and give them the support to do their best work.",
-      ctaTitle: "Turn your ideas into stunning visuals",
-      ctaDescription: "Stop imagining and start creating with a team that can turn strong ideas into strong product experiences.",
+      ctaTitle: "Work With Our Team",
+      ctaDescription: "Tell us what you want to build. Our engineers, designers and AI specialists will suggest a sensible first step.",
       ctaButtonLabel: "Get a Free Consultation",
       ctaButtonHref: "/contact-us",
     },
