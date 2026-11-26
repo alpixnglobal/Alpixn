@@ -25,7 +25,7 @@ const technologyTemplate: Omit<
     {
       title: "Seamless Microservices Integration",
       description:
-        "Axano Software Private Limited Node JS development services ensure seamless microservices integration, helping you enhance scalability, reduce deployment times, and streamline resource management.",
+        "ALPIXN Node JS development services ensure seamless microservices integration, helping you enhance scalability, reduce deployment times, and streamline resource management.",
       imageData: "/images/mask-microservices.png",
       linkLabel: "Learn More",
     },
@@ -39,14 +39,14 @@ const technologyTemplate: Omit<
     {
       title: "High-Performance Code Quality and Maintainability Services",
       description:
-        "Axano Software Private Limited, an industry-leading Node JS development agency specializes in delivering clean, maintainable, and excellent-quality code, enhancing long-term performance and scalability.",
+        "ALPIXN, an industry-leading Node JS development agency specializes in delivering clean, maintainable, and excellent-quality code, enhancing long-term performance and scalability.",
       imageData: "/images/quality.svg",
       linkLabel: "",
     },
     {
       title: "Advanced Memory Leak Detection",
       description:
-        "As part of our Node JS consulting services, Jellyfish Technologies provides expert memory management and leak detection solutions, ensuring your application remains efficient and reliable.",
+        "As part of our Node JS consulting services, ALPIXN provides expert memory management and leak detection solutions, ensuring your application remains efficient and reliable.",
       imageData: "/images/mask-leak-detection.png",
       linkLabel: "",
     },
@@ -89,37 +89,37 @@ const technologyTemplate: Omit<
     {
       title: "Dynamic Real-Time Web/Mobile Apps",
       description:
-        "Axano Software Private Limited excels in creating real-time, responsive web and mobile applications using Node JS. We deliver rapid, dynamic solutions that improve customer engagement and are perfect for sectors like e-commerce, live streaming, and gaming that demand real-time updates.",
+        "ALPIXN excels in creating real-time, responsive web and mobile applications using Node JS. We deliver rapid, dynamic solutions that improve customer engagement and are perfect for sectors like e-commerce, live streaming, and gaming that demand real-time updates.",
     },
     {
       title: "API Development and Integration",
       description:
-        "Axano Software Private Limited excels in creating real-time, responsive web and mobile applications using Node JS. We deliver rapid, dynamic solutions that improve customer engagement and are perfect for sectors like e-commerce, live streaming, and gaming that demand real-time updates.",
+        "ALPIXN excels in creating real-time, responsive web and mobile applications using Node JS. We deliver rapid, dynamic solutions that improve customer engagement and are perfect for sectors like e-commerce, live streaming, and gaming that demand real-time updates.",
     },
     {
       title: "Node.js Microservices Development",
       description:
-        "Jellyfish Technologies is a leading Node.js development agency specializing in microservices architecture, empowering businesses with modular, scalable solutions. With our expertise, you may build robust systems that streamline intricate procedures, making development cycles quicker.",
+        "ALPIXN is a leading Node.js development agency specializing in microservices architecture, empowering businesses with modular, scalable solutions. With our expertise, you may build robust systems that streamline intricate procedures, making development cycles quicker.",
     },
     {
       title: "Node.js Code Audit & QA Services",
       description:
-        "Ensure the quality and security of your codebase with Axano Software Private Limited Node.js code review and quality assurance services. Our professionals offer detailed evaluations, pinpointing obstacles and weaknesses to deliver high-performing, secure tailored applications.",
+        "Ensure the quality and security of your codebase with ALPIXN Node.js code review and quality assurance services. Our professionals offer detailed evaluations, pinpointing obstacles and weaknesses to deliver high-performing, secure tailored applications.",
     },
     {
       title: "Scalable Cloud Apps with Node.js",
       description:
-        "Axano Software Private Limited, a leading Node.js web development company, builds scalable, secure cloud-based applications. We harness the power of cloud infrastructure to provide effective, affordable solutions that enable your business to thrive in a modern digital environment.",
+        "ALPIXN, a leading Node.js web development company, builds scalable, secure cloud-based applications. We harness the power of cloud infrastructure to provide effective, affordable solutions that enable your business to thrive in a modern digital environment.",
     },
     {
       title: "Serverless Architecture Development",
       description:
-        "Axano Software Private Limited offers expert Serverless Architecture Development using Node.js, enabling businesses to build scalable, cost-efficient applications without server management. Leverage cloud-native solutions for faster deployment, seamless scalability, and lower overhead.",
+        "ALPIXN offers expert Serverless Architecture Development using Node.js, enabling businesses to build scalable, cost-efficient applications without server management. Leverage cloud-native solutions for faster deployment, seamless scalability, and lower overhead.",
     },
     {
       title: "Node.js Migration Services",
       description:
-        "Looking to transition to a more efficient platform? Axano Software Private Limited offers smooth Node.js migration services, helping businesses upgrade their systems with minimal disruption. Our migration solutions ensure improved performance, security, and long-term scalability.",
+        "Looking to transition to a more efficient platform? ALPIXN offers smooth Node.js migration services, helping businesses upgrade their systems with minimal disruption. Our migration solutions ensure improved performance, security, and long-term scalability.",
     },
     {
       title: "Node.js Consulting Services",
@@ -129,7 +129,7 @@ const technologyTemplate: Omit<
   ],
   provenTitle: "Our Node.js Developers: Proven Pioneers",
   provenDescription:
-    "At Axano Technologies Private Limited, our Node.js developers are true industry trailblazers, utilizing evolved expertise and avant techniques to spur creativity. As leaders in Node JS development, we create customized, high-performance apps tailored to your requirements, guaranteeing exceptional results and raising the bar for technological brilliance.",
+    "At ALPIXN, our Node.js developers are true industry trailblazers, utilizing evolved expertise and avant techniques to spur creativity. As leaders in Node JS development, we create customized, high-performance apps tailored to your requirements, guaranteeing exceptional results and raising the bar for technological brilliance.",
   provenCaseStudies: [
     {
       title: "Unify All FM Operations On A Single Platform To Enhance Efficiency And Cut Costs.",
@@ -274,7 +274,7 @@ const technologyTemplate: Omit<
   ],
   engagementTitle: "Engagement Models to Hire Dedicated Node.js Developers",
   engagementDescription:
-    "Jellyfish Technologies offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.",
+    "ALPIXN offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.",
   engagementModels: [
     {
       title: "Dedicated Team",

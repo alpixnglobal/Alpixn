@@ -53,7 +53,7 @@ const Hero = ({
 
           <h1
             id="hero-title"
-            className="heading-gradient mt-6 max-w-[640px] text-[2.35rem] font-semibold !leading-[1.06] sm:text-[2.4rem] lg:text-[2.6rem] xl:text-[2.9rem]"
+            className="heading-gradient mt-6 max-w-[640px] font-semibold !leading-[1.06] text-[clamp(1.85rem,3.3vw,2.9rem)]"
           >
             {title}
           </h1>

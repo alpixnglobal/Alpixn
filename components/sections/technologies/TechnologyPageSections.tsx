@@ -4,8 +4,7 @@ import type { TechnologyPageRecord } from "@/lib/content-types";
 import ChallengesResolveSection from "./ChallengesResolveSection";
 import EngagementModelTechnologieSection from "./EngagementModelTechnologieSection";
 import ExpertGuidanceSection from "./ExpertGuidanceSection";
-import IndustriesLeader from "./IndustriesLeader";
-import OurNodeStackSection from "./OurNodeStackSection";
+import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 // import ProvenPioneerSection from "./ProvenPioneerSection";
 import QualityService from "./QualityService";
 import SuccessPropelSection from "./SuccessPropelSection";
@@ -33,8 +32,7 @@ export function TechnologyPageSections({ page }: { page: TechnologyPageRecord })
       {/* <ProvenPioneerSection title={page.provenTitle} description={page.provenDescription} cases={page.provenCaseStudies} /> */}
       <ExpertGuidanceSection title={page.guidanceTitle} buttonLabel={page.guidanceButtonLabel} buttonHref={page.guidanceButtonHref} />
       <QualityService eyebrow={page.qualityEyebrow} title={page.qualityTitle} description={page.qualityDescription} points={page.qualityPoints} />
-      <OurNodeStackSection title={page.stackTitle} items={page.stackItems} />
-      {/* <IndustriesLeader title={page.leaderTitle} stats={page.leaderStats} /> */}
+      <IndustriesTechBand />
       <EngagementModelTechnologieSection title={page.engagementTitle} description={page.engagementDescription} models={page.engagementModels} />
       <FAQExpertiseSection title={page.faqTitle} items={page.faqs} questionClassName="text-lg md:text-[22px]" />
     </>

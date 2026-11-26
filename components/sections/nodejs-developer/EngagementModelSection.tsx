@@ -23,7 +23,7 @@ const EngagementModelSection = ({ slug = "default", data }: EngagementModelSecti
       <div className="container max-w-[1350px]">
         {/* Title and Subtitle - Dynamic */}
         <div className="flex flex-col gap-[15px] max-w-[998px] md:mx-auto">
-          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center">{mainTitle}</h2>
+          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left md:text-center">{mainSubtitle}</p>
         </div>
 

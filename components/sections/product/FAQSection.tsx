@@ -7,9 +7,9 @@ type ProductFaqItem = {
 
 const defaultItems: ProductFaqItem[] = [
   {
-    question: "What is JFT AI Chatbot?",
+    question: "What is ALPIXN AI Chatbot?",
     answer:
-      "JFT AI Chatbot is an AI-driven customer support solution that integrates with your digital platforms to provide real-time, intelligent responses to customer inquiries, enhancing user engagement and satisfaction.",
+      "ALPIXN AI Chatbot is an AI-driven customer support solution that integrates with your digital platforms to provide real-time, intelligent responses to customer inquiries, enhancing user engagement and satisfaction.",
   },
   {
     question: "How does the chatbot learn and adapt?",
@@ -17,12 +17,12 @@ const defaultItems: ProductFaqItem[] = [
       "The chatbot improves through continuous model refinement, conversation feedback, and workflow tuning so responses become more accurate over time.",
   },
   {
-    question: "Is JFT AI Chatbot easy to integrate?",
+    question: "Is ALPIXN AI Chatbot easy to integrate?",
     answer:
       "Yes. It is designed to integrate with websites and applications through a structured onboarding and deployment process with minimal disruption.",
   },
   {
-    question: "How does JFT AI Chatbot handle sensitive data?",
+    question: "How does ALPIXN AI Chatbot handle sensitive data?",
     answer:
       "The platform can be configured with secure data handling practices, controlled access, and privacy-conscious workflows that align with business requirements.",
   },
@@ -39,7 +39,7 @@ const defaultItems: ProductFaqItem[] = [
 ];
 
 const FAQSection = ({
-  title = "FAQs about JFT AI Chatbot",
+  title = "FAQs about ALPIXN AI Chatbot",
   items = defaultItems,
   questionClassName = "text-lg md:text-[22px]",
 }: {
@@ -52,7 +52,7 @@ const FAQSection = ({
       {/* Container */}
       <div className="w-full max-w-[1349px] mx-auto">
         {/* Title */}
-        <h2 className="text-gradient heading">{title}</h2>
+        <h2 className="text-gradient heading text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
         {/* Accordion */}
         <Accordion type="single" collapsible className="w-full" defaultValue={items[0] ? "item-1" : undefined}>

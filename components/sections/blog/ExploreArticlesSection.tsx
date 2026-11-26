@@ -56,7 +56,7 @@ const ExploreArticlesSection = ({
 
       <div className="container max-w-[1351px]">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
           <div className="flex flex-wrap gap-3">
             <input

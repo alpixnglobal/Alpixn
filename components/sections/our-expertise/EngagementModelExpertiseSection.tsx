@@ -16,7 +16,7 @@ const defaultModels: ExpertiseEngagementModelRecord[] = [
   {
     title: "Project-Based",
     description:
-      "As a trusted software development agency, Jellyfish Technologies offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
+      "As a trusted software development agency, ALPIXN offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
     features: ["Fixed Budget", "Milestones and Deliverables", "Resource Allocation", "Risk Mitigation"],
   },
 ];
@@ -68,7 +68,7 @@ function ModelCard({ model, spanClassName = "" }: { model: ExpertiseEngagementMo
 const EngagementModelExpertiseSection = ({
   title = "Engagement Models",
   subtitle =
-    "As a trusted software development agency, Jellyfish Technologies offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
+    "As a trusted software development agency, ALPIXN offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
   models = defaultModels,
 }: {
   title?: string;
@@ -83,7 +83,7 @@ const EngagementModelExpertiseSection = ({
 
       <div className="container max-w-[1350px]">
         <div className="flex flex-col gap-[15px] max-w-[998px] md:mx-auto ">
-          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center">{title}</h2>
+          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left md:text-center">{subtitle}</p>
         </div>
 

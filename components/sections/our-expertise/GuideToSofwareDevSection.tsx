@@ -40,7 +40,7 @@ const GuideToSoftwareDevSection = ({ slug = "software-development", data }: Guid
 
       <div className="relative mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-[45px]">
         <div className="flex flex-col gap-[15px] max-w-[998px] mx-auto">
-          <h2 className="title heading-gradient max-w-[828px] mx-auto text-left sm:text-center">{mainTitle}</h2>
+          <h2 className="title heading-gradient max-w-[828px] mx-auto text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed max-w-[998px] mx-auto text-left sm:text-center">{mainSubtitle}</p>
         </div>
 

@@ -60,7 +60,7 @@ const QualityService = ({ eyebrow = "Quality-Focused Proficiency", title = "What
       <div className="relative grid grid-cols-1 xl:grid-cols-[599px_1fr] gap-[52px] max-w-[1350px] mx-auto px-4 xl:px-0">
         <div className="flex flex-col gap-3.75 w-full xl:max-w-[599px]">
           <h6 className="text-tech text-base md:text-lg font-medium">{eyebrow}</h6>
-          <h2 className="title heading-gradient text-start">{title}</h2>
+          <h2 className="title heading-gradient text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="font-normal text-sm md:text-base leading-relaxed text-fg/80">{description}</p>
         </div>
         <div className="flex flex-col w-full gap-6.25">

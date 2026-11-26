@@ -88,7 +88,7 @@ type ProvenPioneerSectionProps = {
   cases?: TechnologyCaseStudyRecord[];
 };
 
-const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers", description = "At Axano Technologies Private Limited, our Node.js developers are true industry trailblazers, utilizing evolved expertise and avant techniques to spur creativity. As leaders in Node JS development, we create customized, high-performance apps tailored to your requirements, guaranteeing exceptional results and raising the bar for technological brilliance.", cases = caseStudies }: ProvenPioneerSectionProps) => {
+const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers", description = "At ALPIXN, our Node.js developers are true industry trailblazers, utilizing evolved expertise and avant techniques to spur creativity. As leaders in Node JS development, we create customized, high-performance apps tailored to your requirements, guaranteeing exceptional results and raising the bar for technological brilliance.", cases = caseStudies }: ProvenPioneerSectionProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [direction, setDirection] = useState<"next" | "prev" | null>(null);
 
@@ -128,7 +128,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
       <div className="container max-w-337.5 relative">
         {/* Title */}
         <div className="flex flex-col w-full max-w-[1350px] mx-auto">
-          <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="subtitle mx-auto text-left sm:text-center">
             {description}
           </p>
@@ -154,7 +154,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
 
           {/* Right */}
           <div className="flex flex-col gap-8">
-            <h2 className="font-semibold text-xl sm:text-2xl lg:text-3xl text-fg leading-snug">
+            <h2 className="font-semibold text-fg leading-snug text-[clamp(1.5rem,2.3vw,2.05rem)]">
               {active.title}
             </h2>
 

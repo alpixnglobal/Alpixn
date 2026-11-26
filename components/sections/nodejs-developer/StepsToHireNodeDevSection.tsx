@@ -66,7 +66,7 @@ const StepsToHireDevSection = ({ slug = "default", data }: StepsToHireDevSection
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 35%, var(--glow) 100%)" }} />
 
       <div className="relative w-full max-w-[1047px] gap-[50px] flex flex-col items-center mx-auto px-4 lg:px-0">
-        <h2 className="title heading-gradient text-left lg:text-center">{mainTitle}</h2>
+        <h2 className="title heading-gradient text-left lg:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
 
         <div className="relative w-full flex flex-col lg:flex-row lg:justify-between items-center gap-[60px] lg:gap-0">
           {resolvedSteps.map((step, index) => (

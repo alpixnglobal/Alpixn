@@ -83,7 +83,7 @@ const siteSettingsSchema = new Schema(
     logoUrl: { type: String, default: "/brand/alpixn-logo-horizontal.webp" },
     logoAlt: { type: String, default: "ALPIXN" },
     // Contact information
-    contactEmail: { type: String, default: "info@axano.in" },
+    contactEmail: { type: String, default: "" },
     contactPhone: { type: String, default: "+91 0000000000" },
     contactAddress: { type: String, default: "" },
     businessHours: { type: String, default: "Monday to Friday 9AM – 7PM IST" },
@@ -134,7 +134,7 @@ const contactSettingsSchema = new Schema(
     formIntroDescription: { type: String, default: "Ready to transform your digital presence? We're here to help you achieve extraordinary results. Get in touch with our team of experts and let's discuss how we can accelerate your business growth." },
     formPhoneNumber: { type: String, default: "+91 0000000000" },
     formPhoneAvailability: { type: String, default: "Available Monday to Friday 9AM – 7PM IST" },
-    formEmail: { type: String, default: "info@axano.in" },
+    formEmail: { type: String, default: "" },
     formSupportEmail: { type: String, default: "support@company.com" },
     formAddress: { type: String, default: "Cyber Park 3rd & 10th Floor, Tower B, Cyber Park, Mumbai, Maharashtra 000000, India" },
     formButtonText: { type: String, default: "Let's Get Started" },
@@ -150,7 +150,7 @@ const contactSettingsSchema = new Schema(
     assistanceDescription: { type: String, default: "For urgent inquiries or immediate support, don't hesitate to call us directly." },
     assistanceEmailButtonText: { type: String, default: "Email Us" },
     assistanceCallButtonText: { type: String, default: "Call Now" },
-    assistanceEmailButtonHref: { type: String, default: "mailto:info@axano.in" },
+    assistanceEmailButtonHref: { type: String, default: "" },
     assistanceCallButtonHref: { type: String, default: "tel:+910000000000" },
     // Global offices section
     globalOfficesTitle: { type: String, default: "Our Global Offices" },

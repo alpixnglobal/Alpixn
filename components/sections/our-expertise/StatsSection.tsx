@@ -69,7 +69,7 @@ const StatsSection = ({ slug = "software-development", data }: StatsSectionProps
 
         {/* Title & Subtitle */}
         <div className="w-full flex flex-col gap-[15px] max-w-253.25 mx-auto mt-25">
-          <h2 className="title heading-gradient text-left sm:text-center">{statsData.mainTitle}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{statsData.mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{statsData.mainDescription}</p>
         </div>
         {/* Grid */}

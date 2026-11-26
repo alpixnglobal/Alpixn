@@ -42,7 +42,7 @@ export const expertiseBannerData: Record<string, BannerHeroData> = {
     category: "software-solution",
     heroTitle: "Mobile App Development Company",
     heroDescription:
-      "Jellyfish Technologies provides end-to-end mobile app development services, from planning and design to deployment and optimization. We help organizations accelerate innovation and ROI with secure, scalable, and market-ready mobile applications.",
+      "ALPIXN provides end-to-end mobile app development services, from planning and design to deployment and optimization. We help organizations accelerate innovation and ROI with secure, scalable, and market-ready mobile applications.",
     ctaButtonText: "Book a Free Consultation",
     logos: ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"],
     heroBackgroundImage: "/images/expertise-hero-bg.png",
@@ -54,7 +54,7 @@ export const expertiseBannerData: Record<string, BannerHeroData> = {
     category: "software-solution",
     heroTitle: "API Integration & Development Service",
     heroDescription:
-      "At Jellyfish Technologies, we streamline your business with custom API development and integration services tailored for web, mobile, and cloud applications. Our certified developers work across platforms, using protocols like REST, SOAP, and JSON, and different API authentication methods, including basic OAuth, OAuth1, OAuth2, JSON Web Token (JWT), SAML, and many more. Our IT services drive modernization, ensuring a synchronized and streamlined digital ecosystem.",
+      "At ALPIXN, we streamline your business with custom API development and integration services tailored for web, mobile, and cloud applications. Our certified developers work across platforms, using protocols like REST, SOAP, and JSON, and different API authentication methods, including basic OAuth, OAuth1, OAuth2, JSON Web Token (JWT), SAML, and many more. Our IT services drive modernization, ensuring a synchronized and streamlined digital ecosystem.",
     ctaButtonText: "Book a Free Consultation",
     logos: ["/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png", "/images/logoipsum.png"],
     heroBackgroundImage: "/images/expertise-hero-bg.png",

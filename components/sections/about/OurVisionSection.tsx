@@ -61,7 +61,7 @@ const OurVisionSection = ({
           </Button>
 
           <div className="flex flex-col gap-[25px]">
-            <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center" style={{ background: "linear-gradient(89.81deg, var(--heading-from) 19.79%, var(--heading-from) 76.65%, var(--tech-soft) 93.54%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>
+            <h2 className="heading-gradient font-bold leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]" style={{ background: "linear-gradient(89.81deg, var(--heading-from) 19.79%, var(--heading-from) 76.65%, var(--tech-soft) 93.54%)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>
               {visionTitle}
             </h2>
 
@@ -87,7 +87,7 @@ const OurVisionSection = ({
             {missionTag}
           </Button>
 
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{missionTitle}</h2>
+          <h2 className="heading-gradient font-bold leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{missionTitle}</h2>
 
           <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{missionDescription}</p>
 

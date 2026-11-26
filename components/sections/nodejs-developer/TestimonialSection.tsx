@@ -32,7 +32,7 @@ const TestimonialSection = ({ title = "What Our Clients Say", subtitle = "Real b
       <div className="container max-w-271.5">
         {/* Title & Subtitle */}
         <div className="flex flex-col gap-3.75">
-          <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{subtitle}</p>
         </div>

@@ -36,8 +36,8 @@ const defaultCards: ProductAudienceRecord[] = [
 ];
 
 const TransfromCustomerEngagement = ({
-  title = "Transform Your Customer Engagement with JFT AI Chatbot",
-  description = "Trusted by businesses across industries, JFT AI Chatbot is more than just an automated response tool. It’s a strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through intelligent customer interactions.",
+  title = "Transform Your Customer Engagement with ALPIXN AI Chatbot",
+  description = "Trusted by businesses across industries, ALPIXN AI Chatbot is more than just an automated response tool. It’s a strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through intelligent customer interactions.",
   cards = defaultCards,
 }: TransfromCustomerEngagementProps) => {
   const resolvedCards = cards.length > 0 ? cards : defaultCards;
@@ -48,7 +48,7 @@ const TransfromCustomerEngagement = ({
 
       <div className="container max-w-337.75">
         <div className="flex flex-col gap-[15px]">
-          <h2 className="title heading-gradient text-left md:text-center">{title}</h2>
+          <h2 className="title heading-gradient text-left md:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left md:text-center">{description}</p>
         </div>
 

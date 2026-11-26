@@ -9,7 +9,7 @@ const FAQSection = () => {
       {/* Container */}
       <div className="container max-w-[1349px]">
         {/* Title */}
-        <h2 className="title heading-gradient text-left md:text-center">We’ve Got the Answers You’re Looking For</h2>
+        <h2 className="title heading-gradient text-left md:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">We’ve Got the Answers You’re Looking For</h2>
 
         {/* Accordion */}
         <Accordion type="single" collapsible className="w-full -mt-2.5" defaultValue="item-5">

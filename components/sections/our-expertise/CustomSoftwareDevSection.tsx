@@ -41,7 +41,7 @@ const CustomSoftwareDevSection = ({ slug = "software-development", data }: CaseS
         <div className="grid grid-cols-1 px-4 xl:px-0 xl:grid-cols-[991px_1fr] justify-between">
           {/* Title & Subtitle */}
           <div className="flex flex-col gap-3.75">
-            <h2 className="title heading-gradient text-left">{resolvedData.mainTitle}</h2>
+            <h2 className="title heading-gradient text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{resolvedData.mainTitle}</h2>
             <p className="subtitleMeXl80 text-left leading-relaxed">{resolvedData.mainSubtitle}</p>
           </div>
 

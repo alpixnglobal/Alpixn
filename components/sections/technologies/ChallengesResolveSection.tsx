@@ -11,7 +11,7 @@ const defaultCards: TechnologyChallengeCardRecord[] = [
   {
     title: "Seamless Microservices Integration",
     description:
-      "Axano Software Private Limited Node JS development services ensure seamless microservices integration, helping you enhance scalability, reduce deployment times, and streamline resource management.",
+      "ALPIXN Node JS development services ensure seamless microservices integration, helping you enhance scalability, reduce deployment times, and streamline resource management.",
     imageData: "/images/mask-microservices.png",
     linkLabel: "Learn More",
   },
@@ -25,14 +25,14 @@ const defaultCards: TechnologyChallengeCardRecord[] = [
   {
     title: "High-Performance Code Quality and Maintainability Services",
     description:
-      "Axano Software Private Limited, an industry-leading Node JS development agency specializes in delivering clean, maintainable, and excellent-quality code, enhancing long-term performance and scalability.",
+      "ALPIXN, an industry-leading Node JS development agency specializes in delivering clean, maintainable, and excellent-quality code, enhancing long-term performance and scalability.",
     imageData: "/images/quality.svg",
     linkLabel: "",
   },
   {
     title: "Advanced Memory Leak Detection",
     description:
-      "As part of our Node JS consulting services, Jellyfish Technologies provides expert memory management and leak detection solutions, ensuring your application remains efficient and reliable.",
+      "As part of our Node JS consulting services, ALPIXN provides expert memory management and leak detection solutions, ensuring your application remains efficient and reliable.",
     imageData: "/images/mask-leak-detection.png",
     linkLabel: "",
   },
@@ -110,7 +110,7 @@ const ChallengesResolveSection = ({ title = "Challenges We'll Assist You Resolve
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 55%, var(--glow) 100%)" }} />
 
       <div className="container max-w-[1171px]">
-        <h2 className="title heading-gradient-white text-left sm:text-center">
+        <h2 className="title heading-gradient-white text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">
           {title.split("<br />").map((part, index) => (
             <span key={`${part}-${index}`}>
               {part}

@@ -39,7 +39,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
 
       {/* Container */}
       <div className="relative mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-[45px]">
-        <h2 className="title heading-gradient text-left sm:text-center">{mainTitle}</h2>
+        <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
 
         <div className="mt-[50px] flex flex-col xl:flex-row gap-5 items-stretch">
           {/* LEFT – Tab List */}

@@ -128,7 +128,7 @@ const SearchJobsSection = ({
                 </div>
 
                 <div className="mt-[35px] flex flex-wrap items-center justify-between">
-                  <h2 className="text-base md:text-lg lg:text-xl font-semibold leading-snug tracking-tight text-fg">{job.title}</h2>
+                  <h2 className="font-semibold leading-snug tracking-tight text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">{job.title}</h2>
                   <div className="mt-4 flex flex-wrap gap-2.5 lg:mt-0 lg:gap-0">
                     <div className="px-3.5 text-xs md:text-sm font-normal leading-relaxed text-fg/80 lg:border-r lg:border-white/20">{job.type}</div>
                     <div className="px-3.5 text-xs md:text-sm font-normal leading-relaxed text-fg/80 lg:border-r lg:border-white/20">{job.mode}</div>

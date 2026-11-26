@@ -47,7 +47,7 @@ const FAQExpertiseSection = ({
       {/* Container */}
       <div className="container max-w-[1349px]">
         {/* Title */}
-        <h2 className="text-gradient heading text-left sm:text-center">{title}</h2>
+        <h2 className="text-gradient heading text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
         {/* Accordion */}
         <Accordion type="single" collapsible className="w-full" defaultValue={items[items.length - 1] ? `item-${items.length}` : undefined}>

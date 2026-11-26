@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const WhoWeAreSection = ({
   title = "Who We Are?",
-  paragraphOne = "Founded in 2017, AICompany is a next-generation IT company committed to transforming ideas into intelligent digital solutions. With expertise spanning software development, mobile applications, AI-based systems, ERP, and digital marketing, AICompany stands as a trusted technology partner for startups, enterprises, and innovators across industries.",
+  paragraphOne = "Founded in 2017, ALPIXN is a next-generation IT company committed to transforming ideas into intelligent digital solutions. With expertise spanning software development, mobile applications, AI-based systems, ERP, and digital marketing, ALPIXN stands as a trusted technology partner for startups, enterprises, and innovators across industries.",
   paragraphTwo = "Our team blends creativity, strategy, and technology to craft scalable, secure, and future-ready solutions that drive real business growth. From concept to execution - we help brands evolve, automate, and accelerate in the digital age.",
   imageData = "/images/whoweare.png",
 }: {

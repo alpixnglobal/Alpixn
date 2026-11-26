@@ -27,7 +27,7 @@ const LatestArticles = ({
       <div className="container max-w-[1350px]">
         <div className="grid grid-cols-1 justify-between xl:grid-cols-[auto_66px_412px]">
           <div>
-            <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
+            <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
             <div className="flex flex-col">
               {latestPosts.map((post, index) => (
@@ -61,7 +61,7 @@ const LatestArticles = ({
           <div />
 
           <div>
-            <h2 className="title heading-gradient text-left sm:text-center">{categoriesTitle}</h2>
+            <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{categoriesTitle}</h2>
 
             <div className="mt-12.5 grid grid-cols-2 gap-[15px] xl:flex xl:flex-col">
               {categories.map((category) => (

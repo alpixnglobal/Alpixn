@@ -99,7 +99,7 @@ export const customSoftwareDevData: Record<string, CustomSoftwareDevData> = {
     slug: "web-app-development",
     mainTitle: "Why Choose Our Web Application Development Agency?",
     mainSubtitle:
-      "Jellyfish Technologies offers custom web application development services backed by our expertise as a top web app development company in the US. We offer end-to-end services integrating next-gen tech stack, and agile methodologies to deliver high-performance website application development services",
+      "ALPIXN offers custom web application development services backed by our expertise as a top web app development company in the US. We offer end-to-end services integrating next-gen tech stack, and agile methodologies to deliver high-performance website application development services",
     buttonText: "Get Expert Guidance",
     image: "/images/blobai.png",
     imageAlt: "Web Development Illustration",
@@ -123,7 +123,7 @@ export const customSoftwareDevData: Record<string, CustomSoftwareDevData> = {
         number: "03",
         title: "Scalable Solutions",
         description:
-          "Jellyfish Technologies designs scalable and robust web applications that grow with your business. As a leading web application development company, we ensure seamless performance across evolving user demands and traffic using DevOps services and cloud consulting.",
+          "ALPIXN designs scalable and robust web applications that grow with your business. As a leading web application development company, we ensure seamless performance across evolving user demands and traffic using DevOps services and cloud consulting.",
       },
       {
         id: "web-benefit-4",
@@ -137,7 +137,7 @@ export const customSoftwareDevData: Record<string, CustomSoftwareDevData> = {
         number: "05",
         title: "Better Code Quality",
         description:
-          "As a premium web app development company, Jellyfish Technologies delivers high-quality code backed by best practices, automated testing, and clean architecture, ensuring stability, performance, and easier future upgrades.",
+          "As a premium web app development company, ALPIXN delivers high-quality code backed by best practices, automated testing, and clean architecture, ensuring stability, performance, and easier future upgrades.",
       },
       {
         id: "web-benefit-6",

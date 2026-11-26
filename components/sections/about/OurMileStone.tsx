@@ -86,7 +86,7 @@ const OurMileStone = ({
             {tag}
           </Button>
 
-          <h2 className="heading-gradient text-2xl md:text-3xl font-bold leading-snug text-left sm:text-center">{title}</h2>
+          <h2 className="heading-gradient font-bold leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
           <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{description}</p>
         </div>

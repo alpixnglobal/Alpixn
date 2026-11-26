@@ -27,14 +27,14 @@ interface OffshoreHeroSectionProps {
 const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProps) => {
   const fallbackData = getOffshoreHeroData(slug);
   const { title, description, checklist, formTitle, technologies } = data ?? fallbackData;
-  const heroTitleClassName = "font-extrabold text-gradient text-2xl sm:text-3xl md:text-[32px] lg:text-[40px] leading-tight tracking-tight w-full";
+  const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.85rem,3.3vw,2.9rem)] leading-[1.08] tracking-[-0.03em] w-full";
 
   return (
     <section className="relative w-full min-h-[628px] overflow-hidden">
       {/* Background Color  */}
       <div
         className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, var(--canvas) 25%, var(--glow) 100%)" }}
+        style={{ background: "radial-gradient(60% 60% at 0% 0%, rgba(8,120,209,0.14), transparent 70%), radial-gradient(60% 60% at 100% 10%, rgba(246,215,122,0.35), transparent 70%), var(--canvas)" }}
       />
       {/* Background Left */}
       <div className="absolute hidden md:block w-[400px] md:w-[500px] lg:w-[698.52px] h-[400px] md:h-[500px] lg:h-[666px] top-0 -left-[10%] md:-left-[8%] lg:-left-[6%] z-0">
@@ -135,7 +135,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                       <Textarea placeholder="Describe Your Query" />
                     </div>
                     <div>
-                      <button className="w-full text-sm text-[#071a33] py-2.5 px-6.25 bg-tech rounded-[5px] h-12 cursor-pointer">
+                      <button className="btn-brand w-full">
                         Submit
                       </button>
                     </div>

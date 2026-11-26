@@ -14,7 +14,7 @@ export default function NotFound() {
       <div className="mx-auto flex max-w-xl flex-col items-center text-center">
         <Image src="/brand/alpixn-emblem.webp" alt="" width={96} height={96} className="animate-float drop-shadow-[0_12px_30px_rgba(217,154,25,0.35)]" />
         <p className="eyebrow mt-8">Error 404</p>
-        <h1 className="heading-gradient mt-4 text-4xl font-semibold sm:text-[2.4rem]">This page could not be found</h1>
+        <h1 className="heading-gradient mt-4 font-semibold text-[clamp(1.85rem,3.3vw,2.9rem)]">This page could not be found</h1>
         <p className="mt-4 text-base leading-relaxed text-fg-muted">The link may be broken or the page may have moved. Let&apos;s get you back on track.</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link href="/" className="btn-brand">

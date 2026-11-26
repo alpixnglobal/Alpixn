@@ -122,7 +122,7 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
       {/* Container */}
       <div className="container max-w-303.75">
         {/* Heading */}
-        <h2 className="title heading-gradient max-w-[826px] mx-auto text-start sm:text-center">{title}</h2>
+        <h2 className="title heading-gradient max-w-[826px] mx-auto text-start sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
         {/* Grid */}
         <div className="mt-8 md:mt-10 lg:mt-12.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">

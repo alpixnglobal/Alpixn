@@ -11,9 +11,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         // Your custom variants
-        primary:
-          "border border-[color:var(--line-gold)] bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] text-[#071a33] shadow-[0_8px_24px_-10px_rgba(217,154,25,0.65)] hover:shadow-[0_12px_32px_-10px_rgba(217,154,25,0.8),0_0_0_1px_rgba(246,215,122,0.6)] hover:-translate-y-0.5",
-        secondary: "bg-gray-100 text-gray-800 border-2 border-gray-300 hover:bg-gray-200 hover:border-gray-400",
+        primary: "btn-brand rounded-full",
+        secondary: "btn-ghost-brand rounded-full",
         outlined: "bg-transparent text-fg border border-[color:var(--line-gold)] hover:border-gold hover:text-gold hover:shadow-[0_8px_24px_-14px_var(--gold)]",
         // Keep shadcn's defaults
         default: "bg-primary text-primary-foreground hover:bg-primary/90",

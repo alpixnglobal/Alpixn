@@ -49,7 +49,7 @@ const JobApplyFormSection = ({
         <div className="grid grid-cols-1 justify-between xl:grid-cols-[572px_1fr]">
           {/* Left */}
           <div className="flex flex-col gap-[25px]">
-            <h2 className="text-gradient heading text-left">{introTitle}</h2>
+            <h2 className="text-gradient heading text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{introTitle}</h2>
             <p className="text-fg/80 text-base md:text-lg leading-relaxed">
               {introDescription}
             </p>

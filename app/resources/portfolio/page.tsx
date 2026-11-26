@@ -35,7 +35,7 @@ export default async function PortfolioPage({ searchParams }: Props) {
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
               <span className="eyebrow">Portfolio</span>
-              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-[2.4rem]">Working software you can click through</h1>
+              <h1 className="heading-gradient mt-4 font-semibold !leading-[1.08] text-[clamp(1.85rem,3.3vw,2.9rem)]">Working software you can click through</h1>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
                 Every project below is a functioning interface built by ALPIXN — booking engines, SaaS products, operational dashboards, mobile apps, AI tools and robotics software — designed around real workflows in the markets we serve. Screenshots are captured from the live demos, not mock-ups.
               </p>

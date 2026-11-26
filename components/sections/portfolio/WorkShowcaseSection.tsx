@@ -110,7 +110,7 @@ const WorkShowcaseSection = ({
 
       <div className="relative mx-auto h-full w-full max-w-[1350px]">
         <div className="flex flex-wrap items-center justify-between px-4 xl:px-0">
-          <h2 className="heading-gradient text-xl md:text-2xl font-bold leading-snug text-start">{title}</h2>
+          <h2 className="heading-gradient font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
           <div className="mt-4 flex flex-wrap gap-2.5 xl:mt-0">
             <label className="relative h-[50px] w-[230px] rounded-[10px] border border-[color-mix(in_srgb,var(--tech)_45%,transparent)] bg-[color-mix(in_srgb,var(--tech)_5%,transparent)] backdrop-blur-[15px] sm:w-[320px] md:h-[62px]">

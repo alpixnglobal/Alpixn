@@ -26,7 +26,7 @@ const ContactFromSection = ({
   introDescription = "Ready to transform your digital presence? We're here to help you achieve extraordinary results. Get in touch with our team of experts and let's discuss how we can accelerate your business growth.",
   phoneNumber = "+91 0000000000",
   phoneAvailability = "Available Monday to Friday 9AM – 7PM IST",
-  email = "info@axano.in",
+  email = "",
   supportEmail = "support@company.com",
   address = "Cyber Park 3rd & 10th Floor, Tower B, Cyber Park, Mumbai, Maharashtra 000000, India",
   buttonText = "Let’s Get Started",
@@ -94,7 +94,7 @@ const ContactFromSection = ({
 
           <div className="flex flex-col gap-[25px] mt-16 xl:mt-0 px-4 xl:px-0">
             <div className="flex flex-col gap-[25px]">
-              <h2 className="text-gradient heading text-left">{introTitle}</h2>
+              <h2 className="text-gradient heading text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{introTitle}</h2>
               <p className="text-fg/80 text-base md:text-lg leading-relaxed">{introDescription}</p>
             </div>
 
@@ -129,7 +129,7 @@ const ContactFromSection = ({
               <div className="col-span-2 w-full">
                 <TextareaInput name="message" label={messageLabel} className="h-[120px] sm:h-[208px] rounded-[10px] w-full" style={{ backdropFilter: "blur(15px)", background: "linear-gradient(360deg, var(--glow) 0%, var(--canvas-2) 100%)" }} />
               </div>
-              <button type="submit" className="w-full col-span-2 font-medium text-sm lg:text-base py-2.5 px-[25px] rounded-[10px] h-[48px] xl:h-[60px]" style={{ background: "var(--tech)", boxShadow: "0px 4px 6px 0px #0000001A inset" }}>
+              <button type="submit" className="btn-brand col-span-2 w-full">
                 {buttonText}
               </button>
             </form>

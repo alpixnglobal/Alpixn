@@ -1,7 +1,6 @@
 import JsonLd from "@/components/seo/JsonLd";
 import { CtaV4, HeroV4, InsightsV4, MarketsV4, ProcessV4, ServicesV4 } from "@/components/home/HomeV4";
-import HomeIndustriesSection from "@/components/sections/HomeIndustriesSection";
-import TechStackSection from "@/components/sections/TechStackSection";
+import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 import { getCachedHomeSettings, getCachedPublishedBlogPosts } from "@/lib/content-service";
 import { organizationJsonLd, pageMetadata, websiteJsonLd } from "@/lib/seo";
 
@@ -30,10 +29,7 @@ const Home = async () => {
       />
       <ServicesV4 title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings} />
       {/* Industries + Tech Stack keep their original dark navy look in both themes */}
-      <div className="dark section-navy">
-        <HomeIndustriesSection title={settings.industriesTitle} subtitle={settings.industriesSubtitle} tabs={settings.industriesTabs} />
-        <TechStackSection title={settings.techStackTitle} description={settings.techStackDescription} tabs={settings.techStackTabs} />
-      </div>
+      <IndustriesTechBand />
       <ProcessV4 />
       <MarketsV4 />
       <InsightsV4 posts={latest} />

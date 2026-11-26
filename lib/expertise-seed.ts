@@ -43,7 +43,7 @@ const sharedEngagementModels = [
   {
     title: "Project-Based",
     description:
-      "As a trusted software development agency, Jellyfish Technologies offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
+      "As a trusted software development agency, ALPIXN offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
     features: ["Fixed Budget", "Milestones and Deliverables", "Resource Allocation", "Risk Mitigation"],
   },
 ];
@@ -155,7 +155,7 @@ export const defaultExpertiseSettings: ExpertiseSettingsRecord = {
   })),
   engagementTitle: "Engagement Models",
   engagementSubtitle:
-    "As a trusted software development agency, Jellyfish Technologies offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
+    "As a trusted software development agency, ALPIXN offers flexible engagement models tailored to meet specific customer objectives, ensuring effective collaboration, cost management, and value-oriented execution at every stage.",
   engagementModels: sharedEngagementModels,
   techStackTitle: "Our Tech Stack",
   techStackDescription:

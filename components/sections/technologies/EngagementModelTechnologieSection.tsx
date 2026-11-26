@@ -65,7 +65,7 @@ function ModelCard({ model, spanClassName = "" }: { model: TechnologyEngagementM
   );
 }
 
-const EngagementModelTechnologieSection = ({ title = "Engagement Models to Hire Dedicated Node.js Developers", description = "Jellyfish Technologies offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.", models = defaultModels }: EngagementModelTechnologieSectionProps) => {
+const EngagementModelTechnologieSection = ({ title = "Engagement Models to Hire Dedicated Node.js Developers", description = "ALPIXN offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.", models = defaultModels }: EngagementModelTechnologieSectionProps) => {
   const resolvedModels = models.length > 0 ? models : defaultModels;
 
   return (
@@ -74,7 +74,7 @@ const EngagementModelTechnologieSection = ({ title = "Engagement Models to Hire 
 
       <div className="container max-w-[1350px]">
         <div className="flex flex-col gap-[15px] max-w-[998px] md:mx-auto ">
-          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center">{title}</h2>
+          <h2 className="title heading-gradient w-full max-w-[828px] mx-auto text-left md:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left md:text-center">{description}</p>
         </div>
 

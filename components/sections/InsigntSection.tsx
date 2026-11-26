@@ -9,7 +9,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 const defaultPosts: HomeInsightCardRecord[] = [
   {
     title: "Prompt-to-Flowchart: Generating Flowcharts from Natural Language using GenAI",
-    author: "Jellyfish Technologies",
+    author: "ALPIXN",
     imageData: "/images/prompt-to-flowchart.png",
     href: "/resources/blogs/prompt-to-flowchart-generating-flowcharts-from-natural-language-using-genai",
   },
@@ -21,7 +21,7 @@ const defaultPosts: HomeInsightCardRecord[] = [
   },
   {
     title: "Cache-Augmented Generation (CAG): A Revolutionary Alternative to RAG",
-    author: "Jellyfish Technologies",
+    author: "ALPIXN",
     imageData: "/images/cache-augmented.png",
     href: "/resources/blogs/cache-augmented-generation-cag-a-revolutionary-alternative-to-rag",
   },

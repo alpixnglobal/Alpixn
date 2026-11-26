@@ -73,7 +73,7 @@ const BlogHeroSection = ({ featuredPost, readButtonLabel = "Read Full Article" }
             <span className="relative z-10 text-xs font-medium text-fg lg:text-base">{featuredPost.category}</span>
           </button>
 
-          <h1 className="text-gradient text-2xl sm:text-3xl md:text-[34px] lg:text-[42px] font-extrabold leading-tight text-left sm:text-center">
+          <h1 className="text-gradient font-extrabold leading-tight text-left sm:text-center text-[clamp(1.85rem,3.3vw,2.9rem)]">
             {featuredPost.title}
           </h1>
 

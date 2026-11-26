@@ -28,11 +28,11 @@ const PartnerWithTeam = ({ slug = "default", data }: PartnerWithTeamProps) => {
       <div className="w-full max-w-[1350px] mx-auto px-4 lg:px-0">
         {/* CTA */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-          <h2 className="title heading-gradient text-left w-full max-w-[769px]">{mainTitle}</h2>
+          <h2 className="title heading-gradient text-left w-full max-w-[769px] text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
 
           <Link
             href={buttonLink}
-            className="w-full lg:w-fit py-2.5 px-6.25 rounded-10 text-xs lg:text-base font-medium text-fg cursor-pointer text-center"
+            className="btn-brand w-full lg:w-fit"
             style={{
               background: "var(--tech)",
               boxShadow: "0px 4px 6px 0px #0000001A inset",

@@ -23,7 +23,7 @@ const ShapeFuturSection = ({ title = "Shape the Future With Us", description = "
           <div className="w-full max-w-231 mx-auto grid grid-cols-1 justify-between xl:grid-cols-2">
             {/* Left */}
             <div className="flex flex-col gap-6.25 w-full max-w-111.25">
-              <h2 className="heading-gradient-white text-start text-2xl md:text-3xl xl:text-4xl font-bold leading-tight">
+              <h2 className="heading-gradient-white text-start font-bold leading-tight text-[clamp(1.5rem,2.3vw,2.05rem)]">
                 {title}
               </h2>
               <p className="text-base md:text-lg font-normal leading-relaxed text-fg">

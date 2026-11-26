@@ -22,7 +22,7 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col gap-4 ${centered ? "items-start sm:items-center sm:text-center" : "items-start text-left"} ${className}`}>
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
-      <h2 id={id} className="heading-gradient max-w-[860px] text-[1.6rem] font-semibold !leading-[1.18] sm:text-[1.9rem] lg:text-[2.15rem]">
+      <h2 id={id} className="heading-gradient max-w-[860px] font-semibold !leading-[1.18] text-[clamp(1.5rem,2.3vw,2.05rem)]">
         {title}
       </h2>
       {subtitle ? <p className={`max-w-[760px] text-base leading-relaxed text-fg-muted sm:text-lg ${centered ? "sm:mx-auto" : ""}`}>{subtitle}</p> : null}

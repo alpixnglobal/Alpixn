@@ -38,7 +38,7 @@ const NextBatchSection = ({ title = "Want To Be Part Of The Next Batch?", descri
       <div className="relative w-full h-full max-w-[1440px] mx-auto flex items-center px-4 xl:px-0">
         {/* Content */}
         <div className="relative w-full max-w-[704px] flex flex-col gap-6.25 sm:ml-[45px]">
-          <h2 className="text-gradient text-xl md:text-2xl font-bold leading-snug text-start">{title}</h2>
+          <h2 className="text-gradient font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="text-sm md:text-base font-normal leading-relaxed text-left text-fg/80">
             {description}
           </p>

@@ -1081,7 +1081,7 @@ export const jobData = {
     id: 1,
     slug: "ux-researcher",
     title: "UX Researcher",
-    company: "Future Vision Inc.",
+    company: "ALPIXN",
     type: "Full Time",
     location: "On-Site",
     salary: "₹30,000 - ₹45,000 monthly",
@@ -1089,7 +1089,7 @@ export const jobData = {
     applyLink: "/apply/ux-researcher",
 
     overview:
-      "As a UX Researcher at Future Vision Inc., you will be instrumental in understanding user behaviors, needs, and motivations through various research methodologies. Your insights will directly shape our product design and development, ensuring we create intuitive, user-centered experiences that solve real-world problems.",
+      "As a UX Researcher at ALPIXN, you will be instrumental in understanding user behaviors, needs, and motivations through various research methodologies. Your insights will directly shape our product design and development, ensuring we create intuitive, user-centered experiences that solve real-world problems.",
 
     positionOverview: [
       "Research Strategy: Develop and implement comprehensive UX research strategies to gather insights that inform product decisions across the entire user journey.",
@@ -1127,14 +1127,14 @@ export const jobData = {
     ],
 
     finalCall:
-      "If you're passionate about understanding user behavior and creating products that genuinely help people, join our team and help shape the future of user experience at Future Vision Inc.",
+      "If you're passionate about understanding user behavior and creating products that genuinely help people, join our team and help shape the future of user experience at ALPIXN",
   },
 
   "python-developer": {
     id: 2,
     slug: "python-developer",
     title: "Python Developer",
-    company: "Future Vision Inc.",
+    company: "ALPIXN",
     type: "Part Time",
     location: "On-Site",
     salary: "₹30,000 - ₹45,000 monthly",
@@ -1142,7 +1142,7 @@ export const jobData = {
     applyLink: "/apply/python-developer",
 
     overview:
-      "As a Python Developer at Future Vision Inc., you will be responsible for designing, developing, and maintaining scalable applications and services. You'll work with cutting-edge technologies to build solutions that power our products and services, collaborating with cross-functional teams to deliver high-quality code and innovative features.",
+      "As a Python Developer at ALPIXN, you will be responsible for designing, developing, and maintaining scalable applications and services. You'll work with cutting-edge technologies to build solutions that power our products and services, collaborating with cross-functional teams to deliver high-quality code and innovative features.",
 
     positionOverview: [
       "Backend Development: Design, develop, and maintain robust and scalable backend services and APIs using Python and related frameworks.",
@@ -1189,7 +1189,7 @@ export const jobData = {
     id: 3,
     slug: "graphics-designer",
     title: "Graphics Designer",
-    company: "Future Vision Inc.",
+    company: "ALPIXN",
     type: "Internship",
     location: "On-Site",
     salary: "₹30,000 - ₹45,000 monthly",
@@ -1197,7 +1197,7 @@ export const jobData = {
     applyLink: "/apply/graphics-designer",
 
     overview:
-      "As a Graphics Designer Intern at Future Vision Inc., you will have the opportunity to work on real-world design projects while learning from experienced professionals. You'll contribute to creating compelling visual content that enhances our brand identity and engages our audience across various platforms.",
+      "As a Graphics Designer Intern at ALPIXN, you will have the opportunity to work on real-world design projects while learning from experienced professionals. You'll contribute to creating compelling visual content that enhances our brand identity and engages our audience across various platforms.",
 
     positionOverview: [
       "Visual Design: Create engaging graphics for digital platforms including websites, social media, and marketing materials.",
@@ -1242,7 +1242,7 @@ export const jobData = {
     id: 4,
     slug: "product-manager",
     title: "Product Manager",
-    company: "Future Vision Inc.",
+    company: "ALPIXN",
     type: "Full Time",
     location: "On-Site",
     salary: "₹30,000 - ₹45,000 monthly",
@@ -1250,7 +1250,7 @@ export const jobData = {
     applyLink: "/apply/product-manager",
 
     overview:
-      "As a Product Manager at Future Vision Inc., you will be at the forefront of driving product development from ideation to launch. Your role will involve collaborating with cross-functional teams including engineering, design, marketing, and sales, ensuring that we deliver innovative and impactful products to our customers. You will play a key role in shaping the product roadmap, prioritizing features, and ensuring the successful execution of our products. Your ability to understand both customer needs and business objectives will help you translate product requirements into actionable plans, guiding teams to create solutions that meet and exceed user expectations. As a product advocate, you will be the voice of the customer within the company, continuously iterating to improve the user experience and overall product performance.",
+      "As a Product Manager at ALPIXN, you will be at the forefront of driving product development from ideation to launch. Your role will involve collaborating with cross-functional teams including engineering, design, marketing, and sales, ensuring that we deliver innovative and impactful products to our customers. You will play a key role in shaping the product roadmap, prioritizing features, and ensuring the successful execution of our products. Your ability to understand both customer needs and business objectives will help you translate product requirements into actionable plans, guiding teams to create solutions that meet and exceed user expectations. As a product advocate, you will be the voice of the customer within the company, continuously iterating to improve the user experience and overall product performance.",
 
     positionOverview: [
       "Product Strategy: Define and communicate the product vision and strategy, aligning it with the company's business goals and customer needs. Set clear priorities for product development.",

@@ -85,7 +85,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
             <Link href={`/resources/blogs?category=${encodeURIComponent(post.category)}`} className="eyebrow mt-8 hover:opacity-80">
               {post.category}
             </Link>
-            <h1 className="heading-gradient mt-4 max-w-4xl text-3xl font-semibold !leading-[1.12] sm:text-4xl lg:text-[2.85rem]">{post.title}</h1>
+            <h1 className="heading-gradient mt-4 max-w-4xl font-semibold !leading-[1.12] text-[clamp(1.85rem,3.3vw,2.9rem)]">{post.title}</h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg">{post.excerpt}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-subtle">
               <span className="inline-flex items-center gap-2">
@@ -160,7 +160,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
 
               {post.sources?.length ? (
                 <section aria-labelledby="references" className="mt-12 rounded-2xl border border-line bg-surface p-6">
-                  <h2 id="references" className="font-display text-lg font-semibold text-fg">
+                  <h2 id="references" className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
                     References
                   </h2>
                   <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-fg-muted">
@@ -222,7 +222,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
       {related.length ? (
         <section aria-labelledby="related-articles" className="bg-canvas-2 py-16">
           <div className="mx-auto max-w-[1100px] px-4 sm:px-6">
-            <h2 id="related-articles" className="font-display text-2xl font-semibold text-fg">
+            <h2 id="related-articles" className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
               Related articles
             </h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

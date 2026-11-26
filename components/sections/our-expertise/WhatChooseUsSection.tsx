@@ -11,9 +11,9 @@ const WhatChooseUsSection = () => {
       {/* Container */}
       <div className="w-full max-w-337.75 mx-auto">
         {/* Title & Subtitle */}
-        <h2 className="text-gradient heading">Transform Your Customer Engagement with JFT AI Chatbot</h2>
+        <h2 className="text-gradient heading text-[clamp(1.5rem,2.3vw,2.05rem)]">Transform Your Customer Engagement with ALPIXN AI Chatbot</h2>
         <p className="text-fg/80 font-normal text-base md:text-lg leading-relaxed text-center mt-3.75 px-4 lg:px-0">
-          Trusted by businesses across industries, JFT AI Chatbot is more than just an automated response tool. It’s a
+          Trusted by businesses across industries, ALPIXN AI Chatbot is more than just an automated response tool. It’s a
           strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through
           intelligent customer interactions.
         </p>

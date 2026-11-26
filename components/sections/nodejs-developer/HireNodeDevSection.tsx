@@ -35,7 +35,7 @@ const HireDeveloperSection = ({ slug = "default", data }: HireDeveloperSectionPr
           {/* LEFT — Sticky Title */}
           <div className="w-full py-6 lg:py-12.5">
             <div className="lg:sticky lg:top-24 flex flex-col gap-5">
-              <h2 className="title heading-gradient text-left">{title}</h2>
+              <h2 className="title heading-gradient text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
               <p className="subtitleMeXl80 leading-relaxed text-left">{subtitle}</p>
             </div>

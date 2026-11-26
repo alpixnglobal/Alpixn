@@ -121,7 +121,7 @@ export const expertiseCaseStudyData: Record<string, CaseStudySectionData> = {
         id: "ecommerce-platform",
         title: "IT & SaaS",
         heading:
-          "Jellyfish Technologies Powers Patronum with a Scalable SaaS Solution for Google Workspace User Management",
+          "ALPIXN Powers Patronum with a Scalable SaaS Solution for Google Workspace User Management",
         description:
           "Jellyfish Technologies partnered with Bespin Labs to build Patronum, a powerful SaaS platform that automates user provisioning and streamlines admin tasks across Google Workspace environments with real-time sync and efficient data handling.",
         features: [
@@ -140,7 +140,7 @@ export const expertiseCaseStudyData: Record<string, CaseStudySectionData> = {
       {
         id: "crm-system",
         title: "Facility Management",
-        heading: "Jellyfish Technologies Transforms FM Group’s Facility Management with a Unified Digital Platform",
+        heading: "ALPIXN Transforms FM Group’s Facility Management with a Unified Digital Platform",
         description:
           "FM Group partnered with Jellyfish Technologies to build a centralized platform for facility management operations. The solution enhanced oversight, improved service delivery, and significantly reduced operational costs.",
         features: [
@@ -160,7 +160,7 @@ export const expertiseCaseStudyData: Record<string, CaseStudySectionData> = {
         id: "education-platform",
         title: "Media & Entertainment",
         heading:
-          "Jellyfish Technologies Enhances Shootzu’s Creative Platform with Global Payments and Scalable Architecture",
+          "ALPIXN Enhances Shootzu’s Creative Platform with Global Payments and Scalable Architecture",
         description:
           "Jellyfish Technologies partnered with Shootzu to elevate its photography and videography networking platform, improving user engagement, streamlining global payments, and enabling international scalability.",
         features: [
@@ -179,7 +179,7 @@ export const expertiseCaseStudyData: Record<string, CaseStudySectionData> = {
       {
         id: "real-estate-portal",
         title: "Wildlife",
-        heading: "Jellyfish Technologies Transforms RJL’s Hunting Operations with a Scalable Digital Platform",
+        heading: "ALPIXN Transforms RJL’s Hunting Operations with a Scalable Digital Platform",
         description:
           "Jellyfish Technologies collaborated with Revierjagd Luzern (RJL) to digitize their hunting services by building a high-performance web and mobile application. The solution enhances administrative efficiency, streamlines insurance and document workflows, and improves the overall user experience in the sustainable hunting industry",
         features: [

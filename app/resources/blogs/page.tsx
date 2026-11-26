@@ -56,7 +56,7 @@ const BlogsPage = async ({ searchParams }: BlogsPageProps) => {
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-5">
               <span className="eyebrow">ALPIXN Insights</span>
-              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-[2.4rem]">Field notes on AI, robotics and software engineering</h1>
+              <h1 className="heading-gradient mt-4 font-semibold !leading-[1.08] text-[clamp(1.85rem,3.3vw,2.9rem)]">Field notes on AI, robotics and software engineering</h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg">
                 Practical explanations of how modern software, AI systems and automation are planned, built and operated — with the trade-offs, limitations and implementation details that matter in real projects.
               </p>
@@ -74,7 +74,7 @@ const BlogsPage = async ({ searchParams }: BlogsPageProps) => {
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#040d1c] via-[#040d1c]/50 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                     <span className="rounded-full bg-[#040d1c]/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f6d77a] backdrop-blur">Featured · {featured.category}</span>
-                    <h2 className="mt-3 max-w-2xl font-display text-xl font-semibold leading-snug text-white sm:text-2xl">{featured.title}</h2>
+                    <h2 className="mt-3 max-w-2xl font-display font-semibold leading-snug text-white text-[clamp(1.5rem,2.3vw,2.05rem)]">{featured.title}</h2>
                     <span className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-white/80">
                       Read article <ArrowRight aria-hidden className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

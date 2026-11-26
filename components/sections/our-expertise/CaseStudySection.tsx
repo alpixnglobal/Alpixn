@@ -54,7 +54,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
       <div className="container max-w-337.5">
         {/* Title & Subtitle */}
         <div className="w-full max-w-253.25 mx-auto flex flex-col gap-3.75">
-          <h2 className="title heading-gradient text-left sm:text-center">{caseStudyData.mainTitle}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{caseStudyData.mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{caseStudyData.mainSubtitle}</p>
         </div>
 
@@ -145,7 +145,7 @@ const CaseStudySection = ({ slug = "software-development", data }: CaseStudySect
                 {/* Left */}
                 <div className="w-full">
                   <div className="flex flex-col gap-5 w-full max-w-[743px]">
-                    <h2 className="text-xl sm:text-2xl text-fg">
+                    <h2 className="text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
                       <span className="font-semibold">{activeCaseStudy.heading}</span>
                     </h2>
                     <p className="font-normal text-xs sm:text-base text-fg leading-relaxed">

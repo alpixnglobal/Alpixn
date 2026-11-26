@@ -10,7 +10,7 @@ type DriveCustomerSectionProps = {
 };
 
 const DriveCustomerSection = ({
-  title = "Drive Better Customer Outcomes with JFT AI Chatbot",
+  title = "Drive Better Customer Outcomes with ALPIXN AI Chatbot",
   description = "Experience the future of customer support with a demo or contact us to discuss your specific requirements.",
   buttonLabel = "Speak To Our Expert Team",
   buttonHref = "/contact-us",
@@ -26,7 +26,7 @@ const DriveCustomerSection = ({
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col sm:items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-fg text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug">
+            <h2 className="font-semibold text-fg text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug text-[clamp(1.5rem,2.3vw,2.05rem)]">
               {title}
             </h2>
 

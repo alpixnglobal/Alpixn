@@ -13,15 +13,15 @@ export const defaultProductSettings: ProductSettingsRecord = {
   menuButtonLabel: "Let's Talk",
   menuButtonHref: "/products",
   menuImageData: "/images/contact.svg",
-  landingHeroTitle: "JFT AI Chatbot",
+  landingHeroTitle: "ALPIXN AI Chatbot",
   landingHeroSubtitle: "Enhance Business Agility and Customer Support Operations",
   landingHeroDescription:
     "A transformative AI-powered chatbot solution designed to enhance customer engagement, streamline support, and boost conversion rates through intelligent, real-time interactions.",
   landingHeroButtonLabel: "Book Your Demo",
   landingHeroButtonHref: "/contact-us",
-  customSupportTitle: "Empower Your Customer Support with JFT AI Chatbot",
+  customSupportTitle: "Empower Your Customer Support with ALPIXN AI Chatbot",
   customSupportDescription:
-    "JFT AI Chatbot, powered by advanced GenAI, seamlessly integrates with your websites and applications to provide immediate, accurate responses to customer queries. Say goodbye to delayed responses and hello to 24/7 personalized support that boosts user satisfaction and captures every opportunity for engagement and conversion.",
+    "ALPIXN AI Chatbot, powered by advanced GenAI, seamlessly integrates with your websites and applications to provide immediate, accurate responses to customer queries. Say goodbye to delayed responses and hello to 24/7 personalized support that boosts user satisfaction and captures every opportunity for engagement and conversion.",
   customSupportImageData: "/images/ai-circle.svg",
   featuresTitle: "Cutting-edge Features that enhance Customer Experience",
   featuresDescription:
@@ -52,9 +52,9 @@ export const defaultProductSettings: ProductSettingsRecord = {
       buttonHref: "#",
     },
   ],
-  transformTitle: "Transform Your Customer Engagement with JFT AI Chatbot",
+  transformTitle: "Transform Your Customer Engagement with ALPIXN AI Chatbot",
   transformDescription:
-    "Trusted by businesses across industries, JFT AI Chatbot is more than just an automated response tool. It’s a strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through intelligent customer interactions.",
+    "Trusted by businesses across industries, ALPIXN AI Chatbot is more than just an automated response tool. It’s a strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through intelligent customer interactions.",
   audienceCards: [
     {
       title: "Organizations",
@@ -81,12 +81,12 @@ export const defaultProductSettings: ProductSettingsRecord = {
       imageData: "/icons/hr.svg",
     },
   ],
-  faqTitle: "FAQs about JFT AI Chatbot",
+  faqTitle: "FAQs about ALPIXN AI Chatbot",
   faqs: [
     {
-      question: "What is JFT AI Chatbot?",
+      question: "What is ALPIXN AI Chatbot?",
       answer:
-        "JFT AI Chatbot is an AI-driven customer support solution that integrates with your digital platforms to provide real-time, intelligent responses to customer inquiries, enhancing user engagement and satisfaction.",
+        "ALPIXN AI Chatbot is an AI-driven customer support solution that integrates with your digital platforms to provide real-time, intelligent responses to customer inquiries, enhancing user engagement and satisfaction.",
     },
     {
       question: "How does the chatbot learn and adapt?",
@@ -94,12 +94,12 @@ export const defaultProductSettings: ProductSettingsRecord = {
         "The chatbot improves through continuous model refinement, conversation feedback, and workflow tuning so responses become more accurate over time.",
     },
     {
-      question: "Is JFT AI Chatbot easy to integrate?",
+      question: "Is ALPIXN AI Chatbot easy to integrate?",
       answer:
         "Yes. It is designed to integrate with websites and applications through a structured onboarding and deployment process with minimal disruption.",
     },
     {
-      question: "How does JFT AI Chatbot handle sensitive data?",
+      question: "How does ALPIXN AI Chatbot handle sensitive data?",
       answer:
         "The platform can be configured with secure data handling practices, controlled access, and privacy-conscious workflows that align with business requirements.",
     },
@@ -114,7 +114,7 @@ export const defaultProductSettings: ProductSettingsRecord = {
         "Support can include deployment guidance, platform updates, implementation help, and ongoing optimization based on your selected engagement model.",
     },
   ],
-  driveTitle: "Drive Better Customer Outcomes with JFT AI Chatbot",
+  driveTitle: "Drive Better Customer Outcomes with ALPIXN AI Chatbot",
   driveDescription: "Experience the future of customer support with a demo or contact us to discuss your specific requirements.",
   driveButtonLabel: "Speak To Our Expert Team",
   driveButtonHref: "/contact-us",

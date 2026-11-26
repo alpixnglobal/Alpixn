@@ -67,8 +67,8 @@ const TalkToExpertSection = ({ title = "Expert Node.js Development: Making the C
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 xl:gap-[58px]">
           <div className="lg:sticky lg:top-0 lg:self-start order-1 lg:order-1">
             <div className="flex flex-col items-center lg:items-start gap-4 md:gap-5">
-              <h2 className="title heading-gradient text-left">{title}</h2>
-              <Link href={buttonHref} className="py-2.5 px-6.25 bg-tech rounded-10 text-base font-medium w-full sm:w-auto cursor-pointer">
+              <h2 className="title heading-gradient text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+              <Link href={buttonHref} className="btn-brand w-full sm:w-auto">
                 {buttonLabel}
               </Link>
             </div>

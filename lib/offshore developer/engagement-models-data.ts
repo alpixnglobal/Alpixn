@@ -17,7 +17,7 @@ export const engagementModelsData: Record<string, EngagementModelsData> = {
     slug: "nodejs-developer",
     mainTitle: "Engagement Models to Hire Dedicated Node.js Developers",
     mainSubtitle:
-      "Jellyfish Technologies offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.",
+      "ALPIXN offers versatile engagement models for Node.js application development services, providing innovative solutions. Get the best fit for your business.",
     models: [
       {
         title: "Custom Node.js Development",
@@ -93,7 +93,7 @@ export const engagementModelsData: Record<string, EngagementModelsData> = {
     slug: "default",
     mainTitle: "Engagement Models to Hire Dedicated Developers",
     mainSubtitle:
-      "Jellyfish Technologies offers versatile engagement models for application development services, providing innovative solutions. Get the best fit for your business.",
+      "ALPIXN offers versatile engagement models for application development services, providing innovative solutions. Get the best fit for your business.",
     models: [
       {
         title: "Custom Development",

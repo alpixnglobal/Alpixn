@@ -15,15 +15,15 @@ interface GlobalServicesSectionProps {
 }
 
 const defaultOffices: ContactOffice[] = [
-  { name: "India", address: "3rd & 10th Floor, Tower B, Cyber Park, Secot -39, Mumbai", email: "india-sales@axano.in", flagImage: "/images/india.svg", order: 1, isPublished: true },
-  { name: "Sydney, Australia", address: "Office 117, The Sebel South Brisbane, 23 Merivale St", email: "aus-sales@axano.in", flagImage: "/images/sydney.svg", order: 2, isPublished: true },
-  { name: "Dubai, UAE", address: "Office 1704, Tower B, Business Central, Dubai Internet City", email: "dubai-sales@axano.in", flagImage: "/images/uae.svg", order: 3, isPublished: true },
-  { name: "Milan, Italy", address: "Via Monte Napoleone, 8, 20121 Milano, Italy", email: "italy-sales@axano.in", flagImage: "/images/italy.svg", order: 4, isPublished: true },
-  { name: "London, UK", address: "100 Liverpool Street, London, EC2M 2RH, United Kingdom", email: "uk-sales@axano.in", flagImage: "/images/uk.svg", order: 5, isPublished: true },
-  { name: "New York, USA", address: "750 Highway 121 BYP, STE 100, Lewisville, TX", email: "usa-sales@axano.in", flagImage: "/images/usa.svg", order: 6, isPublished: true },
-  { name: "Canada", address: "100 King Street West, Suite 5700, Toronto, ON M5X 1C7", email: "canada-sales@axano.in", flagImage: "/images/canada.svg", order: 7, isPublished: true },
-  { name: "South Africa", address: "The Zone @ Rosebank, 177 Oxford Road, Johannesburg", email: "sa-sales@axano.in", flagImage: "/images/south-africa.svg", order: 8, isPublished: true },
-  { name: "Thailand", address: "1 Empire Tower, South Sathorn Road, Sathorn, Bangkok", email: "thailand-sales@axano.in", flagImage: "/images/thailand.svg", order: 9, isPublished: true },
+  { name: "India", address: "", email: "", flagImage: "/images/india.svg", order: 1, isPublished: true },
+  { name: "Sydney, Australia", address: "", email: "", flagImage: "/images/sydney.svg", order: 2, isPublished: true },
+  { name: "Dubai, UAE", address: "", email: "", flagImage: "/images/uae.svg", order: 3, isPublished: true },
+  { name: "Milan, Italy", address: "", email: "", flagImage: "/images/italy.svg", order: 4, isPublished: true },
+  { name: "London, UK", address: "", email: "", flagImage: "/images/uk.svg", order: 5, isPublished: true },
+  { name: "New York, USA", address: "", email: "", flagImage: "/images/usa.svg", order: 6, isPublished: true },
+  { name: "Canada", address: "", email: "", flagImage: "/images/canada.svg", order: 7, isPublished: true },
+  { name: "South Africa", address: "", email: "", flagImage: "/images/south-africa.svg", order: 8, isPublished: true },
+  { name: "Thailand", address: "", email: "", flagImage: "/images/thailand.svg", order: 9, isPublished: true },
 ];
 
 function getFallbackFlagByOfficeName(name: string) {
@@ -42,108 +42,45 @@ function getFallbackFlagByOfficeName(name: string) {
   return officeFlagMap[name] ?? "/images/india.svg";
 }
 
-const GlobalServicesSection = ({
-  title = "Our Global Offices",
-  offices = defaultOffices,
-}: GlobalServicesSectionProps) => {
-  const sortedOffices = [...offices].filter(o => o.isPublished).sort((a, b) => a.order - b.order);
+const GlobalServicesSection = ({ title = "Markets We Serve", offices = defaultOffices }: GlobalServicesSectionProps) => {
+  const sortedOffices = [...offices].filter((o) => o.isPublished).sort((a, b) => a.order - b.order);
+  // Legacy CMS title claimed physical offices; markets are what we can state honestly.
+  const heading = /global offices/i.test(title) ? "Markets We Serve" : title;
+  const tones = ["#0878d1", "#d99a19", "#064a87", "#9a5b08"];
 
   return (
-    <section className="sectionDefault">
-      {/* Background Color */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "radial-gradient(circle, var(--canvas) 65%, var(--glow) 100%)" }}
-      />
-      {/* Container */}
-      <div className="container max-w-[1122px]">
-        <h2 className="heading-gradient font-bold text-2xl sm:text-3xl md:text-4xl text-left sm:text-center">
-          {title}
-        </h2>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mt-12.5">
-          {sortedOffices.map((office, index) => (
-            (() => {
-              const resolvedFlag = office.flagImage || getFallbackFlagByOfficeName(office.name);
-              const shouldUnoptimizeFlag =
-                resolvedFlag.startsWith("data:") ||
-                resolvedFlag.startsWith("http://") ||
-                resolvedFlag.startsWith("https://");
-
-              return (
-                <div
-                  key={index}
-                  className="p-5 w-full h-[182px] rounded-[10px] relative"
-                  style={{
-                    background: "linear-gradient(180deg, rgba(24, 24, 24, 0.24) 0%, color-mix(in srgb, var(--tech) 6%, transparent) 100%)",
-                  }}
-                >
-                  {/* Gradient border overlay */}
-                  <div
-                    className="absolute inset-0 rounded-[10px] pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(100% 100% at 49.96% 0%, rgb(var(--hi-rgb) / calc(0.75 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.15 * var(--hi-scale))) 72.87%)",
-                      WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      WebkitMaskComposite: "xor",
-                      mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                      maskComposite: "exclude",
-                      padding: "1px",
-                    }}
-                  />
-
-                  <div className="flex flex-col gap-5 relative z-10">
-                    <div className="flex gap-2.5 items-center">
-                      <div className="w-7 h-7 lg:w-9 lg:h-9 relative flex-shrink-0">
-                        <Image src={resolvedFlag} alt={office.name} fill className="object-contain" unoptimized={shouldUnoptimizeFlag} />
-                      </div>
-                      <span className="font-semibold text-fg text-lg lg:text-xl">{office.name}</span>
-                    </div>
-
-                    <div className="flex gap-2.5 items-center">
-                      <svg
-                        width="20"
-                        height="16"
-                        viewBox="0 0 20 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-4 h-3 lg:w-5 lg:h-4 flex-shrink-0"
-                      >
-                        <path
-                          d="M1.75011 0.75H17.7501C18.3001 0.75 18.7501 1.2 18.7501 1.75V13.75C18.7501 14.3 18.3001 14.75 17.7501 14.75H1.75011C1.20011 14.75 0.750107 14.3 0.750107 13.75V1.75C0.750107 1.2 1.20011 0.75 1.75011 0.75Z"
-                          stroke="white"
-                          strokeOpacity="0.8"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M0.750107 2.25L9.75011 7.75L18.7501 2.25"
-                          stroke="white"
-                          strokeOpacity="0.8"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-
-                      <span className="font-normal text-fg/80 text-sm lg:text-base">{office.email}</span>
-                    </div>
-
-                    <div className="flex gap-2.5 items-center">
-                      <div className="w-[18px] h-[22px] lg:w-[22px] lg:h-[26px] relative flex-shrink-0">
-                        <Image src="/icons/map.svg" alt="location" fill className="object-contain" />
-                      </div>
-
-                      <span className="font-normal text-fg/80 text-sm lg:text-base">{office.address}</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })()
-          ))}
+    <section aria-labelledby="markets-heading" className="bg-canvas-2 py-16 sm:py-20">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#d99a19]/35 bg-[#f6d77a]/25 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#9a5b08] dark:bg-[#d99a19]/10 dark:text-[#f6d77a]">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" />
+            Global delivery
+          </span>
+          <h2 id="markets-heading" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.12] tracking-[-0.025em] text-fg">
+            {heading}
+          </h2>
         </div>
+        <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedOffices.map((office, index) => {
+            const flag = office.flagImage || getFallbackFlagByOfficeName(office.name);
+            const tone = tones[index % tones.length];
+            return (
+              <li key={office.name} className="relative overflow-hidden rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
+                <span aria-hidden className="absolute inset-x-0 top-0 h-1" style={{ background: tone }} />
+                <div className="flex items-center gap-3">
+                  <Image src={flag} alt="" width={36} height={36} unoptimized={flag.startsWith("data:") || flag.startsWith("http")} className="h-9 w-9 rounded-full object-cover ring-1 ring-black/10" />
+                  <span className="font-display text-lg font-semibold text-fg">{office.name}</span>
+                </div>
+                {office.address ? <p className="mt-3 text-sm leading-relaxed text-fg-muted">{office.address}</p> : null}
+                {office.email ? (
+                  <a href={`mailto:${office.email}`} className="mt-2 inline-block text-sm font-medium text-[#0878d1] hover:underline">
+                    {office.email}
+                  </a>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

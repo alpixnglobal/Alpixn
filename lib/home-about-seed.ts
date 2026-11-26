@@ -119,7 +119,7 @@ export const defaultHomeSettings: HomeSettingsRecord = {
   insightCards: [
     {
       title: "Prompt-to-Flowchart: Generating Flowcharts from Natural Language using GenAI",
-      author: "Jellyfish Technologies",
+      author: "ALPIXN Editorial Team",
       imageData: "/images/prompt-to-flowchart.png",
       href: "/resources/blogs/prompt-to-flowchart-generating-flowcharts-from-natural-language-using-genai",
     },
@@ -131,7 +131,7 @@ export const defaultHomeSettings: HomeSettingsRecord = {
     },
     {
       title: "Cache-Augmented Generation (CAG): A Revolutionary Alternative to RAG",
-      author: "Jellyfish Technologies",
+      author: "ALPIXN Editorial Team",
       imageData: "/images/cache-augmented.png",
       href: "/resources/blogs/cache-augmented-generation-cag-a-revolutionary-alternative-to-rag",
     },
@@ -141,7 +141,7 @@ export const defaultHomeSettings: HomeSettingsRecord = {
 export const defaultAboutSettings: AboutSettingsRecord = {
   key: "about-settings",
   heroTitle: "Empowering Businesses Through Innovation and Intelligence",
-  heroDescription: "From strategy to execution, AICompany empowers organizations to achieve more through cutting-edge technology and smart automation.",
+  heroDescription: "From strategy to execution, ALPIXN empowers organizations to achieve more through cutting-edge technology and smart automation.",
   heroPrimaryAction: { label: "Explore Services", href: "/our-expertise" },
   heroSecondaryAction: { label: "Get in Touch", href: "/contact-us" },
   whoWeAreTitle: "Who We Are?",
@@ -186,7 +186,7 @@ export const defaultAboutSettings: AboutSettingsRecord = {
     { title: "Innovation & Excellence", description: "Our solutions are built on innovation, performance, and customer satisfaction - ensuring every project exceeds expectations." },
     { title: "Passionate Team", description: "A dynamic team of developers, designers, and strategists collaborates seamlessly to create meaningful, user-focused digital experiences." },
   ],
-  ctaTitle: "At AICompany, we don't just build software - we build possibilities.",
+  ctaTitle: "At ALPIXN, we don't just build software - we build possibilities.",
   ctaDescription: "Together, let's shape the future of intelligent technology.",
   ctaButtonText: "Book a Free Call",
   ctaButtonHref: "/contact-us",

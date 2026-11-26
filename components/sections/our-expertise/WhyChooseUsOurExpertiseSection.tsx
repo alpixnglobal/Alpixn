@@ -33,7 +33,7 @@ const WhyChooseUsOurExpertiseSection = ({ slug = "software-development", data }:
       <div className="container max-w-337.5">
         <div className="w-full max-w-296.25 mx-auto flex flex-col gap-[15px]">
           {/* Title & Subtitle */}
-          <h2 className="title heading-gradient-white leading-snug text-left sm:text-center">{resolvedData.mainTitle}</h2>
+          <h2 className="title heading-gradient-white leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{resolvedData.mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{resolvedData.mainSubtitle}</p>
         </div>
 

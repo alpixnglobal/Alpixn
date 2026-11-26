@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/buttonBtn";
 import Link from "next/link";
 
 const BooKFreeCallSection = ({
-  title = "At AICompany, we don't just build software - we build possibilities.",
+  title = "At ALPIXN, we don't just build software - we build possibilities.",
   description = "Together, let's shape the future of intelligent technology.",
   buttonText = "Book a Free Call",
   buttonHref = "/contact-us",
@@ -27,7 +27,7 @@ const BooKFreeCallSection = ({
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="text-2xl md:text-3xl font-bold leading-snug text-fg text-left sm:text-center">
+            <h2 className="font-bold leading-snug text-fg text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">
               {title}
             </h2>
 

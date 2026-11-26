@@ -7,8 +7,8 @@ type CustomSupportProps = {
 };
 
 const CustomSupport = ({
-  title = "Empower Your Customer Support with JFT AI Chatbot",
-  description = "JFT AI Chatbot, powered by advanced GenAI, seamlessly integrates with your websites and applications to provide immediate, accurate responses to customer queries. Say goodbye to delayed responses and hello to 24/7 personalized support that boosts user satisfaction and captures every opportunity for engagement and conversion.",
+  title = "Empower Your Customer Support with ALPIXN AI Chatbot",
+  description = "ALPIXN AI Chatbot, powered by advanced GenAI, seamlessly integrates with your websites and applications to provide immediate, accurate responses to customer queries. Say goodbye to delayed responses and hello to 24/7 personalized support that boosts user satisfaction and captures every opportunity for engagement and conversion.",
   imageData = "/images/ai-circle.svg",
 }: CustomSupportProps) => {
   const resolvedImage = imageData || "/images/ai-circle.svg";
@@ -85,7 +85,7 @@ const CustomSupport = ({
         <div className="grid grid-cols-1 xl:grid-cols-[845_1fr] items-center gap-10 lg:gap-0">
           {/* Grid 1 */}
            <div className="flex flex-col gap-6.25">
-            <h2 className="title heading-gradient text-left">{title}</h2>
+            <h2 className="title heading-gradient text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
 
             <p className="subtitleMeXl80 text-left leading-relaxed">
               {description}

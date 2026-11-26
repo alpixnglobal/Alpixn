@@ -60,7 +60,7 @@ const DetailsSection = ({
               {project.timeline}
             </Button>
 
-            <h2 className="title heading-gradient-white text-start">{detailsTitle}</h2>
+            <h2 className="title heading-gradient-white text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{detailsTitle}</h2>
             <p className="subtitleMeXl80 text-left leading-relaxed">{project.summary}</p>
 
             <ul className="ml-2 space-y-1">
@@ -88,7 +88,7 @@ const DetailsSection = ({
 
         <div className="mt-12.5 grid grid-cols-1 gap-6.25 px-4 xl:grid-cols-[770px_1fr] xl:px-0">
           <div className="flex flex-col gap-6.25">
-            <h2 className="title heading-gradient-white text-start">{objectiveTitle}</h2>
+            <h2 className="title heading-gradient-white text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{objectiveTitle}</h2>
             <p className="subtitleMeXl80 text-left leading-relaxed">{project.objective}</p>
 
             {objectivePoints.length > 0 ? (
@@ -102,7 +102,7 @@ const DetailsSection = ({
               </ul>
             ) : null}
 
-            <h2 className="title heading-gradient-white mt-12.5 text-start">{solutionsTitle}</h2>
+            <h2 className="title heading-gradient-white mt-12.5 text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{solutionsTitle}</h2>
             <ol className="ml-2.5 space-y-4">
               {solutionPoints.map((point, index) => (
                 <li key={point} className="grid grid-cols-[auto_1fr] gap-4">

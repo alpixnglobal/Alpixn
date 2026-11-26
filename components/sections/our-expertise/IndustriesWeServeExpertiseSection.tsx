@@ -37,7 +37,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
       <div className="container max-w-281.25">
         {/* Title & Subtitle - Dynamic */}
         <div className="w-full max-w-296.25 mx-auto gap-3.75">
-          <h2 className="title heading-gradient-white text-left sm:text-center">{mainTitle}</h2>
+          <h2 className="title heading-gradient-white text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center mt-3.5">{mainSubtitle}</p>
         </div>
 

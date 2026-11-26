@@ -108,7 +108,7 @@ const CuttingEdgeFeaturesSection = ({
 
       <div className="container max-w-337.75">
         <div className="flex flex-col gap-[15px]">
-          <h2 className="title heading-gradient text-left sm:text-center">{title}</h2>
+          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{description}</p>
         </div>
 

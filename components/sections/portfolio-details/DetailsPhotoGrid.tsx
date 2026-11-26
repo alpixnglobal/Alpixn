@@ -53,7 +53,7 @@ const DetailsPhotoGrid = ({ project, resultTitle = "Result" }: DetailsPhotoGridP
         </div>
 
         <div className="mx-4 mt-[75px] grid grid-cols-1 gap-[25px] xl:grid-cols-[auto_550px] xl:px-0">
-          <h2 className="title heading-gradient-white text-start">{resultTitle}</h2>
+          <h2 className="title heading-gradient-white text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{resultTitle}</h2>
 
           <div className="mt-4 lg:mt-0">
             <div className="flex gap-[35px]">
