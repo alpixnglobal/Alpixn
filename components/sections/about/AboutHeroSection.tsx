@@ -1,0 +1,91 @@
+import { Button } from "@/components/ui/buttonBtn";
+import Image from "next/image";
+import Link from "next/link";
+
+const AboutHeroSection = ({
+  title = "Empowering Businesses Through Innovation and Intelligence",
+  description = "From strategy to execution, AICompany empowers organizations to achieve more through cutting-edge technology and smart automation.",
+  primaryAction = { label: "Explore Services", href: "/our-expertise" },
+  secondaryAction = { label: "Get in Touch", href: "/contact-us" },
+}: {
+  title?: string;
+  description?: string;
+  primaryAction?: { label: string; href: string };
+  secondaryAction?: { label: string; href: string };
+}) => {
+  return (
+    <section className="relative w-full h-124 md:h-164">
+      {/* Backgtound Color */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "radial-gradient(circle, rgba(0, 7, 14, 1) 15%, rgba(0, 35, 72, 1) 100%)" }}
+      />
+
+      {/* Bg Image */}
+      <div
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: "url('/images/about-background.svg')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "bottom",
+          opacity: 0.92,
+        }}
+      ></div>
+
+      <div className="relative flex flex-col gap-[25px] w-full max-w-[939px] items-center justify-center mx-auto pt-20 md:pt-35 px-4 xl:px-0">
+        {/* Heading */}
+        <h1
+          className="w-full max-w-[980px] pb-1 font-extrabold text-2xl sm:text-3xl md:text-[38px] lg:text-[52px] leading-[1.16] text-left sm:text-center break-words"
+          style={{
+            background: "linear-gradient(89.81deg, #FFFFFF 19.79%, #FFFFFF 76.65%, #BCDEFF 93.54%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            color: "transparent",
+          }}
+        >
+          {title === "Empowering Businesses Through Innovation and Intelligence" ? (
+            <>
+              <span className="block md:whitespace-nowrap">Empowering Businesses Through</span>
+              <span className="block md:whitespace-nowrap">Innovation and Intelligence</span>
+            </>
+          ) : (
+            title
+          )}
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-left sm:text-center text-base md:text-lg font-normal leading-relaxed text-white sm:max-w-[90%] lg:max-w-full">
+          {description}
+        </p>
+
+        {/* Buttons  */}
+        <div className="flex flex-col md:flex-row gap-3 sm:gap-4 lg:gap-[25px] w-full md:w-auto">
+          <Link href={primaryAction.href} className="w-full md:w-auto px-6.25 py-2.5 bg-primary text-white text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center gap-2.5 cursor-pointer">
+            <div>{primaryAction.label}</div>
+            <div className="relative w-3.5 h-3.5 lg:w-4 lg:h-4">
+              <Image src="/icons/arrow-right.svg" fill alt="Arrow Right" />
+            </div>
+          </Link>
+          <Link
+            href={secondaryAction.href}
+            className="w-full md:w-auto px-6.25 py-2.5 text-white text-sm md:text-base font-medium leading-snug rounded-10 flex items-center justify-center cursor-pointer"
+            style={{
+              background: "linear-gradient(360deg, #002348 0%, #00141F 100%)",
+              border: "1.5px solid transparent",
+              backgroundImage:
+                "linear-gradient(360deg, #002348 0%, #00141F 100%), linear-gradient(166.72deg, #389DFE -20.31%, #FFFFFF 92.69%)",
+              backgroundOrigin: "border-box",
+              backgroundClip: "padding-box, border-box",
+            }}
+          >
+            {secondaryAction.label}
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutHeroSection;
