@@ -98,7 +98,7 @@ const TechnologiesHeroSection = ({
         <h6 className="text-sm sm:text-base text-fg/85 text-left sm:text-center">{subtitle}</h6>
 
         {/* Title - Now using prop */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gradient font-extrabold leading-tight text-left sm:text-center">{title}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] text-gradient font-extrabold leading-tight text-left sm:text-center">{title}</h1>
 
         {/* Description - Now using prop */}
         <p className="text-left sm:text-center text-xs sm:text-sm md:text-base font-normal leading-relaxed">

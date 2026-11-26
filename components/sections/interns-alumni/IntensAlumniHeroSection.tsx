@@ -69,7 +69,7 @@ const IntensAlumniHeroSection = ({ title = "Our Internship Candidates", descript
 
       {/* Container */}
       <div className="relative w-full max-w-[1295px] mx-auto flex flex-col gap-[25px] items-center mt-10 sm:mt-32 lg:mt-28.75 z-10 px-4 xl:px-0">
-         <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-left sm:text-center text-gradient leading-tight">{title}</h1>
+         <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] text-left sm:text-center text-gradient leading-tight">{title}</h1>
          <p className="text-sm md:text-base font-normal leading-relaxed text-left sm:text-center text-fg/90">
            {description}
          </p>

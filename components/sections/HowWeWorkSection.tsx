@@ -48,7 +48,7 @@ export default function HowWeWorkSection() {
         <div className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <span className="eyebrow">Why ALPIXN</span>
-            <h2 id="how-we-work-title" className="heading-gradient mt-4 text-[1.85rem] font-semibold !leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+            <h2 id="how-we-work-title" className="heading-gradient mt-4 text-[1.85rem] font-semibold !leading-[1.15] sm:text-4xl lg:text-[2.15rem]">
               How we work with you
             </h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-fg-muted sm:text-lg">

@@ -48,7 +48,7 @@ const HeroSection = () => {
       <div className="relative z-20 container mx-auto grid min-h-[628px] items-center">
         {/* Left Column */}
         <div className="flex flex-col items-start ml-[45px] max-w-[789px]">
-          <h1 className="text-fg font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+          <h1 className="text-fg font-extrabold text-3xl sm:text-4xl md:text-[2.4rem] lg:text-[2.6rem] leading-tight">
             Building Digital Solutions That Scale with You
           </h1>
 

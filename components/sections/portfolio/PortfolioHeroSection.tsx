@@ -51,7 +51,7 @@ const PortfolioHeroSection = ({ title = "Proven Results And Impacts", descriptio
 
       {/* Container */}
       <div className="relative w-full max-w-[689px] mx-auto flex flex-col gap-[25px] items-center mt-10 sm:mt-32 lg:mt-[115px] z-10 px-4 xl:px-0">
-        <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl heading-gradient-white leading-tight text-left sm:text-center">
+        <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] heading-gradient-white leading-tight text-left sm:text-center">
           {title}
         </h1>
         <p className="text-sm md:text-base font-normal leading-relaxed text-fg/90 text-left sm:text-center">

@@ -186,7 +186,7 @@ const ProductHeroSection = ({
         <h6 className="text-fg/85 text-sm md:text-base">{subtitle}</h6>
 
         {/* Title */}
-        <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gradient leading-tight">{title}</h1>
+        <h1 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] text-gradient leading-tight">{title}</h1>
 
         {/* Description */}
         <p className="text-sm md:text-base leading-relaxed font-normal max-w-[949px] text-left sm:text-center">

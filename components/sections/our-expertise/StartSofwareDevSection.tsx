@@ -28,7 +28,7 @@ const StartDevelopmentSection = ({ slug = "software-development", data }: StartD
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-fg text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug">
+            <h2 className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] text-fg text-left sm:text-center leading-tight sm:leading-snug lg:leading-snug">
               {title}
             </h2>
 

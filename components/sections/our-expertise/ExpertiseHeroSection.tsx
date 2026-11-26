@@ -22,7 +22,7 @@ const ExpertiseHeroSection = ({
   // Only real logos uploaded in the CMS are shown; placeholder artwork is never presented as clients.
   const resolvedLogos = logos.filter((logo) => logo && !logo.includes("logoipsum"));
   const heroTitleClassName = `
-    font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight tracking-tight
+    font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] leading-tight tracking-tight
     bg-[linear-gradient(89.22deg,var(--heading-from)_1.35%,var(--heading-from)_58.47%,var(--tech-soft)_101.3%)]
     bg-clip-text text-transparent
   `;

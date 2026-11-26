@@ -7,7 +7,7 @@ import HeroVisual from "@/components/hero/HeroVisual";
  * the 3D robotics scene is a progressive enhancement layered on top.
  */
 const Hero = ({
-  title = "Building Digital Solutions That Scale with You",
+  title = "Engineering AI, Robotics & Software for the Real World",
   description = "Custom software, AI, and web solutions tailored to your growth journey",
   primaryAction = { label: "Let’s Talk", href: "/contact-us" },
   secondaryAction = { label: "See Our Work", href: "/resources/portfolio" },
@@ -53,7 +53,7 @@ const Hero = ({
 
           <h1
             id="hero-title"
-            className="heading-gradient mt-6 max-w-[640px] text-[2.35rem] font-semibold !leading-[1.06] sm:text-5xl lg:text-[3.6rem] xl:text-[4.1rem]"
+            className="heading-gradient mt-6 max-w-[640px] text-[2.35rem] font-semibold !leading-[1.06] sm:text-[2.4rem] lg:text-[2.6rem] xl:text-[2.9rem]"
           >
             {title}
           </h1>

@@ -110,7 +110,7 @@ const CareersHeroSection = ({ title = "Innovate With Us", description = "We crea
       {/* Content */}
       <div className="container max-w-[735px] relative z-10">
         <div className="flex flex-col gap-[30px] mt-[34px] lg:mt-[72px]">
-          <h1 className="heading-gradient-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-left sm:text-center [text-shadow:0_4px_26px_rgba(0,0,0,0.55)]">
+          <h1 className="heading-gradient-white text-2xl sm:text-3xl md:text-4xl lg:text-[2.4rem] font-extrabold leading-tight tracking-tight text-left sm:text-center [text-shadow:0_4px_26px_rgba(0,0,0,0.55)]">
             {title}
           </h1>
 

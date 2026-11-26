@@ -76,7 +76,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
                   </span>
                 ) : null}
               </div>
-              <h1 className="heading-gradient mt-5 text-3xl font-semibold !leading-[1.12] sm:text-4xl lg:text-[2.75rem]">{p.title}</h1>
+              <h1 className="heading-gradient mt-5 text-3xl font-semibold !leading-[1.12] sm:text-4xl lg:text-[2.15rem]">{p.title}</h1>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">{p.summary}</p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">

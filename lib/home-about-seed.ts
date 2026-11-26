@@ -2,8 +2,8 @@ import type { AboutSettingsRecord, HomeSettingsRecord } from "@/lib/content-type
 
 export const defaultHomeSettings: HomeSettingsRecord = {
   key: "home-settings",
-  heroTitle: "Building Digital Solutions That Scale with You",
-  heroDescription: "Custom software, AI, and web solutions tailored to your growth journey",
+  heroTitle: "Engineering AI, Robotics & Software for the Real World",
+  heroDescription: "From machine-learning models and robot control software to cloud platforms and mobile apps — ALPIXN designs, builds and runs the technology behind smarter operations.",
   heroPrimaryAction: { label: "Let’s Talk", href: "/contact-us" },
   heroSecondaryAction: { label: "See Our Work", href: "/resources/portfolio" },
   heroImageData: "/images/hero.png",

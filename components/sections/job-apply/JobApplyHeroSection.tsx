@@ -85,7 +85,7 @@ const JobApplyHeroSection = ({ title }: JobApplyHeroSectionProps) => {
 
       {/* Container */}
       <div className="relative mx-auto flex w-full max-w-[1295px] flex-col items-center gap-[25px] mt-32 lg:mt-39.25 z-10 px-4 xl:px-0">
-        <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gradient">Apply for {title}</h1>
+        <h1 className="text-center text-3xl sm:text-4xl md:text-[2.4rem] lg:text-[2.6rem] font-extrabold leading-tight text-gradient">Apply for {title}</h1>
       </div>
     </section>
   );

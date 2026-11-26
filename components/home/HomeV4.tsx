@@ -31,7 +31,7 @@ function Heading({ id, kicker, tone, title, accent, center, children }: { id: st
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <Kicker tone={tone}>{kicker}</Kicker>
-      <h2 id={id} className="mt-4 font-display text-[clamp(1.75rem,3vw,2.6rem)] font-bold leading-[1.12] tracking-[-0.025em] text-fg">
+      <h2 id={id} className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.12] tracking-[-0.025em] text-fg">
         {title} {accent ? <span className="text-brand-spectrum">{accent}</span> : null}
       </h2>
       {children ? <p className="mt-4 text-base leading-relaxed text-fg-muted">{children}</p> : null}
@@ -55,6 +55,11 @@ const MARKETS: [string, string][] = [
 /* Hero                                                                */
 /* ------------------------------------------------------------------ */
 
+const LEGACY_TITLES = new Set(["building digital solutions that scale with you"]);
+const LEGACY_DESCRIPTIONS = new Set(["custom software, ai, and web solutions tailored to your growth journey"]);
+const HERO_DESCRIPTION =
+  "From machine-learning models and robot control software to cloud platforms and mobile apps — ALPIXN designs, builds and runs the technology behind smarter operations.";
+
 const PILLARS = [
   { icon: BrainCircuit, title: "AI solutions", text: "Machine learning, generative AI and document intelligence.", color: "#0878d1", ink: "#ffffff" },
   { icon: Bot, title: "Robotics software", text: "Fleet dashboards, vision and motion interfaces.", color: "#064a87", ink: "#ffffff" },
@@ -74,10 +79,13 @@ export function HeroV4({
   secondary: { label: string; href: string };
   fallbackImage?: string;
 }) {
+  // The old CMS default read like a marketing agency; use the engineering headline unless admin set a custom one.
+  const useDefault = !title.trim() || LEGACY_TITLES.has(title.trim().toLowerCase());
   const words = title.trim().split(/\s+/);
   const split = Math.max(1, words.length - 3);
   const lead = words.slice(0, split).join(" ");
   const tail = words.slice(split).join(" ");
+  const copy = LEGACY_DESCRIPTIONS.has(description.trim().toLowerCase()) || !description.trim() ? HERO_DESCRIPTION : description;
 
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-canvas">
@@ -93,10 +101,18 @@ export function HeroV4({
         {/* Centered message */}
         <div className="mx-auto max-w-4xl text-center">
           <Kicker tone="blue">AI · Robotics · Software Engineering</Kicker>
-          <h1 id="hero-title" className="mt-6 font-display text-[clamp(2.2rem,4.8vw,4rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
-            {lead} <span className="text-brand-spectrum">{tail}</span>
+          <h1 id="hero-title" className="mt-6 font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
+            {useDefault ? (
+              <>
+                Engineering <span className="text-brand-spectrum">AI, Robotics &amp; Software</span> for the Real World
+              </>
+            ) : (
+              <>
+                {lead} <span className="text-brand-spectrum">{tail}</span>
+              </>
+            )}
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-fg-muted">{description}</p>
+          <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-fg-muted">{copy}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
               {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
@@ -256,7 +272,7 @@ export function MarketsV4() {
           <div aria-hidden className="absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-[#d99a19]/30 blur-[80px]" />
           <div className="relative">
             <Kicker tone="light">Global delivery</Kicker>
-            <h2 id="markets-title" className="mt-4 font-display text-[clamp(1.75rem,3vw,2.4rem)] font-bold leading-[1.12] tracking-[-0.025em]">
+            <h2 id="markets-title" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2rem)] font-bold leading-[1.12] tracking-[-0.025em]">
               Built for teams across <span className="text-[#f6d77a]">nine markets.</span>
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-white/75">Local currencies, languages, tax rules and time zones are part of the brief from day one.</p>
@@ -272,7 +288,7 @@ export function MarketsV4() {
         </div>
         <div className="rounded-[32px] border border-line bg-surface p-8 shadow-[var(--shadow-card)] sm:p-10 lg:col-span-7">
           <Kicker>How we work with you</Kicker>
-          <h2 className="mt-4 font-display text-[clamp(1.6rem,2.6vw,2.2rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+          <h2 className="mt-4 font-display text-[clamp(1.4rem,2vw,1.85rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
             Straightforward, <span className="text-brand-spectrum">from the first call.</span>
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -330,7 +346,7 @@ export function CtaV4() {
         <div aria-hidden className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[#9a5b08]/45 blur-[90px]" />
         <div className="relative mx-auto max-w-2xl">
           <Kicker tone="light">Start a project</Kicker>
-          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.9rem,3.6vw,3rem)] font-bold leading-[1.1] tracking-[-0.03em]">
+          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.7rem,2.8vw,2.4rem)] font-bold leading-[1.1] tracking-[-0.03em]">
             Let&apos;s build <span className="text-gold-grad">what&apos;s next.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80">Tell us about your idea, product or process. We reply with honest recommendations and a sensible first step.</p>
@@ -338,7 +354,7 @@ export function CtaV4() {
             <Link href="/contact-us" className="btn-brand !px-7 !py-3.5 text-[15px]">
               Request a consultation <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
             </Link>
-            <Link href="/our-expertise" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-[15px] font-semibold text-white transition-colors hover:bg-white/10">
+            <Link href="/our-expertise" className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
               Explore our services
             </Link>
           </div>

@@ -56,7 +56,7 @@ const BlogsPage = async ({ searchParams }: BlogsPageProps) => {
           <div className="mt-8 grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-5">
               <span className="eyebrow">ALPIXN Insights</span>
-              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-5xl">Field notes on AI, robotics and software engineering</h1>
+              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-[2.4rem]">Field notes on AI, robotics and software engineering</h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg">
                 Practical explanations of how modern software, AI systems and automation are planned, built and operated — with the trade-offs, limitations and implementation details that matter in real projects.
               </p>

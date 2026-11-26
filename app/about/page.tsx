@@ -103,7 +103,7 @@ export default function AboutPage() {
           <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <span className="eyebrow">About ALPIXN</span>
-              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-5xl lg:text-[3.4rem]">An AI, robotics and software engineering company</h1>
+              <h1 className="heading-gradient mt-4 text-4xl font-semibold !leading-[1.08] sm:text-[2.4rem] lg:text-[2.6rem]">An AI, robotics and software engineering company</h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
                 ALPIXN designs and builds software that makes businesses work better: applications customers use every day, internal systems teams depend on, and AI and automation that remove repetitive work. We bring product thinking, engineering discipline and practical AI experience into one team.
               </p>
