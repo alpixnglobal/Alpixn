@@ -1005,3 +1005,14 @@ html.theme-ready section {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 1535px) {
+  .nav-link {
+    padding: 0 0.55rem;
+    font-size: 0.9rem;
+  }
+  .nav-link::after {
+    left: 0.55rem;
+    right: 0.55rem;
+  }
+}

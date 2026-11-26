@@ -169,8 +169,8 @@ No stock videos or third-party 3D models were added.
 
 ## 9. Modified and added files
 
-See `git log` / `git diff 703c923..HEAD --stat` in this repository for the complete list (the baseline commit
-`703c923` is the untouched original source). The main files:
+See `git log` / `git diff af165d9..HEAD --stat` in this repository for the complete list (the baseline commit
+`af165d9` is the untouched original source). The main files:
 
 **Added:** `components/brand/BrandLogo.tsx`, `components/brand/SocialIcons.tsx`, `components/hero/RoboticsScene.tsx`,
 `components/hero/HeroVisual.tsx`, `components/ui/Reveal.tsx`, `components/ui/SectionHeading.tsx`,
@@ -198,6 +198,25 @@ See `git log` / `git diff 703c923..HEAD --stat` in this repository for the compl
 - Some seed content references "Jellyfish Technologies" and "AlCompany" (CMS data, left untouched).
 - The admin session cookie is still named `axaon-admin-session`. It was intentionally not renamed, because renaming
   would log out every admin.
-- 23 pre-existing lint errors remain in untouched files (`LogoLoop.tsx`, `scripts/migrate-mongodb.cjs`,
-  `hooks/use-media-query.tsx`, `ApplicationStatusToast.tsx`, `TestimonialOurExpertise.tsx`, …). The redesign adds
-  none and fixed 3 (plus the 2 in the removed `convert-light.js`).
+- 21 pre-existing lint errors remain in untouched files (`LogoLoop.tsx`, `scripts/migrate-mongodb.cjs`,
+  `hooks/use-media-query.tsx`, `ApplicationStatusToast.tsx`, `TestimonialOurExpertise.tsx`). The redesign adds
+  none, fixed 3, and removed 2 more by deleting the obsolete `convert-light.js` (baseline: 26 errors).
+
+## 11. QA results (final build)
+
+| Check | Result |
+| --- | --- |
+| `npx tsc --noEmit` | Pass (0 errors) |
+| `npm run lint` | 21 errors / 32 warnings, all pre-existing (baseline 26 / 34); 0 introduced |
+| `npm run build` | Pass (82 static pages generated) |
+| `npm run test:db` | 19 / 19 pass |
+| Route checks | All 22 public/admin routes 200; `/admin` → 307 to login (auth intact); unknown URL → branded 404 |
+| Theme | Default dark; toggle → light, persisted in `localStorage` (`alpixn-theme`), survives reload and client navigation; keyboard operable; `aria-checked` correct; no hydration warnings |
+| Console | No errors on tested routes (blocked external logo CDN excluded) |
+| Responsive | 390 px (iPhone 13), 1280 px, 1440 px checked in both themes; no horizontal overflow on mobile |
+| Performance | three.js chunk (≈921 KB raw) loads only on the WebGL tier, after idle; base JS ≈789 KB raw; local LCP ≈0.6 s; hero video tier ≈0.25–0.45 MB per loop |
+
+## 12. Deployment note
+
+Nothing was deployed and no production systems were touched. To deploy, follow the existing process
+(`npm ci && npm run build && npm start` behind the current Nginx/PM2 setup). `NEXT_PUBLIC_SITE_URL` is optional.

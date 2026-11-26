@@ -102,8 +102,8 @@ const MainMenu = ({
   return (
     <>
       {/* Desktop (xl+) — layout switched with CSS so there is no hydration flash */}
-      <nav aria-label="Main" className="hidden xl:flex max-w-[1440px] mx-auto h-[84px] items-center gap-6 px-8 2xl:px-[45px]">
-        <BrandLogo src={logoUrl} alt={logoAlt} height={64} priority />
+      <nav aria-label="Main" className="hidden xl:flex max-w-[1440px] mx-auto h-[84px] items-center gap-3 px-5 2xl:gap-6 2xl:px-[45px]">
+        <BrandLogo src={logoUrl} alt={logoAlt} height={64} priority className="[&_img]:!h-[50px] 2xl:[&_img]:!h-16" />
 
         <div className="flex flex-1 justify-center">
           <NavbarItems
@@ -115,7 +115,7 @@ const MainMenu = ({
           />
         </div>
 
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2.5 2xl:gap-3">
           <ThemeToggle />
           <Link href="/contact-us" className="btn-brand !px-5 !py-3 text-sm">
             Contact Us
