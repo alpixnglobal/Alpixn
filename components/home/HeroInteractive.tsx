@@ -2,9 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, MousePointer2 } from "lucide-react";
+import { MousePointer2 } from "lucide-react";
 
 /**
  * Concept B — interactive 3D robot. The arm turns toward the cursor and the camera follows it;
@@ -58,14 +57,6 @@ export default function HeroInteractive({ title, description }: { title: string;
             <span className="text-gold-grad">{tail}</span>
           </h1>
           <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-white/80">{description}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link href="/contact-us" className="btn-brand !px-7 !py-3.5 text-[15px]">
-              Start a project <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-            </Link>
-            <Link href="/our-expertise" className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-              Explore services
-            </Link>
-          </div>
           <p className="mt-8 hidden items-center gap-2 text-[13px] text-white/55 lg:flex">
             <MousePointer2 aria-hidden className="h-4 w-4 text-[#f6d77a]" /> Move your cursor — the robot follows you.
           </p>

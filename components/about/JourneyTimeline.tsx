@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Bot, BrainCircuit, Building2, Cloud, Globe2, Palette, Rocket, Sparkles, Sprout } from "lucide-react";
+import { BrainCircuit, Building2, Cloud, Palette, PhoneCall, Rocket, Sparkles, Sprout } from "lucide-react";
 
 /**
  * "Our Journey" — scroll-driven timeline. A gold→blue spine fills as you scroll, a glowing
@@ -17,9 +17,9 @@ const MILESTONES: Milestone[] = [
   { year: "2020", title: "The AI Revolution Begins", tag: "AI", icon: BrainCircuit, c: "#9a5b08", ink: "#ffffff", text: "Introduced AI-powered tools for automation and business management, helping teams work faster and decide smarter." },
   { year: "2021", title: "Going Global with Cloud", tag: "Cloud", icon: Cloud, c: "#0878d1", ink: "#ffffff", text: "Started working with international clients and launched scalable cloud platforms to support business operations across borders." },
   { year: "2023", title: "Introducing AutoMarkAI", tag: "Product", icon: Sparkles, c: "#d99a19", ink: "#071a33", text: "Built intelligent automation and AI-powered platforms that boost productivity across marketing and everyday business workflows." },
-  { year: "2024", title: "Intelligent Automation at Scale", tag: "Automation", icon: Bot, c: "#064a87", ink: "#ffffff", text: "Brought AI and automation together into end-to-end solutions — connecting software, data and machines to remove repetitive work." },
-  { year: "2025", title: "Serving Nine Markets", tag: "Global", icon: Globe2, c: "#9a5b08", ink: "#ffffff", text: "Expanded our reach to clients across India, the USA, UK, UAE, Australia, Canada, Italy, Thailand and South Africa." },
-  { year: "2026", title: "AI, Robotics & Software — One Team", tag: "Today", icon: Rocket, c: "#f6d77a", ink: "#071a33", text: "Today ALPIXN engineers AI, robotics software and digital products under one roof — and the next chapter is just getting started." },
+  { year: "2024", title: "Product Launch", tag: "Launch", icon: Rocket, c: "#064a87", ink: "#ffffff", text: "Launched our own product line — ready-to-use, AI-powered software that businesses can adopt quickly and scale with confidence." },
+  { year: "2025", title: "A New Office", tag: "Growth", icon: Building2, c: "#9a5b08", ink: "#ffffff", text: "Opened a new office to support a growing team and our clients across nine markets, from India and the UAE to the UK, USA and Australia." },
+  { year: "2026", title: "Multilingual AI Calling System", tag: "AI voice", icon: PhoneCall, c: "#f6d77a", ink: "#071a33", text: "Introduced an AI calling system that speaks with customers in multiple languages — answering, qualifying and following up around the clock." },
 ];
 
 export default function JourneyTimeline() {
