@@ -1,4 +1,4 @@
-import { Heading, MediaCards, Section } from "@/components/ui/v4";
+import { FeatureCards, Heading, MediaCards, Section } from "@/components/ui/v4";
 
 import type { TechnologyChallengeCardRecord } from "@/lib/content-types";
 
@@ -45,7 +45,11 @@ const ChallengesResolveSection = ({ title = "Challenges We'll Assist You Resolve
   return (
     <Section id="challenges-title">
       <Heading id="challenges-title" kicker="Challenges we solve" title={title} center />
-      <MediaCards items={cards.map((c) => ({ title: c.title, description: c.description, image: c.imageData, linkLabel: c.linkLabel }))} />
+      {cards.some((c) => c.imageData) ? (
+        <MediaCards items={cards.map((c) => ({ title: c.title, description: c.description, image: c.imageData, linkLabel: c.linkLabel }))} />
+      ) : (
+        <FeatureCards cols={4} items={cards.map((c) => ({ title: c.title, description: c.description }))} />
+      )}
     </Section>
   );
 };

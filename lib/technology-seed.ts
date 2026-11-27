@@ -1,5 +1,6 @@
 import type { TechnologyPageRecord } from "@/lib/content-types";
 import { technologyHeroData } from "@/lib/technologyData";
+import { techPageFields } from "@/lib/technologies";
 
 type TechnologySeedRecord = Omit<TechnologyPageRecord, "_id">;
 
@@ -345,5 +346,7 @@ export function buildTechnologySeedRecords() {
     heroTitle: technology.heroTitle,
     heroDescription: technology.heroDescription,
     ...getTechnologyTemplate(),
+    ...(techPageFields(technology.slug) ?? {}),
+    heroLogos: [],
   })) satisfies TechnologySeedRecord[];
 }

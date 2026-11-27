@@ -142,7 +142,7 @@ export function TechHero({
   title: string;
   subtitle?: string;
   description: string;
-  primary: { label: string; href: string };
+  primary?: { label: string; href: string };
   secondary?: { label: string; href: string } | null;
   icons: { label: string; imageData: string }[];
 }) {
