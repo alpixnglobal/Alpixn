@@ -22,11 +22,11 @@ const pageCopySchema = new Schema(
 
 const socialMediaSchema = new Schema(
   {
-    instagram: { type: String, default: "" },
-    linkedin: { type: String, default: "" },
-    facebook: { type: String, default: "" },
-    twitter: { type: String, default: "" },
-    youtube: { type: String, default: "" },
+    instagram: { type: String, default: "https://www.instagram.com/Alpixnglobal" },
+    linkedin: { type: String, default: "https://www.linkedin.com/company/alpixn" },
+    facebook: { type: String, default: "https://www.facebook.com/Alpixn" },
+    twitter: { type: String, default: "https://x.com/Alpixn" },
+    youtube: { type: String, default: "https://youtube.com/@Alpixnglobal" },
   },
   { _id: false }
 );

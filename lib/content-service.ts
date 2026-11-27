@@ -95,11 +95,11 @@ const defaultSiteSettings: SiteSettings = {
   businessHours: "Monday to Friday 9AM – 7PM IST",
   // Social media
   socialMedia: {
-    instagram: "https://instagram.com/axano",
-    linkedin: "https://linkedin.com/company/axano",
-    facebook: "https://facebook.com/axano",
-    twitter: "https://twitter.com/axano",
-    youtube: "https://youtube.com/@axano",
+    instagram: "https://www.instagram.com/Alpixnglobal",
+    linkedin: "https://www.linkedin.com/company/alpixn",
+    facebook: "https://www.facebook.com/Alpixn",
+    twitter: "https://x.com/Alpixn",
+    youtube: "https://youtube.com/@Alpixnglobal",
   },
   // Office locations
   officeLocations: ["Ahmedabad, India", "Remote Delivery Teams"],

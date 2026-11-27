@@ -159,11 +159,11 @@ const Footer = ({ settings }: FooterProps) => {
   const footerColumns = settings?.footerColumns?.length ? settings.footerColumns : defaultFooterColumns;
   const offices = settings?.offices?.length ? settings.offices.filter(o => o.isPublished) : defaultOffices;
   const socialMedia = settings?.socialMedia || {
-    instagram: "#",
-    linkedin: "#",
-    facebook: "#",
-    twitter: "#",
-    youtube: "#",
+    instagram: "https://www.instagram.com/Alpixnglobal",
+    linkedin: "https://www.linkedin.com/company/alpixn",
+    facebook: "https://www.facebook.com/Alpixn",
+    twitter: "https://x.com/Alpixn",
+    youtube: "https://youtube.com/@Alpixnglobal",
   };
   const footerDescription = settings?.footerDescription;
 
@@ -275,6 +275,8 @@ const Footer = ({ settings }: FooterProps) => {
                   <Link
                     href={href || "#"}
                     aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="grid h-9 w-9 place-items-center rounded-full border border-line text-fg-muted transition-all hover:-translate-y-0.5 hover:border-gold/60 hover:text-gold"
                   >
                     <Icon className="h-4 w-4" />
