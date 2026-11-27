@@ -30,7 +30,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
   const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[1.08] tracking-[-0.03em] w-full";
 
   return (
-    <section className="relative w-full min-h-[628px] overflow-hidden">
+    <section className="relative w-full min-h-0 overflow-hidden">
       {/* Background Color  */}
       <div
         className="absolute inset-0"
@@ -61,9 +61,9 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
       {/* Content container*/}
       <div className="relative z-10 w-full">
         {/* Container */}
-        <div className="w-full max-w-[1354px] mx-auto pt-8 md:pt-12 lg:pt-[57px] px-4 md:px-6 xl:px-0">
+        <div className="w-full max-w-[1354px] mx-auto pt-8 pb-10 md:pt-10 lg:pt-12 lg:pb-12 px-4 md:px-6 xl:px-0">
           {/* Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-[56%_1fr] gap-8 lg:gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-[56%_1fr] gap-8 lg:gap-0 lg:items-center">
             {/* Grid 1 */}
             <div className="flex flex-col gap-4 lg:gap-[20px]">
               {/* Hero Title */}
@@ -92,7 +92,7 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
             <div className="flex justify-center lg:justify-end">
               {/* Card */}
               <div
-                className="w-full max-w-[471px] lg:w-[471px] h-auto lg:h-[515px] flex flex-col gap-4 lg:gap-[20px] p-6 lg:p-0"
+                className="w-full max-w-[440px] h-auto flex flex-col gap-3 p-5 lg:px-6 lg:py-5"
                 style={{
                   background:
                     "linear-gradient(314.76deg, rgb(var(--hi-rgb) / calc(0.08 * var(--hi-scale))) 0%, rgb(var(--hi-rgb) / calc(0.08 * var(--hi-scale))) 100%)",
@@ -101,22 +101,22 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                   borderRadius: "10px",
                 }}
               >
-                <h3 className="text-left sm:text-center font-semibold text-xl md:text-2xl lg:text-2xl mt-4 lg:mt-[25px]">
+                <h3 className="text-left sm:text-center font-display font-semibold text-lg">
                   {formTitle}
                 </h3>
-                <form className="w-full lg:w-[421px] mx-auto px-0 sm:px-2 md:px-0 lg:px-0">
-                  <div className="flex flex-col gap-4 lg:gap-[20px]">
-                    <div className="flex flex-col lg:flex-row gap-4 lg:gap-[20px]">
-                      <Input type="text" placeholder="Full Name" className="w-full" />
-                      <Input type="text" placeholder="Contact Number" className="w-full" />
+                <form className="w-full">
+                  <div className="flex flex-col gap-2.5">
+                    <div className="flex flex-col lg:flex-row gap-2.5">
+                      <Input type="text" placeholder="Full Name" className="h-10 w-full text-sm" />
+                      <Input type="text" placeholder="Contact Number" className="h-10 w-full text-sm" />
                     </div>
-                    <div className="flex flex-col lg:flex-row gap-4 lg:gap-[20px]">
-                      <Input type="email" placeholder="Business Email" className="w-full" />
-                      <Input type="email" placeholder="Company Email" className="w-full" />
+                    <div className="flex flex-col lg:flex-row gap-2.5">
+                      <Input type="email" placeholder="Business Email" className="h-10 w-full text-sm" />
+                      <Input type="email" placeholder="Company Email" className="h-10 w-full text-sm" />
                     </div>
                     <div>
                       <Select>
-                        <SelectTrigger className="w-full">
+                        <SelectTrigger className="!h-10 w-full text-sm">
                           <SelectValue placeholder="Select Technology" />
                         </SelectTrigger>
                         <SelectContent>
@@ -132,10 +132,10 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                       </Select>
                     </div>
                     <div>
-                      <Textarea placeholder="Describe Your Query" />
+                      <Textarea placeholder="Describe Your Query" className="!min-h-[72px] h-[72px] text-sm" />
                     </div>
                     <div>
-                      <button className="btn-brand w-full">
+                      <button className="btn-brand w-full !py-2.5">
                         Submit
                       </button>
                     </div>
