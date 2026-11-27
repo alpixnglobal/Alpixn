@@ -79,9 +79,11 @@ const PILLARS = [
 export function HeroV4({
   title,
   description,
+  accentWords = 3,
 }: {
   title: string;
   description: string;
+  accentWords?: number;
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
   fallbackImage?: string;
@@ -89,7 +91,7 @@ export function HeroV4({
   // The old CMS default read like a marketing agency; use the engineering headline unless admin set a custom one.
   const useDefault = !title.trim() || LEGACY_TITLES.has(title.trim().toLowerCase());
   const words = title.trim().split(/\s+/);
-  const split = Math.max(1, words.length - 3);
+  const split = Math.max(1, words.length - accentWords);
   const lead = words.slice(0, split).join(" ");
   const tail = words.slice(split).join(" ");
   const copy = LEGACY_DESCRIPTIONS.has(description.trim().toLowerCase()) || !description.trim() ? HERO_DESCRIPTION : description;

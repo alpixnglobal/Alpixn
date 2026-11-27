@@ -3,9 +3,9 @@ import { BadgeCheck, FileSearch, Scale, Users } from "lucide-react";
 import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import CtaBand from "@/components/sections/shared/CtaBand";
-import { StatementHero } from "@/components/hero/HeroPanels";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
-import { MarketsV4 } from "@/components/home/HomeV4";
+import { HeroV4, MarketsV4 } from "@/components/home/HomeV4";
+import { FeatureCards, Heading, Section } from "@/components/ui/v4";
 import Reveal from "@/components/ui/Reveal";
 import { organizationJsonLd, pageMetadata } from "@/lib/seo";
 
@@ -27,18 +27,23 @@ const COMMITMENTS = [
 export default function AboutPage() {
   return (
     <main>
-      <StatementHero
-        eyebrow="about alpixn"
+      <HeroV4
         title="We engineer AI, robotics and software that businesses rely on every day"
+        accentWords={5}
         description="ALPIXN designs and builds the applications customers use, the internal systems teams depend on, and the AI and automation that remove repetitive work — with product thinking and engineering discipline in one team."
-        primary={{ label: "Start a conversation", href: "/contact-us" }}
-        secondary={{ label: "Explore our services", href: "/our-expertise" }}
-        columns={[
-          { title: "AI that earns its place", text: "Models and assistants scoped to a clear business problem, evaluated before launch and monitored after." },
-          { title: "Robotics software", text: "Fleet dashboards, vision inspection and operator tools that connect machines to the people running them." },
-          { title: "Software engineering", text: "Web, mobile and SaaS products built with maintainable code and delivered in measurable releases." },
-        ]}
+        primary={{ label: "", href: "" }}
+        secondary={{ label: "", href: "" }}
       />
+      <Section id="about-pillars">
+        <Heading id="about-pillars" kicker="What we do" title="Three disciplines, one team" center />
+        <FeatureCards
+          items={[
+            { title: "AI that earns its place", description: "Models and assistants scoped to a clear business problem, evaluated before launch and monitored after." },
+            { title: "Robotics software", description: "Fleet dashboards, vision inspection and operator tools that connect machines to the people running them." },
+            { title: "Software engineering", description: "Web, mobile and SaaS products built with maintainable code and delivered in measurable releases." },
+          ]}
+        />
+      </Section>
 
 
       <IndustriesTechBand />
