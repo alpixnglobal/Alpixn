@@ -122,7 +122,7 @@ export function HeroV4({
               </>
             )}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-fg-muted">{copy}</p>
+          <p className="mx-auto mt-4 max-w-[860px] text-[17px] leading-relaxed text-fg-muted">{copy}</p>
         </div>
 
         {/* Stage: the nine markets on a world map, linked by AI, robotics, cloud and software */}
