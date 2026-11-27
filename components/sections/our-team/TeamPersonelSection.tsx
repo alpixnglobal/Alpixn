@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 
 import type { TeamMemberRecord } from "@/lib/content-types";
@@ -15,7 +16,7 @@ const TeamPersonelSection = ({ members }: TeamPersonelSectionProps) => {
           <span className="inline-flex items-center gap-2 rounded-full border border-[#0878d1]/30 bg-[#0878d1]/10 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#064a87] dark:text-[#7cc6ff]">
             <span className="h-1.5 w-1.5 rounded-full bg-current" /> The team
           </span>
-          <h2 id="team-title" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+          <h2 id="team-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
             People behind <span className="text-brand-spectrum">the work</span>
           </h2>
         </div>

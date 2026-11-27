@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -74,7 +75,7 @@ const BlogsPage = async ({ searchParams }: BlogsPageProps) => {
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#040d1c] via-[#040d1c]/50 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                     <span className="rounded-full bg-[#040d1c]/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#f6d77a] backdrop-blur">Featured · {featured.category}</span>
-                    <h2 className="mt-3 max-w-2xl font-display font-semibold leading-snug text-white text-[clamp(1.5rem,2.3vw,2.05rem)]">{featured.title}</h2>
+                    <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={featured.title} /></h2>
                     <span className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-white/80">
                       Read article <ArrowRight aria-hidden className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>

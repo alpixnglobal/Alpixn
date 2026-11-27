@@ -66,7 +66,7 @@ export function Heading({
   const block = (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {kicker ? <Kicker tone={kickerTone}>{kicker}</Kicker> : null}
-      <h2 id={id} className={`font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg ${kicker ? "mt-4" : ""}`}>
+      <h2 id={id} className={`font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg ${kicker ? "mt-4" : ""}`}>
         {lead ? `${lead} ` : null}
         <span className="text-brand-spectrum">{tail}</span>
       </h2>

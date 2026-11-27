@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import testimonialData from "@/lib/expertise/testimonial-our-expertise-data";
 import type { ExpertiseTestimonialRecord } from "@/lib/content-types";
 import Image from "next/image";
@@ -32,7 +33,7 @@ const TestimonialOurExpertise = ({
       <div className="container max-w-271.5">
         {/* Title & Subtitle */}
         <div className="flex flex-col gap-3.75">
-          <h2 className="title heading-gradient max-w-[826px] mx-auto text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+          <h2 className="max-w-[826px] mx-auto text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{subtitle}</p>
         </div>

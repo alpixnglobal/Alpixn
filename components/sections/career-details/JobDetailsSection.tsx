@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Link from "next/link";
 
 import type { JobOpeningRecord } from "@/lib/content-types";
@@ -25,12 +26,12 @@ const JobDetailsSection = ({
 
       <div className="container max-w-337.25">
         <div className="flex flex-col gap-[25px]">
-          <h2 className="heading-gradient-white font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{overviewTitle}</h2>
+          <h2 className="heading-gradient-white text-start font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={overviewTitle} /></h2>
           <p className="text-sm leading-relaxed text-fg/80 xl:text-base">{job.overview}</p>
         </div>
 
         <div className="mt-12.5 flex flex-col gap-[25px]">
-          <h2 className="heading-gradient-white font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{responsibilitiesTitle}</h2>
+          <h2 className="heading-gradient-white text-start font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={responsibilitiesTitle} /></h2>
           <ul className="flex flex-col">
             {job.responsibilities.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">
@@ -42,7 +43,7 @@ const JobDetailsSection = ({
         </div>
 
         <div className="mt-12.5 flex flex-col gap-[25px]">
-          <h2 className="heading-gradient-white font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{requirementsTitle}</h2>
+          <h2 className="heading-gradient-white text-start font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={requirementsTitle} /></h2>
           <ul className="flex flex-col">
             {job.requirements.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">
@@ -54,7 +55,7 @@ const JobDetailsSection = ({
         </div>
 
         <div className="mt-12.5 flex flex-col gap-[25px]">
-          <h2 className="heading-gradient-white font-bold leading-snug text-start text-[clamp(1.5rem,2.3vw,2.05rem)]">{benefitsTitle}</h2>
+          <h2 className="heading-gradient-white text-start font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={benefitsTitle} /></h2>
           <ul className="flex flex-col">
             {job.benefits.map((point) => (
               <li key={point} className="ml-3.5 mt-2.5 flex gap-3">

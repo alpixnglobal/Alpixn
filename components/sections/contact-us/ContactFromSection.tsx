@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { submitContactFormAction } from "@/admin/actions/admin-actions";
 import { InputField } from "@/components/ui/Input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValueAsteriks } from "@/components/ui/select";
@@ -88,7 +89,7 @@ const ContactFromSection = ({
 
           <div className="flex flex-col gap-[25px] rounded-[32px] border border-line bg-surface-2 p-6 shadow-[var(--shadow-card)] sm:p-8">
             <div className="flex flex-col gap-[25px]">
-              <h2 className="font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">{introTitle}</h2>
+              <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={introTitle} /></h2>
               <p className="text-fg/80 text-base md:text-lg leading-relaxed">{introDescription}</p>
             </div>
 

@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { submitJobApplicationAction } from "@/admin/actions/admin-actions";
 
 import type { JobOpeningRecord } from "@/lib/content-types";
@@ -49,7 +50,7 @@ const JobApplyFormSection = ({
         <div className="grid grid-cols-1 justify-between xl:grid-cols-[572px_1fr]">
           {/* Left */}
           <div className="flex flex-col gap-[25px]">
-            <h2 className="text-gradient heading text-left text-[clamp(1.5rem,2.3vw,2.05rem)]">{introTitle}</h2>
+            <h2 className="text-left font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={introTitle} /></h2>
             <p className="text-fg/80 text-base md:text-lg leading-relaxed">
               {introDescription}
             </p>

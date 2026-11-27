@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { getIndustriesWeServeData } from "@/lib/expertise/Industries-we-serve-expertise-section-data";
 import type { ExpertiseIndustryItemRecord } from "@/lib/content-types";
 import Image from "next/image";
@@ -37,7 +38,7 @@ const IndustriesWeServeExpertiseSection = ({ slug = "software-development", data
       <div className="container max-w-281.25">
         {/* Title & Subtitle - Dynamic */}
         <div className="w-full max-w-296.25 mx-auto gap-3.75">
-          <h2 className="title heading-gradient-white text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{mainTitle}</h2>
+          <h2 className="heading-gradient-white text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={mainTitle} /></h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center mt-3.5">{mainSubtitle}</p>
         </div>
 

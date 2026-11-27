@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { BadgeCheck, FileSearch, Scale, Users } from "lucide-react";
 import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
@@ -50,7 +51,7 @@ export default function AboutPage() {
           <div>
             <Reveal>
               <span className="eyebrow">Our commitments</span>
-              <h2 className="heading-gradient mt-4 max-w-3xl font-semibold text-[clamp(1.5rem,2.3vw,2.05rem)]">Credibility you can check</h2>
+              <h2 className="mt-4 max-w-3xl font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Credibility you can check" /></h2>
             </Reveal>
             <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {COMMITMENTS.map(({ icon: Icon, title, text }) => (

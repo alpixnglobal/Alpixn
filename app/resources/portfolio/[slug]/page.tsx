@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -128,19 +129,19 @@ export default async function PortfolioDetailsPage({ params }: Props) {
           <div className="space-y-10 lg:col-span-8">
             {p.problem || p.objective ? (
               <div>
-                <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">The business problem</h2>
+                <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="The business problem" /></h2>
                 <p className="mt-4 text-base leading-relaxed text-fg-muted">{p.problem || p.objective}</p>
               </div>
             ) : null}
             {p.approach ? (
               <div>
-                <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Solution approach</h2>
+                <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Solution approach" /></h2>
                 <p className="mt-4 text-base leading-relaxed text-fg-muted">{p.approach}</p>
               </div>
             ) : null}
             {features?.length ? (
               <div>
-                <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Key features</h2>
+                <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Key features" /></h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {features.map((f) => (
                     <li key={f} className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4 text-sm text-fg">
@@ -153,7 +154,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
             ) : null}
             {p.highlights?.length ? (
               <div>
-                <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Functional highlights</h2>
+                <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Functional highlights" /></h2>
                 <ul className="mt-4 space-y-2 text-base text-fg-muted">
                   {p.highlights.map((h) => (
                     <li key={h} className="flex gap-3">
@@ -166,7 +167,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
             ) : null}
             {isReal && (p.outcome || p.resultPrimaryValue) ? (
               <div>
-                <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Outcome</h2>
+                <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Outcome" /></h2>
                 <p className="mt-4 text-base text-fg-muted">{p.outcome}</p>
               </div>
             ) : null}
@@ -175,7 +176,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
           <aside className="lg:col-span-4">
             <div className="sticky top-[110px] space-y-4">
               <dl className="rounded-2xl border border-line bg-surface p-5 text-sm">
-                <h2 className="mb-4 font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Project classification</h2>
+                <h2 className="mb-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Project classification" /></h2>
                 {[
                   ["Status", isReal ? "Real client project" : "Concept project (ALPIXN demo)"],
                   ["Industry", p.industry],
@@ -192,7 +193,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
               </dl>
               {p.projectTypes?.length ? (
                 <div className="rounded-2xl border border-line bg-surface p-5">
-                  <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Project type</h2>
+                  <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Project type" /></h2>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {p.projectTypes.map((t) => (
                       <li key={t}>
@@ -206,7 +207,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
               ) : null}
               {p.techStack?.length ? (
                 <div className="rounded-2xl border border-line bg-surface p-5">
-                  <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Technology stack</h2>
+                  <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Technology stack" /></h2>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {p.techStack.map((t) => (
                       <li key={t} className="rounded-full border border-line px-3 py-1 text-xs text-fg-muted">
@@ -218,7 +219,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
               ) : null}
               {p.related?.length ? (
                 <div className="rounded-2xl border border-line bg-surface p-5">
-                  <h2 className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">Related reading</h2>
+                  <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Related reading" /></h2>
                   <ul className="mt-3 space-y-2 text-sm">
                     {p.related.map((r) => (
                       <li key={r.href}>
@@ -238,9 +239,7 @@ export default async function PortfolioDetailsPage({ params }: Props) {
       {related.length ? (
         <section aria-labelledby="more-projects" className="bg-canvas py-16">
           <div className="mx-auto max-w-[1240px] px-4 sm:px-6">
-            <h2 id="more-projects" className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              More projects
-            </h2>
+            <h2 id="more-projects" className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="More projects" /></h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((c) => (
                 <li key={c.slug}>

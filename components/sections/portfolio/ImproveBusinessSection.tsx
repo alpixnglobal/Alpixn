@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Link from "next/link";
 
 type ImproveBusinessSectionProps = {
@@ -40,7 +41,7 @@ const ImproveBusinessSection = ({ title = "Improve your business and make your w
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* 1 */}
           <div className="flex flex-col bt-12.5 w-full max-w-full lg:max-w-175 gap-6.25 px-4 xl:px-5">
-            <h2 className="heading-gradient text-left font-bold leading-tight text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+            <h2 className="text-left font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
             <p className="text-sm md:text-base font-normal leading-relaxed text-fg/80">
               {description}
             </p>

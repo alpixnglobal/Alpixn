@@ -35,7 +35,7 @@ export default function CtaBand({
               {eyebrow}
             </span>
           ) : null}
-          <h2 className={`font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] ${eyebrow ? "mt-5" : ""}`}>
+          <h2 className={`font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] ${eyebrow ? "mt-5" : ""}`}>
             {lead ? `${lead} ` : null}
             <span className="text-gold-grad">{tail}</span>
           </h2>

@@ -1,4 +1,5 @@
 "use client";
+import Accent from "@/components/ui/Accent";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -56,7 +57,7 @@ const ExploreArticlesSection = ({
 
       <div className="container max-w-[1351px]">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+          <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
           <div className="flex flex-wrap gap-3">
             <input

@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import type { PortfolioProjectRecord } from "@/lib/content-types";
 
 import { PortfolioCard } from "../portfolio/WorkShowcaseSection";
@@ -15,7 +16,7 @@ const ViewMoreWorkSection = ({ items, title = "View Our More Projects" }: ViewMo
 
       {/* Content */}
       <div className="container max-w-[1350px]">
-        <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+        <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
         <div className="grid grid-cols-1 xl:grid-cols-3 items-center gap-6.25 mt-12.5 px-4 xl:px-0 overflow-hidden ">
           {items.slice(0, 3).map((item) => (

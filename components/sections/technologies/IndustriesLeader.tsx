@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import type { TechnologyStatRecord } from "@/lib/content-types";
 
 type IndustriesLeaderProps = {
@@ -50,7 +51,7 @@ const IndustriesLeader = ({ title = "What Makes Us an Industry Leader?", stats =
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }} />
 
       <div className="container max-w-196.25">
-        <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+        <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 items-center justify-center gap-6.25 mt-12.5 px-4 lg:px-0">
           {primaryStats.map((item, index) => (

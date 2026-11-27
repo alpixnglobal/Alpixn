@@ -1,4 +1,5 @@
 "use client";
+import Accent from "@/components/ui/Accent";
 
 import { ReactNode, useState } from "react";
 import clsx from "clsx";
@@ -1407,7 +1408,7 @@ export default function IndustriesWeServeSection() {
       <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-8 lg:px-[45px]">
         {/* Title and Subtitle */}
         <div className="flex flex-col gap-2.5">
-          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">Industries We Serve</h2>
+          <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Industries We Serve" /></h2>
           <p className="subtitleMeXl80 text-left sm:text-center">
             We serve a diverse range of industries, catering to a wide spectrum of fields and sectors.
           </p>

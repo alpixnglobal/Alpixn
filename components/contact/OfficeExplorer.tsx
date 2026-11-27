@@ -23,7 +23,7 @@ export default function OfficeExplorer({ offices, title = "Our Global Offices" }
             <span className="inline-flex items-center gap-2 rounded-full border border-[#d99a19]/35 bg-[#f6d77a]/25 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#9a5b08] dark:bg-[#d99a19]/10 dark:text-[#f6d77a]">
               <span className="h-1.5 w-1.5 rounded-full bg-current" /> {offices.length} offices
             </span>
-            <h2 id="offices-title" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+            <h2 id="offices-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
               {title.replace(/\s+\S+$/, "")} <span className="text-brand-spectrum">{title.split(/\s+/).pop()}</span>
             </h2>
           </div>

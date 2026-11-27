@@ -1,4 +1,5 @@
 "use client";
+import Accent from "@/components/ui/Accent";
 
 import { motion } from "motion/react";
 import { useState } from "react";
@@ -41,7 +42,7 @@ const WhyChooseUsAboutSection = ({
         {/* Title & Subtitle */}
         <div className="flex flex-col">
           <div className="flex flex-col gap-[15px] items-center w-full mx-auto max-w-full lg:max-w-[723px]">
-            <h2 className="heading-gradient font-bold leading-snug text-left sm:text-center mr-auto sm:mr-0 text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+            <h2 className="mr-auto sm:mr-0 text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
             <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">
               {subtitle}
             </p>

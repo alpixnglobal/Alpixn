@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { getCtaSectionData } from "@/lib/offshore developer/cta-section-data";
 import Image from "next/image";
 import Link from "next/link"; // Import Link from next/link
@@ -45,9 +46,7 @@ const CtaSection = ({ slug = "default", data }: CtaSectionProps) => {
       <div className="relative w-full max-w-[337.5px] lg:max-w-[1350px] mx-auto h-full z-10 lg:px-0">
         <div className="flex flex-col xl:flex-row items-center justify-between h-full px-4 lg:px-0 py-8 lg:py-0">
           {/* Heading - Dynamic */}
-          <h2 className="font-bold text-fg text-left sm:text-center lg:text-left mb-6 lg:mb-0 text-[clamp(1.5rem,2.3vw,2.05rem)]">
-            {title}
-          </h2>
+          <h2 className="mb-6 lg:mb-0 text-left sm:text-center lg:text-left font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
           {/* Button as Link - Dynamic */}
           <Link
             href={buttonLink}

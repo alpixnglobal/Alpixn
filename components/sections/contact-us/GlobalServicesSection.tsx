@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 
 interface ContactOffice {
@@ -56,9 +57,7 @@ const GlobalServicesSection = ({ title = "Markets We Serve", offices = defaultOf
             <span className="h-1.5 w-1.5 rounded-full bg-current" />
             Global delivery
           </span>
-          <h2 id="markets-heading" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.12] tracking-[-0.025em] text-fg">
-            {heading}
-          </h2>
+          <h2 id="markets-heading" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={heading} /></h2>
         </div>
         <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sortedOffices.map((office, index) => {

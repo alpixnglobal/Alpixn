@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -160,9 +161,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
 
               {post.sources?.length ? (
                 <section aria-labelledby="references" className="mt-12 rounded-2xl border border-line bg-surface p-6">
-                  <h2 id="references" className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
-                    References
-                  </h2>
+                  <h2 id="references" className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="References" /></h2>
                   <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-fg-muted">
                     {post.sources.map((s) => (
                       <li key={s.url}>
@@ -222,9 +221,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
       {related.length ? (
         <section aria-labelledby="related-articles" className="bg-canvas-2 py-16">
           <div className="mx-auto max-w-[1100px] px-4 sm:px-6">
-            <h2 id="related-articles" className="font-display font-semibold text-fg text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              Related articles
-            </h2>
+            <h2 id="related-articles" className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Related articles" /></h2>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (
                 <li key={r.slug}>

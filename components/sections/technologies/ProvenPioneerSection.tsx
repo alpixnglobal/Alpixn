@@ -1,4 +1,5 @@
 "use client";
+import Accent from "@/components/ui/Accent";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -128,7 +129,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
       <div className="container max-w-337.5 relative">
         {/* Title */}
         <div className="flex flex-col w-full max-w-[1350px] mx-auto">
-          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+          <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
           <p className="subtitle mx-auto text-left sm:text-center">
             {description}
           </p>
@@ -154,9 +155,7 @@ const ProvenPioneerSection = ({ title = "Our Node.js Developers: Proven Pioneers
 
           {/* Right */}
           <div className="flex flex-col gap-8">
-            <h2 className="font-semibold text-fg leading-snug text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              {active.title}
-            </h2>
+            <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={active.title} /></h2>
 
             <p className="font-normal text-sm sm:text-base text-fg leading-relaxed">
               {active.description}

@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 import { Button } from "@/components/ui/buttonBtn";
 import Link from "next/link";
@@ -27,9 +28,7 @@ const BooKFreeCallSection = ({
           }}
         >
           <div className="w-full max-w-full lg:max-w-[924px] mx-auto flex flex-col items-center justify-center gap-4 lg:gap-[25px]">
-            <h2 className="font-bold leading-snug text-fg text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              {title}
-            </h2>
+            <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
             <p className="text-base md:text-lg font-normal leading-relaxed text-left sm:text-center text-fg max-w-full sm:max-w-[90%] lg:max-w-[80%]">
               {description}

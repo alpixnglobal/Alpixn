@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Compass, Gauge, ShieldCheck, Wrench } from "lucide-react";
@@ -48,9 +49,7 @@ export default function HowWeWorkSection() {
         <div className="grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <span className="eyebrow">Why ALPIXN</span>
-            <h2 id="how-we-work-title" className="heading-gradient mt-4 font-semibold !leading-[1.15] text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              How we work with you
-            </h2>
+            <h2 id="how-we-work-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="How we work with you" /></h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-fg-muted sm:text-lg">
               ALPIXN combines AI engineering, robotics software and product development in one team. Whether you need a customer-facing app, an internal system or an intelligent automation, the way we work stays the same.
             </p>

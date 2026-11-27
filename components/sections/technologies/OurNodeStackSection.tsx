@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 
 import type { TechnologyStackItemRecord } from "@/lib/content-types";
@@ -41,7 +42,7 @@ const OurNodeStackSection = ({ title = "Technology Stack We Use For Node.js Deve
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle, var(--canvas) 15%, var(--glow) 100%)" }} />
 
       <div className="container max-w-303.75">
-        <h2 className="title heading-gradient max-w-[826px] mx-auto text-start sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+        <h2 className="max-w-[826px] mx-auto text-start sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
         <div className="mt-8 md:mt-10 lg:mt-12.5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5">
           {resolvedItems.map((item, index) => (
             <div key={`${item.label}-${index}`} className={`flex flex-col items-center justify-center p-3 lg:p-[15px] h-[100px] lg:h-[112px] bg-[linear-gradient(180deg,rgba(24,24,24,0.24)_0%,color-mix(in_srgb,var(--tech)_6%,transparent)_100%)] ${cellClasses[index % cellClasses.length]}`}>

@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { getStatsData } from "@/lib/expertise/stats-section-data";
 import type { ExpertiseStatCardRecord, ExpertiseStatHighlightRecord } from "@/lib/content-types";
 
@@ -69,7 +70,7 @@ const StatsSection = ({ slug = "software-development", data }: StatsSectionProps
 
         {/* Title & Subtitle */}
         <div className="w-full flex flex-col gap-[15px] max-w-253.25 mx-auto mt-25">
-          <h2 className="title heading-gradient text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{statsData.mainTitle}</h2>
+          <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={statsData.mainTitle} /></h2>
           <p className="subtitleMeXl80 leading-relaxed text-left sm:text-center">{statsData.mainDescription}</p>
         </div>
         {/* Grid */}

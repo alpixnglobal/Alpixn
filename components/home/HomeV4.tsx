@@ -276,7 +276,7 @@ export function MarketsV4() {
         </div>
         <div className="rounded-[32px] border border-line bg-surface p-8 shadow-[var(--shadow-card)] sm:p-10 lg:col-span-7">
           <Kicker>How we work with you</Kicker>
-          <h2 className="mt-4 font-display text-[clamp(1.3rem,1.8vw,1.65rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+          <h2 className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
             Straightforward, <span className="text-brand-spectrum">from the first call.</span>
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -334,7 +334,7 @@ export function CtaV4() {
         <div aria-hidden className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[#9a5b08]/45 blur-[90px]" />
         <div className="relative mx-auto max-w-2xl">
           <Kicker tone="light">Start a project</Kicker>
-          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.45rem,2.2vw,2rem)] font-bold leading-[1.1] tracking-[-0.03em]">
+          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em]">
             Let&apos;s build <span className="text-gold-grad">what&apos;s next.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80">Tell us about your idea, product or process. We reply with honest recommendations and a sensible first step.</p>

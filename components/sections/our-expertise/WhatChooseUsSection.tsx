@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import Image from "next/image";
 
 const WhatChooseUsSection = () => {
@@ -11,7 +12,7 @@ const WhatChooseUsSection = () => {
       {/* Container */}
       <div className="w-full max-w-337.75 mx-auto">
         {/* Title & Subtitle */}
-        <h2 className="text-gradient heading text-[clamp(1.5rem,2.3vw,2.05rem)]">Transform Your Customer Engagement with ALPIXN AI Chatbot</h2>
+        <h2 className="font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text="Transform Your Customer Engagement with ALPIXN AI Chatbot" /></h2>
         <p className="text-fg/80 font-normal text-base md:text-lg leading-relaxed text-center mt-3.75 px-4 lg:px-0">
           Trusted by businesses across industries, ALPIXN AI Chatbot is more than just an automated response tool. It’s a
           strategic partner in elevating customer satisfaction, reducing operational costs, and driving growth through

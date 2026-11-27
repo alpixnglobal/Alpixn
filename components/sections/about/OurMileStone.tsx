@@ -1,3 +1,4 @@
+import Accent from "@/components/ui/Accent";
 import { Button } from "@/components/ui/buttonBtn";
 
 type MilestoneItem = {
@@ -86,7 +87,7 @@ const OurMileStone = ({
             {tag}
           </Button>
 
-          <h2 className="heading-gradient font-bold leading-snug text-left sm:text-center text-[clamp(1.5rem,2.3vw,2.05rem)]">{title}</h2>
+          <h2 className="text-left sm:text-center font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg"><Accent text={title} /></h2>
 
           <p className="text-base md:text-lg font-normal leading-relaxed text-fg/80 text-left sm:text-center">{description}</p>
         </div>
