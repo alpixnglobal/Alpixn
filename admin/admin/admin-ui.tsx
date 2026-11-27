@@ -368,3 +368,13 @@ export function getAdminFlashMessage(status?: string | string[], error?: string 
 
   return null;
 }
+
+/** Points editors to where a part of the page is managed. */
+export function AdminHelpNote({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex gap-3 rounded-xl border border-[#0878d1]/25 bg-[#0878d1]/[0.06] px-4 py-3 text-[13.5px] leading-relaxed text-fg">
+      <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#0878d1]" />
+      <div>{children}</div>
+    </div>
+  );
+}
