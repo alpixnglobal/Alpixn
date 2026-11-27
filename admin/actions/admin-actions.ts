@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import { requireAdminSession, signInAdmin, signOutAdmin } from "@/lib/admin-auth";
 import { connectToDatabase } from "@/lib/db";
+import { isMailConfigured, sendContactEnquiryEmail } from "@/lib/mailer";
 import { normalizeBase64Image } from "@/lib/image-data";
 import {
   AboutSettingsModel,
@@ -1525,7 +1526,6 @@ export async function saveResourceUiSettingsAction(formData: FormData) {
 
 export async function submitContactFormAction(formData: FormData) {
   const redirectTo = "/contact-us";
-  await ensureDatabaseForAction(redirectTo);
 
   const firstName = getValue(formData, "firstName");
   const lastName = getValue(formData, "lastName");
@@ -1537,17 +1537,34 @@ export async function submitContactFormAction(formData: FormData) {
   if (!firstName || !lastName || !email || !phone) {
     redirect(`${redirectTo}?error=Please+fill+in+all+required+fields`);
   }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    redirect(`${redirectTo}?error=Please+enter+a+valid+email+address`);
+  }
 
-  await ContactMessageModel.create({
-    firstName,
-    lastName,
-    email,
-    phone,
-    interest,
-    message,
-    status: "new",
-  });
+  // 1) Email the enquiry to info@alpixn.com (or CONTACT_TO_EMAIL).
+  let emailed = false;
+  if (isMailConfigured()) {
+    try {
+      await sendContactEnquiryEmail({ firstName, lastName, email, phone, interest, message });
+      emailed = true;
+    } catch (error) {
+      console.error("Contact email failed:", error);
+    }
+  }
 
-  revalidatePath("/admin/contact");
+  // 2) Also keep a copy in the admin inbox when the database is reachable.
+  let stored = false;
+  try {
+    await connectToDatabase();
+    await ContactMessageModel.create({ firstName, lastName, email, phone, interest, message, status: "new" });
+    stored = true;
+    revalidatePath("/admin/contact");
+  } catch (error) {
+    console.error("Contact message could not be stored:", error);
+  }
+
+  if (!emailed && !stored) {
+    redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your message could not be sent. Please email info@alpixn.com directly.")}`);
+  }
   redirect(`${redirectTo}?status=sent`);
 }
