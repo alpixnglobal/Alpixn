@@ -16,7 +16,7 @@ type Group = { title: string; links: { label: string; href: string }[] };
 export default async function SitemapPage() {
   const [expertise, offshore, products, posts] = await Promise.all([getCachedExpertiseNavigation(), getCachedOffshoreDeveloperNavigation(), getCachedPublishedProducts(), getCachedPublishedBlogPosts()]);
   const groups: Group[] = [
-    { title: "Company", links: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact-us" }, { label: "Privacy Policy", href: "/privacy-policy" }] },
+    { title: "Company", links: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact-us" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms and Conditions", href: "/terms-and-conditions" }] },
     ...expertise.map((c) => ({ title: c.label, links: c.items.map((i) => ({ label: i.label, href: i.href })) })),
     { title: "Offshore developers", links: [{ label: "Overview", href: "/offshore-developer" }, ...offshore.flatMap((c) => c.items.map((i) => ({ label: i.label, href: i.href })))] },
     {

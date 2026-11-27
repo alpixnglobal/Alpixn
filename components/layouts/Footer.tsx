@@ -293,6 +293,10 @@ const Footer = ({ settings }: FooterProps) => {
               Privacy Policy
             </Link>
             <span aria-hidden className="h-4 w-px bg-line" />
+            <Link href="/terms-and-conditions" prefetch={false} className="text-fg-muted transition-colors hover:text-gold">
+              Terms
+            </Link>
+            <span aria-hidden className="h-4 w-px bg-line" />
             <Link href="/sitemap" prefetch={false} className="text-fg-muted transition-colors hover:text-gold">
               Sitemap
             </Link>
