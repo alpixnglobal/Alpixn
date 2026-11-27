@@ -110,11 +110,15 @@ export function HeroV4({
           <h1 id="hero-title" className="font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
             {useDefault ? (
               <>
-                Engineering <span className="text-brand-spectrum">AI, Robotics &amp; Software</span> for the Real World
+                Engineering <span className="text-brand-spectrum">AI, Robotics &amp; Software</span> for
+                <br />
+                <span className="text-brand-spectrum">the Real World</span>
               </>
             ) : (
               <>
-                {lead} <span className="text-brand-spectrum">{tail}</span>
+                {lead}
+                <br />
+                <span className="text-brand-spectrum">{tail}</span>
               </>
             )}
           </h1>
