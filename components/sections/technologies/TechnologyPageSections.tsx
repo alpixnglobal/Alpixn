@@ -13,7 +13,8 @@ import SuccessPropelSection from "./SuccessPropelSection";
 import TalkToExpertSection from "./TalkToExpertSection";
 import UnlockCTASection from "./UnlockCTASection";
 
-const CATEGORY_LABEL: Record<string, string> = { backend: "backend", frontend: "frontend", framework: "frameworks", mobile: "mobile", devops: "cloud", more: "platforms" };
+const CATEGORY_LABEL: Record<string, string> = { backend: "Backend", frontend: "Frontend", framework: "Frameworks", mobile: "Mobile", devops: "Cloud & DevOps", more: "Platforms & XR" };
+const RELATED_LABEL: Record<string, string> = { backend: "backend tech", frontend: "frontend tech", framework: "frameworks", mobile: "mobile tech", devops: "cloud platforms", more: "platforms" };
 
 export function TechnologyPageSections({ page: stored }: { page: TechnologyPageRecord }) {
   // Pages still holding the original Node.js template get their technology's own content;
@@ -29,14 +30,15 @@ export function TechnologyPageSections({ page: stored }: { page: TechnologyPageR
     <>
       <TechDetailHero
         name={content?.name ?? page.heroTitle}
-        category={CATEGORY_LABEL[page.category] ?? page.category}
+        category={RELATED_LABEL[page.category] ?? "technologies"}
+        categoryLabel={CATEGORY_LABEL[page.category] ?? page.category}
         title={page.heroTitle}
         subtitle={page.heroSubtitle}
         description={page.heroDescription}
         icon={content ? techIcon(page.slug) : "/images/tech/node-js.svg"}
         accent={content?.accent ?? "#0878d1"}
-        file={content?.file ?? "app.ts"}
-        code={content?.code ?? []}
+        bestFor={(page.qualityPoints ?? []).map((q) => q.title)}
+        weBuild={(page.successCards ?? []).map((c) => c.title)}
         related={related}
       />
       <ChallengesResolveSection title={page.challengesTitle} cards={page.challengeCards} />

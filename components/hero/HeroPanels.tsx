@@ -157,7 +157,12 @@ export function TechHero({
       <div aria-hidden className="absolute -left-32 top-0 h-[420px] w-[420px] rounded-full bg-[#0878d1]/30 blur-[130px]" />
       <div aria-hidden className="absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-[#d99a19]/25 blur-[130px]" />
       <div className="relative mx-auto max-w-[1320px] px-4 pt-16 text-center sm:px-6 sm:pt-20 lg:px-10">
-        {eyebrow ? <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#7cc6ff]">{`<${eyebrow} />`}</p> : null}
+        {eyebrow ? (
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#f6d77a]">
+            <span className="h-1.5 w-1.5 rounded-full bg-current" />
+            {eyebrow}
+          </span>
+        ) : null}
         <h1 id="tech-hero-title" className="mx-auto mt-4 max-w-4xl font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.08] tracking-[-0.03em]">
           {lead ? `${lead} ` : null}
           <span className="text-gold-grad">{tail}</span>
