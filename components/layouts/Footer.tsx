@@ -240,18 +240,19 @@ const Footer = ({ settings }: FooterProps) => {
           ))}
         </nav>
 
-        {/* Offices (CMS driven): city + live local time, no flags */}
+        {/* Offices (CMS driven): flag + city + live local time */}
         {sortedOffices.length ? (
           <div className="border-t border-line py-8">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Offices</span>
-              <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <div>
+              <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm lg:justify-between">
                 {sortedOffices.map((office, index) => {
                   const name = normalizeOfficeName(office.name);
                   const { zone } = zoneFor(name);
                   return (
                     <li key={index} className="flex items-center gap-2 text-fg-muted">
-                      <Image src={office.flagImage || FLAGS[name.split(",").pop()!.trim().toLowerCase()] || "/images/india.svg"} alt="" width={18} height={18} unoptimized={(office.flagImage || "").startsWith("data:") || (office.flagImage || "").startsWith("http")} className="h-[18px] w-[18px] rounded-full object-cover ring-1 ring-black/10" />
+                      <span className="relative block h-5 w-5 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white shadow-[0_0_0_1px_rgba(7,26,51,0.12)]">
+                        <Image src={office.flagImage || FLAGS[name.split(",").pop()!.trim().toLowerCase()] || "/images/india.svg"} alt="" fill sizes="20px" unoptimized={(office.flagImage || "").startsWith("data:") || (office.flagImage || "").startsWith("http")} className="scale-[1.08] object-cover" />
+                      </span>
                       <span className="font-medium text-fg">{name.split(",")[0]}</span>
                       <LocalTime zone={zone} className="font-mono text-xs text-fg-subtle" />
                     </li>
