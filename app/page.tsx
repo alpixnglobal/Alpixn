@@ -1,5 +1,5 @@
 import JsonLd from "@/components/seo/JsonLd";
-import HeroInteractive from "@/components/home/HeroInteractive";
+import HeroGlobe from "@/components/home/HeroGlobe";
 import { CtaV4, InsightsV4, MarketsV4, ProcessV4, ServicesV4 } from "@/components/home/HomeV4";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 import { getCachedHomeSettings, getCachedPublishedBlogPosts } from "@/lib/content-service";
@@ -21,14 +21,7 @@ const Home = async () => {
 
   return (
     <main>
-      <HeroInteractive
-        title={!settings.heroTitle || /building digital solutions/i.test(settings.heroTitle) ? "Engineering AI, Robotics & Software for the Real World" : settings.heroTitle}
-        description={
-          !settings.heroDescription || /growth journey/i.test(settings.heroDescription)
-            ? "From machine-learning models and robot control software to cloud platforms and mobile apps — ALPIXN designs, builds and runs the technology behind smarter operations."
-            : settings.heroDescription
-        }
-      />
+      <HeroGlobe />
       <ServicesV4 title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings} />
       {/* Industries + Tech Stack keep their original dark navy look in both themes */}
       <IndustriesTechBand />
