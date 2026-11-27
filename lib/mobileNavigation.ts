@@ -100,6 +100,7 @@ export const mobileNavigation: MobileNavItemType[] = [
           { label: "InsureTech", href: "/our-expertise/industries/insuretech" },
           { label: "HealthTech", href: "/our-expertise/industries/healthtech" },
           { label: "Media & Entertainment", href: "/our-expertise/industries/media-entertainment" },
+          { label: "Travel & Hospitality", href: "/our-expertise/industries/travel" },
         ],
       },
     ],
