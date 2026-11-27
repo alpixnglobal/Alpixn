@@ -4,6 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import CtaBand from "@/components/sections/shared/CtaBand";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
+import JourneyTimeline from "@/components/about/JourneyTimeline";
 import { HeroV4, MarketsV4 } from "@/components/home/HomeV4";
 import { FeatureCards, Heading, Section } from "@/components/ui/v4";
 import Reveal from "@/components/ui/Reveal";
@@ -44,6 +45,7 @@ export default function AboutPage() {
           ]}
         />
       </Section>
+      <JourneyTimeline />
 
 
       <IndustriesTechBand />
