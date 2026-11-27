@@ -1166,6 +1166,8 @@ describe("resource database coverage", () => {
       imageData: "data:image/png;base64,cover",
       order: 90,
       isPublished: true,
+      // Public pages only show verified client work or clearly labelled concepts.
+      verificationStatus: "real",
     });
 
     const project = await getPublishedPortfolioProjectBySlug("database-portfolio-project");
@@ -1331,16 +1333,17 @@ describe("resource database coverage", () => {
     assert.ok(landingPage);
     assert.equal(adminPages.length, overview.stats.technologies);
     assert.ok(adminPages.length >= 20);
-    assert.equal(landingPage?.heroLogos.length, 7);
+    // Seed content is now technology-specific (no placeholder partner logos, no Node.js template copy).
+    assert.equal(landingPage?.heroLogos.length, 0);
     assert.equal(landingPage?.challengeCards.length, 4);
-    assert.equal(landingPage?.talkCards.length, 4);
-    assert.equal(landingPage?.successCards.length, 9);
-    assert.equal(landingPage?.provenCaseStudies.length, 5);
-    assert.equal(landingPage?.qualityPoints.length, 8);
+    assert.equal(landingPage?.successCards.length, 6);
+    assert.equal(landingPage?.qualityPoints.length, 4);
     assert.equal(landingPage?.stackItems.length, 10);
-    assert.equal(landingPage?.leaderStats.length, 5);
     assert.equal(landingPage?.engagementModels.length, 3);
-    assert.equal(landingPage?.faqs.length, 5);
+    assert.equal(landingPage?.faqs.length, 4);
+    const python = adminPages.find((page) => page.slug === "python");
+    assert.match(python?.challengesTitle ?? "", /Python/);
+    assert.doesNotMatch(python?.successTitle ?? "", /Node/);
   });
 
   test("Technologies updates persist across hero, cards, case studies, stack, stats, engagement, and faq sections", async () => {
