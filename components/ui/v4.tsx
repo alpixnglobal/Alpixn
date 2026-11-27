@@ -170,7 +170,10 @@ export function NumberedList({ items }: { items: { title: string; description: s
       {items.map((it, i) => {
         const t = tone(i);
         return (
-          <li key={`${it.title}-${i}`} className="flex gap-4 rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
+          <li
+            key={`${it.title}-${i}`}
+            className={`flex gap-4 rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] ${items.length % 2 === 1 && i === items.length - 1 ? "md:col-span-2" : ""}`}
+          >
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full font-display text-sm font-bold" style={{ background: t.c, color: t.ink }}>
               {String(i + 1).padStart(2, "0")}
             </span>

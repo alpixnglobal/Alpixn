@@ -61,6 +61,16 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
           {activeContent ? (
             <>
               {activeContent.section ? <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#0878d1]">{activeContent.section}</p> : null}
+              {activeContent.items.length && activeContent.items.every((item) => !item.description) ? (
+                <ul className="mt-5 flex flex-wrap gap-2.5">
+                  {activeContent.items.map((item, idx) => (
+                    <li key={`${item.title}-${idx}`} className="flex items-center gap-2 rounded-full border border-line bg-canvas px-3.5 py-2 text-[14px] font-semibold text-fg">
+                      <span aria-hidden className="h-2 w-2 rounded-full" style={{ background: tone(idx).c }} />
+                      {item.title}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
               <div className="mt-5 space-y-5">
                 {activeContent.items.map((item, idx) => (
                   <div key={`${item.title}-${idx}`} className="border-l-2 pl-4" style={{ borderColor: tone(idx).c }}>
@@ -69,6 +79,7 @@ const HireGuide = ({ slug = "default", data }: HireGuideProps) => {
                   </div>
                 ))}
               </div>
+              )}
             </>
           ) : null}
         </div>

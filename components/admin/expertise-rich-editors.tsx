@@ -4,6 +4,7 @@ import { useId, useState, type ChangeEvent } from "react";
 
 import { prepareAdminImageUpload } from "@/components/admin/client-image-utils";
 import { AdminCheckbox, AdminField, AdminInput, AdminTextarea } from "@/components/admin/admin-ui";
+import { LinesEditor, PageFaqEditor } from "@/components/admin/page-faq-editor";
 import type { ExpertisePageRecord, ExpertiseSettingsRecord } from "@/lib/content-types";
 
 function toJson(value: unknown) {
@@ -318,6 +319,10 @@ export function ExpertisePageRichEditor({ values }: { values?: Partial<Expertise
         ))}
         <button type="button" onClick={() => setGuideTabs((current) => [...current, { ...defaultGuideTab }])} className="w-fit rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200 transition hover:bg-white/10">Add guide tab</button>
       </SectionBlock>
+
+      <LinesEditor name="heroHighlights" title="Hero highlights" hint="Short items shown in the panel beside the hero title." initial={values?.heroHighlights} />
+
+      <PageFaqEditor initial={values?.faqs} />
 
       <SectionBlock title="Start Project CTA">
         <AdminField label="Section title"><AdminTextarea name="startTitle" defaultValue={values?.startTitle} className="min-h-24" /></AdminField>

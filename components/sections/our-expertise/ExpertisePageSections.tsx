@@ -4,7 +4,7 @@ import type { ExpertisePageRecord, ExpertiseSettingsRecord, SharedStatRecord } f
 // import CaseStudySection from "./CaseStudySection";
 import CustomSoftwareDevSection from "./CustomSoftwareDevSection";
 import EngagementModelExpertiseSection from "./EngagementModelExpertiseSection";
-import ExpertiseHeroSection from "./ExpertiseHeroSection";
+import ExpertiseHero from "@/components/hero/ExpertiseHero";
 import FAQExpertiseSection from "./FAQExpertiseSection";
 import GuideToSofwareDevSection from "./GuideToSofwareDevSection";
 import StartSofwareDevSection from "./StartSofwareDevSection";
@@ -22,14 +22,13 @@ export function ExpertisePageSections({
 }) {
   return (
     <>
-      <ExpertiseHeroSection
+      <ExpertiseHero
+        categoryKey={page.categoryKey}
+        slug={page.slug}
+        name={page.navLabel}
         title={page.heroTitle}
         description={page.heroDescription}
-        ctaButtonText={page.ctaButtonText}
-        ctaButtonLink="/contact-us"
-        logos={page.heroLogos}
-        heroBackgroundImage={page.heroBackgroundImage}
-        blueprint={(page.customBenefits ?? []).map((b) => b.title)}
+        highlights={page.heroHighlights?.length ? page.heroHighlights : (page.customBenefits ?? []).map((b) => b.title)}
       />
       {/* Stats section removed: figures were unverified template data (2026 content review). */}
       {/* <CaseStudySection data={{ mainTitle: page.caseStudyTitle, mainSubtitle: page.caseStudySubtitle, caseStudies: page.caseStudyTabs }} /> */}
@@ -54,7 +53,7 @@ export function ExpertisePageSections({
       />
       <GuideToSofwareDevSection data={{ mainTitle: page.guideTitle, mainSubtitle: page.guideSubtitle, tabs: page.guideTabs }} />
       <EngagementModelExpertiseSection title={settings.engagementTitle} subtitle={settings.engagementSubtitle} models={settings.engagementModels} />
-      <FAQExpertiseSection title={settings.faqTitle} items={settings.faqs} />
+      <FAQExpertiseSection title={page.faqs?.length ? `${page.navLabel} FAQs` : settings.faqTitle} items={page.faqs?.length ? page.faqs : settings.faqs} />
     </>
   );
 }

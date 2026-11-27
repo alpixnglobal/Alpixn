@@ -109,7 +109,7 @@ export default async function AdminTeamPage({ searchParams }: PageProps) {
             <form action={saveAction} className="grid gap-5">
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
-                <TeamRichEditor values={selectedItem ?? { order: teamItems.length + 1, isPublished: true }} />
+                <TeamRichEditor key={selectedItem?._id ?? "new"} values={selectedItem ?? { order: teamItems.length + 1, isPublished: true }} />
               </FormGrid>
               <FormActions>
                 <SubmitButton

@@ -109,7 +109,7 @@ export default async function AdminInternsPage({ searchParams }: PageProps) {
             <form action={saveAction} className="grid gap-5">
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
-                <InternRichEditor values={selectedItem ?? { order: internItems.length + 1, isPublished: true }} />
+                <InternRichEditor key={selectedItem?._id ?? "new"} values={selectedItem ?? { order: internItems.length + 1, isPublished: true }} />
               </FormGrid>
               <FormActions>
                 <SubmitButton

@@ -109,7 +109,7 @@ export default async function AdminTechnologiesPage({ searchParams }: PageProps)
             <form action={saveAction} className="grid gap-5">
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
-                <TechnologyPageRichEditor values={selectedItem ?? { order: items.length + 1, isPublished: true }} />
+                <TechnologyPageRichEditor key={selectedItem?._id ?? "new"} values={selectedItem ?? { order: items.length + 1, isPublished: true }} />
               </FormGrid>
               <FormActions>
                 <SubmitButton

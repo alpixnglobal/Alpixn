@@ -71,15 +71,19 @@ const BackendDeveloperSection = ({ slug = "default", data }: BackendDeveloperSec
 
   return (
     <Section id="developer-grid" alt>
-      <Heading id="developer-grid" kicker="Tech stack" title={title} center />
-      <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <Heading id="developer-grid" kicker="Related roles" title={title} center />
+      <ul className="mt-12 flex flex-wrap justify-center gap-4">
         {developers.map((developer, i) => (
-          <li key={`${developer.name}-${i}`}>
+          <li key={`${developer.name}-${i}`} className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(20%-0.8rem)]">
             <Link href={developer.link || "/contact-us"} className="group flex h-full flex-col items-center gap-3 rounded-3xl border border-line bg-surface p-5 text-center shadow-[var(--shadow-card)] transition-transform duration-300 hover:-translate-y-1">
               <span className="grid h-14 w-14 place-items-center rounded-2xl" style={{ background: `${tone(i).c}1f` }}>
                 {developer.imageData ? (
                   <Image src={developer.imageData} alt={developer.alt || developer.name} width={34} height={34} unoptimized={developer.imageData.startsWith("data:") || developer.imageData.startsWith("http")} className="h-8 w-8 object-contain" />
-                ) : null}
+                ) : (
+                  <span className="font-display text-[15px] font-bold" style={{ color: tone(i).c === "#f6d77a" ? "#d99a19" : tone(i).c }}>
+                    {developer.name.replace(/[^A-Za-z0-9 ]/g, "").split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase()}
+                  </span>
+                )}
               </span>
               <span className="font-display text-[14px] font-semibold text-fg">{developer.name}</span>
             </Link>

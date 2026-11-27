@@ -107,6 +107,7 @@ export default async function AdminExpertisePage({ searchParams }: PageProps) {
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
                 <ExpertisePageRichEditor
+                  key={selectedItem?._id ?? "new"}
                   values={selectedItem ?? { categoryKey: settings.menuCategories[0]?.key ?? "software-solution", order: 1, isPublished: true }}
                 />
               </FormGrid>

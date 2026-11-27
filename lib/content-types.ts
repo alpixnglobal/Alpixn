@@ -647,6 +647,10 @@ export type ExpertisePageRecord = {
   startSubtitle: string;
   startButtonText: string;
   startButtonLink: string;
+  /** Short items shown in the hero panel. */
+  heroHighlights?: string[];
+  /** Page-specific FAQs. When empty, the shared expertise FAQs are shown. */
+  faqs?: ExpertiseFaqRecord[];
 };
 
 export type ExpertiseSettingsRecord = {
@@ -785,6 +789,8 @@ export type OffshoreDeveloperPageRecord = {
   engagementTitle: string;
   engagementSubtitle: string;
   engagementModels: OffshoreEngagementModelRecord[];
+  /** Page-specific FAQs. When empty, the shared offshore FAQs are shown. */
+  faqs?: OffshoreFaqRecord[];
 };
 
 export type OffshoreDeveloperSettingsRecord = {

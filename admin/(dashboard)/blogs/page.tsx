@@ -118,7 +118,7 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
             <form action={saveAction} className="grid gap-5">
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
-                <BlogRichEditor values={selectedItem ?? { order: items.length + 1, isPublished: true, featured: false }} />
+                <BlogRichEditor key={selectedItem?._id ?? "new"} values={selectedItem ?? { order: items.length + 1, isPublished: true, featured: false }} />
               </FormGrid>
               <FormActions>
                 <SubmitButton

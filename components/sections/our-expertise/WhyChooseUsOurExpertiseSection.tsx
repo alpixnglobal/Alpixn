@@ -21,8 +21,8 @@ const WhyChooseUsOurExpertiseSection = ({ slug = "software-development", data }:
 
   return (
     <Section id="why-choose-title" alt>
-      <Heading id="why-choose-title" kicker="Why ALPIXN" kickerTone="blue" title={resolvedData.mainTitle} subtitle={resolvedData.mainSubtitle} center />
-      <FeatureCards items={resolvedData.features.map((f) => ({ title: f.title, description: f.description }))} />
+      <Heading id="why-choose-title" kicker="Solutions" kickerTone="blue" title={resolvedData.mainTitle} subtitle={resolvedData.mainSubtitle} center />
+      <FeatureCards cols={resolvedData.features.length % 4 === 0 ? 4 : resolvedData.features.length === 2 ? 2 : 3} items={resolvedData.features.map((f) => ({ title: f.title, description: f.description }))} />
     </Section>
   );
 };

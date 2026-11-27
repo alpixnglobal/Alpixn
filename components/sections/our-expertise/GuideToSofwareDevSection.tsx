@@ -35,6 +35,32 @@ const GuideToSoftwareDevSection = ({ slug = "software-development", data }: Guid
 
   if (!tabs.length) return null;
 
+  // Page-specific content uses simple steps (no sub-items): show them as a delivery timeline.
+  if (tabs.every((tab) => !tab.items?.length)) {
+    return (
+      <Section id="guide-title">
+        <Heading id="guide-title" kicker="Process" title={mainTitle} subtitle={mainSubtitle} center />
+        <ol className="relative mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <span aria-hidden className="absolute left-[12.5%] right-[12.5%] top-6 hidden h-0.5 bg-brand-spectrum opacity-60 lg:block" />
+          {tabs.map((tab, index) => {
+            const t = tone(index);
+            return (
+              <li key={tab.key} className="relative flex flex-col items-center text-center">
+                <span className="relative z-10 grid h-12 w-12 place-items-center rounded-full border-4 border-canvas font-display text-[15px] font-bold shadow-[0_12px_24px_-12px_rgba(7,26,51,0.6)]" style={{ background: t.c, color: t.ink }}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="mt-4 w-full flex-1 rounded-3xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
+                  <h3 className="font-display text-base font-semibold text-fg">{tab.label}</h3>
+                  {tab.section ? <p className="mt-2 text-[14.5px] leading-relaxed text-fg-muted">{tab.section}</p> : null}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </Section>
+    );
+  }
+
   return (
     <Section id="guide-title">
       <Heading id="guide-title" kicker="Guide" title={mainTitle} subtitle={mainSubtitle} center />

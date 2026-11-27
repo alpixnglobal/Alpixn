@@ -110,6 +110,7 @@ export default async function AdminOffshoreDeveloperPage({ searchParams }: PageP
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
                 <OffshoreDeveloperPageRichEditor
+                  key={selectedItem?._id ?? "new"}
                   values={selectedItem ?? { categoryKey: settings.menuCategories[0]?.key ?? "backend-developer", order: 1, isPublished: true }}
                 />
               </FormGrid>

@@ -25,6 +25,8 @@ export function OffshoreDeveloperPageSections({
       <OffshoreHeroSection
         pagePath={`/offshore-developer/${page.categoryKey}/${page.slug}`}
         role={page.heroTitle}
+        badgeSlug={page.slug}
+        badgeLabel={page.navLabel}
         data={{
           title: page.heroTitle,
           description: page.heroDescription,
@@ -71,7 +73,11 @@ export function OffshoreDeveloperPageSections({
           models: page.engagementModels,
         }}
       />
-      <FAQSection title={settings.faqTitle} items={settings.faqs} questionClassName="text-lg md:text-[22px]" />
+      <FAQSection
+        title={page.faqs?.length ? `${page.navLabel} FAQs` : settings.faqTitle}
+        items={page.faqs?.length ? page.faqs : settings.faqs}
+        questionClassName="text-lg md:text-[22px]"
+      />
     </>
   );
 }

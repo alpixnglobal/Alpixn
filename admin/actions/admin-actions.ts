@@ -338,6 +338,14 @@ function parseJsonField<T>(formData: FormData, key: string, fallback: T): T {
   return JSON.parse(value) as T;
 }
 
+/** Keep only FAQ entries that have both a question and an answer. */
+function cleanFaqs(value: unknown) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => ({ question: String(item?.question ?? "").trim(), answer: String(item?.answer ?? "").trim() }))
+    .filter((item) => item.question && item.answer);
+}
+
 async function getProcessedImage(formData: FormData, key = "imageData") {
   const rawImage = getOptionalValue(formData, key);
   return normalizeBase64Image(rawImage);
@@ -502,6 +510,8 @@ export async function upsertEntityAction(entityType: EntityType, returnPath: str
       startSubtitle: getValue(formData, "startSubtitle"),
       startButtonText: getValue(formData, "startButtonText"),
       startButtonLink: getValue(formData, "startButtonLink"),
+      heroHighlights: parseJsonField<string[]>(formData, "heroHighlights", []).map((item) => String(item).trim()).filter(Boolean),
+      faqs: cleanFaqs(parseJsonField(formData, "faqs", [])),
     };
 
     if (id) {
@@ -566,6 +576,7 @@ export async function upsertEntityAction(entityType: EntityType, returnPath: str
       engagementTitle: getValue(formData, "engagementTitle"),
       engagementSubtitle: getValue(formData, "engagementSubtitle"),
       engagementModels: parseJsonField(formData, "engagementModels", []),
+      faqs: cleanFaqs(parseJsonField(formData, "faqs", [])),
     };
 
     if (id) {

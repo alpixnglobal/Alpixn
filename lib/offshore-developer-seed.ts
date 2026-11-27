@@ -10,6 +10,7 @@ import { getHireStepsData } from "@/lib/offshore developer/hire-steps-data";
 import { getOffshoreHeroData } from "@/lib/offshore developer/offshore-banner-data";
 import { getPartnerTeamData } from "@/lib/offshore developer/partner-team-data";
 import { partnerLogos } from "@/lib/offshore developer/partners-logo-data";
+import { offshorePageFields } from "@/lib/offshore developer/content";
 
 type OffshoreDeveloperSeedRecord = Omit<OffshoreDeveloperPageRecord, "_id">;
 
@@ -287,6 +288,8 @@ export function buildOffshoreDeveloperSeedRecords() {
       engagementTitle: engagement.mainTitle,
       engagementSubtitle: engagement.mainSubtitle,
       engagementModels: engagement.models,
+      // Page-specific copy for this role replaces the shared Node.js template.
+      ...(offshorePageFields(page.slug) ?? {}),
     } satisfies OffshoreDeveloperSeedRecord;
   });
 }

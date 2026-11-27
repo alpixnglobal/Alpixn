@@ -1,0 +1,403 @@
+import type { OffshoreContent } from "./types";
+
+export const aiRoles: Record<string, OffshoreContent> = {
+  "ai-development-teams": {
+    tech: "AI",
+    title: "Hire a dedicated AI development team",
+    intro: "Get a complete AI team — ML engineers, data engineers, back-end developers and a lead — to take an AI product or feature from idea to production.",
+    checklist: ["Cross-functional AI team", "Data, models & software together", "Production and MLOps experience", "NDA and full IP ownership"],
+    build: [
+      ["AI products", "New products built around machine learning or LLMs."],
+      ["AI features in existing apps", "Search, recommendations, summaries and predictions."],
+      ["Data platforms for AI", "Pipelines and feature stores feeding your models."],
+      ["Voice & chat systems", "Multilingual assistants and AI calling solutions."],
+    ],
+    services: [
+      ["Dedicated AI team", "A team working only on your roadmap."],
+      ["Proof of concept to production", "Validate ideas, then build them properly."],
+      ["MLOps setup", "Model training, deployment and monitoring pipelines."],
+      ["LLM applications", "RAG, agents and copilots on your data."],
+      ["Ongoing improvement", "Retraining, evaluation and new features."],
+    ],
+    skills: [
+      ["Machine learning", "Model selection, training and evaluation."],
+      ["LLM engineering", "Prompting, retrieval, agents and guardrails."],
+      ["Data engineering", "Pipelines, quality checks and storage."],
+      ["Software engineering", "APIs, front ends and cloud deployment."],
+    ],
+    tools: ["Python", "PyTorch", "scikit-learn", "LangChain", "LlamaIndex", "OpenAI & Claude APIs", "MLflow", "Airflow", "Docker", "AWS SageMaker", "Vertex AI"],
+    faqs: [
+      ["Who is in a typical AI team?", "Usually an AI lead, one or two ML/LLM engineers, a data engineer and a back-end or full-stack developer — adjusted to your needs."],
+      ["Do we need our own data scientists?", "No. The team can work independently or alongside your staff."],
+      ["Can the team start with a proof of concept?", "Yes. Many engagements start with a short proof of concept before scaling up."],
+      ["Who owns the models and code?", "You do — all models, code and data artefacts belong to you."],
+    ],
+  },
+
+  "computer-vision-engineers": {
+    tech: "Computer Vision",
+    title: "Hire computer vision engineers for image and video AI",
+    intro: "Add engineers who build detection, segmentation, OCR and tracking systems — and deploy them on cloud GPUs, edge devices or robots.",
+    checklist: ["Detection, segmentation & OCR", "Edge deployment (Jetson, mobile)", "Robotics vision experience", "NDA and full IP ownership"],
+    build: [
+      ["Quality inspection", "Defect detection on production lines."],
+      ["Video analytics", "People counting, safety and event detection."],
+      ["Document AI", "OCR and data extraction from documents."],
+      ["Robot perception", "Vision for navigation and picking."],
+    ],
+    services: [
+      ["Custom vision models", "Train models on your images and video."],
+      ["Edge deployment", "Optimise models for Jetson, mobile and embedded devices."],
+      ["Dataset strategy", "Data collection, labelling and augmentation."],
+      ["Model optimisation", "Quantisation and TensorRT for faster inference."],
+      ["Integration", "Connect vision outputs to dashboards and systems."],
+    ],
+    skills: [
+      ["Deep learning for vision", "CNNs, transformers and modern detectors."],
+      ["Classic computer vision", "OpenCV, geometry and image processing."],
+      ["Optimisation", "ONNX, TensorRT and quantisation."],
+      ["Evaluation", "mAP, IoU and real-world testing."],
+    ],
+    tools: ["Python", "PyTorch", "OpenCV", "YOLO", "Detectron2", "SAM", "ONNX", "TensorRT", "NVIDIA Jetson", "ROS 2"],
+    faqs: [
+      ["Can models run on edge devices?", "Yes — on NVIDIA Jetson, mobile phones and other embedded hardware."],
+      ["How many images do we need?", "It depends on the task; we often start with a few hundred labelled images per class."],
+      ["Do they work with robotics?", "Yes, including perception with ROS 2."],
+      ["Can they use our existing cameras?", "Often yes, depending on resolution and placement."],
+    ],
+  },
+
+  "generative-ai-engineers": {
+    tech: "Generative AI",
+    title: "Hire generative AI engineers to build real GenAI products",
+    intro: "Bring in engineers who build GenAI applications — assistants, content tools and document processors — that are grounded in your data and safe for production.",
+    checklist: ["LLM & multimodal experience", "RAG & agent development", "Evaluation & guardrails", "NDA and full IP ownership"],
+    build: [
+      ["Knowledge assistants", "Chat over your documents and data."],
+      ["Content generation", "Drafting tools with approval workflows."],
+      ["Document processing", "Summaries and extraction from long files."],
+      ["Image & speech features", "Image generation, speech-to-text and text-to-speech."],
+    ],
+    services: [
+      ["GenAI app development", "End-to-end applications."],
+      ["RAG pipelines", "Retrieval over your knowledge base."],
+      ["AI agents", "Tool-using assistants that take actions."],
+      ["Evaluation", "Test sets and quality dashboards."],
+      ["Cost optimisation", "Caching, routing and model selection."],
+    ],
+    skills: [
+      ["Prompt & context design", "Structured prompts and context management."],
+      ["Retrieval", "Embeddings, chunking and vector search."],
+      ["Safety", "Guardrails, PII redaction and content filters."],
+      ["Engineering", "APIs, streaming and production deployment."],
+    ],
+    tools: ["Python", "TypeScript", "OpenAI API", "Anthropic Claude", "Gemini", "LangChain", "LlamaIndex", "pgvector", "Pinecone", "Whisper"],
+    faqs: [
+      ["Which models do your engineers use?", "OpenAI, Anthropic Claude, Google Gemini, Mistral and open models like Llama."],
+      ["How do they reduce hallucinations?", "By grounding answers in retrieved data, citing sources and testing with evaluation sets."],
+      ["Can they build voice assistants?", "Yes, combining speech recognition, LLMs and speech synthesis."],
+      ["Is our data safe?", "We use enterprise API terms or private deployments, and follow your data policies."],
+    ],
+  },
+
+  "nlp-engineers": {
+    tech: "NLP",
+    title: "Hire NLP engineers to make sense of your text and speech",
+    intro: "Add NLP engineers who build classification, extraction, search and speech solutions in English, Hindi and other languages.",
+    checklist: ["Text & speech AI", "Multilingual experience", "Transformers & LLMs", "NDA and full IP ownership"],
+    build: [
+      ["Text classification", "Route and tag emails, tickets and reviews."],
+      ["Information extraction", "Pull entities and fields from documents."],
+      ["Semantic search", "Search by meaning across content."],
+      ["Speech analytics", "Transcribe and analyse calls."],
+    ],
+    services: [
+      ["Custom NLP models", "Train or fine-tune models for your text."],
+      ["LLM-based NLP", "Use LLMs for extraction and classification."],
+      ["Multilingual NLP", "Support for Indian and international languages."],
+      ["Speech solutions", "Speech-to-text and voice analytics."],
+      ["Evaluation", "Accuracy measurement and improvement."],
+    ],
+    skills: [
+      ["Transformers", "BERT-family models and fine-tuning."],
+      ["LLMs", "Prompting and structured extraction."],
+      ["Classic NLP", "Tokenisation, spaCy and rule-based methods."],
+      ["Evaluation", "Precision, recall and error analysis."],
+    ],
+    tools: ["Python", "Hugging Face Transformers", "spaCy", "PyTorch", "Whisper", "LangChain", "Elasticsearch", "FAISS"],
+    faqs: [
+      ["Do you support Indian languages?", "Yes, including Hindi and other major Indian languages."],
+      ["LLMs or custom models?", "We choose based on accuracy, cost and latency for your task."],
+      ["Can they process audio?", "Yes, with speech-to-text and analysis of the transcripts."],
+      ["How do you measure accuracy?", "With labelled test data and metrics such as F1 score."],
+    ],
+  },
+
+  "ai-team-augmentation": {
+    tech: "AI",
+    title: "AI team augmentation: add AI skills to your team fast",
+    intro: "Fill AI skill gaps in your existing team with ALPIXN ML engineers, LLM specialists, data engineers and MLOps engineers who work inside your processes.",
+    checklist: ["Individual AI specialists", "Join your team & tools", "Flexible duration", "NDA and full IP ownership"],
+    build: [
+      ["Model development", "Adding ML capacity to your data science team."],
+      ["LLM features", "Bringing GenAI skills into your product team."],
+      ["Data pipelines", "Engineering support for your data platform."],
+      ["MLOps", "Deployment and monitoring for your models."],
+    ],
+    services: [
+      ["ML engineers", "Model building and evaluation."],
+      ["LLM engineers", "RAG, agents and fine-tuning."],
+      ["Data engineers", "Pipelines and data quality."],
+      ["MLOps engineers", "CI/CD for models and monitoring."],
+      ["AI tech leads", "Senior guidance for your AI roadmap."],
+    ],
+    skills: [
+      ["Role-specific depth", "We assess each engineer for the exact role you need."],
+      ["Collaboration", "Clear communication and documentation."],
+      ["Production experience", "Engineers who have shipped AI to real users."],
+      ["Tool fit", "Experience with your cloud and ML stack."],
+    ],
+    tools: ["Python", "PyTorch", "TensorFlow", "Hugging Face", "LangChain", "MLflow", "Kubeflow", "Databricks", "Snowflake", "AWS", "Azure", "GCP"],
+    faqs: [
+      ["How is this different from a dedicated AI team?", "Augmentation adds individuals to your team; a dedicated team is a complete unit we manage."],
+      ["Can we interview engineers?", "Yes. You interview and approve every engineer."],
+      ["Can we scale up later?", "Yes, by adding engineers as your needs grow."],
+      ["What is the minimum engagement?", "We discuss this per role; most engagements run for several months."],
+    ],
+  },
+
+  "llm-engineers": {
+    tech: "LLM",
+    title: "Hire LLM engineers to put language models into production",
+    intro: "Add engineers who specialise in large language models — retrieval, fine-tuning, evaluation and self-hosting — so your LLM features are accurate, fast and affordable.",
+    checklist: ["RAG & fine-tuning", "Open & commercial models", "Evaluation & observability", "NDA and full IP ownership"],
+    build: [
+      ["RAG systems", "Answers grounded in your documents."],
+      ["Fine-tuned models", "Models adapted to your domain."],
+      ["Self-hosted LLMs", "Private deployments of open models."],
+      ["LLM agents", "Assistants that call tools and APIs."],
+    ],
+    services: [
+      ["LLM architecture", "Choosing models, retrieval and serving."],
+      ["Fine-tuning", "LoRA and full fine-tuning."],
+      ["Self-hosting", "vLLM or TGI deployments on GPUs."],
+      ["Evaluation pipelines", "Automated quality and regression tests."],
+      ["Cost & latency tuning", "Caching, batching and model routing."],
+    ],
+    skills: [
+      ["Retrieval", "Embeddings, chunking, reranking and hybrid search."],
+      ["Training", "Dataset preparation and parameter-efficient tuning."],
+      ["Serving", "GPU inference, quantisation and scaling."],
+      ["Evaluation", "LLM-as-judge, human review and metrics."],
+    ],
+    tools: ["Python", "PyTorch", "Hugging Face", "vLLM", "LangGraph", "LlamaIndex", "Llama", "Mistral", "Qwen", "Weights & Biases", "Langfuse"],
+    faqs: [
+      ["Can you run LLMs on our own servers?", "Yes, using open-weight models served with vLLM or similar tools."],
+      ["When is fine-tuning needed?", "When you need consistent format, tone or domain accuracy that prompting cannot achieve."],
+      ["How do you track LLM quality?", "With evaluation sets, tracing tools and regular reviews."],
+      ["Which GPUs are needed?", "It depends on model size; we size hardware for your workload."],
+    ],
+  },
+};
+
+export const cloudRoles: Record<string, OffshoreContent> = {
+  "aws-developer": {
+    tech: "AWS",
+    title: "Hire AWS developers to build and run on Amazon Web Services",
+    intro: "Add AWS engineers who design, build and automate cloud infrastructure and serverless applications — secure, observable and cost-aware.",
+    checklist: ["Serverless & container expertise", "Terraform & CDK", "Security & cost focus", "NDA and full IP ownership"],
+    build: [
+      ["Serverless back ends", "Lambda, API Gateway, DynamoDB and Step Functions."],
+      ["Container platforms", "ECS and EKS clusters for your services."],
+      ["Data platforms", "S3, Glue, Athena and Redshift pipelines."],
+      ["AI on AWS", "Bedrock and SageMaker based solutions."],
+    ],
+    services: [
+      ["AWS architecture", "Well-architected designs for new systems."],
+      ["Migration to AWS", "Moving workloads from on-premise or other clouds."],
+      ["Infrastructure as code", "Terraform and AWS CDK."],
+      ["Cost optimisation", "Right-sizing, savings plans and clean-up."],
+      ["Security hardening", "IAM, networking, encryption and monitoring."],
+    ],
+    skills: [
+      ["Core AWS services", "EC2, S3, VPC, IAM, RDS and Lambda."],
+      ["Infrastructure as code", "Terraform, CDK and CloudFormation."],
+      ["Observability", "CloudWatch, X-Ray and alerting."],
+      ["Security", "Least-privilege IAM and network design."],
+    ],
+    tools: ["AWS Lambda", "ECS", "EKS", "DynamoDB", "RDS", "S3", "CloudFront", "Terraform", "AWS CDK", "CloudWatch", "Bedrock"],
+    faqs: [
+      ["Can you reduce our AWS bill?", "Often yes, by right-sizing, using savings plans and removing unused resources."],
+      ["Do you use infrastructure as code?", "Yes — Terraform or AWS CDK for repeatable environments."],
+      ["Can you migrate us to AWS?", "Yes, with a planned, wave-based migration."],
+      ["How do you handle security on AWS?", "Security design is part of every AWS engagement: least-privilege IAM, private networking, encryption and monitoring, following AWS best practices."],
+    ],
+  },
+
+  "azure-developer": {
+    tech: "Azure",
+    title: "Hire Azure developers for Microsoft cloud solutions",
+    intro: "Work with Azure engineers who build apps, data platforms and infrastructure on Microsoft Azure — integrated with Entra ID, Microsoft 365 and your .NET stack.",
+    checklist: ["App Service, Functions & AKS", "Bicep & Terraform", "Entra ID & security", "NDA and full IP ownership"],
+    build: [
+      ["Cloud applications", "Apps on App Service, Functions and Container Apps."],
+      ["Integration solutions", "Logic Apps, Service Bus and API Management."],
+      ["Data platforms", "Data Factory, Synapse and Fabric."],
+      ["AI solutions", "Azure OpenAI and AI services."],
+    ],
+    services: [
+      ["Azure architecture", "Landing zones and solution design."],
+      ["Migration to Azure", "Moving apps and databases to Azure."],
+      ["DevOps", "Azure DevOps or GitHub Actions pipelines."],
+      ["Identity & security", "Entra ID, Key Vault and Defender setup."],
+      ["Cost management", "Budgets, reservations and optimisation."],
+    ],
+    skills: [
+      ["Azure services", "Compute, storage, networking and databases."],
+      ["IaC", "Bicep, ARM and Terraform."],
+      ["Identity", "Entra ID, managed identities and RBAC."],
+      ["Monitoring", "Azure Monitor and Application Insights."],
+    ],
+    tools: ["Azure App Service", "Azure Functions", "AKS", "Azure SQL", "Cosmos DB", "Service Bus", "Bicep", "Terraform", "Azure DevOps", "Azure OpenAI"],
+    faqs: [
+      ["Can you integrate with Microsoft 365?", "Yes, through Microsoft Graph, SharePoint and Teams APIs."],
+      ["Do you work with Azure OpenAI?", "Yes, for GenAI solutions with Azure's enterprise controls."],
+      ["Can you migrate our .NET apps to Azure?", "Yes, often with minimal code changes as a first step."],
+      ["Which IaC tool do you use on Azure?", "Bicep or Terraform, depending on your preference."],
+    ],
+  },
+
+  "google-cloud-developer": {
+    tech: "Google Cloud",
+    title: "Hire Google Cloud developers for data-driven, scalable apps",
+    intro: "Add Google Cloud engineers who build on Cloud Run, GKE, BigQuery and Vertex AI — ideal for analytics-heavy and AI-powered products.",
+    checklist: ["Cloud Run, GKE & Firebase", "BigQuery & data pipelines", "Vertex AI experience", "NDA and full IP ownership"],
+    build: [
+      ["Serverless apps", "Cloud Run and Cloud Functions services."],
+      ["Kubernetes platforms", "GKE clusters for microservices."],
+      ["Analytics platforms", "BigQuery data warehouses and pipelines."],
+      ["AI solutions", "Vertex AI and Gemini-based apps."],
+    ],
+    services: [
+      ["GCP architecture", "Project structure, networking and security."],
+      ["Migration to GCP", "Moving workloads and data."],
+      ["Data engineering", "Dataflow, Pub/Sub and BigQuery."],
+      ["Firebase apps", "Auth, Firestore and hosting for mobile and web."],
+      ["Cost optimisation", "Committed use discounts and right-sizing."],
+    ],
+    skills: [
+      ["GCP services", "Compute, Cloud Run, GKE and Cloud SQL."],
+      ["Data", "BigQuery, Dataflow and Pub/Sub."],
+      ["IaC", "Terraform for GCP."],
+      ["Security", "IAM, VPC Service Controls and Secret Manager."],
+    ],
+    tools: ["Cloud Run", "GKE", "BigQuery", "Pub/Sub", "Dataflow", "Firestore", "Firebase", "Vertex AI", "Terraform", "Cloud Build"],
+    faqs: [
+      ["Why choose Google Cloud?", "It is strong for data analytics (BigQuery), containers (GKE, Cloud Run) and AI (Vertex AI)."],
+      ["Do you build Firebase apps?", "Yes, for mobile and web apps that need fast back-end setup."],
+      ["Can you set up BigQuery for analytics?", "Yes, including pipelines and BI dashboards."],
+      ["Can you migrate from AWS or Azure?", "Yes, with a planned migration."],
+    ],
+  },
+};
+
+export const platformRoles: Record<string, OffshoreContent> = {
+  "salesforce-developer": {
+    tech: "Salesforce",
+    title: "Hire Salesforce developers to tailor your CRM",
+    intro: "Add Salesforce developers who customise Sales Cloud and Service Cloud with Apex, Lightning Web Components and Flows — and integrate Salesforce with the rest of your business.",
+    checklist: ["Apex, LWC & Flow", "Sales & Service Cloud", "Integrations & data migration", "NDA and full IP ownership"],
+    build: [
+      ["Custom objects & apps", "Data models and apps for your processes."],
+      ["Lightning components", "Custom UIs with Lightning Web Components."],
+      ["Automation", "Flows and Apex for business rules."],
+      ["Integrations", "Connecting ERP, telephony and marketing tools."],
+    ],
+    services: [
+      ["Salesforce customisation", "Objects, layouts, flows and code."],
+      ["Integration", "REST/SOAP APIs and middleware."],
+      ["Data migration", "Moving data from other CRMs or spreadsheets."],
+      ["Org clean-up", "Fixing technical debt and improving performance."],
+      ["Support", "Admin and developer support."],
+    ],
+    skills: [
+      ["Apex", "Triggers, classes, batch jobs and tests."],
+      ["LWC", "Modern Lightning Web Components."],
+      ["Declarative tools", "Flows, validation rules and permissions."],
+      ["Governor limits", "Writing efficient, bulk-safe code."],
+    ],
+    tools: ["Apex", "Lightning Web Components", "Salesforce Flow", "SOQL", "Salesforce DX", "MuleSoft", "Data Loader", "Experience Cloud"],
+    faqs: [
+      ["Do you work with Sales and Service Cloud?", "Yes, along with Experience Cloud and common AppExchange packages."],
+      ["Can you integrate Salesforce with our ERP?", "Yes, using APIs or middleware such as MuleSoft."],
+      ["Can you clean up our existing org?", "Yes — we review automations, code and data, then simplify."],
+      ["Do you write Apex tests?", "Yes, with meaningful coverage beyond the minimum required."],
+    ],
+  },
+
+  "ms-power-apps-developer": {
+    tech: "Power Apps",
+    title: "Hire Power Apps developers for fast Microsoft business apps",
+    intro: "Add Microsoft Power Platform developers who build Power Apps, Power Automate flows and Power BI reports connected to Dataverse, SharePoint and your systems.",
+    checklist: ["Canvas & model-driven apps", "Power Automate flows", "Dataverse & SharePoint", "NDA and full IP ownership"],
+    build: [
+      ["Business apps", "Approval, request and inspection apps."],
+      ["Workflow automation", "Power Automate flows across Microsoft 365."],
+      ["Reports", "Power BI dashboards for teams."],
+      ["Portals", "Power Pages sites for external users."],
+    ],
+    services: [
+      ["Power Apps development", "Canvas and model-driven apps."],
+      ["Automation", "Flows for approvals, notifications and data sync."],
+      ["Integration", "Custom connectors to your APIs."],
+      ["Governance", "Environments, DLP policies and ALM."],
+      ["Training", "Helping your team maintain the apps."],
+    ],
+    skills: [
+      ["Power Fx", "Formulas and app logic."],
+      ["Dataverse", "Data modelling and security roles."],
+      ["Power Automate", "Cloud and desktop flows."],
+      ["ALM", "Solutions, pipelines and environments."],
+    ],
+    tools: ["Power Apps", "Power Automate", "Power BI", "Power Pages", "Dataverse", "SharePoint", "Microsoft Teams", "Azure Functions", "Copilot Studio"],
+    faqs: [
+      ["Is Power Apps right for us?", "It is ideal for internal apps when you already use Microsoft 365."],
+      ["Can Power Apps connect to non-Microsoft systems?", "Yes, through standard or custom connectors."],
+      ["What about licensing?", "We help you understand which Power Platform licences your solution needs."],
+      ["Can our team edit the apps later?", "Yes. We hand over with documentation and training."],
+    ],
+  },
+
+  "metaverse-developer": {
+    tech: "Metaverse",
+    title: "Hire metaverse developers for 3D, AR and VR experiences",
+    intro: "Add developers who build immersive 3D, AR and VR experiences — virtual showrooms, training simulations and interactive web 3D — with Unity, Unreal and WebXR.",
+    checklist: ["Unity, Unreal & WebXR", "AR, VR & web 3D", "3D assets & optimisation", "NDA and full IP ownership"],
+    build: [
+      ["Virtual showrooms", "Interactive 3D product and property tours."],
+      ["Training simulations", "VR training for safety and operations."],
+      ["AR apps", "Mobile AR for products and maintenance."],
+      ["Web 3D experiences", "Three.js experiences that run in the browser."],
+    ],
+    services: [
+      ["3D & XR development", "Apps for headsets, mobile and web."],
+      ["Digital twins", "3D models connected to live data."],
+      ["Multi-user experiences", "Shared virtual spaces and events."],
+      ["Performance optimisation", "Smooth frame rates on target devices."],
+      ["Asset pipelines", "3D model preparation and optimisation."],
+    ],
+    skills: [
+      ["Game engines", "Unity (C#) and Unreal Engine."],
+      ["XR platforms", "Meta Quest, Apple Vision Pro, ARKit and ARCore."],
+      ["Web 3D", "Three.js, React Three Fiber and WebXR."],
+      ["Optimisation", "Draw calls, LODs and texture budgets."],
+    ],
+    tools: ["Unity", "Unreal Engine", "C#", "Three.js", "React Three Fiber", "WebXR", "ARKit", "ARCore", "Blender", "Photon"],
+    faqs: [
+      ["Which devices do you build for?", "Meta Quest, Apple Vision Pro, mobile AR and web browsers."],
+      ["Can experiences run in a browser?", "Yes, with Three.js and WebXR — no app download needed."],
+      ["Do you create 3D assets?", "We can prepare and optimise assets, and work with your 3D artists."],
+      ["Can you build a digital twin?", "Yes, connecting 3D models to IoT or business data."],
+    ],
+  },
+};

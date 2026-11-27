@@ -1022,6 +1022,12 @@ html.theme-ready section {
   inset: 10px;
 }
 
+@keyframes flow-x {
+  to {
+    background-position: 24px 0;
+  }
+}
+
 @keyframes ts-flow {
   to {
     stroke-dashoffset: -452;

@@ -29,8 +29,10 @@ import {
   TechnologyPageModel,
 } from "@/lib/models";
 import { buildExpertiseSeedRecords, defaultExpertiseSettings } from "@/lib/expertise-seed";
+import { expertisePageFields, isLegacyExpertiseContent } from "@/lib/expertise/content";
 import { defaultAboutSettings, defaultHomeSettings } from "@/lib/home-about-seed";
 import { buildOffshoreDeveloperSeedRecords, defaultOffshoreDeveloperSettings } from "@/lib/offshore-developer-seed";
+import { isLegacyOffshoreContent, offshorePageFields } from "@/lib/offshore developer/content";
 import { buildProductSeedRecords, defaultProductSettings } from "@/lib/product-seed";
 import { buildTechnologySeedRecords, getTechnologyTemplate } from "@/lib/technology-seed";
 import type {
@@ -818,7 +820,10 @@ function withTechnologyDefaults(page: TechnologyPageRecord): TechnologyPageRecor
   };
 }
 
-function withOffshoreDeveloperPageDefaults(page: OffshoreDeveloperPageRecord): OffshoreDeveloperPageRecord {
+function withOffshoreDeveloperPageDefaults(stored: OffshoreDeveloperPageRecord): OffshoreDeveloperPageRecord {
+  // Records never edited in the CMS still hold the shared template copy: show the role-specific copy instead.
+  const generated = isLegacyOffshoreContent(stored) ? offshorePageFields(stored.slug) : null;
+  const page: OffshoreDeveloperPageRecord = generated ? { ...stored, ...generated } : stored;
   return {
     ...page,
     heroChecklist: page.heroChecklist ?? [],
@@ -833,7 +838,10 @@ function withOffshoreDeveloperPageDefaults(page: OffshoreDeveloperPageRecord): O
   };
 }
 
-function withExpertisePageDefaults(page: ExpertisePageRecord): ExpertisePageRecord {
+function withExpertisePageDefaults(stored: ExpertisePageRecord): ExpertisePageRecord {
+  // Records never edited in the CMS still hold the shared template copy: show the page-specific copy instead.
+  const generated = isLegacyExpertiseContent(stored) ? expertisePageFields(stored.slug) : null;
+  const page: ExpertisePageRecord = generated ? { ...stored, ...generated } : stored;
   // When arrays are present but empty (e.g. DB record created before field existed),
   // fall back to seed data so sections render instead of returning null.
   const seed = buildExpertiseSeedRecords().find(

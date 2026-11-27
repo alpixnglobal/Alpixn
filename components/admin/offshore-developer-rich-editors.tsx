@@ -4,6 +4,7 @@ import { useId, useState, type ChangeEvent } from "react";
 
 import { prepareAdminImageUpload } from "@/components/admin/client-image-utils";
 import { AdminCheckbox, AdminField, AdminInput, AdminTextarea } from "@/components/admin/admin-ui";
+import { PageFaqEditor } from "@/components/admin/page-faq-editor";
 import type { OffshoreDeveloperPageRecord, OffshoreDeveloperSettingsRecord } from "@/lib/content-types";
 
 function toJson(value: unknown) {
@@ -258,6 +259,8 @@ export function OffshoreDeveloperPageRichEditor({ values = {} }: { values?: Part
         ))}
         <button type="button" onClick={() => setSteps((current) => [...current, { ...defaultStep }])} className="w-fit rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200 transition hover:bg-white/10">Add step</button>
       </SectionBlock>
+
+      <PageFaqEditor initial={values.faqs} />
 
       <SectionBlock title="Engagement Models Section">
         <AdminField label="Section title"><AdminTextarea name="engagementTitle" defaultValue={values.engagementTitle} className="min-h-24" /></AdminField>

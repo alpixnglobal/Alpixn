@@ -1008,6 +1008,8 @@ const expertisePageSchema = new Schema(
     startSubtitle: { type: String, default: "" },
     startButtonText: { type: String, default: "" },
     startButtonLink: { type: String, default: "#" },
+    heroHighlights: { type: [String], default: [] },
+    faqs: { type: [{ question: { type: String, default: "" }, answer: { type: String, default: "" } }], default: [] },
   },
   { timestamps: true }
 );
@@ -1070,6 +1072,7 @@ const offshoreDeveloperPageSchema = new Schema(
     engagementTitle: { type: String, default: "" },
     engagementSubtitle: { type: String, default: "" },
     engagementModels: { type: [offshoreEngagementModelSchema], default: [] },
+    faqs: { type: [{ question: { type: String, default: "" }, answer: { type: String, default: "" } }], default: [] },
   },
   { timestamps: true }
 );

@@ -121,7 +121,7 @@ export default async function AdminProductsPage({ searchParams }: PageProps) {
             <form action={saveProductAction} className="grid gap-5">
               {selectedItem ? <input type="hidden" name="id" value={selectedItem._id} /> : null}
               <FormGrid>
-                <ProductEntryRichEditor values={selectedItem ?? { order: items.length + 1, isPublished: true }} />
+                <ProductEntryRichEditor key={selectedItem?._id ?? "new"} values={selectedItem ?? { order: items.length + 1, isPublished: true }} />
               </FormGrid>
               <FormActions>
                 <SubmitButton label={selectedItem ? "Save product" : "Create product"} pendingLabel={selectedItem ? "Saving..." : "Creating..."} />

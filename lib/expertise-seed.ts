@@ -9,6 +9,7 @@ import { getStatsData } from "@/lib/expertise/stats-section-data";
 import testimonialData from "@/lib/expertise/testimonial-our-expertise-data";
 import { getWhyChooseUsData } from "@/lib/expertise/why-choose-us-our-expertise-section-data";
 import { mobileNavigation } from "@/lib/mobileNavigation";
+import { expertisePageFields } from "@/lib/expertise/content";
 
 type ExpertiseSeedRecord = Omit<ExpertisePageRecord, "_id">;
 
@@ -247,6 +248,8 @@ export function buildExpertiseSeedRecords() {
         startSubtitle: start.subtitle,
         startButtonText: start.buttonText,
         startButtonLink: "/contact-us",
+        // Page-specific copy (hero, benefits, deliverables, process, CTA, FAQs) replaces the shared template.
+        ...(expertisePageFields(item.slug) ?? {}),
       } satisfies ExpertiseSeedRecord;
     })
   );

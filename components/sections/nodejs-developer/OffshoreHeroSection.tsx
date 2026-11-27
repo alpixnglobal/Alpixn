@@ -14,6 +14,28 @@ import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/textarea";
 import { getOffshoreHeroData } from "@/lib/offshore developer/offshore-banner-data";
 import type { OffshoreHeroTechnologyRecord } from "@/lib/content-types";
+import { offshoreTechIcon } from "@/lib/offshore developer/content";
+import { Bot, Boxes, BrainCircuit, Eye, Languages, Layers, Network, Smartphone, Sparkles, Users, type LucideIcon } from "lucide-react";
+
+
+const ROLE_ICON: Record<string, LucideIcon> = {
+  "kotlin-developer": Smartphone, "ionic-developer": Smartphone, "full-stack-developer": Layers,
+  "ai-development-teams": BrainCircuit, "computer-vision-engineers": Eye, "generative-ai-engineers": Sparkles,
+  "nlp-engineers": Languages, "ai-team-augmentation": Users, "llm-engineers": Network, "ms-power-apps-developer": Boxes,
+};
+
+function RoleBadge({ slug, label }: { slug: string; label: string }) {
+  const svg = offshoreTechIcon(slug);
+  const Icon = ROLE_ICON[slug] ?? Bot;
+  return (
+    <span className="inline-flex w-fit items-center gap-2.5 rounded-full border border-line bg-surface py-1.5 pl-1.5 pr-4 shadow-[var(--shadow-card)]">
+      <span className="grid h-8 w-8 place-items-center rounded-full bg-canvas ring-1 ring-line">
+        {svg ? <Image src={svg} alt="" width={18} height={18} className="h-[18px] w-[18px] object-contain" /> : <Icon aria-hidden className="h-4 w-4 text-[#0878d1]" />}
+      </span>
+      <span className="text-[13px] font-semibold text-fg">{label}</span>
+    </span>
+  );
+}
 
 interface OffshoreHeroSectionProps {
   slug?: string;
@@ -26,9 +48,12 @@ interface OffshoreHeroSectionProps {
   };
   pagePath?: string;
   role?: string;
+  /** Page slug, used for the technology badge. */
+  badgeSlug?: string;
+  badgeLabel?: string;
 }
 
-const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-developer", role = "" }: OffshoreHeroSectionProps) => {
+const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-developer", role = "", badgeSlug, badgeLabel }: OffshoreHeroSectionProps) => {
   const fallbackData = getOffshoreHeroData(slug);
   const { title, description, checklist, formTitle, technologies } = data ?? fallbackData;
   const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[1.08] tracking-[-0.03em] w-full";
@@ -72,8 +97,17 @@ const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-dev
             {/* Grid 1 */}
             <div className="flex flex-col gap-4 lg:gap-[20px]">
               {/* Hero Title */}
+              {badgeSlug ? <RoleBadge slug={badgeSlug} label={badgeLabel ?? ""} /> : null}
               <h1 className={heroTitleClassName}>
-                {title}
+                {(() => {
+                  const words = title.trim().split(/\s+/);
+                  if (words.length < 4) return title;
+                  return (
+                    <>
+                      {words.slice(0, -3).join(" ")} <span className="text-brand-spectrum">{words.slice(-3).join(" ")}</span>
+                    </>
+                  );
+                })()}
               </h1>
               {/* Hero Desc */}
               <p className="font-normal text-base md:text-lg leading-relaxed text-fg">
