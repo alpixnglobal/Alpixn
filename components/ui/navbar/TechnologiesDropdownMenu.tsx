@@ -1,16 +1,8 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BulletItem } from "./BulletItem";
-import Link from "next/link";
-import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
+import MegaMenu from "./MegaMenu";
 
-// Define types for technology items
-type TechnologyItem = {
-  label: string;
-  slug: string;
-};
-
+type TechnologyItem = { label: string; slug: string };
 type TechnologyColumn = TechnologyItem[];
 
 // Define technology categories
@@ -69,105 +61,27 @@ const Platforms: TechnologyColumn[] = [
   [{ label: "Metaverse", slug: "metaverse" }],
 ];
 
-type TechnologiesGridProps = {
-  columns: TechnologyColumn[];
-  category: string;
-};
-
-function TechnologiesGrid({ columns, category }: TechnologiesGridProps) {
-  return (
-    <div className="grid grid-cols-3 text-fg mt-[25px]">
-      {columns.map((items, colIndex) => (
-        <div
-          key={colIndex}
-          className={[
-            "flex flex-col gap-5",
-            colIndex === 0 && "border-r border-fg/20 mr-20",
-            colIndex === 1 && "border-r ml-12 border-fg/20 mr-16",
-            colIndex === 2 && "ml-12",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-        >
-          {items.map((item) => (
-            <NavigationMenuLink asChild key={item.slug}>
-              <Link
-                href={`/technologies/${category}/${item.slug}`}
-                className="group transition-all duration-200 hover:opacity-80 hover:translate-x-1"
-              >
-                <BulletItem>{item.label}</BulletItem>
-              </Link>
-            </NavigationMenuLink>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
+const GROUPS: { key: string; label: string; description: string; category: string; columns: TechnologyColumn[] }[] = [
+  { key: "backend", label: "Backend", description: "APIs, services and data", category: "backend", columns: Backend_Developer },
+  { key: "frontend", label: "Frontend", description: "Web interfaces", category: "frontend", columns: Frontend_Developer },
+  { key: "framework", label: "Frameworks", description: "Server frameworks", category: "framework", columns: Mobile_App_Developer },
+  { key: "mobile", label: "Mobile", description: "iOS and Android apps", category: "mobile", columns: AI_Engineers },
+  { key: "devops", label: "Cloud & DevOps", description: "Infrastructure and delivery", category: "devops", columns: DevOps_Engineers },
+  { key: "platforms", label: "Platforms", description: "Low-code and enterprise", category: "more", columns: Platforms },
+];
 
 export function TechnologiesDropdownMenu() {
   return (
-    <Tabs defaultValue="backend" className="my-[35px] mx-auto w-full max-w-[1122px]">
-      <div className="relative">
-        <TabsList className="grid grid-cols-6 gap-2">
-          <TabsTrigger value="backend" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">Backend</h4>
-          </TabsTrigger>
-          <TabsTrigger value="frontend" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">Frontend</h4>
-          </TabsTrigger>
-          <TabsTrigger value="mobile" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">Framework</h4>
-          </TabsTrigger>
-          <TabsTrigger value="ai" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">Mobile</h4>
-          </TabsTrigger>
-          <TabsTrigger value="devops" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">DevOps</h4>
-          </TabsTrigger>
-          <TabsTrigger value="plartforms" className="offshore-developer-tab-trigger">
-            <h4 className="offshore-developer-tab-list-heading">More</h4>
-          </TabsTrigger>
-        </TabsList>
-        {/* Divider */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-[25px] border-b w-[1182px] border-fg/20" />
-      </div>
-
-      <TabsContent value="backend" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={Backend_Developer} category="backend" />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="frontend" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={Frontend_Developer} category="frontend" />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="mobile" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={Mobile_App_Developer} category="framework" />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="ai" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={AI_Engineers} category="mobile" />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="devops" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={DevOps_Engineers} category="devops" />
-        </div>
-      </TabsContent>
-
-      <TabsContent value="plartforms" className="mt-[25px]">
-        <div className="w-full">
-          <TechnologiesGrid columns={Platforms} category="more" />
-        </div>
-      </TabsContent>
-    </Tabs>
+    <MegaMenu
+      columns={3}
+      categories={GROUPS.map((g) => ({
+        key: g.key,
+        label: g.label,
+        description: g.description,
+        heading: `${g.label} technologies`,
+        items: g.columns.flat().map((t) => ({ label: t.label, href: `/technologies/${g.category}/${t.slug}` })),
+      }))}
+      promo={{ eyebrow: "Right tool for the job", title: "We pick proven technology and explain why", text: "Stacks chosen for performance, security and easy maintenance.", href: "/technologies", cta: "Explore technologies" }}
+    />
   );
 }
