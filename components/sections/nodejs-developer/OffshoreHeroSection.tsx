@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { submitOffshoreEnquiryAction } from "@/admin/actions/admin-actions";
+import ApplicationStatusToastWrapper from "@/components/sections/job-apply/ApplicationStatusToastWrapper";
 import {
   Select,
   SelectContent,
@@ -22,15 +24,18 @@ interface OffshoreHeroSectionProps {
     formTitle: string;
     technologies: OffshoreHeroTechnologyRecord[];
   };
+  pagePath?: string;
+  role?: string;
 }
 
-const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProps) => {
+const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-developer", role = "" }: OffshoreHeroSectionProps) => {
   const fallbackData = getOffshoreHeroData(slug);
   const { title, description, checklist, formTitle, technologies } = data ?? fallbackData;
   const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[1.08] tracking-[-0.03em] w-full";
 
   return (
     <section className="relative w-full min-h-0 overflow-hidden">
+      <ApplicationStatusToastWrapper />
       {/* Background Color  */}
       <div
         className="absolute inset-0"
@@ -104,18 +109,20 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                 <h3 className="text-left sm:text-center font-display font-semibold text-lg">
                   {formTitle}
                 </h3>
-                <form className="w-full">
+                <form action={submitOffshoreEnquiryAction} className="w-full">
+                  <input type="hidden" name="pagePath" value={pagePath} />
+                  <input type="hidden" name="role" value={role} />
                   <div className="flex flex-col gap-2.5">
                     <div className="flex flex-col lg:flex-row gap-2.5">
-                      <Input type="text" placeholder="Full Name" className="h-10 w-full text-sm" />
-                      <Input type="text" placeholder="Contact Number" className="h-10 w-full text-sm" />
+                      <Input type="text" name="fullName" required autoComplete="name" placeholder="Full Name *" className="h-10 w-full text-sm" />
+                      <Input type="tel" name="phone" required autoComplete="tel" placeholder="Contact Number *" className="h-10 w-full text-sm" />
                     </div>
                     <div className="flex flex-col lg:flex-row gap-2.5">
-                      <Input type="email" placeholder="Business Email" className="h-10 w-full text-sm" />
-                      <Input type="email" placeholder="Company Email" className="h-10 w-full text-sm" />
+                      <Input type="email" name="email" required autoComplete="email" placeholder="Business Email *" className="h-10 w-full text-sm" />
+                      <Input type="text" name="company" autoComplete="organization" placeholder="Company Name" className="h-10 w-full text-sm" />
                     </div>
                     <div>
-                      <Select>
+                      <Select name="technology">
                         <SelectTrigger className="!h-10 w-full text-sm">
                           <SelectValue placeholder="Select Technology" />
                         </SelectTrigger>
@@ -132,10 +139,10 @@ const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProp
                       </Select>
                     </div>
                     <div>
-                      <Textarea placeholder="Describe Your Query" className="!min-h-[72px] h-[72px] text-sm" />
+                      <Textarea name="message" placeholder="Describe Your Query" className="!min-h-[72px] h-[72px] text-sm" />
                     </div>
                     <div>
-                      <button className="btn-brand w-full !py-2.5">
+                      <button type="submit" className="btn-brand w-full !py-2.5">
                         Submit
                       </button>
                     </div>

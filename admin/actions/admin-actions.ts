@@ -6,7 +6,8 @@ import { z } from "zod";
 
 import { requireAdminSession, signInAdmin, signOutAdmin } from "@/lib/admin-auth";
 import { connectToDatabase } from "@/lib/db";
-import { isMailConfigured, sendContactEnquiryEmail } from "@/lib/mailer";
+import { CONTACT_TO_EMAIL, HR_TO_EMAIL, isMailConfigured, sendContactEnquiryEmail, sendRowsEmail } from "@/lib/mailer";
+import { getPublishedJobBySlug } from "@/lib/content-service";
 import { normalizeBase64Image } from "@/lib/image-data";
 import {
   AboutSettingsModel,
@@ -1331,23 +1332,13 @@ const jobApplicationSchema = z.object({
 
 export async function submitJobApplicationAction(jobSlug: string, formData: FormData) {
   const redirectTo = getOptionalValue(formData, "redirectTo") || `/resources/careers/${jobSlug}`;
-  await ensureDatabaseForAction(redirectTo);
 
-  const job = (await JobOpeningModel.findOne({ slug: jobSlug, isPublished: true }).lean()) as {
-    slug: string;
-    title: string;
-    company: string;
-  } | null;
-
+  // Works with or without the database: the published job comes from the DB or the built-in fallback.
+  const job = await getPublishedJobBySlug(jobSlug);
   if (!job) {
     redirect(`${redirectTo}?error=Job%20not%20found`);
   }
-
-  const resolvedJob = job as {
-    slug: string;
-    title: string;
-    company: string;
-  };
+  const resolvedJob = job as { slug: string; title: string; company: string };
 
   const parsedValues = jobApplicationSchema.safeParse({
     fullName: getValue(formData, "fullName"),
@@ -1364,16 +1355,51 @@ export async function submitJobApplicationAction(jobSlug: string, formData: Form
     const message = parsedValues.error.issues[0]?.message ?? "Please check the application form.";
     redirect(`${redirectTo}?error=${encodeURIComponent(message)}`);
   }
+  const v = parsedValues.data;
 
-  await JobApplicationModel.create({
-    jobSlug: resolvedJob.slug,
-    jobTitle: resolvedJob.title,
-    company: resolvedJob.company,
-    ...parsedValues.data,
-    status: "new",
-  });
+  // 1) Email the application to HR (hr@alpixn.com or HR_TO_EMAIL).
+  let emailed = false;
+  if (isMailConfigured()) {
+    try {
+      await sendRowsEmail({
+        to: HR_TO_EMAIL,
+        subject: `Job application: ${resolvedJob.title} — ${v.fullName}`,
+        heading: `New application for ${resolvedJob.title}`,
+        rows: [
+          ["Position", resolvedJob.title],
+          ["Name", v.fullName],
+          ["Email", v.email],
+          ["Phone", v.phone],
+          ["Location", v.location],
+          ["LinkedIn", v.linkedInUrl ?? ""],
+          ["Portfolio", v.portfolioUrl ?? ""],
+          ["CV link", v.cvDriveLink],
+        ],
+        messageLabel: "Cover letter",
+        message: v.coverLetter ?? "",
+        replyName: v.fullName,
+        replyEmail: v.email,
+      });
+      emailed = true;
+    } catch (error) {
+      console.error("Job application email failed:", error);
+    }
+  }
 
-  revalidatePath("/admin/careers");
+  // 2) Keep a copy in the admin careers inbox when the database is reachable.
+  let stored = false;
+  try {
+    await connectToDatabase();
+    await JobApplicationModel.create({ jobSlug: resolvedJob.slug, jobTitle: resolvedJob.title, company: resolvedJob.company, ...v, status: "new" });
+    stored = true;
+    revalidatePath("/admin/careers");
+  } catch (error) {
+    console.error("Job application could not be stored:", error);
+  }
+
+  if (!emailed && !stored) {
+    redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your application could not be sent. Please email hr@alpixn.com directly.")}`);
+  }
   redirect(`${redirectTo}?status=applied`);
 }
 
@@ -1565,6 +1591,76 @@ export async function submitContactFormAction(formData: FormData) {
 
   if (!emailed && !stored) {
     redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your message could not be sent. Please email info@alpixn.com directly.")}`);
+  }
+  redirect(`${redirectTo}?status=sent`);
+}
+
+
+export async function submitOffshoreEnquiryAction(formData: FormData) {
+  const rawPath = getOptionalValue(formData, "pagePath") ?? "/offshore-developer";
+  const redirectTo = rawPath.startsWith("/offshore-developer") ? rawPath : "/offshore-developer";
+
+  const fullName = getValue(formData, "fullName");
+  const phone = getValue(formData, "phone");
+  const email = getValue(formData, "email");
+  const company = getOptionalValue(formData, "company") ?? "";
+  const technology = getOptionalValue(formData, "technology") ?? "";
+  const role = getOptionalValue(formData, "role") ?? "";
+  const message = getOptionalValue(formData, "message") ?? "";
+
+  if (!fullName || !phone || !email) {
+    redirect(`${redirectTo}?error=${encodeURIComponent("Please fill in your name, phone and email.")}`);
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    redirect(`${redirectTo}?error=${encodeURIComponent("Please enter a valid email address.")}`);
+  }
+
+  let emailed = false;
+  if (isMailConfigured()) {
+    try {
+      await sendRowsEmail({
+        to: CONTACT_TO_EMAIL,
+        subject: `Hire developers enquiry: ${role || technology || "Offshore developers"} — ${fullName}`,
+        heading: "New hire-developers enquiry from the ALPIXN website",
+        rows: [
+          ["Role page", role],
+          ["Name", fullName],
+          ["Email", email],
+          ["Phone", phone],
+          ["Company", company],
+          ["Technology", technology],
+        ],
+        message,
+        replyName: fullName,
+        replyEmail: email,
+      });
+      emailed = true;
+    } catch (error) {
+      console.error("Offshore enquiry email failed:", error);
+    }
+  }
+
+  let stored = false;
+  try {
+    await connectToDatabase();
+    const [firstName, ...rest] = fullName.split(/\s+/);
+    await ContactMessageModel.create({
+      firstName,
+      lastName: rest.join(" ") || "-",
+      email,
+      phone,
+      interest: `hire-developers${technology ? `: ${technology}` : ""}${role ? ` (${role})` : ""}`,
+      message: [company ? `Company: ${company}` : "", message].filter(Boolean).join("\n\n"),
+      status: "new",
+    });
+    stored = true;
+    revalidatePath("/admin/contact");
+  } catch (error) {
+    console.error("Offshore enquiry could not be stored:", error);
+  }
+
+  if (!emailed && !stored) {
+    redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your enquiry could not be sent. Please email info@alpixn.com directly.")}`);
   }
   redirect(`${redirectTo}?status=sent`);
 }

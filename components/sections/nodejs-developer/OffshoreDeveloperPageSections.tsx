@@ -23,6 +23,8 @@ export function OffshoreDeveloperPageSections({
   return (
     <>
       <OffshoreHeroSection
+        pagePath={`/offshore-developer/${page.categoryKey}/${page.slug}`}
+        role={page.heroTitle}
         data={{
           title: page.heroTitle,
           description: page.heroDescription,
