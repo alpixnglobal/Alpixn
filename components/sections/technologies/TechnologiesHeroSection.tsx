@@ -1,7 +1,5 @@
-import Image from "next/image";
-import PageVisual from "@/components/hero/PageVisuals";
-import PageHero from "@/components/sections/shared/PageHero";
-import type { TechnologyLogoRecord } from "@/lib/content-types";
+import { TechHero } from "@/components/hero/HeroPanels";
+import type { HomeTechStackItemRecord, TechnologyLogoRecord } from "@/lib/content-types";
 
 interface TechnologiesHeroSectionProps {
   subtitle?: string;
@@ -12,6 +10,7 @@ interface TechnologiesHeroSectionProps {
   secondaryButtonLabel?: string;
   secondaryButtonHref?: string;
   logos?: TechnologyLogoRecord[];
+  icons?: HomeTechStackItemRecord[];
 }
 
 const TechnologiesHeroSection = ({
@@ -22,33 +21,17 @@ const TechnologiesHeroSection = ({
   primaryButtonHref = "/contact-us",
   secondaryButtonLabel = "Book a Call With Our Expert",
   secondaryButtonHref = "/contact-us",
-  logos = [],
-}: TechnologiesHeroSectionProps) => {
-  // Placeholder logos are filtered out so they are never presented as partners.
-  const realLogos = logos.filter((logo) => logo.imageData && !logo.imageData.includes("logoipsum"));
-  return (
-    <PageHero
-      eyebrow="Technologies"
-      title={title}
-      description={
-        <>
-          {subtitle ? <span className="mb-2 block font-semibold text-fg">{subtitle}</span> : null}
-          {description}
-        </>
-      }
-      primary={{ label: primaryButtonLabel, href: primaryButtonHref }}
-      secondary={secondaryButtonLabel ? { label: secondaryButtonLabel, href: secondaryButtonHref } : null}
-      aside={<PageVisual kind="code" />}
-    >
-      {realLogos.length ? (
-        <div className="mt-8 flex flex-wrap items-center gap-6 opacity-80">
-          {realLogos.map((logo) => (
-            <Image key={logo.label} src={logo.imageData} alt={logo.label} width={110} height={36} unoptimized className="h-8 w-auto object-contain" />
-          ))}
-        </div>
-      ) : null}
-    </PageHero>
-  );
-};
+  icons = [],
+}: TechnologiesHeroSectionProps) => (
+  <TechHero
+    eyebrow="Technologies"
+    title={title}
+    subtitle={subtitle}
+    description={description}
+    primary={{ label: primaryButtonLabel, href: primaryButtonHref }}
+    secondary={secondaryButtonLabel ? { label: secondaryButtonLabel, href: secondaryButtonHref } : null}
+    icons={icons}
+  />
+);
 
 export default TechnologiesHeroSection;

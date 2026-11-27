@@ -1,9 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Bot, BrainCircuit, Code2, Eye, FileCheck2, GitBranch, ShieldCheck, Workflow } from "lucide-react";
 import WorldConnect from "@/components/hero/WorldConnect";
 import { BlogCard, type BlogCardData } from "@/components/blog/BlogExplorer";
 import Reveal from "@/components/ui/Reveal";
+import LocalTime from "@/components/ui/LocalTime";
+import { zoneFor } from "@/lib/time-zones";
 import type { HomeOfferingRecord } from "@/lib/content-types";
 
 /**
@@ -144,21 +145,6 @@ export function HeroV4({
         </ul>
       </div>
 
-      {/* Markets strip */}
-      <div className="relative mt-10 border-y border-line bg-surface/70 backdrop-blur">
-        <div className="mx-auto flex max-w-[1320px] flex-col items-center gap-4 px-4 py-5 sm:px-6 lg:flex-row lg:justify-between lg:px-10">
-          <span className="text-[12px] font-semibold uppercase tracking-[0.18em] text-fg-subtle">Serving clients in 9 countries</span>
-          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2.5">
-            {MARKETS.map(([name, flag]) => (
-              <li key={name} className="flex items-center gap-1.5 text-sm font-medium text-fg-muted">
-                <Image src={flag} alt="" width={18} height={18} className="h-[18px] w-[18px] rounded-full object-cover ring-1 ring-black/10" />
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div aria-hidden className="h-1 bg-brand-spectrum" />
-      </div>
     </section>
   );
 }
@@ -275,14 +261,15 @@ export function MarketsV4() {
               Built for teams across <span className="text-[#f6d77a]">nine markets.</span>
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-white/75">Local currencies, languages, tax rules and time zones are part of the brief from day one.</p>
-            <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {MARKETS.map(([name, flag]) => (
-                <li key={name} className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm">
-                  <Image src={flag} alt="" width={20} height={20} className="h-5 w-5 rounded-full object-cover" />
-                  {name}
+            <ul className="mt-8 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+              {MARKETS.map(([name]) => (
+                <li key={name} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
+                  <span className="block text-[13px] font-medium">{name}</span>
+                  <LocalTime zone={zoneFor(name).zone} className="mt-0.5 block font-mono text-[12px] text-[#f6d77a]" />
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-[12px] text-white/60">Live local time in each market — we plan meetings and releases around your working day.</p>
           </div>
         </div>
         <div className="rounded-[32px] border border-line bg-surface p-8 shadow-[var(--shadow-card)] sm:p-10 lg:col-span-7">

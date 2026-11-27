@@ -9,7 +9,7 @@ const CareersPage = async () => {
 
   return (
     <>
-      <CareersHeroSection title={pageCopy.heroTitle} description={pageCopy.heroDescription} />
+      <CareersHeroSection title={pageCopy.heroTitle} description={pageCopy.heroDescription} jobs={jobs.map((j) => ({ slug: j.slug, title: j.title, type: j.type, mode: j.mode, location: j.location }))} />
       <SearchJobsSection
         jobs={jobs}
         searchPlaceholder={uiSettings.careers.searchPlaceholder}

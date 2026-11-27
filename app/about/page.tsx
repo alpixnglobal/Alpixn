@@ -1,11 +1,9 @@
-import Link from "next/link";
-import { BadgeCheck, Bot, BrainCircuit, Code2, FileSearch, Scale, Users } from "lucide-react";
+import { BadgeCheck, FileSearch, Scale, Users } from "lucide-react";
 import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import CtaBand from "@/components/sections/shared/CtaBand";
-import PageVisual from "@/components/hero/PageVisuals";
+import { StatementHero } from "@/components/hero/HeroPanels";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
-import PageHero from "@/components/sections/shared/PageHero";
 import { MarketsV4 } from "@/components/home/HomeV4";
 import Reveal from "@/components/ui/Reveal";
 import { organizationJsonLd, pageMetadata } from "@/lib/seo";
@@ -18,39 +16,6 @@ export const metadata = pageMetadata({
   image: "/opengraph-image.jpg",
 });
 
-const PILLARS = [
-  {
-    icon: BrainCircuit,
-    title: "Artificial intelligence",
-    text: "AI features that solve a defined business problem: document processing, knowledge assistants, AI agents, predictive analytics and LLM integration — evaluated before launch and monitored after.",
-    links: [
-      { label: "AI development", href: "/our-expertise/artificial-intelligence/ai-development" },
-      { label: "Generative AI", href: "/our-expertise/artificial-intelligence/genai-development" },
-      { label: "AI agents", href: "/our-expertise/artificial-intelligence/ai-agent-development" },
-    ],
-  },
-  {
-    icon: Bot,
-    title: "Robotics & intelligent automation",
-    text: "Software around robots and automated processes: fleet monitoring, computer vision inspection, operator dashboards, workflow automation and integrations with plant and warehouse systems.",
-    links: [
-      { label: "Computer vision", href: "/our-expertise/artificial-intelligence/computer-vision-development" },
-      { label: "AI automation", href: "/our-expertise/artificial-intelligence/ai-automation-services" },
-      { label: "Robotics concept project", href: "/resources/portfolio/robofleet-command-center" },
-    ],
-  },
-  {
-    icon: Code2,
-    title: "Software engineering",
-    text: "Custom web applications, SaaS platforms, mobile apps, CRMs, ERPs, APIs and cloud infrastructure — built with modern, maintainable technology and delivered in measurable releases.",
-    links: [
-      { label: "Custom software", href: "/our-expertise/software-solution/software-development" },
-      { label: "SaaS development", href: "/our-expertise/software-solution/saas-development" },
-      { label: "Mobile apps", href: "/our-expertise/software-solution/mobile-app-development" },
-    ],
-  },
-];
-
 const COMMITMENTS = [
   { icon: BadgeCheck, title: "Honest portfolio", text: "Concept projects are labelled as concepts. We only present client work as ours when it is verified and we have permission." },
   { icon: FileSearch, title: "Sourced content", text: "Our articles cite primary documentation and standards where facts need support, and disclose when AI assisted the drafting." },
@@ -61,48 +26,19 @@ const COMMITMENTS = [
 export default function AboutPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="About ALPIXN"
-        title="An AI, Robotics and Software Engineering Company"
-        accentWords={5}
-        description="ALPIXN designs and builds software that makes businesses work better: applications customers use every day, internal systems teams depend on, and AI and automation that remove repetitive work. We bring product thinking, engineering discipline and practical AI experience into one team."
+      <StatementHero
+        eyebrow="about alpixn"
+        title="We engineer AI, robotics and software that businesses rely on every day"
+        description="ALPIXN designs and builds the applications customers use, the internal systems teams depend on, and the AI and automation that remove repetitive work — with product thinking and engineering discipline in one team."
         primary={{ label: "Start a conversation", href: "/contact-us" }}
         secondary={{ label: "Explore our services", href: "/our-expertise" }}
-        aside={<PageVisual kind="robotics" />}
+        columns={[
+          { title: "AI that earns its place", text: "Models and assistants scoped to a clear business problem, evaluated before launch and monitored after." },
+          { title: "Robotics software", text: "Fleet dashboards, vision inspection and operator tools that connect machines to the people running them." },
+          { title: "Software engineering", text: "Web, mobile and SaaS products built with maintainable code and delivered in measurable releases." },
+        ]}
       />
 
-      <section aria-labelledby="what-we-do" className="bg-canvas-2 py-20">
-        <div className="mx-auto max-w-[1350px] px-4 sm:px-6 lg:px-10 xl:px-0">
-          <Reveal>
-            <span className="eyebrow">What we do</span>
-            <h2 id="what-we-do" className="heading-gradient mt-4 max-w-3xl font-semibold text-[clamp(1.5rem,2.3vw,2.05rem)]">
-              Three capabilities, one delivery team
-            </h2>
-          </Reveal>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {PILLARS.map(({ icon: Icon, title, text, links }, i) => (
-              <Reveal key={title} delay={i * 100}>
-                <article className="border-glow flex h-full flex-col rounded-2xl bg-surface p-7 shadow-[var(--shadow-card)]">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl bg-[linear-gradient(135deg,#fbe7a1_0%,#e3a52a_45%,#b8740c_100%)] text-[#071a33]">
-                    <Icon aria-hidden className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-6 font-display text-xl font-semibold text-fg">{title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-fg-muted">{text}</p>
-                  <ul className="mt-auto flex flex-wrap gap-2 pt-6">
-                    {links.map((l) => (
-                      <li key={l.href}>
-                        <Link href={l.href} className="inline-flex items-center gap-1 rounded-full border border-line px-3 py-1 text-xs font-medium text-fg-muted hover:border-gold hover:text-fg">
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <IndustriesTechBand />
       <MarketsV4 />

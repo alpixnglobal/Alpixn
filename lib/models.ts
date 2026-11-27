@@ -84,7 +84,7 @@ const siteSettingsSchema = new Schema(
     logoAlt: { type: String, default: "ALPIXN" },
     // Contact information
     contactEmail: { type: String, default: "" },
-    contactPhone: { type: String, default: "+91 0000000000" },
+    contactPhone: { type: String, default: "+91 7291031315" },
     contactAddress: { type: String, default: "" },
     businessHours: { type: String, default: "Monday to Friday 9AM – 7PM IST" },
     // Social media links
@@ -132,10 +132,10 @@ const contactSettingsSchema = new Schema(
     // Contact form section
     formIntroTitle: { type: String, default: "Your Digital Future" },
     formIntroDescription: { type: String, default: "Ready to transform your digital presence? We're here to help you achieve extraordinary results. Get in touch with our team of experts and let's discuss how we can accelerate your business growth." },
-    formPhoneNumber: { type: String, default: "+91 0000000000" },
+    formPhoneNumber: { type: String, default: "+91 7291031315" },
     formPhoneAvailability: { type: String, default: "Available Monday to Friday 9AM – 7PM IST" },
     formEmail: { type: String, default: "" },
-    formSupportEmail: { type: String, default: "support@company.com" },
+    formSupportEmail: { type: String, default: "support@alpixn.com" },
     formAddress: { type: String, default: "Cyber Park 3rd & 10th Floor, Tower B, Cyber Park, Mumbai, Maharashtra 000000, India" },
     formButtonText: { type: String, default: "Let's Get Started" },
     formFirstNameLabel: { type: String, default: "First Name" },
@@ -151,7 +151,7 @@ const contactSettingsSchema = new Schema(
     assistanceEmailButtonText: { type: String, default: "Email Us" },
     assistanceCallButtonText: { type: String, default: "Call Now" },
     assistanceEmailButtonHref: { type: String, default: "" },
-    assistanceCallButtonHref: { type: String, default: "tel:+910000000000" },
+    assistanceCallButtonHref: { type: String, default: "tel:+917291031315" },
     // Global offices section
     globalOfficesTitle: { type: String, default: "Our Global Offices" },
     globalOffices: { type: [contactOfficeSchema], default: [] },

@@ -15,15 +15,15 @@ interface GlobalServicesSectionProps {
 }
 
 const defaultOffices: ContactOffice[] = [
-  { name: "India", address: "", email: "", flagImage: "/images/india.svg", order: 1, isPublished: true },
-  { name: "Sydney, Australia", address: "", email: "", flagImage: "/images/sydney.svg", order: 2, isPublished: true },
-  { name: "Dubai, UAE", address: "", email: "", flagImage: "/images/uae.svg", order: 3, isPublished: true },
-  { name: "Milan, Italy", address: "", email: "", flagImage: "/images/italy.svg", order: 4, isPublished: true },
-  { name: "London, UK", address: "", email: "", flagImage: "/images/uk.svg", order: 5, isPublished: true },
-  { name: "New York, USA", address: "", email: "", flagImage: "/images/usa.svg", order: 6, isPublished: true },
-  { name: "Canada", address: "", email: "", flagImage: "/images/canada.svg", order: 7, isPublished: true },
-  { name: "South Africa", address: "", email: "", flagImage: "/images/south-africa.svg", order: 8, isPublished: true },
-  { name: "Thailand", address: "", email: "", flagImage: "/images/thailand.svg", order: 9, isPublished: true },
+  { name: "India", address: "3rd & 10th Floor, Tower B, Sector 39, Gurugram", email: "india-sales@alpixn.com", flagImage: "/images/india.svg", order: 1, isPublished: true },
+  { name: "Sydney, Australia", address: "Alpixn Level 8, 350 George Street", email: "aus-sales@alpixn.com", flagImage: "/images/sydney.svg", order: 2, isPublished: true },
+  { name: "Dubai, UAE", address: "Office No. 205, DAFZA Business Center, Dubai Airport Freezone", email: "dubai-sales@alpixn.com", flagImage: "/images/uae.svg", order: 3, isPublished: true },
+  { name: "Milan, Italy", address: "Via Monte Napoleone 12", email: "italy-sales@alpixn.com", flagImage: "/images/italy.svg", order: 4, isPublished: true },
+  { name: "London, UK", address: "Suite 23, 2nd Floor, Berkeley Square House", email: "uk-sales@alpixn.com", flagImage: "/images/uk.svg", order: 5, isPublished: true },
+  { name: "New York, USA", address: "5th Floor, 123 Madison Avenue", email: "usa-sales@alpixn.com", flagImage: "/images/usa.svg", order: 6, isPublished: true },
+  { name: "Canada", address: "100 King Street West, Suite 5700, Toronto, ON M5X 1C7", email: "canada-sales@alpixn.com", flagImage: "/images/canada.svg", order: 7, isPublished: true },
+  { name: "South Africa", address: "The Zone @ Rosebank, 177 Oxford Road, Johannesburg", email: "sa-sales@alpixn.com", flagImage: "/images/south-africa.svg", order: 8, isPublished: true },
+  { name: "Thailand", address: "1 Empire Tower, South Sathorn Road, Sathorn, Bangkok", email: "thailand-sales@alpixn.com", flagImage: "/images/thailand.svg", order: 9, isPublished: true },
 ];
 
 function getFallbackFlagByOfficeName(name: string) {

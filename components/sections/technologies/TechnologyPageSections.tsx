@@ -1,3 +1,4 @@
+import { getCachedHomeSettings } from "@/lib/content-service";
 import FAQExpertiseSection from "@/components/sections/our-expertise/FAQExpertiseSection";
 import type { TechnologyPageRecord } from "@/lib/content-types";
 
@@ -12,7 +13,10 @@ import TalkToExpertSection from "./TalkToExpertSection";
 import TechnologiesHeroSection from "./TechnologiesHeroSection";
 import UnlockCTASection from "./UnlockCTASection";
 
-export function TechnologyPageSections({ page }: { page: TechnologyPageRecord }) {
+export async function TechnologyPageSections({ page }: { page: TechnologyPageRecord }) {
+  const home = await getCachedHomeSettings();
+  const seen = new Set<string>();
+  const icons = home.techStackTabs.flatMap((t) => t.items).filter((i) => i.imageData && !seen.has(i.label) && seen.add(i.label));
   return (
     <>
       <TechnologiesHeroSection
@@ -24,6 +28,7 @@ export function TechnologyPageSections({ page }: { page: TechnologyPageRecord })
         secondaryButtonLabel={page.heroSecondaryButtonLabel}
         secondaryButtonHref={page.heroSecondaryButtonHref}
         logos={page.heroLogos}
+        icons={icons}
       />
       <ChallengesResolveSection title={page.challengesTitle} cards={page.challengeCards} />
       <UnlockCTASection title={page.unlockTitle} buttonLabel={page.unlockButtonLabel} buttonHref={page.unlockButtonHref} />

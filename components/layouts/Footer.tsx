@@ -3,7 +3,8 @@ import { InputField } from "../ui/Input";
 import { ArrowRight } from "lucide-react";
 import { BrandLogo } from "../brand/BrandLogo";
 import { FacebookIcon, InstagramIcon, LinkedInIcon, XIcon, YouTubeIcon } from "../brand/SocialIcons";
-import CountryItem from "./CountryItem";
+import LocalTime from "@/components/ui/LocalTime";
+import { zoneFor } from "@/lib/time-zones";
 import type { SiteSettings, FooterColumn, OfficeLocation } from "@/lib/content-types";
 
 // Default fallback data (used when settings not provided)
@@ -145,47 +146,6 @@ function normalizeOfficeName(name: string) {
   return officeMap[name] ?? name;
 }
 
-function normalizeOfficeFlag(flagImage: string | undefined, officeName: string) {
-  const normalizedName = normalizeOfficeName(officeName);
-
-  const officeFlagMap: Record<string, string> = {
-    India: "/images/india.svg",
-    "New York, USA": "/images/usa.svg",
-    "Sydney, Australia": "/images/australia.svg",
-    "Dubai, UAE": "/images/uae.svg",
-    "London, UK": "/images/uk.svg",
-    "Milan, Italy": "/images/italy.svg",
-    Thailand: "/images/thailand.svg",
-    "South Africa": "/images/south-africa.svg",
-    Canada: "/images/canada.svg",
-  };
-
-  const defaultByName = officeFlagMap[normalizedName] ?? "/images/india.svg";
-
-  if (!flagImage || !flagImage.trim()) {
-    return defaultByName;
-  }
-
-  const trimmedFlag = flagImage.trim();
-  const normalizedFlag =
-    trimmedFlag.startsWith("data:") || trimmedFlag.startsWith("http://") || trimmedFlag.startsWith("https://")
-      ? trimmedFlag
-      : trimmedFlag.startsWith("/")
-        ? trimmedFlag
-        : `/${trimmedFlag}`;
-
-  // Fix known legacy/content mistakes without needing DB cleanup.
-  if (normalizedName === "Thailand" && normalizedFlag === "/images/south-africa.svg") {
-    return "/images/thailand.svg";
-  }
-
-  if (normalizedName === "South Africa" && (normalizedFlag === "/images/zulu.svg" || normalizedFlag === "/images/thailand.svg")) {
-    return "/images/south-africa.svg";
-  }
-
-  return normalizedFlag;
-}
-
 const Footer = ({ settings }: FooterProps) => {
   // Use settings or fallback to defaults
   const newsletterTitle = settings?.newsletterTitle || "Subscribe To Our Newsletter";
@@ -274,19 +234,23 @@ const Footer = ({ settings }: FooterProps) => {
           ))}
         </nav>
 
-        {/* Offices (CMS driven) */}
+        {/* Offices (CMS driven): city + live local time, no flags */}
         {sortedOffices.length ? (
           <div className="border-t border-line py-8">
-            <p className="sr-only">Our offices</p>
-            <div className="flex flex-wrap gap-x-8 gap-y-4 lg:justify-between">
-              {sortedOffices.map((office, index) => (
-                <CountryItem
-                  key={index}
-                  flag={normalizeOfficeFlag(office.flagImage, office.name)}
-                  name={normalizeOfficeName(office.name)}
-                  alt={`${normalizeOfficeName(office.name).split(",")[0]} Flag`}
-                />
-              ))}
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Offices</span>
+              <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                {sortedOffices.map((office, index) => {
+                  const name = normalizeOfficeName(office.name);
+                  const { zone } = zoneFor(name);
+                  return (
+                    <li key={index} className="flex items-center gap-2 text-fg-muted">
+                      <span className="font-medium text-fg">{name.split(",")[0]}</span>
+                      <LocalTime zone={zone} className="font-mono text-xs text-fg-subtle" />
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         ) : null}

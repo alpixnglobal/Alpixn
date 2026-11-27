@@ -1,4 +1,4 @@
-import PageVisual from "@/components/hero/PageVisuals";
+import { ProductShowcase } from "@/components/hero/HeroPanels";
 import PageHero from "@/components/sections/shared/PageHero";
 
 interface ProductHeroSectionProps {
@@ -7,6 +7,7 @@ interface ProductHeroSectionProps {
   description?: string;
   buttonLabel?: string;
   buttonHref?: string;
+  features?: string[];
 }
 
 const ProductHeroSection = ({
@@ -15,6 +16,7 @@ const ProductHeroSection = ({
   description = "An AI assistant that answers common questions from your own content, hands complex cases to people and fits into the channels your customers already use.",
   buttonLabel = "Book Your Demo",
   buttonHref = "/contact-us",
+  features = ["Answers from your own content", "Hands over to a person", "Works on web and WhatsApp"],
 }: ProductHeroSectionProps) => (
   <PageHero
     eyebrow="Product"
@@ -27,7 +29,7 @@ const ProductHeroSection = ({
     }
     primary={{ label: buttonLabel, href: buttonHref }}
     secondary={{ label: "Talk to an expert", href: "/contact-us" }}
-    aside={<PageVisual kind="chatbot" />}
+    aside={<ProductShowcase image="/portfolio/askdesk-ai-assistant/desktop.webp" features={features} />}
   />
 );
 

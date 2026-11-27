@@ -16,6 +16,7 @@ export function ProductPageSections({ hero, settings }: { hero: Pick<ProductPage
         description={hero.heroDescription}
         buttonLabel={hero.heroButtonLabel}
         buttonHref={hero.heroButtonHref}
+        features={settings.featureCards.map((f) => f.title)}
       />
       <CustomSupport
         title={settings.customSupportTitle}

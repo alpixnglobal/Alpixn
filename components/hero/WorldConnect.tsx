@@ -122,8 +122,8 @@ export default function WorldConnect() {
             bottom: "-translate-x-1/2 translate-y-[12px]",
           }[side];
           return (
-            <span key={p.id} className={`absolute z-10 hidden items-center sm:flex gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface/90 py-1 pl-1 pr-2.5 text-[10px] font-semibold text-fg shadow-[var(--shadow-card)] backdrop-blur sm:text-[11.5px] ${offset}`} style={{ left: pct(p.x, W), top: pct(p.y, H) }}>
-              <Image src={`/images/${p.id}.svg`} alt="" width={16} height={16} className="h-3.5 w-3.5 rounded-full object-cover sm:h-4 sm:w-4" />
+            <span key={p.id} className={`absolute z-10 hidden items-center sm:flex gap-1.5 whitespace-nowrap rounded-full border border-line bg-surface/90 py-1 pl-2 pr-2.5 text-[10px] font-semibold text-fg shadow-[var(--shadow-card)] backdrop-blur sm:text-[11.5px] ${offset}`} style={{ left: pct(p.x, W), top: pct(p.y, H) }}>
+              <span className="h-2 w-2 rounded-full bg-[#d99a19] ring-2 ring-[#0878d1]/30" />
               {p.country}
             </span>
           );
