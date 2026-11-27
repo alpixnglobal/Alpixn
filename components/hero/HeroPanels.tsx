@@ -187,8 +187,13 @@ export function StatementHero({ eyebrow, title, description, columns }: { eyebro
       <div className="relative mx-auto max-w-[1320px] px-4 pb-14 pt-14 sm:px-6 sm:pt-20 lg:px-10">
         <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#0878d1]">/ {eyebrow}</p>
         <h1 id="statement-title" className="mt-5 max-w-5xl font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.1] tracking-[-0.03em] text-fg">
-          {lead ? `${lead} ` : null}
-          <span className="text-brand-spectrum">{tail}</span>
+          {lead ? (
+            <>
+              {lead}
+              <br />
+            </>
+          ) : null}
+          <span className="text-brand-spectrum sm:whitespace-nowrap">{tail}</span>
         </h1>
         <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
           <p className="text-[17px] leading-relaxed text-fg-muted lg:col-span-8">{description}</p>
