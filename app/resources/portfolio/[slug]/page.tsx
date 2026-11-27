@@ -76,22 +76,19 @@ export default async function PortfolioDetailsPage({ params }: Props) {
                   </span>
                 ) : null}
               </div>
-              <h1 className="heading-gradient mt-5 font-semibold !leading-[1.12] text-[clamp(1.85rem,3.3vw,2.9rem)]">{p.title}</h1>
+              <h1 className="heading-gradient mt-5 font-semibold !leading-[1.12] text-[clamp(1.35rem,2vw,1.8rem)]">{p.title}</h1>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">{p.summary}</p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
+            <div className="lg:col-span-5 lg:text-right">
               {isReal && p.liveUrl ? (
-                <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-brand">
-                  Visit live website <ArrowUpRight aria-hidden className="btn-arrow h-4 w-4" />
+                <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-[#0878d1] hover:underline">
+                  Visit live website <ArrowUpRight aria-hidden className="h-4 w-4" />
                 </a>
               ) : p.demoPath ? (
-                <Link href={p.demoPath} className="btn-brand">
-                  Open interactive demo <ArrowUpRight aria-hidden className="btn-arrow h-4 w-4" />
+                <Link href={p.demoPath} className="inline-flex items-center gap-1.5 font-semibold text-[#0878d1] hover:underline">
+                  Open interactive demo <ArrowUpRight aria-hidden className="h-4 w-4" />
                 </Link>
               ) : null}
-              <Link href="/contact-us" className="btn-ghost-brand">
-                Discuss a similar project
-              </Link>
             </div>
           </div>
           {!isReal ? (

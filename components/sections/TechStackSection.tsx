@@ -114,23 +114,59 @@ function TechItem({ item, index }: { item: ExpertiseTechStackItemRecord; index: 
 
   return (
     <li
-      className="group flex flex-col items-center gap-3 animate-in fade-in-0 zoom-in-95 duration-500 fill-mode-both"
+      className="group relative z-10 flex flex-col items-center gap-2 animate-in fade-in-0 zoom-in-95 duration-500 fill-mode-both"
       style={{ animationDelay: `${index * 35}ms` }}
     >
-      <span className="relative grid h-[76px] w-[76px] place-items-center rounded-2xl bg-[radial-gradient(circle_at_30%_20%,#0d2a50,#071a33_70%)] ring-1 ring-[rgba(246,215,122,0.28)] shadow-[0_10px_30px_-12px_rgba(4,13,28,0.55)] transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[rgba(246,215,122,0.7)] group-hover:shadow-[0_16px_40px_-12px_rgba(46,168,255,0.55)] sm:h-[84px] sm:w-[84px]">
-        <span aria-hidden className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_50%_120%,rgba(46,168,255,0.35),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <span className="relative grid h-12 w-12 place-items-center rounded-xl bg-[radial-gradient(circle_at_30%_20%,#0d2a50,#071a33_70%)] ring-1 ring-[rgba(246,215,122,0.28)] shadow-[0_10px_30px_-12px_rgba(4,13,28,0.55)] transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[rgba(246,215,122,0.7)] group-hover:shadow-[0_16px_40px_-12px_rgba(46,168,255,0.55)] sm:h-14 sm:w-14">
+        <span aria-hidden className="absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_50%_120%,rgba(46,168,255,0.35),transparent_60%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <Image
           src={src}
           alt=""
-          width={44}
-          height={44}
-          className="relative h-10 w-10 object-contain sm:h-11 sm:w-11"
+          width={28}
+          height={28}
+          className="relative h-6 w-6 object-contain sm:h-7 sm:w-7"
           unoptimized={src.startsWith("data:") || src.startsWith("http")}
           onError={handleError}
         />
       </span>
-      <span className="text-center text-[13px] font-medium leading-tight text-fg-muted transition-colors group-hover:text-fg sm:text-sm">{item.label}</span>
+      <span className="max-w-full truncate text-center text-[11.5px] font-medium leading-tight text-fg-muted transition-colors group-hover:text-fg sm:text-[12.5px]">{item.label}</span>
     </li>
+  );
+}
+
+/** Icons laid out in rows joined by circuit lines (a snake path); light pulses travel along each line. */
+function ConnectedGrid({ items, tabValue }: { items: ExpertiseTechStackTabRecord["items"]; tabValue: string }) {
+  const PER_ROW = 6;
+  const rows: (typeof items)[] = [];
+  for (let i = 0; i < items.length; i += PER_ROW) rows.push(items.slice(i, i + PER_ROW));
+  return (
+    <div className="mx-auto max-w-[860px]">
+      {rows.map((row, r) => {
+        const last = r === rows.length - 1;
+        const span = (row.length / PER_ROW) * 100;
+        const inset = 100 / PER_ROW / 2; // centre of first / last cell
+        const reverse = r % 2 === 1;
+        return (
+          <div key={r} className="relative">
+            {/* horizontal rail through the icon centres */}
+            <span aria-hidden className="absolute top-6 h-px bg-[linear-gradient(90deg,rgba(46,168,255,0.15),rgba(246,215,122,0.45),rgba(46,168,255,0.15))] sm:top-7" style={{ left: `${inset}%`, width: `${span - inset * 2}%` }}>
+              <span className="ts-pulse absolute -top-[2px] h-[5px] w-10 rounded-full bg-[linear-gradient(90deg,transparent,#f6d77a,transparent)] shadow-[0_0_10px_#f6d77a]" style={{ animationDelay: `${r * -0.9}s`, animationDirection: reverse ? "reverse" : "normal" }} />
+            </span>
+            {/* vertical connector to the next row (alternating ends) */}
+            {!last ? (
+              <span aria-hidden className="absolute top-6 h-full w-px bg-[linear-gradient(180deg,rgba(246,215,122,0.45),rgba(46,168,255,0.2))] sm:top-7" style={{ left: reverse ? `${inset}%` : `${Math.min(span, 100) - inset}%` }}>
+                <span className="ts-pulse-v absolute -left-[2px] h-8 w-[5px] rounded-full bg-[linear-gradient(180deg,transparent,#2ea8ff,transparent)] shadow-[0_0_10px_#2ea8ff]" style={{ animationDelay: `${r * -0.7}s` }} />
+              </span>
+            ) : null}
+            <ul className="grid grid-cols-6 gap-x-2 pb-7 sm:pb-9">
+              {row.map((item, i) => (
+                <TechItem key={`${tabValue}-${item.label}-${r}-${i}`} item={item} index={r * PER_ROW + i} />
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -146,23 +182,7 @@ const TechStackSection = ({
   const resolvedTabs = tabs.length > 0 ? tabs : defaultTabs;
 
   return (
-    <section aria-labelledby="techstack-title" className="relative w-full overflow-hidden bg-canvas py-20 sm:py-24 lg:py-28">
-      {/* Animated circuit connections */}
-      <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-60" preserveAspectRatio="none" viewBox="0 0 1440 800">
-        <defs>
-          <linearGradient id="ts-line" x1="0" x2="1">
-            <stop offset="0" stopColor="#2EA8FF" stopOpacity="0" />
-            <stop offset="0.5" stopColor="#2EA8FF" stopOpacity="0.5" />
-            <stop offset="1" stopColor="#D99A19" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        {["M0 160 H360 L420 220 H760", "M1440 260 H1080 L1020 320 H700", "M0 620 H300 L360 560 H640", "M1440 660 H1120 L1060 600 H820"].map((d, i) => (
-          <g key={i}>
-            <path d={d} fill="none" stroke="url(#ts-line)" strokeWidth="1" />
-            <path d={d} fill="none" stroke="#F6D77A" strokeWidth="1.5" strokeDasharray="6 220" className="[animation:ts-flow_6s_linear_infinite]" style={{ animationDelay: `${i * -1.4}s` }} />
-          </g>
-        ))}
-      </svg>
+    <section aria-labelledby="techstack-title" className="relative w-full overflow-hidden bg-canvas py-14 sm:py-16 lg:py-20">
       <div aria-hidden className="absolute left-1/2 top-1/2 h-[480px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-tech/10 blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1190px] px-4 sm:px-6">
@@ -184,12 +204,8 @@ const TechStackSection = ({
           </TabsPrimitive.List>
 
           {resolvedTabs.map((tab) => (
-            <TabsPrimitive.Content key={tab.value} value={tab.value} className="mt-14 focus-visible:outline-none">
-              <ul className="mx-auto grid max-w-[1000px] grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-                {tab.items.map((item, itemIndex) => (
-                  <TechItem key={`${tab.value}-${item.label}-${itemIndex}`} item={item} index={itemIndex} />
-                ))}
-              </ul>
+            <TabsPrimitive.Content key={tab.value} value={tab.value} className="mt-10 focus-visible:outline-none">
+              <ConnectedGrid items={tab.items} tabValue={tab.value} />
             </TabsPrimitive.Content>
           ))}
         </TabsPrimitive.Root>

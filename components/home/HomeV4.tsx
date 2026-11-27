@@ -32,8 +32,16 @@ function Heading({ id, kicker, tone, title, accent, center, children }: { id: st
   return (
     <div className={center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <Kicker tone={tone}>{kicker}</Kicker>
-      <h2 id={id} className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2.05rem)] font-bold leading-[1.12] tracking-[-0.025em] text-fg">
-        {title} {accent ? <span className="text-brand-spectrum">{accent}</span> : null}
+      <h2 id={id} className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+        {accent ? (
+          <>
+            {title} <span className="text-brand-spectrum">{accent}</span>
+          </>
+        ) : (
+          <>
+            {title.split(" ").slice(0, -2).join(" ")} <span className="text-brand-spectrum">{title.split(" ").slice(-2).join(" ")}</span>
+          </>
+        )}
       </h2>
       {children ? <p className="mt-4 text-base leading-relaxed text-fg-muted">{children}</p> : null}
     </div>
@@ -71,8 +79,6 @@ const PILLARS = [
 export function HeroV4({
   title,
   description,
-  primary,
-  secondary,
 }: {
   title: string;
   description: string;
@@ -101,7 +107,7 @@ export function HeroV4({
       <div className="relative mx-auto max-w-[1320px] px-4 pt-6 sm:px-6 sm:pt-8 lg:px-10 lg:pt-8">
         {/* Centered message */}
         <div className="mx-auto max-w-4xl text-center">
-          <h1 id="hero-title" className="font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
+          <h1 id="hero-title" className="font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.06] tracking-[-0.03em] text-fg">
             {useDefault ? (
               <>
                 Engineering <span className="text-brand-spectrum">AI, Robotics &amp; Software</span> for the Real World
@@ -113,14 +119,6 @@ export function HeroV4({
             )}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-relaxed text-fg-muted">{copy}</p>
-          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
-              {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-            </Link>
-            <Link href={secondary.href} className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-              {secondary.label}
-            </Link>
-          </div>
         </div>
 
         {/* Stage: the nine markets on a world map, linked by AI, robotics, cloud and software */}
@@ -257,7 +255,7 @@ export function MarketsV4() {
           <div aria-hidden className="absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-[#d99a19]/30 blur-[80px]" />
           <div className="relative">
             <Kicker tone="light">Global delivery</Kicker>
-            <h2 id="markets-title" className="mt-4 font-display text-[clamp(1.5rem,2.3vw,2rem)] font-bold leading-[1.12] tracking-[-0.025em]">
+            <h2 id="markets-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.12] tracking-[-0.025em]">
               Built for teams across <span className="text-[#f6d77a]">nine markets.</span>
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-white/75">Local currencies, languages, tax rules and time zones are part of the brief from day one.</p>
@@ -274,7 +272,7 @@ export function MarketsV4() {
         </div>
         <div className="rounded-[32px] border border-line bg-surface p-8 shadow-[var(--shadow-card)] sm:p-10 lg:col-span-7">
           <Kicker>How we work with you</Kicker>
-          <h2 className="mt-4 font-display text-[clamp(1.4rem,2vw,1.85rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
+          <h2 className="mt-4 font-display text-[clamp(1.3rem,1.8vw,1.65rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
             Straightforward, <span className="text-brand-spectrum">from the first call.</span>
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -332,7 +330,7 @@ export function CtaV4() {
         <div aria-hidden className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[#9a5b08]/45 blur-[90px]" />
         <div className="relative mx-auto max-w-2xl">
           <Kicker tone="light">Start a project</Kicker>
-          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.7rem,2.8vw,2.4rem)] font-bold leading-[1.1] tracking-[-0.03em]">
+          <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.45rem,2.2vw,2rem)] font-bold leading-[1.1] tracking-[-0.03em]">
             Let&apos;s build <span className="text-gold-grad">what&apos;s next.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80">Tell us about your idea, product or process. We reply with honest recommendations and a sensible first step.</p>

@@ -52,7 +52,7 @@ const BlogDetailsSection = ({
               {post.category} - By {post.author} - {post.readTime}
             </div>
 
-            <h1 className="font-extrabold leading-tight text-fg text-[clamp(1.85rem,3.3vw,2.9rem)]">{post.title}</h1>
+            <h1 className="font-extrabold leading-tight text-fg text-[clamp(1.55rem,2.5vw,2.2rem)]">{post.title}</h1>
 
             <p className="text-sm leading-relaxed text-fg sm:text-base">{post.excerpt}</p>
 

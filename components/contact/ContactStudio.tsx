@@ -65,7 +65,7 @@ export default function ContactStudio({
         {/* Left: message + direct lines */}
         <div className="lg:col-span-5">
           <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#0878d1]">/ contact</p>
-          <h1 id="contact-title" className="mt-4 font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg">
+          <h1 id="contact-title" className="mt-4 font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg">
             {lead ? `${lead} ` : null}
             <span className="text-brand-spectrum">{tail}</span>
           </h1>

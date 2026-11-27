@@ -136,8 +136,6 @@ export function TechHero({
   title,
   subtitle,
   description,
-  primary,
-  secondary,
   icons,
 }: {
   eyebrow?: string;
@@ -160,22 +158,12 @@ export function TechHero({
       <div aria-hidden className="absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-[#d99a19]/25 blur-[130px]" />
       <div className="relative mx-auto max-w-[1320px] px-4 pt-16 text-center sm:px-6 sm:pt-20 lg:px-10">
         {eyebrow ? <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#7cc6ff]">{`<${eyebrow} />`}</p> : null}
-        <h1 id="tech-hero-title" className="mx-auto mt-4 max-w-4xl font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.08] tracking-[-0.03em]">
+        <h1 id="tech-hero-title" className="mx-auto mt-4 max-w-4xl font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.08] tracking-[-0.03em]">
           {lead ? `${lead} ` : null}
           <span className="text-gold-grad">{tail}</span>
         </h1>
         {subtitle ? <p className="mt-4 font-semibold text-[#f6d77a]">{subtitle}</p> : null}
         <p className="mx-auto mt-3 max-w-2xl text-[17px] leading-relaxed text-white/75">{description}</p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
-            {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-          </Link>
-          {secondary ? (
-            <Link href={secondary.href} className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-              {secondary.label}
-            </Link>
-          ) : null}
-        </div>
       </div>
       {real.length ? (
         <div className="relative mt-14 space-y-3 pb-14">
@@ -191,27 +179,19 @@ export function TechHero({
 }
 
 /* -------- About: editorial statement hero -------- */
-export function StatementHero({ eyebrow, title, description, primary, secondary, columns }: { eyebrow: string; title: string; description: string; primary: { label: string; href: string }; secondary: { label: string; href: string }; columns: { title: string; text: string }[] }) {
+export function StatementHero({ eyebrow, title, description, columns }: { eyebrow: string; title: string; description: string; primary: { label: string; href: string }; secondary: { label: string; href: string }; columns: { title: string; text: string }[] }) {
   const { lead, tail } = accentSplit(title, 5);
   return (
     <section aria-labelledby="statement-title" className="relative overflow-hidden bg-canvas">
       <div aria-hidden className="absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-[#f6d77a]/35 blur-[140px] dark:bg-[#d99a19]/12" />
       <div className="relative mx-auto max-w-[1320px] px-4 pb-14 pt-14 sm:px-6 sm:pt-20 lg:px-10">
         <p className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#0878d1]">/ {eyebrow}</p>
-        <h1 id="statement-title" className="mt-5 max-w-5xl font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.1] tracking-[-0.03em] text-fg">
+        <h1 id="statement-title" className="mt-5 max-w-5xl font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.1] tracking-[-0.03em] text-fg">
           {lead ? `${lead} ` : null}
           <span className="text-brand-spectrum">{tail}</span>
         </h1>
         <div className="mt-8 grid gap-8 lg:grid-cols-12 lg:items-end">
-          <p className="text-[17px] leading-relaxed text-fg-muted lg:col-span-7">{description}</p>
-          <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
-            <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
-              {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-            </Link>
-            <Link href={secondary.href} className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-              {secondary.label}
-            </Link>
-          </div>
+          <p className="text-[17px] leading-relaxed text-fg-muted lg:col-span-8">{description}</p>
         </div>
         <ol className="mt-14 grid border-t border-line sm:grid-cols-3">
           {columns.map((c, i) => (

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { InputField } from "../ui/Input";
 import { ArrowRight } from "lucide-react";
@@ -146,6 +147,11 @@ function normalizeOfficeName(name: string) {
   return officeMap[name] ?? name;
 }
 
+const FLAGS: Record<string, string> = {
+  india: "/images/india.svg", usa: "/images/usa.svg", australia: "/images/australia.svg", uae: "/images/uae.svg", uk: "/images/uk.svg",
+  italy: "/images/italy.svg", thailand: "/images/thailand.svg", "south africa": "/images/south-africa.svg", canada: "/images/canada.svg",
+};
+
 const Footer = ({ settings }: FooterProps) => {
   // Use settings or fallback to defaults
   const newsletterTitle = settings?.newsletterTitle || "Subscribe To Our Newsletter";
@@ -245,6 +251,7 @@ const Footer = ({ settings }: FooterProps) => {
                   const { zone } = zoneFor(name);
                   return (
                     <li key={index} className="flex items-center gap-2 text-fg-muted">
+                      <Image src={office.flagImage || FLAGS[name.split(",").pop()!.trim().toLowerCase()] || "/images/india.svg"} alt="" width={18} height={18} unoptimized={(office.flagImage || "").startsWith("data:") || (office.flagImage || "").startsWith("http")} className="h-[18px] w-[18px] rounded-full object-cover ring-1 ring-black/10" />
                       <span className="font-medium text-fg">{name.split(",")[0]}</span>
                       <LocalTime zone={zone} className="font-mono text-xs text-fg-subtle" />
                     </li>

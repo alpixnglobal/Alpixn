@@ -27,7 +27,7 @@ interface OffshoreHeroSectionProps {
 const OffshoreHeroSection = ({ slug = "default", data }: OffshoreHeroSectionProps) => {
   const fallbackData = getOffshoreHeroData(slug);
   const { title, description, checklist, formTitle, technologies } = data ?? fallbackData;
-  const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.85rem,3.3vw,2.9rem)] leading-[1.08] tracking-[-0.03em] w-full";
+  const heroTitleClassName = "font-display font-bold text-fg text-[clamp(1.55rem,2.5vw,2.2rem)] leading-[1.08] tracking-[-0.03em] w-full";
 
   return (
     <section className="relative w-full min-h-[628px] overflow-hidden">

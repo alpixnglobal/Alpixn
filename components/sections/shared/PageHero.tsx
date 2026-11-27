@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 /**
@@ -21,8 +19,6 @@ export default function PageHero({
   title,
   accentWords = 2,
   description,
-  primary,
-  secondary,
   aside,
   children,
   center,
@@ -62,27 +58,14 @@ export default function PageHero({
               {eyebrow}
             </span>
           ) : null}
-          <h1 id={id} className={`font-display text-[clamp(1.85rem,3.3vw,2.9rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg ${eyebrow ? "mt-5" : ""}`}>
+          <h1 id={id} className={`font-display text-[clamp(1.55rem,2.5vw,2.2rem)] font-bold leading-[1.08] tracking-[-0.03em] text-fg ${eyebrow ? "mt-5" : ""}`}>
             {lead ? `${lead} ` : null}
             <span className="text-brand-spectrum">{tail}</span>
           </h1>
           {description ? (
             <div className={`mt-4 text-[17px] leading-relaxed text-fg-muted ${centered && !aside ? "mx-auto max-w-2xl" : "max-w-xl"}`}>{description}</div>
           ) : null}
-          {primary || secondary ? (
-            <div className={`mt-7 flex flex-col gap-3 sm:flex-row ${centered && !aside ? "justify-center" : ""}`}>
-              {primary ? (
-                <Link href={primary.href} className="btn-brand !px-7 !py-3.5 text-[15px]">
-                  {primary.label} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-                </Link>
-              ) : null}
-              {secondary ? (
-                <Link href={secondary.href} className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-                  {secondary.label}
-                </Link>
-              ) : null}
-            </div>
-          ) : null}
+          {/* Hero CTAs intentionally removed site-wide (client request); CTAs live in page sections. */}
           {children}
         </div>
         {aside ? <div className="lg:col-span-6">{aside}</div> : null}

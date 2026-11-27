@@ -85,7 +85,7 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
             <Link href={`/resources/blogs?category=${encodeURIComponent(post.category)}`} className="eyebrow mt-8 hover:opacity-80">
               {post.category}
             </Link>
-            <h1 className="heading-gradient mt-4 max-w-4xl font-semibold !leading-[1.12] text-[clamp(1.85rem,3.3vw,2.9rem)]">{post.title}</h1>
+            <h1 className="heading-gradient mt-4 max-w-4xl font-semibold !leading-[1.12] text-[clamp(1.35rem,2vw,1.8rem)]">{post.title}</h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-fg-muted sm:text-lg">{post.excerpt}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-subtle">
               <span className="inline-flex items-center gap-2">

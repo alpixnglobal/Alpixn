@@ -1468,3 +1468,10 @@ html.theme-ready section {
 @keyframes rb-pen { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(14deg); } }
 @keyframes rb-rotor { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.25); } }
 
+
+/* Tech stack circuit pulses */
+@keyframes ts-run { from { left: 0%; } to { left: calc(100% - 2.5rem); } }
+@keyframes ts-run-v { from { top: 0%; } to { top: calc(100% - 2rem); } }
+.ts-pulse { animation: ts-run 3.2s ease-in-out infinite alternate; }
+.ts-pulse-v { animation: ts-run-v 2.4s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .ts-pulse, .ts-pulse-v { animation: none; } }

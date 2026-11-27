@@ -36,7 +36,7 @@ const AboutHeroSection = ({
       <div className="relative flex flex-col gap-[25px] w-full max-w-[939px] items-center justify-center mx-auto pt-20 md:pt-35 px-4 xl:px-0">
         {/* Heading */}
         <h1
-          className="w-full max-w-[980px] pb-1 font-extrabold leading-[1.16] text-left sm:text-center break-words text-[clamp(1.85rem,3.3vw,2.9rem)]"
+          className="w-full max-w-[980px] pb-1 font-extrabold leading-[1.16] text-left sm:text-center break-words text-[clamp(1.55rem,2.5vw,2.2rem)]"
           style={{
             background: "linear-gradient(89.81deg, var(--heading-from) 19.79%, var(--heading-from) 76.65%, var(--tech-soft) 93.54%)",
             WebkitBackgroundClip: "text",

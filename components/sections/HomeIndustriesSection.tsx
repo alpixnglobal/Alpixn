@@ -374,7 +374,7 @@ function ItemIcon({ title, iconUrl }: { title: string; iconUrl?: string }) {
   // If custom icon URL provided, use it
   if (iconUrl) {
     return (
-      <div className="relative w-[45px] h-[45px] rounded-full overflow-hidden bg-[#F2F2F2]">
+      <div className="relative h-8 w-8 overflow-hidden rounded-full bg-[#F2F2F2]">
         <Image src={iconUrl} alt={title} fill className="object-contain p-2" />
       </div>
     );
@@ -506,7 +506,7 @@ const tabIcons: Record<string, React.ReactNode> = {
 function TabIcon({ tabId }: { tabId: string }) {
   const icon = tabIcons[tabId];
   if (icon) {
-    return <div className="w-20 h-[73px] flex-shrink-0">{icon}</div>;
+    return <div className="h-10 w-11 flex-shrink-0 [&_svg]:h-full [&_svg]:w-full">{icon}</div>;
   }
   return null;
 }
@@ -515,7 +515,7 @@ function TabBadge({ label, tabId, tabIconUrl }: { label: string; tabId: string; 
   // First priority: custom uploaded icon
   if (tabIconUrl) {
     return (
-      <div className="w-16 h-14 flex items-center justify-center">
+      <div className="flex h-10 w-11 items-center justify-center">
         <img src={tabIconUrl} alt={label} className="max-w-full max-h-full object-contain" />
       </div>
     );
@@ -526,7 +526,7 @@ function TabBadge({ label, tabId, tabIconUrl }: { label: string; tabId: string; 
   }
   // Fallback to text badge
   return (
-    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(255,255,255,0.2)] text-sm font-medium leading-snug text-fg">
+    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[rgba(255,255,255,0.2)] text-xs font-medium leading-snug text-fg">
       {label.slice(0, 2).toUpperCase()}
     </div>
   );
@@ -556,7 +556,7 @@ export default function HomeIndustriesSection({
   };
 
   return (
-    <section aria-labelledby="industries-title" className="relative w-full overflow-hidden bg-canvas-2 py-20 sm:py-24 lg:py-28">
+    <section aria-labelledby="industries-title" className="relative w-full overflow-hidden bg-canvas-2 py-14 sm:py-16 lg:py-20">
       <div aria-hidden className="absolute inset-x-0 top-0 rule-gold" />
       <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-[600px] w-[600px] rounded-full bg-tech/10 blur-[140px]" />
 
@@ -565,7 +565,7 @@ export default function HomeIndustriesSection({
           <SectionHeading id="industries-title" eyebrow="Industries" title={title} subtitle={subtitle} />
         </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-12 lg:gap-8">
+        <div className="mx-auto mt-10 grid max-w-[1180px] gap-5 lg:grid-cols-12 lg:gap-6">
           {/* Industry rail */}
           <div
             role="tablist"
@@ -587,7 +587,7 @@ export default function HomeIndustriesSection({
                   tabIndex={isActive ? 0 : -1}
                   onClick={() => setActive(tab.id)}
                   className={clsx(
-                    "group relative flex shrink-0 snap-start items-center gap-4 rounded-2xl px-4 py-3 text-left transition-all duration-300 lg:w-full lg:px-5 lg:py-4",
+                    "group relative flex shrink-0 snap-start items-center gap-4 rounded-2xl px-4 py-3 text-left transition-all duration-300 lg:w-full lg:px-4 lg:py-2.5",
                     isActive ? "bg-surface shadow-[var(--shadow-card)] ring-1 ring-line-gold" : "hover:bg-surface/60"
                   )}
                 >
@@ -599,7 +599,7 @@ export default function HomeIndustriesSection({
                     )}
                   />
                   <span className={clsx("font-mono text-xs tracking-[0.15em]", isActive ? "text-gold-ink" : "text-fg-subtle")}>{String(index + 1).padStart(2, "0")}</span>
-                  <span className={clsx("whitespace-nowrap text-[15px] font-medium lg:whitespace-normal", isActive ? "text-fg" : "text-fg-muted group-hover:text-fg")}>
+                  <span className={clsx("whitespace-nowrap text-[13.5px] font-medium lg:whitespace-normal", isActive ? "text-fg" : "text-fg-muted group-hover:text-fg")}>
                     {tab.label}
                   </span>
                   <span className={clsx("ml-auto hidden text-xs lg:inline", isActive ? "text-tech" : "text-fg-subtle")}>{tab.items.length}</span>
@@ -615,29 +615,31 @@ export default function HomeIndustriesSection({
               id={`industry-panel-${activeTab.id}`}
               role="tabpanel"
               aria-labelledby={`industry-tab-${activeTab.id}`}
-              className="glass relative self-start overflow-hidden rounded-[28px] p-6 sm:p-8 lg:col-span-8 animate-in fade-in-0 slide-in-from-bottom-2 duration-500"
+              className="glass relative self-start overflow-hidden rounded-[24px] p-5 sm:p-6 lg:col-span-8 animate-in fade-in-0 slide-in-from-bottom-2 duration-500"
             >
               <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
               <div className="relative flex items-center gap-4">
                 <TabBadge label={activeTab.label} tabId={activeTab.id} tabIconUrl={activeTab.tabIconUrl} />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold-ink">Sector focus</p>
-                  <h3 className="font-display text-xl font-semibold text-fg sm:text-2xl">{activeTab.label}</h3>
+                  <p className="text-[10.5px] font-semibold uppercase tracking-[0.18em] text-gold-ink">Sector focus</p>
+                  <h3 className="font-display text-base font-semibold text-fg sm:text-lg">{activeTab.label}</h3>
                 </div>
               </div>
 
-              <ul className="relative mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <ul className="relative mt-5 grid grid-cols-2 gap-2.5 xl:grid-cols-3">
                 {activeTab.items.map((item, index) => (
                   <li
                     key={`${activeTab.id}-${index}`}
-                    className="border-glow group flex min-h-[132px] flex-col justify-between rounded-2xl bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]"
+                    className="border-glow group flex min-h-[92px] flex-col justify-between rounded-xl bg-surface p-3.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-glow)]"
                     style={{ animationDelay: `${index * 40}ms` }}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <ItemIcon title={item.title} iconUrl={item.iconUrl} />
-                      <ArrowUpRight aria-hidden className="h-4 w-4 text-fg-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
+                      <span className="block h-8 w-8 [&>*]:!h-8 [&>*]:!w-8 [&_svg]:!h-8 [&_svg]:!w-8">
+                        <ItemIcon title={item.title} iconUrl={item.iconUrl} />
+                      </span>
+                      <ArrowUpRight aria-hidden className="h-3.5 w-3.5 text-fg-subtle transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-gold" />
                     </div>
-                    <span className="mt-4 text-[15px] font-medium leading-snug text-fg">{item.title}</span>
+                    <span className="mt-2.5 text-[13px] font-medium leading-snug text-fg">{item.title}</span>
                   </li>
                 ))}
               </ul>
