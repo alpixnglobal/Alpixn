@@ -19,7 +19,10 @@ export type SceneQuality = "high" | "medium";
 export type TelemetrySample = { yaw: number; shoulder: number; elbow: number; grip: number; phase: string; inference: number };
 export type TelemetryHandler = (sample: TelemetrySample) => void;
 
+export type SceneMode = "hero" | "cinematic" | "interactive";
+
 type Props = {
+  mode?: SceneMode;
   theme: SceneTheme;
   quality: SceneQuality;
   active: boolean;
@@ -151,7 +154,7 @@ function Environment({ intensity }: { intensity: number }) {
 
 /* ---------- robotic arm ---------- */
 
-function RoboticArm({ theme, onTelemetry, coreRef }: { theme: SceneTheme; onTelemetry?: TelemetryHandler; coreRef: MutableRefObject<THREE.Group | null> }) {
+function RoboticArm({ theme, onTelemetry, coreRef, follow = false }: { theme: SceneTheme; onTelemetry?: TelemetryHandler; coreRef: MutableRefObject<THREE.Group | null>; follow?: boolean }) {
   const p = PALETTES[theme];
   const turret = useRef<THREE.Group>(null);
   const shoulder = useRef<THREE.Group>(null);
@@ -195,7 +198,10 @@ function RoboticArm({ theme, onTelemetry, coreRef }: { theme: SceneTheme; onTele
     const phase = samplePose(t, pose.current);
     const micro = Math.sin(t * 1.7) * 0.02;
     const [yaw, sh, el, wr, rl, grip] = pose.current;
-    if (turret.current) turret.current.rotation.y = yaw + micro;
+    if (turret.current) {
+      const look = follow ? POINTER.x * 0.9 : 0;
+      turret.current.rotation.y += (yaw + micro + look - turret.current.rotation.y) * (follow ? 0.12 : 1);
+    }
     if (shoulder.current) shoulder.current.rotation.z = sh + micro * 0.5;
     if (elbow.current) elbow.current.rotation.z = el;
     if (wrist.current) wrist.current.rotation.z = wr;
@@ -523,7 +529,12 @@ function Particles({ theme, quality, glowTex }: { theme: SceneTheme; quality: Sc
 
 /* ---------- camera rig: mouse parallax + scroll response ---------- */
 
-function CameraRig() {
+/** Shared normalised pointer (-1..1) so the arm can react to the cursor in interactive mode. */
+const POINTER = { x: 0, y: 0 };
+/** Video loop length: two arm cycles, so camera and arm both loop seamlessly. */
+const CINE_LOOP = 22;
+
+function CameraRig({ mode = "hero" }: { mode?: SceneMode }) {
   const pointer = useRef({ x: 0, y: 0 });
   const scroll = useRef(0);
   const target = useRef(new THREE.Vector3(0, 0.95, 0));
@@ -532,6 +543,8 @@ function CameraRig() {
     const onMove = (e: PointerEvent) => {
       pointer.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       pointer.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+      POINTER.x = pointer.current.x;
+      POINTER.y = pointer.current.y;
     };
     const onScroll = () => {
       scroll.current = Math.min(1, window.scrollY / Math.max(1, window.innerHeight));
@@ -545,7 +558,27 @@ function CameraRig() {
     };
   }, []);
 
-  useFrame(({ camera }) => {
+  useFrame(({ camera, clock }) => {
+    if (mode === "cinematic") {
+      // Slow, seamless orbit; the target sits left of the robot so it frames on the right third.
+      const t = sceneTime(clock.elapsedTime);
+      const a = (t / CINE_LOOP) * Math.PI * 2;
+      const ang = 0.55 * Math.sin(a) - 0.25;
+      const r = 8.6 + 0.6 * Math.cos(a);
+      camera.position.set(Math.sin(ang) * r - 1.6, 1.55 + 0.35 * Math.sin(a * 2), Math.cos(ang) * r);
+      camera.lookAt(-1.75, 1.05, 0);
+      return;
+    }
+    if (mode === "interactive") {
+      const tx = pointer.current.x * 2.2;
+      const ty = 1.7 - pointer.current.y * 1.1;
+      const tz = 8.8;
+      camera.position.x += (tx - camera.position.x) * 0.05;
+      camera.position.y += (ty - camera.position.y) * 0.05;
+      camera.position.z += (tz - camera.position.z) * 0.05;
+      camera.lookAt(target.current);
+      return;
+    }
     const s = scroll.current;
     const tx = 0.4 + pointer.current.x * 0.6 + s * 1.2;
     const ty = 1.7 - pointer.current.y * 0.3 + s * 1.2;
@@ -573,7 +606,7 @@ function ReadySignal({ onReady }: { onReady?: () => void }) {
 
 /* ---------- root ---------- */
 
-function SceneContents({ theme, quality, onTelemetry, onReady }: Omit<Props, "active">) {
+function SceneContents({ theme, quality, onTelemetry, onReady, mode = "hero" }: Omit<Props, "active">) {
   const p = PALETTES[theme];
   const coreRef = useRef<THREE.Group | null>(null);
   const glowTex = useMemo(() => makeGlowTexture(), []);
@@ -590,30 +623,31 @@ function SceneContents({ theme, quality, onTelemetry, onReady }: Omit<Props, "ac
       <NeuralField theme={theme} quality={quality} glowTex={glowTex} />
       <Particles theme={theme} quality={quality} glowTex={glowTex} />
       <FloorScanner theme={theme} glowTex={glowTex} />
-      <RoboticArm theme={theme} onTelemetry={onTelemetry} coreRef={coreRef} />
+      <RoboticArm theme={theme} onTelemetry={onTelemetry} coreRef={coreRef} follow={mode === "interactive"} />
       <DataCore theme={theme} groupRef={coreRef} glowTex={glowTex} />
-      <CameraRig />
+      <CameraRig mode={mode} />
       <ReadySignal onReady={onReady} />
     </>
   );
 }
 
-export default function RoboticsScene({ theme, quality, active, onTelemetry, onReady }: Props) {
+export default function RoboticsScene({ theme, quality, active, onTelemetry, onReady, mode = "hero" }: Props) {
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
       dpr={quality === "high" ? [1, 1.75] : [1, 1.25]}
       camera={{ position: [0.4, 1.7, 10.2], fov: 34, near: 0.1, far: 60 }}
-      gl={{ antialias: quality === "high", alpha: true, powerPreference: "high-performance", preserveDrawingBuffer: false }}
+      gl={{ antialias: quality === "high" || mode === "cinematic", alpha: mode !== "cinematic", powerPreference: "high-performance", preserveDrawingBuffer: mode === "cinematic" }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.ACESFilmicToneMapping;
         gl.toneMappingExposure = theme === "dark" ? 1.05 : 1.0;
-        gl.setClearColor(0x000000, 0);
+        if (mode === "cinematic") gl.setClearColor(theme === "dark" ? 0x040d1c : 0xfbf8f2, 1);
+        else gl.setClearColor(0x000000, 0);
       }}
       aria-hidden
       style={{ width: "100%", height: "100%" }}
     >
-      <SceneContents theme={theme} quality={quality} onTelemetry={onTelemetry} onReady={onReady} />
+      <SceneContents theme={theme} quality={quality} onTelemetry={onTelemetry} onReady={onReady} mode={mode} />
     </Canvas>
   );
 }
