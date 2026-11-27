@@ -6,7 +6,7 @@ import { BarChart3, BrainCircuit, Cloud, Code2, Database, PhoneCall, Settings2 }
  * No buttons (client request). The video is stored on and streamed from Cloudinary (client request);
  * `ac_none,q_auto` strips the audio track and lets Cloudinary pick the quality/size.
  */
-const CLOUDINARY = "https://res.cloudinary.com/ptoxxqz0/video/upload/ac_none,q_auto/v1795769230/Rotating_digital_Earth_animation_81fa187c";
+const ICONS = [BrainCircuit, PhoneCall, Cloud, Database, BarChart3, Settings2, Code2];
 const PILLS = [
   { icon: BrainCircuit, label: "AI solutions" },
   { icon: PhoneCall, label: "AI calling" },
@@ -17,7 +17,18 @@ const PILLS = [
   { icon: Code2, label: "Software development" },
 ];
 
-export default function HeroGlobe() {
+export type HeroGlobeContent = {
+  videoUrl: string;
+  label: string;
+  headingLine1: string;
+  headingLine2: string;
+  headingAccent: string;
+  description: string;
+  pills: { label: string }[];
+};
+
+export default function HeroGlobe({ content }: { content: HeroGlobeContent }) {
+  const src = content.videoUrl.replace(/\.(mp4|webm|mov)$/i, "");
   return (
     <section aria-labelledby="hero-title" className="dark relative isolate flex min-h-[calc(100svh-72px)] items-center overflow-hidden bg-[#040d1c] text-white">
       {/* Video: shifted right on large screens so the globe sits beside the text */}
@@ -30,8 +41,8 @@ export default function HeroGlobe() {
           playsInline
           preload="auto"
         >
-          <source src={`${CLOUDINARY}.webm`} type="video/webm" />
-          <source src={`${CLOUDINARY}.mp4`} type="video/mp4" />
+          <source src={`${src}.webm`} type="video/webm" />
+          <source src={`${src}.mp4`} type="video/mp4" />
         </video>
       </div>
       {/* Legibility */}
@@ -43,23 +54,24 @@ export default function HeroGlobe() {
         <div className="max-w-[680px]">
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.18em] text-[#f6d77a] backdrop-blur">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-current" />
-            Global AI &amp; technology partner
+            {content.label}
           </span>
           <h1 id="hero-title" className="mt-6 font-display text-[clamp(1.9rem,3.3vw,3rem)] font-bold leading-[1.06] tracking-[-0.03em]">
-            <span className="sm:whitespace-nowrap">Connecting Your Business</span>
+            <span className="sm:whitespace-nowrap">{content.headingLine1}</span>
             <br />
-            to a <span className="text-gold-grad">Smarter World</span>
+            {content.headingLine2} <span className="text-gold-grad">{content.headingAccent}</span>
           </h1>
-          <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/80">
-            AI, cloud, data and intelligent automation — engineered by ALPIXN and delivered to businesses across the globe. From multilingual AI calling to analytics and custom software, we build the technology that keeps you connected.
-          </p>
+          <p className="mt-5 max-w-xl text-[17px] leading-relaxed text-white/80">{content.description}</p>
           <ul className="mt-9 flex max-w-xl flex-wrap gap-2">
-            {PILLS.map(({ icon: Icon, label }) => (
+            {content.pills.map(({ label }, i) => {
+              const Icon = PILLS.find((p) => p.label.toLowerCase() === label.toLowerCase())?.icon ?? ICONS[i % ICONS.length];
+              return (
               <li key={label} className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1.5 text-[13px] text-white/85 backdrop-blur">
                 <Icon aria-hidden className="h-4 w-4 text-[#f6d77a]" />
                 {label}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </div>

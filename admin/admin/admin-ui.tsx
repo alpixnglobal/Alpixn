@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Boxes, BriefcaseIcon, ChevronDown, Inbox, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
+import { Boxes, BriefcaseIcon, ChevronDown, Inbox, LayoutTemplate, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
 
 import { PersistentScrollArea } from "@/components/admin/persistent-scroll-area";
 import { LogoutForm } from "@/components/admin/logout-form";
@@ -81,6 +81,7 @@ type AdminNavLink =
 
 // Navigation mirrors the public website structure.
 const pagesLinks: AdminNavChildLink[] = [
+  { href: "/admin/content", label: "Page sections", icon: LayoutTemplate },
   { href: "/admin/home", label: "Home", icon: House },
   { href: "/admin/about", label: "About", icon: Info },
   { href: "/admin/contact", label: "Contact", icon: Mail },

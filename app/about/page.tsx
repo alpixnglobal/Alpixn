@@ -4,8 +4,9 @@ import JsonLd from "@/components/seo/JsonLd";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import CtaBand from "@/components/sections/shared/CtaBand";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
-import JourneyTimeline from "@/components/about/JourneyTimeline";
-import { HeroV4, MarketsV4 } from "@/components/home/HomeV4";
+import JourneyTimeline, { type JourneyContent } from "@/components/about/JourneyTimeline";
+import { HeroV4, MarketsV4, type MarketsContent } from "@/components/home/HomeV4";
+import { getCachedPageBlock } from "@/lib/content-service";
 import { FeatureCards, Heading, Section } from "@/components/ui/v4";
 import Reveal from "@/components/ui/Reveal";
 import { organizationJsonLd, pageMetadata } from "@/lib/seo";
@@ -25,31 +26,33 @@ const COMMITMENTS = [
   { icon: Users, title: "Clear ownership", text: "You own the code and data we build for you, with documentation and a handover plan agreed up front." },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [hero, pillars, journey, markets] = await Promise.all([
+    getCachedPageBlock("about.hero"),
+    getCachedPageBlock("about.pillars"),
+    getCachedPageBlock("about.journey"),
+    getCachedPageBlock("home.markets"),
+  ]);
+  const h = hero as { heading: string; description: string };
+  const pl = pillars as { kicker: string; title: string; items: { title: string; text: string }[] };
   return (
     <main>
       <HeroV4
-        title="We engineer AI, robotics and software that businesses rely on every day"
+        title={h.heading}
         accentWords={5}
-        description="ALPIXN designs and builds the applications customers use, the internal systems teams depend on, and the AI and automation that remove repetitive work — with product thinking and engineering discipline in one team."
+        description={h.description}
         primary={{ label: "", href: "" }}
         secondary={{ label: "", href: "" }}
       />
       <Section id="about-pillars">
-        <Heading id="about-pillars" kicker="What we do" title="Three disciplines, one team" center />
-        <FeatureCards
-          items={[
-            { title: "AI that earns its place", description: "Models and assistants scoped to a clear business problem, evaluated before launch and monitored after." },
-            { title: "Robotics software", description: "Fleet dashboards, vision inspection and operator tools that connect machines to the people running them." },
-            { title: "Software engineering", description: "Web, mobile and SaaS products built with maintainable code and delivered in measurable releases." },
-          ]}
-        />
+        <Heading id="about-pillars" kicker={pl.kicker} title={pl.title} center />
+        <FeatureCards items={pl.items.map((i) => ({ title: i.title, description: i.text }))} />
       </Section>
-      <JourneyTimeline />
+      <JourneyTimeline content={journey as unknown as JourneyContent} />
 
 
       <IndustriesTechBand />
-      <MarketsV4 />
+      <MarketsV4 content={markets as unknown as MarketsContent} />
 
       <HowWeWorkSection />
 

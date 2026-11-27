@@ -48,18 +48,6 @@ function Heading({ id, kicker, tone, title, accent, center, children }: { id: st
   );
 }
 
-const MARKETS: [string, string][] = [
-  ["India", "/images/india.svg"],
-  ["USA", "/images/usa.svg"],
-  ["UK", "/images/uk.svg"],
-  ["UAE", "/images/uae.svg"],
-  ["Australia", "/images/australia.svg"],
-  ["Canada", "/images/canada.svg"],
-  ["Italy", "/images/italy.svg"],
-  ["Thailand", "/images/thailand.svg"],
-  ["South Africa", "/images/south-africa.svg"],
-];
-
 /* ------------------------------------------------------------------ */
 /* Hero                                                                */
 /* ------------------------------------------------------------------ */
@@ -207,24 +195,27 @@ export function ServicesV4({ title, subtitle, items }: { title: string; subtitle
 /* Process timeline                                                    */
 /* ------------------------------------------------------------------ */
 
-const STEPS = [
-  { t: "Discover", d: "Goals, users, data and constraints — agreed before any build starts.", c: "#0878d1", ink: "#ffffff" },
-  { t: "Design", d: "Flows, clickable prototypes and an architecture you can review.", c: "#064a87", ink: "#ffffff" },
-  { t: "Build", d: "Short sprints with working demos and automated tests.", c: "#071a33", ink: "#f6d77a" },
-  { t: "Launch", d: "Pilot, training, monitoring and a clean handover.", c: "#d99a19", ink: NAVY },
-  { t: "Improve", d: "Measure real usage and extend what works.", c: "#9a5b08", ink: "#ffffff" },
+const STEP_TONES = [
+  { c: "#0878d1", ink: "#ffffff" },
+  { c: "#064a87", ink: "#ffffff" },
+  { c: "#071a33", ink: "#f6d77a" },
+  { c: "#d99a19", ink: NAVY },
+  { c: "#9a5b08", ink: "#ffffff" },
 ];
 
-export function ProcessV4() {
+export type ProcessContent = { kicker: string; title: string; accent: string; subtitle: string; steps: { title: string; text: string }[] };
+
+export function ProcessV4({ content }: { content: ProcessContent }) {
+  const steps = content.steps.map((s, i) => ({ t: s.title, d: s.text, ...STEP_TONES[i % STEP_TONES.length] }));
   return (
     <section aria-labelledby="process-title" className="bg-canvas py-20 sm:py-24">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
-        <Heading id="process-title" kicker="How we work" tone="blue" title="A clear path from" accent="idea to launch." center>
-          Five steps, the same on every project — so you always know what happens next.
+        <Heading id="process-title" kicker={content.kicker} tone="blue" title={content.title} accent={content.accent} center>
+          {content.subtitle}
         </Heading>
-        <ol className="relative mt-14 grid gap-8 md:grid-cols-5 md:gap-5">
+        <ol className={`relative mt-14 grid gap-8 md:gap-5 ${["", "md:grid-cols-1", "md:grid-cols-2", "md:grid-cols-3", "md:grid-cols-4", "md:grid-cols-5", "md:grid-cols-6"][Math.min(steps.length, 6)]}`}>
           <span aria-hidden className="absolute left-[10%] right-[10%] top-7 hidden h-1 rounded-full bg-brand-spectrum md:block" />
-          {STEPS.map((s, i) => (
+          {steps.map((s, i) => (
             <li key={s.t} className="relative flex gap-4 md:flex-col md:items-center md:text-center">
               <span className="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-full font-display text-lg font-bold ring-8 ring-[var(--canvas)]" style={{ background: s.c, color: s.ink }}>
                 {String(i + 1).padStart(2, "0")}
@@ -245,14 +236,25 @@ export function ProcessV4() {
 /* Markets + working commitments                                       */
 /* ------------------------------------------------------------------ */
 
-const COMMITMENTS = [
-  { icon: FileCheck2, t: "Clear scope first", d: "A written scope and estimate before development starts.", c: "#0878d1" },
-  { icon: Eye, t: "Demo every sprint", d: "You see working software regularly, not just status reports.", c: "#d99a19" },
-  { icon: GitBranch, t: "Your code, your repo", d: "Source code and documentation are handed over to you.", c: "#064a87" },
-  { icon: ShieldCheck, t: "Security by design", d: "Access control, data protection and reviews built into the process.", c: "#9a5b08" },
+const COMMIT_STYLE = [
+  { icon: FileCheck2, c: "#0878d1" },
+  { icon: Eye, c: "#d99a19" },
+  { icon: GitBranch, c: "#064a87" },
+  { icon: ShieldCheck, c: "#9a5b08" },
 ];
 
-export function MarketsV4() {
+export type MarketsContent = {
+  marketsTitle: string;
+  marketsAccent: string;
+  marketsText: string;
+  markets: { name: string }[];
+  commitTitle: string;
+  commitAccent: string;
+  commitments: { title: string; text: string }[];
+};
+
+export function MarketsV4({ content }: { content: MarketsContent }) {
+  const commitments = content.commitments.map((x, i) => ({ t: x.title, d: x.text, ...COMMIT_STYLE[i % COMMIT_STYLE.length] }));
   return (
     <section aria-labelledby="markets-title" className="bg-canvas-2 py-20 sm:py-24">
       <div className="mx-auto grid max-w-[1320px] gap-5 px-4 sm:px-6 lg:grid-cols-12 lg:px-10">
@@ -262,11 +264,11 @@ export function MarketsV4() {
           <div className="relative">
             <Kicker tone="light">Global delivery</Kicker>
             <h2 id="markets-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.12] tracking-[-0.025em]">
-              Built for teams across <span className="text-[#f6d77a]">nine markets.</span>
+              {content.marketsTitle} <span className="text-[#f6d77a]">{content.marketsAccent}</span>
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-white/75">Local currencies, languages, tax rules and time zones are part of the brief from day one.</p>
+            <p className="mt-4 text-[15px] leading-relaxed text-white/75">{content.marketsText}</p>
             <ul className="mt-8 grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-              {MARKETS.map(([name]) => (
+              {content.markets.map(({ name }) => (
                 <li key={name} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2.5">
                   <span className="block text-[13px] font-medium">{name}</span>
                   <LocalTime zone={zoneFor(name).zone} className="mt-0.5 block font-mono text-[12px] text-[#f6d77a]" />
@@ -279,10 +281,10 @@ export function MarketsV4() {
         <div className="rounded-[32px] border border-line bg-surface p-8 shadow-[var(--shadow-card)] sm:p-10 lg:col-span-7">
           <Kicker>How we work with you</Kicker>
           <h2 className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
-            Straightforward, <span className="text-brand-spectrum">from the first call.</span>
+            {content.commitTitle} <span className="text-brand-spectrum">{content.commitAccent}</span>
           </h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-            {COMMITMENTS.map(({ icon: Icon, t, d, c }) => (
+            {commitments.map(({ icon: Icon, t, d, c }) => (
               <li key={t} className="rounded-2xl border border-line bg-surface-2 p-5">
                 <span className="grid h-10 w-10 place-items-center rounded-xl text-white" style={{ background: c }}>
                   <Icon aria-hidden className="h-5 w-5" />
@@ -327,7 +329,9 @@ export function InsightsV4({ posts }: { posts: BlogCardData[] }) {
   );
 }
 
-export function CtaV4() {
+export type CtaContent = { kicker: string; title: string; accent: string; text: string; primaryLabel: string; primaryHref: string; secondaryLabel: string; secondaryHref: string };
+
+export function CtaV4({ content }: { content: CtaContent }) {
   return (
     <section aria-labelledby="cta-title" className="bg-canvas px-4 pb-20 sm:px-6 sm:pb-24 lg:px-10">
       <div className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,#071a33_0%,#064a87_55%,#0878d1_100%)] px-6 py-16 text-center text-white sm:px-12 sm:py-20">
@@ -335,18 +339,22 @@ export function CtaV4() {
         <div aria-hidden className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#f6d77a]/30 blur-[90px]" />
         <div aria-hidden className="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-[#9a5b08]/45 blur-[90px]" />
         <div className="relative mx-auto max-w-2xl">
-          <Kicker tone="light">Start a project</Kicker>
+          <Kicker tone="light">{content.kicker}</Kicker>
           <h2 id="cta-title" className="mt-5 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em]">
-            Let&apos;s build <span className="text-gold-grad">what&apos;s next.</span>
+            {content.title} <span className="text-gold-grad">{content.accent}</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-white/80">Tell us about your idea, product or process. We reply with honest recommendations and a sensible first step.</p>
+          <p className="mx-auto mt-4 max-w-xl text-white/80">{content.text}</p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/contact-us" className="btn-brand !px-7 !py-3.5 text-[15px]">
-              Request a consultation <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
-            </Link>
-            <Link href="/our-expertise" className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
-              Explore our services
-            </Link>
+            {content.primaryLabel ? (
+              <Link href={content.primaryHref || "/contact-us"} className="btn-brand !px-7 !py-3.5 text-[15px]">
+                {content.primaryLabel} <ArrowRight aria-hidden className="btn-arrow h-4 w-4" />
+              </Link>
+            ) : null}
+            {content.secondaryLabel ? (
+              <Link href={content.secondaryHref || "/our-expertise"} className="btn-ghost-brand !px-7 !py-3.5 text-[15px]">
+                {content.secondaryLabel}
+              </Link>
+            ) : null}
           </div>
         </div>
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-1.5 bg-brand-spectrum" />

@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 
 import { jobData } from "@/lib/internsData";
+import { BLOCK_MAP } from "@/lib/cms/blocks";
 import { blogArticles } from "@/content/blog";
 import { CONCEPT_LABEL, screenshotPath, showcaseProjects } from "@/lib/portfolio/showcase";
 import { EDITORIAL_AUTHOR, blogCoverPath, readingTime } from "@/lib/blog/types";
@@ -9,6 +10,7 @@ import {
   AboutSettingsModel,
   BlogPostModel,
   ContactMessageModel,
+  PageBlockModel,
   ContactSettingsModel,
   ExpertisePageModel,
   ExpertiseSettingsModel,
@@ -2052,3 +2054,27 @@ export async function getAdminInbox(): Promise<InboxItem[]> {
   }));
   return [...fromMessages, ...fromApplications].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 }
+
+// ============================================================================
+// CMS PAGE BLOCKS
+// ============================================================================
+
+/** Returns a block's saved values merged over its defaults (defaults only when the DB is unavailable). */
+export async function getPageBlock<T extends Record<string, unknown> = Record<string, unknown>>(key: string): Promise<T> {
+  const def = BLOCK_MAP[key];
+  const defaults = (def?.defaults ?? {}) as T;
+  if (!(await prepareRead())) return defaults;
+  const doc = (await PageBlockModel.findOne({ key }).lean()) as { data?: Record<string, unknown> } | null;
+  const data = doc?.data ?? {};
+  const merged: Record<string, unknown> = { ...defaults };
+  for (const [k, v] of Object.entries(data)) {
+    if (v === undefined || v === null) continue;
+    if (typeof v === "string" && v.trim() === "") continue;
+    if (Array.isArray(v) && v.length === 0) continue;
+    merged[k] = v;
+  }
+  return merged as T;
+}
+
+export const getCachedPageBlock = (key: string) =>
+  unstable_cache(async () => getPageBlock(key), ["page-block", key], { revalidate: CACHE_REVALIDATE_SECONDS, tags: ["page-blocks", `page-block:${key}`] })();

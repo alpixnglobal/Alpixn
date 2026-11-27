@@ -1,8 +1,8 @@
 import JsonLd from "@/components/seo/JsonLd";
-import HeroGlobe from "@/components/home/HeroGlobe";
-import { CtaV4, InsightsV4, MarketsV4, ProcessV4, ServicesV4 } from "@/components/home/HomeV4";
+import HeroGlobe, { type HeroGlobeContent } from "@/components/home/HeroGlobe";
+import { CtaV4, InsightsV4, MarketsV4, ProcessV4, ServicesV4, type CtaContent, type MarketsContent, type ProcessContent } from "@/components/home/HomeV4";
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
-import { getCachedHomeSettings, getCachedPublishedBlogPosts } from "@/lib/content-service";
+import { getCachedHomeSettings, getCachedPageBlock, getCachedPublishedBlogPosts } from "@/lib/content-service";
 import { organizationJsonLd, pageMetadata, websiteJsonLd } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -15,20 +15,27 @@ export const metadata = pageMetadata({
 });
 
 const Home = async () => {
-  const [settings, posts] = await Promise.all([getCachedHomeSettings(), getCachedPublishedBlogPosts()]);
+  const [settings, posts, hero, process, markets, cta] = await Promise.all([
+    getCachedHomeSettings(),
+    getCachedPublishedBlogPosts(),
+    getCachedPageBlock("home.hero"),
+    getCachedPageBlock("home.process"),
+    getCachedPageBlock("home.markets"),
+    getCachedPageBlock("home.cta"),
+  ]);
 
   const latest = posts.slice(0, 3).map((p) => ({ slug: p.slug, title: p.title, excerpt: p.excerpt, category: p.category, readTime: p.readTime, publishedAt: p.publishedAt, imageData: p.imageData }));
 
   return (
     <main>
-      <HeroGlobe />
+      <HeroGlobe content={hero as unknown as HeroGlobeContent} />
       <ServicesV4 title={settings.offeringsTitle} subtitle={settings.offeringsSubtitle} items={settings.offerings} />
       {/* Industries + Tech Stack keep their original dark navy look in both themes */}
       <IndustriesTechBand />
-      <ProcessV4 />
-      <MarketsV4 />
+      <ProcessV4 content={process as unknown as ProcessContent} />
+      <MarketsV4 content={markets as unknown as MarketsContent} />
       <InsightsV4 posts={latest} />
-      <CtaV4 />
+      <CtaV4 content={cta as unknown as CtaContent} />
       <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
     </main>
   );

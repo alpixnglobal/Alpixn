@@ -10,19 +10,29 @@ import { BrainCircuit, Building2, Cloud, Palette, PhoneCall, Rocket, Sparkles, S
  */
 type Milestone = { year: string; title: string; text: string; icon: React.ComponentType<{ className?: string }>; tag: string; c: string; ink: string };
 
-const MILESTONES: Milestone[] = [
-  { year: "2017", title: "The Beginning", tag: "Founded", icon: Sprout, c: "#0878d1", ink: "#ffffff", text: "Alpixn was founded with a vision to build innovative digital solutions and create a strong foundation in technology-driven services." },
-  { year: "2018", title: "First Enterprise Breakthrough", tag: "Enterprise", icon: Building2, c: "#d99a19", ink: "#071a33", text: "Successfully delivered enterprise-level ERP systems and mobile applications, marking our entry into large-scale digital transformation." },
-  { year: "2019", title: "Expanding Creative Horizons", tag: "Design & UX", icon: Palette, c: "#064a87", ink: "#ffffff", text: "Expanded into digital design and user experience solutions, combining creativity with technology to deliver complete digital products." },
-  { year: "2020", title: "The AI Revolution Begins", tag: "AI", icon: BrainCircuit, c: "#9a5b08", ink: "#ffffff", text: "Introduced AI-powered tools for automation and business management, improving efficiency and enabling smarter decision-making." },
-  { year: "2021", title: "Going Global with Cloud", tag: "Cloud", icon: Cloud, c: "#0878d1", ink: "#ffffff", text: "Collaborated with international clients and launched scalable cloud-based platforms to support global business operations." },
-  { year: "2023", title: "Introducing AutoMarkAI", tag: "Product", icon: Sparkles, c: "#d99a19", ink: "#071a33", text: "Developed intelligent automation systems and AI-powered platforms to enhance productivity, marketing, and business workflows." },
-  { year: "2024", title: "Product Launch", tag: "Launch", icon: Rocket, c: "#064a87", ink: "#ffffff", text: "Launched our own products, bringing Alpixn's experience in AI and software to businesses as ready-to-use solutions." },
-  { year: "2025", title: "New Office", tag: "Growth", icon: Building2, c: "#9a5b08", ink: "#ffffff", text: "Opened a new office to support our growing team and clients." },
-  { year: "2026", title: "Multilingual AI Calling System", tag: "AI voice", icon: PhoneCall, c: "#f6d77a", ink: "#071a33", text: "Introduced a multilingual AI calling system that talks to customers in their own language." },
+export type JourneyContent = {
+  title: string;
+  accent: string;
+  intro: string;
+  outro: string;
+  milestones: { year: string; tag: string; title: string; text: string }[];
+};
+
+const STYLES: { icon: Milestone["icon"]; c: string; ink: string }[] = [
+  { icon: Sprout, c: "#0878d1", ink: "#ffffff" },
+  { icon: Building2, c: "#d99a19", ink: "#071a33" },
+  { icon: Palette, c: "#064a87", ink: "#ffffff" },
+  { icon: BrainCircuit, c: "#9a5b08", ink: "#ffffff" },
+  { icon: Cloud, c: "#0878d1", ink: "#ffffff" },
+  { icon: Sparkles, c: "#d99a19", ink: "#071a33" },
+  { icon: Rocket, c: "#064a87", ink: "#ffffff" },
+  { icon: Building2, c: "#9a5b08", ink: "#ffffff" },
+  { icon: PhoneCall, c: "#f6d77a", ink: "#071a33" },
 ];
 
-export default function JourneyTimeline() {
+
+export default function JourneyTimeline({ content }: { content: JourneyContent }) {
+  const MILESTONES: Milestone[] = content.milestones.map((m, i) => ({ ...m, ...STYLES[i % STYLES.length] }));
   const wrap = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [seen, setSeen] = useState<Set<number>>(() => new Set());
@@ -95,10 +105,10 @@ export default function JourneyTimeline() {
             <span className="h-1.5 w-1.5 rounded-full bg-current" /> Our journey
           </span>
           <h2 id="journey-title" className="mt-4 font-display text-[clamp(1.35rem,1.9vw,1.75rem)] font-bold leading-[1.15] tracking-[-0.025em]">
-            Our Journey of <span className="text-gold-grad">Innovation and Growth</span>
+            {content.title} <span className="text-gold-grad">{content.accent}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-[15.5px] leading-relaxed text-white/75">
-            From a visionary start in 2017 to building advanced AI-driven solutions today, every milestone reflects Alpixn&rsquo;s commitment to empowering businesses through innovation, intelligence, and technology.
+            {content.intro}
           </p>
         </div>
 
@@ -174,7 +184,7 @@ export default function JourneyTimeline() {
         </div>
 
         {/* Footer note */}
-        <p className="mt-14 text-center text-[13px] text-white/50">The journey continues — and we would love to build the next milestone with you.</p>
+        <p className="mt-14 text-center text-[13px] text-white/50">{content.outro}</p>
       </div>
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-1 bg-brand-spectrum" />
     </section>

@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import { requireAdminSession, signInAdmin, signOutAdmin } from "@/lib/admin-auth";
 import { connectToDatabase } from "@/lib/db";
+import { BLOCK_MAP, type BlockDef } from "@/lib/cms/blocks";
 import { CONTACT_TO_EMAIL, HR_TO_EMAIL, isMailConfigured, sendContactEnquiryEmail, sendRowsEmail } from "@/lib/mailer";
 import { getPublishedJobBySlug } from "@/lib/content-service";
 import { normalizeBase64Image } from "@/lib/image-data";
@@ -13,6 +14,7 @@ import {
   AboutSettingsModel,
   BlogPostModel,
   ContactMessageModel,
+  PageBlockModel,
   ContactSettingsModel,
   ExpertisePageModel,
   ExpertiseSettingsModel,
@@ -1700,4 +1702,58 @@ export async function deleteInboxItemAction(formData: FormData) {
   revalidatePath("/admin");
   const base = back.replace(/([?&])id=[^&]*/, "$1").replace(/[?&]$/, "");
   redirect(`${base}${base.includes("?") ? "&" : "?"}status=deleted`);
+}
+
+// ---------------------------------------------------------------------------
+// CMS page blocks
+// ---------------------------------------------------------------------------
+
+function sanitiseBlockValue(def: BlockDef, raw: unknown) {
+  const input = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  const out: Record<string, unknown> = {};
+  for (const f of def.fields) {
+    const v = input[f.key];
+    if (f.type === "list") {
+      if (!Array.isArray(v)) continue;
+      out[f.key] = v
+        .map((row) => Object.fromEntries(f.fields.map((sf) => [sf.key, String((row as Record<string, unknown>)?.[sf.key] ?? "").slice(0, 5000)])))
+        .filter((row) => Object.values(row).some((x) => String(x).trim()));
+    } else if (typeof v === "string") {
+      const trimmed = v.trim().slice(0, 10000);
+      if (f.type === "url" && trimmed && !/^https:\/\//i.test(trimmed)) continue;
+      out[f.key] = trimmed;
+    }
+  }
+  return out;
+}
+
+export async function savePageBlockAction(formData: FormData) {
+  await requireAdminSession();
+  const key = getValue(formData, "key");
+  const back = `/admin/content?block=${encodeURIComponent(key)}`;
+  await ensureDatabaseForAction(back);
+  const def = BLOCK_MAP[key];
+  if (!def) redirect(`/admin/content?error=Unknown+section`);
+  let parsed: unknown = {};
+  try {
+    parsed = JSON.parse(getValue(formData, "data") || "{}");
+  } catch {
+    redirect(`${back}&error=Could+not+read+the+form`);
+  }
+  const data = sanitiseBlockValue(def as BlockDef, parsed);
+  await PageBlockModel.updateOne({ key }, { $set: { key, data } }, { upsert: true });
+  revalidateTag("page-blocks", { expire: 0 });
+  revalidatePath((def as BlockDef).page);
+  redirect(`${back}&status=saved`);
+}
+
+export async function resetPageBlockAction(formData: FormData) {
+  await requireAdminSession();
+  const key = getValue(formData, "key");
+  const back = `/admin/content?block=${encodeURIComponent(key)}`;
+  await ensureDatabaseForAction(back);
+  await PageBlockModel.deleteOne({ key });
+  revalidateTag("page-blocks", { expire: 0 });
+  if (BLOCK_MAP[key]) revalidatePath(BLOCK_MAP[key].page);
+  redirect(`${back}&status=saved`);
 }

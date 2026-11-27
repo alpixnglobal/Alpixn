@@ -1,5 +1,5 @@
 import PageHero from "@/components/sections/shared/PageHero";
-import { getCachedSiteSettings } from "@/lib/content-service";
+import { getCachedPageBlock, getCachedSiteSettings } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -8,45 +8,14 @@ export const metadata = pageMetadata({
   path: "/privacy-policy",
 });
 
-const SECTIONS: [string, string[]][] = [
-  ["Information we collect", [
-    "Details you give us through our contact, project brief, newsletter and job application forms — for example your name, email address, phone number, company, message and any CV you upload.",
-    "Basic technical information when you visit the website, such as browser type, device, pages viewed and approximate location, collected through server logs and analytics tools.",
-  ]],
-  ["How we use your information", [
-    "To reply to your enquiry, prepare proposals and deliver the services you ask for.",
-    "To assess job and internship applications.",
-    "To send our newsletter if you have subscribed — you can unsubscribe at any time.",
-    "To keep the website secure and understand how it is used so we can improve it.",
-  ]],
-  ["Legal basis", [
-    "We process personal information where it is needed to respond to your request or perform a contract, where we have a legitimate interest in running our business, where you have given consent, or where the law requires it.",
-  ]],
-  ["Sharing your information", [
-    "We do not sell personal information. We share it only with service providers that help us run the website and our business (for example hosting, email and analytics providers), under appropriate confidentiality and data-protection terms, or where the law requires it.",
-  ]],
-  ["Cookies", [
-    "The website uses essential cookies and local storage to remember preferences such as light or dark theme. Where analytics cookies are used, they help us understand visits in aggregate.",
-  ]],
-  ["How long we keep information", [
-    "We keep enquiry and application information only as long as needed for the purpose it was collected, or as required by law, and then delete or anonymise it.",
-  ]],
-  ["Your rights", [
-    "Depending on where you live, you may have the right to access, correct, delete or restrict the use of your personal information, to object to processing, and to withdraw consent. To make a request, contact us using the details below.",
-  ]],
-  ["Security", [
-    "We use reasonable technical and organisational measures to protect personal information, including access controls and encrypted connections. No method of transmission over the internet is completely secure.",
-  ]],
-  ["Changes to this policy", [
-    "We may update this policy from time to time. The latest version will always be published on this page.",
-  ]],
-];
 
 export default async function PrivacyPolicyPage() {
-  const site = await getCachedSiteSettings();
+  const [site, block] = await Promise.all([getCachedSiteSettings(), getCachedPageBlock("legal.privacy")]);
+  const content = block as { intro: string; sections: { title: string; body: string }[] };
+  const SECTIONS = content.sections.map((x) => [x.title, x.body.split(/\n\s*\n/).map((t) => t.trim()).filter(Boolean)] as [string, string[]]);
   return (
     <main>
-      <PageHero eyebrow="Legal" title="Privacy Policy" accentWords={1} description="How ALPIXN collects, uses and protects the personal information you share with us." />
+      <PageHero eyebrow="Legal" title="Privacy Policy" accentWords={1} description={content.intro} />
       <section className="bg-canvas py-14 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <div className="space-y-10">

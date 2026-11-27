@@ -1260,3 +1260,14 @@ const contactMessageSchema = new Schema(
 
 export const ContactMessageModel =
   (mongoose.models.ContactMessage as GenericModel) || mongoose.model("ContactMessage", contactMessageSchema);
+
+/** CMS page blocks (sections that were previously hard-coded). `data` holds the edited values. */
+const pageBlockSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, trim: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+export const PageBlockModel = (mongoose.models.PageBlock as GenericModel) || mongoose.model("PageBlock", pageBlockSchema);
