@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, saveExpertiseSettingsAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { ExpertisePageRichEditor, ExpertiseSettingsRichEditor } from "@/components/admin/expertise-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminExpertisePage({ searchParams }: PageProps) {
       activePath="/admin/expertise"
       title="Our Expertise manager"
       description="Manage the expertise dropdown navigation, expertise detail pages, and the shared sections reused across expertise routes."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

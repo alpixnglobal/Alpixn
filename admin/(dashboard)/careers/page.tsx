@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { JobRichEditor } from "@/components/admin/resources-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -46,7 +45,6 @@ export default async function AdminCareersPage({ searchParams }: PageProps) {
       activePath="/admin/careers"
       title="Careers manager"
       description="Publish openings, update hiring copy, and maintain the public job-card layout from this section."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

@@ -3,6 +3,7 @@ import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
+import SiteChrome from "@/components/layouts/SiteChrome";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getCachedSiteSettings } from "@/lib/content-service";
 
@@ -73,9 +74,9 @@ export default async function RootLayout({
           >
             Skip to content
           </a>
-          <Header />
-          <div id="main-content">{children}</div>
-          <Footer settings={siteSettings} />
+          <SiteChrome header={<Header />} footer={<Footer settings={siteSettings} />}>
+            {children}
+          </SiteChrome>
         </ThemeProvider>
       </body>
     </html>

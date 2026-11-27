@@ -1985,3 +1985,70 @@ export async function getAdminContactMessages() {
     createdAt: d.createdAt instanceof Date ? d.createdAt.toISOString() : String(d.createdAt ?? ""),
   }));
 }
+
+// ============================================================================
+// ADMIN INBOX: contact + hire-developer enquiries and job applications in one list
+// ============================================================================
+
+export type InboxKind = "enquiry" | "hire" | "application";
+export type InboxItem = {
+  id: string;
+  kind: InboxKind;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  status: string;
+  createdAt: string;
+  details: [string, string][];
+};
+
+function isoDate(value: unknown) {
+  if (value instanceof Date) return value.toISOString();
+  return value ? String(value) : "";
+}
+
+export async function getAdminInbox(): Promise<InboxItem[]> {
+  if (!(await prepareRead())) return [];
+  const [messages, applications] = await Promise.all([
+    ContactMessageModel.find({}).sort({ createdAt: -1 }).lean(),
+    JobApplicationModel.find({}).sort({ createdAt: -1 }).lean(),
+  ]);
+  const fromMessages = (messages as Record<string, unknown>[]).map((d) => {
+    const interest = String(d.interest ?? "");
+    const hire = interest.startsWith("hire-developers");
+    const name = `${String(d.firstName ?? "")} ${d.lastName && d.lastName !== "-" ? String(d.lastName) : ""}`.trim();
+    return {
+      id: String(d._id),
+      kind: (hire ? "hire" : "enquiry") as InboxKind,
+      name,
+      email: String(d.email ?? ""),
+      phone: String(d.phone ?? ""),
+      subject: hire ? interest.replace(/^hire-developers:?\s*/, "Hire developers: ") || "Hire developers" : interest ? interest.replace(/-/g, " ") : "General enquiry",
+      message: String(d.message ?? ""),
+      status: String(d.status ?? "new"),
+      createdAt: isoDate(d.createdAt),
+      details: [["Topic", interest.replace(/-/g, " ")]] as [string, string][],
+    };
+  });
+  const fromApplications = (applications as Record<string, unknown>[]).map((d) => ({
+    id: String(d._id),
+    kind: "application" as InboxKind,
+    name: String(d.fullName ?? ""),
+    email: String(d.email ?? ""),
+    phone: String(d.phone ?? ""),
+    subject: `Application: ${String(d.jobTitle ?? "")}`,
+    message: String(d.coverLetter ?? ""),
+    status: String(d.status ?? "new"),
+    createdAt: isoDate(d.createdAt),
+    details: [
+      ["Position", String(d.jobTitle ?? "")],
+      ["Location", String(d.location ?? "")],
+      ["LinkedIn", String(d.linkedInUrl ?? "")],
+      ["Portfolio", String(d.portfolioUrl ?? "")],
+      ["CV link", String(d.cvDriveLink ?? "")],
+    ] as [string, string][],
+  }));
+  return [...fromMessages, ...fromApplications].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+}

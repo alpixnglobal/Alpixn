@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { saveContactSettingsAction } from "@/admin/actions/admin-actions";
 import { FormActions } from "@/components/admin/admin-form-helpers";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminField,
   AdminInput,
@@ -38,7 +37,6 @@ export default async function AdminContactPage({ searchParams }: PageProps) {
       activePath="/admin/contact"
       title="Contact page settings"
       description="Update contact page content including hero text, form details, assistance section, and global office locations."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

@@ -1474,3 +1474,50 @@ html.theme-ready section {
 .ts-pulse { animation: ts-run 3.2s ease-in-out infinite alternate; }
 .ts-pulse-v { animation: ts-run-v 2.4s ease-in-out infinite alternate; }
 @media (prefers-reduced-motion: reduce) { .ts-pulse, .ts-pulse-v { animation: none; } }
+
+/* ---------- Admin CMS: normalise legacy hard-coded dark classes to theme tokens ---------- */
+.admin-main [class*="bg-[#0f172a]"],
+.admin-main .bg-white\/5,
+.admin-main [class*="bg-white/[0.0"] {
+  background-color: var(--surface) !important;
+}
+.admin-main .border-white\/10,
+.admin-main .border-white\/12,
+.admin-main [class*="border-white/["] {
+  border-color: var(--line) !important;
+}
+.admin-main .text-slate-100,
+.admin-main .text-slate-200,
+.admin-main .text-slate-900,
+.admin-main .text-sky-50,
+.admin-main .text-sky-100,
+.admin-main .text-sky-900,
+.admin-main .text-slate-950 {
+  color: var(--fg) !important;
+}
+.admin-main .text-slate-300,
+.admin-main .text-slate-400,
+.admin-main .text-slate-600 {
+  color: var(--fg-muted) !important;
+}
+.admin-main .text-slate-500 {
+  color: var(--fg-subtle) !important;
+}
+.admin-main input[type="text"],
+.admin-main input[type="url"],
+.admin-main input[type="email"],
+.admin-main input[type="number"],
+.admin-main input[type="date"],
+.admin-main input[type="datetime-local"],
+.admin-main select,
+.admin-main textarea {
+  color: var(--fg);
+}
+.admin-main select:not(.admin-input) {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  font-size: 14px;
+}
+.admin-main summary::-webkit-details-marker { display: none; }

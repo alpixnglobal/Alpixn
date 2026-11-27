@@ -1664,3 +1664,40 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
   }
   redirect(`${redirectTo}?status=sent`);
 }
+
+// ---------------------------------------------------------------------------
+// Admin inbox: status changes and deletion for enquiries and applications
+// ---------------------------------------------------------------------------
+
+const INBOX_STATUSES = new Set(["new", "read", "replied", "archived"]);
+
+function inboxModel(kind: string) {
+  return kind === "application" ? JobApplicationModel : ContactMessageModel;
+}
+
+export async function setInboxStatusAction(formData: FormData) {
+  await requireAdminSession();
+  const back = getOptionalValue(formData, "back") || "/admin/inbox";
+  await ensureDatabaseForAction(back);
+  const kind = getValue(formData, "kind");
+  const id = getValue(formData, "id");
+  const status = getValue(formData, "status");
+  if (!id || !INBOX_STATUSES.has(status)) redirect(`${back}${back.includes("?") ? "&" : "?"}error=Invalid+request`);
+  await inboxModel(kind).updateOne({ _id: id }, { $set: { status } });
+  revalidatePath("/admin/inbox");
+  revalidatePath("/admin");
+  redirect(back);
+}
+
+export async function deleteInboxItemAction(formData: FormData) {
+  await requireAdminSession();
+  const back = getOptionalValue(formData, "back") || "/admin/inbox";
+  await ensureDatabaseForAction(back);
+  const kind = getValue(formData, "kind");
+  const id = getValue(formData, "id");
+  if (id) await inboxModel(kind).deleteOne({ _id: id });
+  revalidatePath("/admin/inbox");
+  revalidatePath("/admin");
+  const base = back.replace(/([?&])id=[^&]*/, "$1").replace(/[?&]$/, "");
+  redirect(`${base}${base.includes("?") ? "&" : "?"}status=deleted`);
+}

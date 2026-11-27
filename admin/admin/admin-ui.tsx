@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Boxes, BriefcaseBusiness, BriefcaseIcon, ChevronDown, Cpu, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
+import { Boxes, BriefcaseIcon, ChevronDown, Inbox, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
 
 import { PersistentScrollArea } from "@/components/admin/persistent-scroll-area";
+import { LogoutForm } from "@/components/admin/logout-form";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-export const adminCardClassName =
-  "rounded-[28px] border border-sky-100 bg-white shadow-[0_30px_100px_-60px_rgba(8,120,209,0.2)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.88),rgba(2,6,23,0.92))] dark:shadow-[0_30px_100px_-60px_rgba(8,120,209,0.45)]";
+export const adminCardClassName = "rounded-2xl border border-line bg-surface shadow-[0_1px_0_rgba(255,255,255,0.04)_inset,0_10px_30px_-18px_rgba(7,26,51,0.25)]";
 
 type AdminShellProps = {
   children: ReactNode;
@@ -78,166 +79,125 @@ type AdminNavLink =
       children?: never;
     };
 
-// Pages group - site content pages
+// Navigation mirrors the public website structure.
 const pagesLinks: AdminNavChildLink[] = [
   { href: "/admin/home", label: "Home", icon: House },
   { href: "/admin/about", label: "About", icon: Info },
   { href: "/admin/contact", label: "Contact", icon: Mail },
 ];
 
-// Services group - service offerings
 const servicesLinks: AdminNavChildLink[] = [
-  { href: "/admin/expertise", label: "Expertise", icon: Sparkles },
+  { href: "/admin/expertise", label: "Our Expertise", icon: Sparkles },
   { href: "/admin/offshore-developer", label: "Offshore Developer", icon: Globe },
   { href: "/admin/products", label: "Products", icon: Boxes },
   { href: "/admin/technologies", label: "Technologies", icon: Cpu },
 ];
 
-// Resources group - people and content
 const resourceLinks: AdminNavChildLink[] = [
-  { href: "/admin/team", label: "Team", icon: Users },
-  { href: "/admin/interns", label: "Interns & Alumni", icon: UsersRound },
+  { href: "/admin/blogs", label: "Blogs", icon: Newspaper },
   { href: "/admin/portfolio", label: "Portfolio", icon: Shapes },
   { href: "/admin/careers", label: "Careers", icon: BriefcaseIcon },
-  { href: "/admin/blogs", label: "Blogs", icon: Newspaper },
+  { href: "/admin/team", label: "Team", icon: Users },
+  { href: "/admin/interns", label: "Interns & Alumni", icon: UsersRound },
 ];
 
 const adminLinks: AdminNavLink[] = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { section: "Content" },
+  { href: "/admin/inbox", label: "Inbox", icon: Inbox },
+  { section: "Website" },
   { label: "Pages", icon: FileText, children: pagesLinks },
   { label: "Services", icon: Sparkles, children: servicesLinks },
   { label: "Resources", icon: FolderOpen, children: resourceLinks },
   { section: "System" },
-  { href: "/admin/settings", label: "Settings", icon: Settings },
+  { href: "/admin/settings", label: "Site settings", icon: Settings },
 ];
+
+function NavItem({ href, label, Icon, active, small = false }: { href: string; label: string; Icon: typeof Users; active: boolean; small?: boolean }) {
+  return (
+    <Link
+      href={href}
+      scroll={false}
+      aria-current={active ? "page" : undefined}
+      className={`group flex items-center gap-3 rounded-xl ${small ? "px-3 py-2 text-[13px]" : "px-3 py-2.5 text-[14px]"} transition-colors ${
+        active ? "bg-white/10 font-semibold text-white shadow-[inset_3px_0_0_#f0c14b]" : "text-white/65 hover:bg-white/[0.06] hover:text-white"
+      }`}
+    >
+      <Icon className={`${small ? "h-3.5 w-3.5" : "h-4 w-4"} shrink-0 ${active ? "text-[#f6d77a]" : "text-white/45 group-hover:text-white/80"}`} />
+      <span className="truncate">{label}</span>
+    </Link>
+  );
+}
 
 export function AdminShell({ children, title, description, activePath, topActions }: AdminShellProps) {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-canvas text-fg">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(8,120,209,0.14),transparent_32%),radial-gradient(circle_at_top_right,rgba(217,154,25,0.14),transparent_24%)] dark:opacity-100 opacity-50" />
-      <div className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col gap-6 px-4 py-4 sm:px-6 xl:flex-row xl:px-8">
-        <aside className={`${adminCardClassName} shrink-0 xl:sticky xl:top-4 xl:h-[calc(100vh-2rem)] xl:w-80 flex flex-col`}>
-          <div className="flex flex-col gap-8 p-6 flex-1 overflow-hidden">
-            <div className="space-y-4 shrink-0">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-[color:var(--line-gold)] bg-[var(--surface-2)]">
-                  <Image src="/brand/alpixn-emblem.webp" alt="ALPIXN" width={36} height={36} className="h-9 w-9 object-contain" />
-                </span>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-gold-ink">ALPIXN Admin</p>
-                  <h2 className="text-lg font-semibold tracking-[-0.03em] text-slate-900 dark:text-white">Content Control</h2>
-                </div>
-              </div>
-              <p className="text-sm leading-7 text-slate-500 dark:text-slate-400 hidden xl:block">
-                Manage public content, publishing state, media uploads, and page copy from one dashboard.
-              </p>
-            </div>
-
-            <nav className="grid gap-1 overflow-y-auto pr-2 custom-scrollbar">
-              {adminLinks.map((link, index) => {
-                // Handle section headers
-                if (link.section) {
-                  return (
-                    <div key={link.section} className={`px-4 pt-4 pb-2 ${index > 0 ? "mt-2" : ""}`}>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                        {link.section}
-                      </p>
-                    </div>
-                  );
-                }
-
-                const Icon = link.icon!;
-                const childLinks = link.children;
-
-                if (childLinks) {
-                  const activeGroup = childLinks.some((child) => activePath === child.href);
-
-                  return (
-                    <details key={link.label} open={activeGroup} className="group">
-                      <summary
-                        className={
-                          activeGroup
-                            ? "flex cursor-pointer list-none items-center gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 px-4 py-2.5 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50 shadow-[0_18px_40px_-28px_rgba(8,120,209,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(8,120,209,0.8)]"
-                            : "flex cursor-pointer list-none items-center gap-3 rounded-2xl px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
-                        }
-                      >
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span className="flex-1">{link.label}</span>
-                        <ChevronDown className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" />
-                      </summary>
-
-                      <div className="mt-1 grid gap-1 pl-4">
-                        {childLinks.map((child) => {
-                          const ChildIcon = child.icon;
-                          const activeChild = activePath === child.href;
-
-                          return (
-                            <Link
-                              key={child.href}
-                              href={child.href}
-                              scroll={false}
-                              className={
-                                activeChild
-                                  ? "flex items-center gap-3 rounded-xl border border-sky-500/30 bg-sky-500/10 px-4 py-2 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50"
-                                  : "flex items-center gap-3 rounded-xl px-4 py-2 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/8 dark:hover:text-white"
-                              }
-                            >
-                              <ChildIcon className="h-3.5 w-3.5 shrink-0" />
-                              {child.label}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    </details>
-                  );
-                }
-
-                const active = activePath === link.href!;
-
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href!}
-                    scroll={false}
-                    className={
-                      active
-                        ? "flex items-center gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 px-4 py-2.5 text-sm font-semibold text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/12 dark:text-sky-50 shadow-[0_18px_40px_-28px_rgba(8,120,209,0.3)] dark:shadow-[0_18px_40px_-28px_rgba(8,120,209,0.8)] shrink-0"
-                        : "flex items-center gap-3 rounded-2xl px-4 py-2.5 text-sm text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white shrink-0"
-                    }
-                  >
-                    <Icon className="h-4 w-4 shrink-0" />
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
+    <div className="admin-root min-h-screen bg-canvas text-fg lg:pl-[264px]">
+      {/* Sidebar */}
+      <aside className="z-40 flex flex-col bg-[linear-gradient(180deg,#071a33_0%,#040d1c_100%)] text-white lg:fixed lg:inset-y-0 lg:left-0 lg:w-[264px]">
+        <div className="flex items-center gap-3 border-b border-white/10 px-5 py-5">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[0.06] ring-1 ring-[#f6d77a]/30">
+            <Image src="/brand/alpixn-emblem.webp" alt="ALPIXN" width={28} height={28} className="h-7 w-7 object-contain" />
+          </span>
+          <div className="min-w-0">
+            <p className="font-display text-[15px] font-bold leading-tight">ALPIXN CMS</p>
+            <p className="text-[11px] text-white/50">Website content manager</p>
           </div>
-        </aside>
+        </div>
 
-        <section className="min-w-0 flex-1 space-y-6 pb-10">
-          <header className={`${adminCardClassName} overflow-hidden p-6 sm:p-8`}>
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="space-y-4">
-                <span className="inline-flex rounded-full border border-sky-400/20 bg-sky-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-sky-100">
-                  Admin Workspace
-                </span>
-                <div>
-                  <h1 className="text-3xl font-semibold tracking-[-0.04em] text-slate-900 dark:text-white sm:text-4xl">
-                    {title}
-                  </h1>
-                  <p className="mt-3 max-w-3xl text-sm leading-8 text-slate-600 dark:text-slate-300 sm:text-base">
-                    {description}
-                  </p>
-                </div>
-              </div>
-              {topActions ? <div className="flex flex-wrap gap-3">{topActions}</div> : null}
+        <nav aria-label="Admin" className="flex-1 space-y-0.5 overflow-y-auto px-3 py-4 [scrollbar-width:thin]">
+          {adminLinks.map((link) => {
+            if (link.section) {
+              return (
+                <p key={link.section} className="px-3 pb-1.5 pt-5 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                  {link.section}
+                </p>
+              );
+            }
+            const Icon = link.icon!;
+            if (link.children) {
+              const activeGroup = link.children.some((c) => activePath === c.href);
+              return (
+                <details key={link.label} open={activeGroup || undefined} className="group/d">
+                  <summary className={`flex cursor-pointer list-none items-center gap-3 rounded-xl px-3 py-2.5 text-[14px] transition-colors ${activeGroup ? "text-white" : "text-white/65 hover:bg-white/[0.06] hover:text-white"}`}>
+                    <Icon className={`h-4 w-4 shrink-0 ${activeGroup ? "text-[#f6d77a]" : "text-white/45"}`} />
+                    <span className="flex-1">{link.label}</span>
+                    <ChevronDown className="h-4 w-4 shrink-0 text-white/40 transition-transform group-open/d:rotate-180" />
+                  </summary>
+                  <div className="ml-5 mt-0.5 space-y-0.5 border-l border-white/10 pl-2">
+                    {link.children.map((c) => (
+                      <NavItem key={c.href} href={c.href} label={c.label} Icon={c.icon} active={activePath === c.href} small />
+                    ))}
+                  </div>
+                </details>
+              );
+            }
+            return <NavItem key={link.href} href={link.href!} label={link.label!} Icon={Icon} active={activePath === link.href} />;
+          })}
+        </nav>
+
+        <div className="border-t border-white/10 p-3">
+          <Link href="/" target="_blank" className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-white/65 transition-colors hover:bg-white/[0.06] hover:text-white">
+            <ExternalLink className="h-4 w-4 text-white/45" /> View website
+          </Link>
+          <LogoutForm />
+        </div>
+        <div aria-hidden className="h-1 bg-brand-spectrum" />
+      </aside>
+
+      {/* Main */}
+      <div className="min-w-0">
+        <header className="sticky top-0 z-30 border-b border-line bg-[var(--header-bg)] backdrop-blur-xl">
+          <div className="mx-auto flex max-w-[1400px] flex-col gap-3 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+            <div className="min-w-0">
+              <h1 className="truncate font-display text-[20px] font-bold tracking-[-0.02em] text-fg">{title}</h1>
+              <p className="mt-0.5 line-clamp-1 text-[13px] text-fg-muted">{description}</p>
             </div>
-          </header>
-
-          {children}
-        </section>
+            <div className="flex flex-wrap items-center gap-2">
+              {topActions}
+              <ThemeToggle />
+            </div>
+          </div>
+        </header>
+        <main className="admin-main mx-auto max-w-[1400px] space-y-6 px-4 py-6 sm:px-6 lg:px-8">{children}</main>
       </div>
     </div>
   );
@@ -253,25 +213,25 @@ export function AdminSectionCard({
   children: ReactNode;
 }) {
   return (
-    <section className={`${adminCardClassName} p-6 sm:p-8`}>
-      <div className="space-y-2">
-        <h2 className="text-2xl font-semibold tracking-[-0.03em] text-slate-900 dark:text-white">{title}</h2>
-        <p className="max-w-3xl text-sm leading-7 text-slate-500 dark:text-slate-400">{description}</p>
+    <section className={`${adminCardClassName} p-5 sm:p-6`}>
+      <div className="space-y-1 border-b border-line pb-4">
+        <h2 className="font-display text-[16px] font-bold text-fg">{title}</h2>
+        <p className="max-w-3xl text-[13px] leading-relaxed text-fg-muted">{description}</p>
       </div>
-      <div className="mt-6">{children}</div>
+      <div className="mt-5">{children}</div>
     </section>
   );
 }
 
 export function AdminManagerLayout({ sidebar, editor }: AdminManagerLayoutProps) {
-  return <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)] xl:items-start">{sidebar}{editor}</div>;
+  return <div className="grid gap-6 xl:grid-cols-[320px_minmax(0,1fr)] xl:items-start">{sidebar}{editor}</div>;
 }
 
 export function AdminDirectoryList({ children }: { children: ReactNode }) {
   return (
     <PersistentScrollArea
       storageKey="admin-directory-scroll"
-      className="grid gap-3 xl:max-h-[calc(100vh-18rem)] xl:overflow-y-auto xl:pr-2"
+      className="grid gap-2 xl:max-h-[calc(100vh-14rem)] xl:overflow-y-auto xl:pr-1"
     >
       {children}
     </PersistentScrollArea>
@@ -291,26 +251,23 @@ export function AdminRecordLink({
     <Link
       href={href}
       scroll={false}
-      className={
-        active
-          ? "flex items-start gap-4 rounded-[22px] border border-sky-400/30 bg-sky-400/10 px-4 py-4 text-slate-900 dark:text-white"
-          : "flex items-start gap-4 rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-slate-900 dark:text-white transition hover:border-white/16 hover:bg-white/[0.05]"
-      }
+      aria-current={active ? "true" : undefined}
+      className={`flex items-start gap-3 rounded-xl border px-3 py-3 transition-colors ${
+        active ? "border-[#0878d1]/40 bg-[#0878d1]/[0.08]" : "border-line bg-surface hover:border-[#d99a19]/50 hover:bg-surface-2"
+      }`}
     >
       {leading ? (
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-sm font-semibold text-sky-100">
-          {leading}
-        </div>
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface-2 text-[12px] font-semibold text-fg-muted ring-1 ring-line">{leading}</div>
       ) : null}
       <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <h3 className="truncate text-sm font-semibold text-slate-900 dark:text-white">{title}</h3>
-            {subtitle ? <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">{subtitle}</p> : null}
+            <h3 className="truncate text-[13.5px] font-semibold text-fg">{title}</h3>
+            {subtitle ? <p className="mt-0.5 truncate text-[12.5px] text-fg-muted">{subtitle}</p> : null}
           </div>
           {trailing ? <div className="shrink-0">{trailing}</div> : null}
         </div>
-        {meta ? <p className="mt-3 text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">{meta}</p> : null}
+        {meta ? <p className="mt-1.5 text-[11px] uppercase tracking-[0.12em] text-fg-subtle">{meta}</p> : null}
       </div>
     </Link>
   );
@@ -318,9 +275,9 @@ export function AdminRecordLink({
 
 export function AdminField({ label, hint, children, className = "" }: AdminFieldProps) {
   return (
-    <div className={`space-y-2 ${className}`}>
-      <label className="text-sm font-semibold text-slate-900 dark:text-white">{label}</label>
-      {hint ? <p className="text-xs leading-6 text-slate-500 dark:text-slate-400">{hint}</p> : null}
+    <div className={`space-y-1.5 ${className}`}>
+      <label className="block text-[13px] font-semibold text-fg">{label}</label>
+      {hint ? <p className="text-[12px] leading-relaxed text-fg-subtle">{hint}</p> : null}
       {children}
     </div>
   );
@@ -330,7 +287,7 @@ export function AdminInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className={`w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-sky-300/35 ${props.className ?? ""}`}
+      className={`admin-input w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[14px] text-fg outline-none transition placeholder:text-fg-subtle focus:border-[#0878d1] focus:ring-2 focus:ring-[#0878d1]/15 ${props.className ?? ""}`}
     />
   );
 }
@@ -339,7 +296,7 @@ export function AdminTextarea(props: React.TextareaHTMLAttributes<HTMLTextAreaEl
   return (
     <textarea
       {...props}
-      className={`min-h-32 w-full rounded-[18px] border border-white/10 bg-[#0f172a]/80 px-4 py-3 text-sm text-slate-900 dark:text-white outline-none transition placeholder:text-slate-500 focus:border-sky-300/35 ${props.className ?? ""}`}
+      className={`admin-input min-h-28 w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[14px] leading-relaxed text-fg outline-none transition placeholder:text-fg-subtle focus:border-[#0878d1] focus:ring-2 focus:ring-[#0878d1]/15 ${props.className ?? ""}`}
     />
   );
 }
@@ -354,8 +311,8 @@ export function AdminCheckbox({
   defaultChecked?: boolean;
 }) {
   return (
-    <label className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200">
-      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-sky-400" />
+    <label className="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[13.5px] text-fg hover:border-[#d99a19]/50">
+      <input type="checkbox" name={name} defaultChecked={defaultChecked} className="h-4 w-4 accent-[#0878d1]" />
       {label}
     </label>
   );
@@ -363,10 +320,11 @@ export function AdminCheckbox({
 
 export function AdminMetricCard({ label, value, description }: AdminMetricCardProps) {
   return (
-    <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5">
-      <p className="text-xs uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">{label}</p>
-      <p className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-900 dark:text-white">{value}</p>
-      <p className="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{description}</p>
+    <div className={`${adminCardClassName} relative overflow-hidden p-4`}>
+      <span aria-hidden className="absolute inset-x-0 top-0 h-0.5 bg-brand-spectrum opacity-70" />
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-fg-subtle">{label}</p>
+      <p className="mt-2 font-display text-[26px] font-bold leading-none tracking-[-0.02em] text-fg">{value}</p>
+      <p className="mt-2 text-[12.5px] leading-relaxed text-fg-muted">{description}</p>
     </div>
   );
 }
@@ -376,8 +334,8 @@ export function StatusNotice({ tone, message }: StatusNoticeProps) {
     <div
       className={
         tone === "success"
-          ? "rounded-[24px] border border-emerald-400/20 bg-emerald-400/10 px-5 py-4 text-sm text-emerald-50"
-          : "rounded-[24px] border border-rose-400/20 bg-rose-400/10 px-5 py-4 text-sm text-rose-50"
+          ? "rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-[13.5px] font-medium text-emerald-700 dark:text-emerald-300"
+          : "rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-[13.5px] font-medium text-rose-700 dark:text-rose-300"
       }
     >
       {message}

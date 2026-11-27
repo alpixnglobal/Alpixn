@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { PortfolioRichEditor } from "@/components/admin/resources-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminPortfolioPage({ searchParams }: PageProps) {
       activePath="/admin/portfolio"
       title="Portfolio manager"
       description="Control the case study collection, card visuals, tags, and business outcome copy for the public portfolio page."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

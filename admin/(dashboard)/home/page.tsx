@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { saveHomeSettingsAction } from "@/admin/actions/admin-actions";
 import { HomeSettingsRichEditor } from "@/components/admin/home-settings-rich-editor";
-import { LogoutForm } from "@/components/admin/logout-form";
 import { AdminSectionCard, AdminShell, StatusNotice, getAdminFlashMessage } from "@/components/admin/admin-ui";
 import { FormActions } from "@/components/admin/admin-form-helpers";
 import { SubmitButton } from "@/components/admin/submit-button";
@@ -26,7 +25,6 @@ export default async function AdminHomePage({ searchParams }: PageProps) {
       activePath="/admin/home"
       title="Home page manager"
       description="Manage all visible home page section content from one MongoDB-backed admin form while keeping the same frontend design."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

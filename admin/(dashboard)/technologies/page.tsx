@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { TechnologyPageRichEditor } from "@/components/admin/technology-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminTechnologiesPage({ searchParams }: PageProps)
       activePath="/admin/technologies"
       title="Technologies manager"
       description="Manage every section of the public technologies pages from MongoDB while preserving the current design structure."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

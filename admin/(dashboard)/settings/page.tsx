@@ -5,7 +5,6 @@ import { FormActions } from "@/components/admin/admin-form-helpers";
 import { FooterSettingsRichEditor } from "@/components/admin/footer-settings-rich-editor";
 import { SettingsPageCopyFields } from "@/components/admin/entity-forms";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminField,
   AdminInput,
@@ -39,7 +38,6 @@ export default async function AdminSettingsPage({ searchParams }: PageProps) {
       activePath="/admin/settings"
       title="Site settings"
       description="Update shared brand text, newsletter copy, office locations, and the hero/section/CTA content used across every public page."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

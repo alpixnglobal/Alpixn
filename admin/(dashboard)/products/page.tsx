@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, saveProductSettingsAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { ProductEntryRichEditor, ProductSettingsRichEditor } from "@/components/admin/product-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminProductsPage({ searchParams }: PageProps) {
       activePath="/admin/products"
       title="Products manager"
       description="Manage the product dropdown, mobile menu entries, individual product heroes, and the shared public products sections from MongoDB."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

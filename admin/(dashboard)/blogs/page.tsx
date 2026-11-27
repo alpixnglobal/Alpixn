@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { BlogRichEditor } from "@/components/admin/resources-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -45,7 +44,6 @@ export default async function AdminBlogsPage({ searchParams }: PageProps) {
       activePath="/admin/blogs"
       title="Blog manager"
       description="Control featured articles, categories, editorial cards, and uploaded blog cover images."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { TeamRichEditor } from "@/components/admin/resources-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminTeamPage({ searchParams }: PageProps) {
       activePath="/admin/team"
       title="Team manager"
       description="Manage leadership and specialist profiles, bios, ordering, and image uploads for the team page."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

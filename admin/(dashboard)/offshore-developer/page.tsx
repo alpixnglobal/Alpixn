@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, saveOffshoreDeveloperSettingsAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { OffshoreDeveloperPageRichEditor, OffshoreDeveloperSettingsRichEditor } from "@/components/admin/offshore-developer-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminOffshoreDeveloperPage({ searchParams }: PageP
       activePath="/admin/offshore-developer"
       title="Offshore developer manager"
       description="Manage the offshore developer dropdown, mobile navigation, and all offshore developer page sections from MongoDB."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 

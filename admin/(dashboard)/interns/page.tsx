@@ -4,7 +4,6 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { InternRichEditor } from "@/components/admin/resources-rich-editors";
-import { LogoutForm } from "@/components/admin/logout-form";
 import {
   AdminDirectoryList,
   AdminManagerLayout,
@@ -43,7 +42,6 @@ export default async function AdminInternsPage({ searchParams }: PageProps) {
       activePath="/admin/interns"
       title="Interns & alumni manager"
       description="Edit the search-driven internship page, maintain awards and certificate cards, and upload base64 images that are compressed automatically on save."
-      topActions={<LogoutForm />}
     >
       {message ? <StatusNotice tone={message.tone} message={message.message} /> : null}
 
