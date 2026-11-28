@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Activity, BadgeCheck, CalendarClock, FileSignature, MessagesSquare, Megaphone, PlugZap, ScrollText, UserCog, Bot, Boxes, BriefcaseIcon, LockKeyhole, Search, ShieldCheck, Tags, TrendingUp, ChevronDown, Inbox, LayoutTemplate, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
+import { Activity, BadgeCheck, ScrollText, UserCog, Bot, Boxes, BriefcaseIcon, LockKeyhole, Search, ShieldCheck, Tags, TrendingUp, ChevronDown, Inbox, LayoutTemplate, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
 
 import { PersistentScrollArea } from "@/components/admin/persistent-scroll-area";
 import { LogoutForm } from "@/components/admin/logout-form";
@@ -114,11 +114,6 @@ const adminLinks: AdminNavLink[] = [
   { section: "AI sales & marketing" },
   { href: "/admin/growth", label: "AI agents", icon: Activity },
   { href: "/admin/growth/approvals", label: "Approval center", icon: BadgeCheck },
-  { href: "/admin/growth/conversations", label: "Conversations", icon: MessagesSquare },
-  { href: "/admin/growth/meetings", label: "Meetings", icon: CalendarClock },
-  { href: "/admin/growth/proposals", label: "Proposals", icon: FileSignature },
-  { href: "/admin/growth/ads", label: "Ads manager", icon: Megaphone },
-  { href: "/admin/growth/integrations", label: "Integrations", icon: PlugZap },
   { href: "/admin/growth/audit", label: "Audit log", icon: ScrollText },
   { section: "Website" },
   { label: "Pages", icon: FileText, children: pagesLinks },

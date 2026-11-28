@@ -129,14 +129,6 @@ export default async function ApprovalsPage({ searchParams }: { searchParams: Pr
                         </Link>
                       </>
                     ) : null}
-                    {typeof r.payload.conversationId === "string" ? (
-                      <>
-                        {" · "}
-                        <Link href={`/admin/growth/conversations?c=${r.payload.conversationId}`} className="text-[#0878d1] hover:underline">
-                          Conversation
-                        </Link>
-                      </>
-                    ) : null}
                   </p>
                 </div>
               </div>

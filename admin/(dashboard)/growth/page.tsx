@@ -87,7 +87,7 @@ export default async function GrowthPage({ searchParams }: { searchParams: Promi
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-6">
         {[
           ["Waiting for approval", m?.pending, "/admin/growth/approvals"],
-          ["Open conversations", m?.open, "/admin/growth/conversations"],
+          ["Open conversations", m?.open, null],
           ["Messages in (24h)", m?.inbound, null],
           ["AI messages out (24h)", m?.outbound, null],
           ["Jobs in queue", m?.queued, null],
