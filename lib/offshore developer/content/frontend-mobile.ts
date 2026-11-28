@@ -174,7 +174,7 @@ export const frontendRoles: Record<string, OffshoreContent> = {
     build: [
       ["Marketing websites", "Fast, SEO-friendly sites with a headless CMS."],
       ["SaaS applications", "Full-stack apps with auth, billing and dashboards."],
-      ["eCommerce storefronts", "Headless commerce with Shopify or custom back ends."],
+      ["eCommerce storefronts", "Fast storefronts on custom commerce back ends."],
       ["Content platforms", "Blogs, docs and media sites with incremental rendering."],
     ],
     services: [

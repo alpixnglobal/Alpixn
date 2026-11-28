@@ -7,7 +7,7 @@ import Link from "next/link";
 /** Homepage section introducing the project-planning robot. */
 export default function AssistantSection({ catalog }: { catalog: PricingCatalog }) {
   const highlights = catalog.categories
-    .filter((c) => c.packages[0]?.priceFrom && ["website", "mobile-app", "ai-chatbot", "ai-calling", "branding", "social-media", "astrology", "ecommerce"].includes(c.id))
+    .filter((c) => c.packages[0]?.priceFrom && ["web-development", "mobile-app", "custom-software", "ai-chatbot", "ai-calling", "ai-development", "dedicated-team", "branding"].includes(c.id))
     .map((c) => ({ name: c.name, from: c.packages[0].priceFrom, billing: c.packages[0].billing }));
   const steps = [
     { icon: ClipboardList, title: "Tell the robot", text: "Share your idea, features, references and budget in a quick chat." },
@@ -27,7 +27,7 @@ export default function AssistantSection({ catalog }: { catalog: PricingCatalog 
             Plan your project with our <span className="text-brand-spectrum">friendly robot</span>
           </h2>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-fg-muted">
-            Website, app, AI chatbot, AI calling, branding, social media or an astrology platform — tell our assistant what you need and get an estimated budget instantly. We work with every budget.
+            Website, mobile app, custom software, AI chatbot, AI calling, AI development or offshore developers — tell our assistant what you need and get an estimated budget instantly. We work with every budget.
           </p>
           <ol className="mt-8 grid gap-4 sm:grid-cols-3">
             {steps.map((s, i) => (

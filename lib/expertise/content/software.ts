@@ -130,7 +130,7 @@ export const softwareContent: Record<string, ExpertiseContent> = {
     buildIntro: "Examples of integration work.",
     build: [
       ["Custom APIs", "Well-documented REST or GraphQL APIs for your products and partners."],
-      ["SaaS connectors", "Integrations with platforms like Salesforce, HubSpot, SAP, Shopify, Stripe and Twilio."],
+      ["SaaS connectors", "Integrations with platforms like Salesforce, HubSpot, SAP, Stripe, Razorpay and Twilio."],
       ["Legacy system bridges", "Adapters that expose older systems through modern APIs without replacing them."],
       ["AI service integration", "Connecting language models, speech and vision APIs into your existing workflows."],
     ],

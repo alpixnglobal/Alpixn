@@ -45,6 +45,10 @@ function PackageRow({ p, onChange, onRemove }: { p: PricePackage; onChange: (p: 
           <input className={input} value={p.bestFor} onChange={(e) => onChange({ ...p, bestFor: e.target.value })} />
         </label>
         <label className="sm:col-span-3">
+          <span className={label}>Text when price is 0 (e.g. “Price on request”)</span>
+          <input className={input} value={p.priceNote ?? ""} onChange={(e) => onChange({ ...p, priceNote: e.target.value })} />
+        </label>
+        <label className="sm:col-span-3">
           <span className={label}>Recurring cost note (optional)</span>
           <input className={input} value={p.recurring ?? ""} placeholder="e.g. ₹2,999/month platform & AI usage" onChange={(e) => onChange({ ...p, recurring: e.target.value })} />
         </label>
@@ -54,7 +58,7 @@ function PackageRow({ p, onChange, onRemove }: { p: PricePackage; onChange: (p: 
         </label>
       </div>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-[12px] font-semibold text-fg-muted">{p.priceFrom || p.priceTo ? priceLabel(p) : "At actual cost"}</span>
+        <span className="text-[12px] font-semibold text-fg-muted">{priceLabel(p)}</span>
         <button type="button" onClick={onRemove} className="inline-flex items-center gap-1 text-[12px] font-semibold text-red-500">
           <Trash2 className="h-3.5 w-3.5" /> Remove package
         </button>

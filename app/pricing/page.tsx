@@ -60,7 +60,7 @@ export default async function PricingPage() {
                   </h2>
                   <p className="mt-2 text-base leading-relaxed text-fg-muted">{cat.description}</p>
                 </div>
-                {cat.id !== "third-party" ? <EstimateButton service={cat.name} label="Estimate this" variant="ghost" className="shrink-0 !py-2 text-[13.5px]" /> : null}
+                {cat.id !== "third-party" ? <EstimateButton service={cat.name} label={cat.id === "products" ? "Ask for a demo" : "Estimate this"} variant="ghost" className="shrink-0 !py-2 text-[13.5px]" /> : null}
               </div>
 
               <ul className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -70,7 +70,7 @@ export default async function PricingPage() {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.16em]" style={{ color: TIER_TONES[i % 4] === "#071a33" ? undefined : TIER_TONES[i % 4] }}>
                       {p.name}
                     </p>
-                    <p className="mt-2 font-display text-[19px] font-bold text-fg">{p.priceFrom || p.priceTo ? priceLabel(p) : "At actual cost"}</p>
+                    <p className="mt-2 font-display text-[19px] font-bold text-fg">{priceLabel(p)}</p>
                     {p.recurring ? <p className="mt-0.5 text-[12px] text-fg-muted">+ {p.recurring}</p> : null}
                     <p className="mt-2 text-[13px] text-fg-muted">{p.bestFor}</p>
                     <ul className="mt-4 flex-1 space-y-1.5">

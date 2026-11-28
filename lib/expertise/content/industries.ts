@@ -55,7 +55,7 @@ export const industryContent: Record<string, ExpertiseContent> = {
     buildTitle: "Retail solutions",
     buildIntro: "What we build.",
     build: [
-      ["Online stores", "Custom or Shopify-based storefronts and headless commerce."],
+      ["Custom e-commerce platforms", "Online stores built to your requirements — catalogue, cart, payments and order management."],
       ["Shopping apps", "iOS and Android apps with wish lists and push offers."],
       ["POS & ERP integration", "Sync orders, stock and customers across systems."],
       ["Visual AI", "Shelf monitoring, visual search and footfall analytics."],
@@ -68,7 +68,7 @@ export const industryContent: Record<string, ExpertiseContent> = {
     ],
     cta: ["Want to grow online and in-store sales?", "We can help you connect channels, inventory and customer data."],
     faqs: [
-      ["Do you work with Shopify and WooCommerce?", "Yes, as well as headless commerce and custom platforms."],
+      ["Do you build custom e-commerce platforms?", "Yes. We build custom online stores and retail platforms with payments, inventory and order management, designed around your business."],
       ["Can you sync our POS with the online store?", "Yes, through APIs or middleware for real-time stock and orders."],
       ["Can you add product recommendations?", "Yes — from simple rules to machine learning recommendation models."],
       ["Do you build loyalty programs?", "Yes, including points, tiers, coupons and referral features."],

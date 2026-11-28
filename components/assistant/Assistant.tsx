@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Mail, Minus, Phone, RotateCcw, Send, Sparkles, X } from "lucide-react";
 import RobotAvatar from "./RobotAvatar";
-import { formatINR, priceLabel, type PricingCatalog } from "@/lib/pricing/catalog";
+import { formatINR, type PricingCatalog } from "@/lib/pricing/catalog";
 import { computeEstimate, rangeLabel, type Estimate, type EstimateSelection } from "@/lib/pricing/estimate";
 
 /* ---------------- types ---------------- */
@@ -57,7 +57,9 @@ const BUDGETS: { label: string; max: number }[] = [
 const TIMELINES = ["As soon as possible", "Within 1 month", "1–3 months", "3–6 months", "Flexible"];
 const APIS = ["Payment gateway", "WhatsApp", "CRM / ERP", "Google Maps", "SMS / Email", "AI (ChatGPT / Claude)", "Astrology / numerology API", "None", "Not sure"];
 const DOMAIN = ["I already have domain & hosting", "I need domain + hosting", "Not sure"];
-const STORAGE_KEY = "alpixn-assistant-v1";
+const STORAGE_KEY = "alpixn-assistant-v2";
+/** Services where integration / hosting questions don't apply. */
+const NO_TECH_QUESTIONS = ["branding", "social-media", "products", "dedicated-team", "ai-consulting", "ui-ux", "third-party"];
 const OPEN_EVENT = "alpixn:open-assistant";
 
 /** Opens the floating assistant from anywhere (e.g. a "Get an estimate" button). */
@@ -185,13 +187,15 @@ export default function Assistant({ catalog, config }: { catalog: PricingCatalog
             s,
             "tier",
             "Which of these sounds closest to what you need?",
-            [...(cat?.packages ?? []).map((p) => `${p.name} — ${p.priceFrom || p.priceTo ? `from ${formatINR(p.priceFrom)}` : "at actuals"}`), "Not sure — suggest one"]
+            [...(cat?.packages ?? []).map((p) => `${p.name} — ${p.priceFrom || p.priceTo ? `from ${formatINR(p.priceFrom)}` : p.priceNote || "on request"}`), "Not sure — suggest one"]
           );
         case "features":
           return cat?.addOns.length ? ask(s, "features", "Any extras you'd like? Select all that apply, then tap Continue.", cat.addOns.map((a) => a.name)) : guidedPrompt(s, "apis");
         case "apis":
+          if (NO_TECH_QUESTIONS.includes(s.categoryId)) return guidedPrompt(s, "references");
           return ask(s, "apis", "Will you need any third-party services or integrations? (Select all that apply.)", APIS);
         case "domain":
+          if (NO_TECH_QUESTIONS.includes(s.categoryId) || s.categoryId === "hosting") return guidedPrompt(s, "references");
           return ask(s, "domain", "Do you already have a domain and hosting?", DOMAIN);
         case "references":
           return ask(s, "references", "Do you have reference websites, apps or a design style you like? Paste links or describe it — or skip.", ["Skip"]);
@@ -212,7 +216,7 @@ export default function Assistant({ catalog, config }: { catalog: PricingCatalog
     async (s: State) => {
       const selections: EstimateSelection[] = [...s.extraSelections, { packageId: s.packageId, addOnIds: s.addOnIds }];
       if (s.lead.domainHosting.startsWith("I need")) {
-        const hosting = ["mobile-app", "custom-software", "ecommerce", "ai-chatbot", "ai-calling", "ai-automation"].includes(s.categoryId) ? "host-cloud" : "host-basic";
+        const hosting = ["web-starter", "web-business", "astro-site"].includes(s.packageId) ? "host-basic" : "host-cloud";
         selections.push({ packageId: hosting, addOnIds: ["host-domain-com"] });
       }
       const estimate = computeEstimate(catalog, selections);
@@ -223,8 +227,11 @@ export default function Assistant({ catalog, config }: { catalog: PricingCatalog
           ? " Your budget is a little below this range — no problem: we can start with a smaller first phase or a starter package and grow from there."
           : "";
       const apis = s.lead.thirdPartyApis.filter((a) => !["None", "Not sure"].includes(a));
-      const text = `Thanks ${s.lead.name.split(" ")[0]}! Based on what you shared, here is an estimated budget.${fit}${apis.length ? ` Third-party charges (${apis.join(", ")}) are billed at actuals.` : ""} Our team will contact you shortly to discuss details.`;
-      const next: State = { ...s, step: "done", chips: ["Add another service", "Start over"], messages: [...s.messages, { role: "assistant", text, estimate }] };
+      const priced = estimate.lines.length > 0;
+      const text = priced
+        ? `Thanks ${s.lead.name.split(" ")[0]}! Based on what you shared, here is an estimated budget.${fit}${apis.length ? ` Third-party charges (${apis.join(", ")}) are billed at actuals.` : ""} Our team will contact you shortly to discuss details.`
+        : `Thanks ${s.lead.name.split(" ")[0]}! Pricing for this depends on your users and usage, so our team will share the plans with a quick demo. We'll contact you shortly.`;
+      const next: State = { ...s, step: "done", chips: ["Add another service", "Start over"], messages: [...s.messages, { role: "assistant", text, ...(priced ? { estimate } : {}) }] };
       setState(next);
       try {
         await fetch("/api/assistant/lead", {
@@ -571,9 +578,4 @@ export default function Assistant({ catalog, config }: { catalog: PricingCatalog
       ) : null}
     </>
   );
-}
-
-/** Small helper for pricing cards: "From ₹14,999". */
-export function fromLabel(p: Parameters<typeof priceLabel>[0]) {
-  return p.priceFrom || p.priceTo ? priceLabel(p) : "At actual cost";
 }

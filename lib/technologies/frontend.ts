@@ -236,7 +236,7 @@ export const frontendContent: Record<string, TechContent> = {
       ["Business websites", "Fast, SEO-friendly company and product websites."],
       ["Full-stack web apps", "Server components, server actions and APIs in one codebase."],
       ["Headless CMS sites", "Next.js front ends for Sanity, Contentful, Strapi or WordPress."],
-      ["E-commerce storefronts", "Fast product pages with Shopify or custom back ends."],
+      ["E-commerce storefronts", "Fast product pages on a custom commerce back end."],
       ["App Router migration", "Upgrades from the Pages Router with no SEO loss."],
       ["Performance and SEO audits", "Core Web Vitals, metadata and structured data improvements."],
     ],

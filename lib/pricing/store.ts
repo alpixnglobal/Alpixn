@@ -45,7 +45,7 @@ export async function savePricingData(next: Partial<PricingData>) {
   await PricingSettingsModel.updateOne({ key: "pricing" }, { $set: { key: "pricing", data: { ...current, ...next } } }, { upsert: true });
 }
 
-export const getCachedPricingData = unstable_cache(getPricingData, ["pricing-data"], { tags: ["pricing"], revalidate: 3600 });
+export const getCachedPricingData = unstable_cache(getPricingData, ["pricing-data-v2"], { tags: ["pricing"], revalidate: 3600 });
 
 /** Whether the chat robot can use an AI provider right now (cached for 5 minutes). */
 export const getCachedAssistantAiReady = unstable_cache(

@@ -240,7 +240,7 @@ export const backendRoles: Record<string, OffshoreContent> = {
     build: [
       ["Laravel applications", "Web apps, portals and SaaS products."],
       ["REST APIs", "APIs for mobile apps and JavaScript front ends."],
-      ["eCommerce", "WooCommerce, Magento and custom stores."],
+      ["eCommerce platforms", "Custom e-commerce platforms and CMS solutions."],
       ["Custom WordPress", "Themes, plugins and headless WordPress."],
     ],
     services: [

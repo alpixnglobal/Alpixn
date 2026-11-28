@@ -56,6 +56,7 @@ function cleanCatalog(raw: unknown): PricingCatalog {
             bestFor: str(p.bestFor, 200),
             includes: (Array.isArray(p.includes) ? p.includes : []).map((x) => str(x, 160)).filter(Boolean).slice(0, 15),
             ...(str(p.recurring, 160) ? { recurring: str(p.recurring, 160) } : {}),
+            ...(str(p.priceNote, 80) ? { priceNote: str(p.priceNote, 80) } : {}),
           };
         }),
         addOns: (Array.isArray(cat.addOns) ? cat.addOns : []).slice(0, 20).map((rawA, ai) => {

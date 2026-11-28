@@ -20,7 +20,7 @@ export function computeEstimate(catalog: PricingCatalog, selections: EstimateSel
     const p = cat?.packages.find((x) => x.id === sel.packageId);
     if (!cat || !p) continue;
     if (p.priceFrom || p.priceTo) lines.push({ label: `${cat.name} — ${p.name}`, low: p.priceFrom, high: p.priceTo || null, billing: p.billing });
-    else recurringNotes.push(`${p.name}: billed at actuals`);
+    else recurringNotes.push(`${p.name}: ${p.priceNote || "billed at actuals"}`);
     if (p.recurring) recurringNotes.push(`${p.name}: ${p.recurring}`);
     for (const id of sel.addOnIds ?? []) {
       const a = cat.addOns.find((x) => x.id === id);
