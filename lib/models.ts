@@ -1365,3 +1365,68 @@ const chatLeadSchema = new Schema(
 
 export const PricingSettingsModel = (mongoose.models.PricingSettings as GenericModel) || mongoose.model("PricingSettings", pricingSettingsSchema);
 export const ChatLeadModel = (mongoose.models.ChatLead as GenericModel) || mongoose.model("ChatLead", chatLeadSchema);
+
+/* ---------------- Sales CRM ---------------- */
+
+/** A sales lead in the CRM (inbound from the website or added by the team). */
+const salesLeadSchema = new Schema(
+  {
+    name: { type: String, default: "", trim: true },
+    email: { type: String, default: "", trim: true, lowercase: true, index: true },
+    phone: { type: String, default: "", trim: true },
+    company: { type: String, default: "", trim: true },
+    title: { type: String, default: "", trim: true },
+    website: { type: String, default: "", trim: true },
+    country: { type: String, default: "", trim: true },
+    service: { type: String, default: "", trim: true },
+    source: { type: String, default: "manual" },
+    /** "inbound" = the person contacted us; "outbound" = business contact added by the team. */
+    basis: { type: String, default: "inbound" },
+    stage: { type: String, default: "new", index: true },
+    value: { type: Number, default: 0 },
+    score: { type: Number, default: 0 },
+    tags: { type: [String], default: [] },
+    notes: { type: String, default: "" },
+    timeline: { type: [{ at: Date, type: { type: String }, text: String, by: String }], default: [] },
+    nextFollowUpAt: { type: Date, default: null, index: true },
+    lastContactedAt: { type: Date, default: null },
+    unsubscribed: { type: Boolean, default: false },
+    sequence: {
+      id: { type: String, default: "" },
+      step: { type: Number, default: 0 },
+      status: { type: String, default: "" }, // active | paused | finished | stopped
+      nextSendAt: { type: Date, default: null },
+    },
+    inboxRef: { type: String, default: "", index: true },
+  },
+  { timestamps: true }
+);
+
+/** Emails written for leads (drafts awaiting approval, sent, skipped or failed). */
+const salesEmailSchema = new Schema(
+  {
+    leadId: { type: String, required: true, index: true },
+    sequenceId: { type: String, default: "" },
+    step: { type: Number, default: 0 },
+    to: { type: String, default: "" },
+    subject: { type: String, default: "" },
+    body: { type: String, default: "" },
+    status: { type: String, default: "draft", index: true }, // draft | sent | skipped | failed
+    error: { type: String, default: "" },
+    sentAt: { type: Date, default: null },
+  },
+  { timestamps: true }
+);
+
+/** Sales settings, sequences and the daily summary (single document, key "sales"). */
+const salesSettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+export const SalesLeadModel = (mongoose.models.SalesLead as GenericModel) || mongoose.model("SalesLead", salesLeadSchema);
+export const SalesEmailModel = (mongoose.models.SalesEmail as GenericModel) || mongoose.model("SalesEmail", salesEmailSchema);
+export const SalesSettingsModel = (mongoose.models.SalesSettings as GenericModel) || mongoose.model("SalesSettings", salesSettingsSchema);

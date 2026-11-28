@@ -28,6 +28,7 @@ with `--update-env`. Never commit this file.
 | `CRON_SECRET` | Weekly blog autopilot | Long random string |
 | `ANTHROPIC_API_KEY` | Claude (optional here; can be saved in Admin → AI Studio instead) | Key from console.anthropic.com |
 | `OPENAI_API_KEY`, `GEMINI_API_KEY` | Only if ChatGPT / Gemini are used | Provider keys |
+| `SALES_SMTP_HOST`, `SALES_SMTP_PORT`, `SALES_SMTP_USER`, `SALES_SMTP_PASS` | Sales CRM emails (recommended: a separate sending domain) | Falls back to `SMTP_*` if not set |
 
 Create a random secret with: `openssl rand -hex 32`
 
@@ -45,6 +46,12 @@ day; the app itself decides whether today is the day chosen in Admin → AI Stud
 - Calling `127.0.0.1` skips Nginx. The endpoint replies at once (HTTP 202) and writes the article in the background,
   so request timeouts are not a problem.
 - To test once: add `?force=1` to the URL. The result shows under Admin → AI Studio → Recent activity.
+
+Add a second line for the **Sales CRM** (runs every hour: writes/sends due sequence emails and the 9 AM briefing):
+
+```cron
+5 * * * * curl -fsS -m 30 -H "Authorization: Bearer YOUR_CRON_SECRET" http://127.0.0.1:3000/api/cron/sales >/dev/null 2>&1
+```
 
 ## 4. Nginx
 
