@@ -6,6 +6,7 @@ import Header from "@/components/layouts/Header";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { ThemeProvider } from "@/components/theme-provider";
 import Analytics from "@/components/seo/Analytics";
+import ContentProtection from "@/components/seo/ContentProtection";
 import Assistant from "@/components/assistant/Assistant";
 import { getCachedAssistantAiReady, getCachedPricingData } from "@/lib/pricing/store";
 import { getCachedSiteSettings } from "@/lib/content-service";
@@ -105,6 +106,7 @@ export default async function RootLayout({
           {pricing.assistant.enabled ? <Assistant catalog={pricing.catalog} config={{ name: pricing.assistant.name, greeting: pricing.assistant.greeting, mode: aiReady ? "ai" : "guided" }} /> : null}
         </ThemeProvider>
         <Analytics settings={seo} />
+        <ContentProtection copyAttribution={seo.copyAttribution} protectImages={seo.protectImages} disableSelection={seo.disableSelection} />
       </body>
     </html>
   );

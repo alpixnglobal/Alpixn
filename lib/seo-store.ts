@@ -29,6 +29,15 @@ export type SeoSettings = {
   facebookVerification: string;
   /* organization schema */
   organizationSameAs: string[];
+  /* content protection */
+  /** Ask AI training crawlers (GPTBot, CCBot, ClaudeBot, Google-Extended…) not to use the site. Search engines are unaffected. */
+  blockAiCrawlers: boolean;
+  /** Add "Source: alpixn.com/…" to longer copied text. */
+  copyAttribution: boolean;
+  /** Disable right-click and dragging on images. */
+  protectImages: boolean;
+  /** Disable text selection on public pages (hurts accessibility — off by default). */
+  disableSelection: boolean;
 };
 
 export const DEFAULT_SEO_SETTINGS: SeoSettings = {
@@ -54,7 +63,14 @@ export const DEFAULT_SEO_SETTINGS: SeoSettings = {
     "https://x.com/Alpixn",
     "https://youtube.com/@Alpixnglobal",
   ],
+  blockAiCrawlers: true,
+  copyAttribution: true,
+  protectImages: true,
+  disableSelection: false,
 };
+
+/** Crawlers that collect content for AI training. Blocking them does not affect Google or Bing search. */
+export const AI_CRAWLERS = ["GPTBot", "CCBot", "ClaudeBot", "anthropic-ai", "Google-Extended", "Applebot-Extended", "Bytespider", "meta-externalagent", "Diffbot", "Omgilibot", "cohere-ai"];
 
 export type SeoPageOverride = {
   path: string;

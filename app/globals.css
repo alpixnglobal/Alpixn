@@ -1536,3 +1536,7 @@ html.theme-ready section {
 .assistant-antenna { animation: assistant-glow 1.8s ease-in-out infinite; }
 .assistant-bob { animation: assistant-bob 2.6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .assistant-eyes, .assistant-antenna, .assistant-bob { animation: none; } }
+
+/* Optional "disable text selection" content protection (forms stay selectable). */
+body.no-select { -webkit-user-select: none; user-select: none; }
+body.no-select input, body.no-select textarea, body.no-select [contenteditable="true"] { -webkit-user-select: text; user-select: text; }

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 
 import { loginAdminAction } from "@/admin/actions/admin-actions";
 import { getAdminSession } from "@/lib/admin-auth";
+import { isTwoFactorEnabled } from "@/lib/totp";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
   }
 
   const params = await searchParams;
+  const twoFactor = await isTwoFactorEnabled();
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-canvas text-fg">
@@ -38,31 +40,11 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
           <section className="space-y-6">
             <span className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line-gold)] bg-[var(--surface-2)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
               <ShieldCheck className="h-4 w-4" />
-              Admin Website
+              ALPIXN CMS
             </span>
             <div className="space-y-4">
-              <h1 className="max-w-3xl text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-[-0.03em] text-fg">
-                Separate login workspace for managing the full resource website.
-              </h1>
-              <p className="max-w-2xl text-base md:text-lg font-normal leading-relaxed text-fg-muted">
-                Sign in to edit interns, team members, portfolio projects, jobs, blog posts, and site-wide copy. Image uploads are base64 encoded and compressed automatically when files are too large.
-              </p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                "MongoDB-backed dynamic content",
-                "Separate admin routes and protected session",
-                "Base64 image storage with auto compression",
-                "Publish and unpublish content easily",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[24px] border border-line bg-[var(--surface)] px-5 py-4 text-sm md:text-base font-normal leading-relaxed text-fg-muted"
-                >
-                  {item}
-                </div>
-              ))}
+              <h1 className="max-w-3xl text-3xl md:text-4xl font-bold leading-tight tracking-[-0.03em] text-fg">Authorised team members only.</h1>
+              <p className="max-w-xl text-base font-normal leading-relaxed text-fg-muted">This area is protected. Sign-in attempts are limited and monitored.</p>
             </div>
           </section>
 
@@ -74,7 +56,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
               </div>
 
               {params.error ? (
-                <div className="rounded-[22px] border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-50">
+                <div className="rounded-[22px] border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-700 dark:text-rose-200">
                   {decodeURIComponent(params.error)}
                 </div>
               ) : null}
@@ -113,6 +95,25 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
                   </div>
                 </div>
 
+                {twoFactor ? (
+                  <div className="space-y-2">
+                    <label htmlFor="otp" className="text-sm font-semibold text-fg">
+                      Authentication code
+                    </label>
+                    <input
+                      id="otp"
+                      name="otp"
+                      inputMode="numeric"
+                      pattern="[0-9 ]{6,7}"
+                      maxLength={7}
+                      required
+                      placeholder="6-digit code from your authenticator app"
+                      autoComplete="one-time-code"
+                      className="w-full rounded-[18px] border border-line bg-[var(--surface-2)] px-4 py-3 text-sm md:text-base tracking-[0.3em] text-fg outline-none transition placeholder:tracking-normal placeholder:text-fg-subtle focus:border-tech"
+                    />
+                  </div>
+                ) : null}
+
                 <button
                   type="submit"
                   className="btn-brand w-full"
@@ -122,7 +123,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
                 </button>
               </form>
 
-              <Link href="/resources" className="inline-flex items-center gap-2 text-sm md:text-base font-medium leading-snug text-tech transition hover:text-gold">
+              <Link href="/" className="inline-flex items-center gap-2 text-sm md:text-base font-medium leading-snug text-tech transition hover:text-gold">
                 Back to public website
                 <ArrowRight className="h-4 w-4" />
               </Link>

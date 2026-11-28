@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { connectToDatabase } from "@/lib/db";
 import { SeoPageModel, SeoSettingsModel } from "@/lib/models";
-import { DEFAULT_SEO_SETTINGS, SEO_ID_PATTERNS, extractVerificationCode, normalizePath, type SeoSettings } from "@/lib/seo-store";
+import { DEFAULT_SEO_SETTINGS, SEO_ID_PATTERNS, extractVerificationCode, getSeoSettings, normalizePath, type SeoSettings } from "@/lib/seo-store";
 
 const text = (fd: FormData, key: string) => String(fd.get(key) ?? "").trim();
 const list = (value: string) =>
@@ -89,8 +89,10 @@ export async function saveSeoSettingsAction(formData: FormData) {
     return code;
   };
 
+  const current = await getSeoSettings();
   const data: SeoSettings = {
     ...DEFAULT_SEO_SETTINGS,
+    ...current,
     defaultDescription: text(formData, "defaultDescription").slice(0, 300) || DEFAULT_SEO_SETTINGS.defaultDescription,
     defaultOgImage: safeUrl(text(formData, "defaultOgImage")) || DEFAULT_SEO_SETTINGS.defaultOgImage,
     twitterHandle: text(formData, "twitterHandle").slice(0, 40),

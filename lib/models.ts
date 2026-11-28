@@ -1444,3 +1444,14 @@ const spamSettingsSchema = new Schema(
 );
 
 export const SpamSettingsModel = (mongoose.models.SpamSettings as GenericModel) || mongoose.model("SpamSettings", spamSettingsSchema);
+
+/** Admin security settings, e.g. the encrypted two-factor secret (single document, key "security"). */
+const securitySettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+export const SecuritySettingsModel = (mongoose.models.SecuritySettings as GenericModel) || mongoose.model("SecuritySettings", securitySettingsSchema);

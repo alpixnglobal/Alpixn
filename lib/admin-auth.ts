@@ -2,6 +2,7 @@ import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { connectToDatabase } from "@/lib/db";
+import { getTotpSecret, verifyTotp } from "@/lib/totp";
 
 const SESSION_COOKIE_NAME = "axaon-admin-session";
 const SESSION_DURATION_SECONDS = 60 * 60 * 8;
@@ -143,7 +144,7 @@ async function clearLoginAttempts(ip: string) {
   await collection.deleteOne({ _id: key });
 }
 
-export async function signInAdmin(email: string, password: string) {
+export async function signInAdmin(email: string, password: string, otp = "") {
   try {
     const config = getRequiredConfig();
     const ip = await getClientIp();
@@ -155,6 +156,10 @@ export async function signInAdmin(email: string, password: string) {
     const validPassword = safeCompare(password, config.password);
 
     if (!validEmail || !validPassword) return false;
+
+    // Two-factor authentication (authenticator app) when enabled.
+    const totpSecret = await getTotpSecret();
+    if (totpSecret && !verifyTotp(totpSecret, otp)) return false;
 
     await clearLoginAttempts(ip);
 

@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { getCachedSeoSettings } from "@/lib/seo-store";
+import { AI_CRAWLERS, getCachedSeoSettings } from "@/lib/seo-store";
 
 export const revalidate = 3600;
 
@@ -11,7 +11,10 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     return { rules: [{ userAgent: "*", disallow: "/" }] };
   }
   return {
-    rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/api/", ...settings.disallowPaths] }],
+    rules: [
+      { userAgent: "*", allow: "/", disallow: ["/admin", "/api/", ...settings.disallowPaths] },
+      ...(settings.blockAiCrawlers ? [{ userAgent: AI_CRAWLERS, disallow: "/" }] : []),
+    ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
   };

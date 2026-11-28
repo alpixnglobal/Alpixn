@@ -425,11 +425,12 @@ async function ensureDatabaseForAction(errorRedirectPath: string) {
 export async function loginAdminAction(formData: FormData) {
   const email = getValue(formData, "email");
   const password = getValue(formData, "password");
+  const otp = getOptionalValue(formData, "otp") ?? "";
 
-  const success = await signInAdmin(email, password);
+  const success = await signInAdmin(email, password, otp);
 
   if (!success) {
-    redirect("/admin/login?error=Invalid%20email%20or%20password");
+    redirect(`/admin/login?error=${encodeURIComponent("Invalid email, password or authentication code")}`);
   }
 
   redirect("/admin");
