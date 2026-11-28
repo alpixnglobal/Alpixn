@@ -1,12 +1,17 @@
 import PageHero from "@/components/sections/shared/PageHero";
 import { getCachedPageBlock, getCachedSiteSettings } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Privacy Policy | ALPIXN",
   description: "How ALPIXN collects, uses and protects personal information shared through this website.",
   path: "/privacy-policy",
 });
+
+export async function generateMetadata() {
+  return withSeo("/privacy-policy", baseMetadata);
+}
 
 
 export default async function PrivacyPolicyPage() {

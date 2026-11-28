@@ -4,8 +4,9 @@ import { CtaV4, InsightsV4, MarketsV4, ProcessV4, ServicesV4, type CtaContent, t
 import IndustriesTechBand from "@/components/sections/shared/IndustriesTechBand";
 import { getCachedHomeSettings, getCachedPageBlock, getCachedPublishedBlogPosts } from "@/lib/content-service";
 import { organizationJsonLd, pageMetadata, websiteJsonLd } from "@/lib/seo";
+import { getCachedSeoSettings, withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "ALPIXN – AI, Robotics & Software Engineering Company",
   absoluteTitle: true,
   description:
@@ -13,6 +14,10 @@ export const metadata = pageMetadata({
   path: "/",
   image: "/opengraph-image.jpg",
 });
+
+export async function generateMetadata() {
+  return withSeo("/", baseMetadata);
+}
 
 const Home = async () => {
   const [settings, posts, hero, process, markets, cta] = await Promise.all([
@@ -36,7 +41,7 @@ const Home = async () => {
       <MarketsV4 content={markets as unknown as MarketsContent} />
       <InsightsV4 posts={latest} />
       <CtaV4 content={cta as unknown as CtaContent} />
-      <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+      <JsonLd data={[organizationJsonLd((await getCachedSeoSettings()).organizationSameAs), websiteJsonLd()]} />
     </main>
   );
 };

@@ -3,12 +3,17 @@ import ContactStudio from "@/components/contact/ContactStudio";
 import ApplicationStatusToastWrapper from "@/components/sections/job-apply/ApplicationStatusToastWrapper";
 import { getCachedContactSettings, getCachedSiteSettings } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Contact ALPIXN – Start Your Project",
   description: "Talk to ALPIXN about AI, robotics software, web and mobile apps or cloud. Send a project brief, call or email our team, or find the office nearest to you.",
   path: "/contact-us",
 });
+
+export async function generateMetadata() {
+  return withSeo("/contact-us", baseMetadata);
+}
 
 const ContactUsPage = async () => {
   const [settings, site] = await Promise.all([getCachedContactSettings(), getCachedSiteSettings()]);

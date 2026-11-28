@@ -3,12 +3,17 @@ import { ArrowUpRight, BookOpen, Briefcase, FolderKanban, GraduationCap, Users }
 import PageHero from "@/components/sections/shared/PageHero";
 import { Section, tone } from "@/components/ui/v4";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Resources – Blog, Portfolio, Careers & Team | ALPIXN",
   description: "Articles on AI, robotics and software engineering, ALPIXN project work, open roles, our team and internship programme.",
   path: "/resources",
 });
+
+export async function generateMetadata() {
+  return withSeo("/resources", baseMetadata);
+}
 
 const ITEMS = [
   { icon: BookOpen, title: "Blog & Articles", text: "Practical guides on AI, robotics, software engineering and industry technology.", href: "/resources/blogs" },

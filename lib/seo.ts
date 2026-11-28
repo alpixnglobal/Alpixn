@@ -60,8 +60,9 @@ export function toDescription(text: string, max = 155) {
 
 /* ---------------- structured data builders (only describe visible content) ---------------- */
 
-export function organizationJsonLd() {
+export function organizationJsonLd(sameAs: string[] = []) {
   return {
+    ...(sameAs.length ? { sameAs } : {}),
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
@@ -118,5 +119,14 @@ export function articleJsonLd(a: { title: string; description: string; path: str
     author: { "@type": "Organization", name: a.author, url: SITE_URL },
     publisher: { "@id": `${SITE_URL}/#organization` },
     ...(a.tags?.length ? { keywords: a.tags.join(", ") } : {}),
+  };
+}
+
+/** FAQPage schema — only for FAQs that are visible on the page. */
+export function faqJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: f.answer } })),
   };
 }

@@ -5,7 +5,9 @@ import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { ThemeProvider } from "@/components/theme-provider";
+import Analytics from "@/components/seo/Analytics";
 import { getCachedSiteSettings } from "@/lib/content-service";
+import { getCachedSeoSettings } from "@/lib/seo-store";
 
 // Brand typography (ALPIXN brand guidelines): Sora for headings, Inter for body & UI.
 const sora = Sora({
@@ -26,7 +28,7 @@ const siteTitle = "ALPIXN – AI, Robotics & Software Technology Company";
 const siteDescription =
   "ALPIXN is an AI, robotics and software technology company delivering custom software, AI-powered solutions, intelligent automation, scalable web and mobile apps for startups and enterprises.";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: siteTitle,
@@ -49,6 +51,27 @@ export const metadata: Metadata = {
   },
 };
 
+/** Root metadata plus webmaster-tool verification codes managed in Admin → SEO. */
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getCachedSeoSettings();
+  const other: Record<string, string> = {};
+  if (seo.bingVerification) other["msvalidate.01"] = seo.bingVerification;
+  if (seo.pinterestVerification) other["p:domain_verify"] = seo.pinterestVerification;
+  if (seo.facebookVerification) other["facebook-domain-verification"] = seo.facebookVerification;
+  return {
+    ...baseMetadata,
+    description: seo.defaultDescription || siteDescription,
+    openGraph: { ...baseMetadata.openGraph, ...(seo.defaultOgImage ? { images: [seo.defaultOgImage] } : {}) },
+    twitter: { ...baseMetadata.twitter, ...(seo.twitterHandle ? { site: seo.twitterHandle } : {}) },
+    robots: seo.indexSite ? undefined : { index: false, follow: false },
+    verification: {
+      ...(seo.googleVerification ? { google: seo.googleVerification } : {}),
+      ...(seo.yandexVerification ? { yandex: seo.yandexVerification } : {}),
+      ...(Object.keys(other).length ? { other } : {}),
+    },
+  };
+}
+
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: dark)", color: "#040d1c" },
@@ -61,7 +84,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteSettings = await getCachedSiteSettings();
+  const [siteSettings, seo] = await Promise.all([getCachedSiteSettings(), getCachedSeoSettings()]);
 
   return (
     // suppressHydrationWarning: next-themes sets the theme class on <html> before hydration.
@@ -78,6 +101,7 @@ export default async function RootLayout({
             {children}
           </SiteChrome>
         </ThemeProvider>
+        <Analytics settings={seo} />
       </body>
     </html>
   );

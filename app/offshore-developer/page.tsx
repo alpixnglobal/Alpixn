@@ -5,12 +5,17 @@ import CtaBand from "@/components/sections/shared/CtaBand";
 import { Heading, ModelCards, NumberedList, Section, tone } from "@/components/ui/v4";
 import { getCachedOffshoreDeveloperNavigation } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Hire Offshore Developers – Dedicated Remote Engineers | ALPIXN",
   description: "Hire backend, frontend, mobile, AI and DevOps developers from ALPIXN as a dedicated team or to extend your own — vetted engineers who work in your tools and hours.",
   path: "/offshore-developer",
 });
+
+export async function generateMetadata() {
+  return withSeo("/offshore-developer", baseMetadata);
+}
 
 const STEPS = [
   { title: "Share your requirements", description: "Tell us the role, skills, experience level and how long you need support." },

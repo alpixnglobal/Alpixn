@@ -2,12 +2,17 @@ import Link from "next/link";
 import PageHero from "@/components/sections/shared/PageHero";
 import { getCachedPageBlock, getCachedSiteSettings } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Terms and Conditions | ALPIXN",
   description: "The terms that apply when you use the ALPIXN website and its content.",
   path: "/terms-and-conditions",
 });
+
+export async function generateMetadata() {
+  return withSeo("/terms-and-conditions", baseMetadata);
+}
 
 
 export default async function TermsPage() {

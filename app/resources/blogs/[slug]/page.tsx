@@ -14,6 +14,7 @@ import { renderMarkdown } from "@/lib/blog/markdown";
 import { getPublishedBlogPostBySlug, getPublishedBlogPosts } from "@/lib/content-service";
 import { absoluteUrl, articleJsonLd, pageMetadata, toDescription } from "@/lib/seo";
 import { blogArticles } from "@/content/blog";
+import { withSeo } from "@/lib/seo-store";
 
 interface BlogDetailsPageProps {
   params: Promise<{ slug: string }>;
@@ -25,7 +26,7 @@ export function generateStaticParams() {
   return blogArticles.map((a) => ({ slug: a.slug }));
 }
 
-export async function generateMetadata({ params }: BlogDetailsPageProps): Promise<Metadata> {
+async function baseMetadata({ params }: BlogDetailsPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPublishedBlogPostBySlug(slug);
   if (!post) return { title: "Article not found", robots: { index: false } };
@@ -257,3 +258,8 @@ const BlogDetailsPage = async ({ params }: BlogDetailsPageProps) => {
 };
 
 export default BlogDetailsPage;
+
+export async function generateMetadata(props: Parameters<typeof baseMetadata>[0]) {
+  const p = (await props.params) as Record<string, string>;
+  return withSeo(`/resources/blogs/${p.slug}`, await baseMetadata(props));
+}

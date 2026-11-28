@@ -1,42 +1,31 @@
 import Link from "next/link";
 import PageHero from "@/components/sections/shared/PageHero";
-import { getCachedExpertiseNavigation, getCachedOffshoreDeveloperNavigation, getCachedPublishedBlogPosts, getCachedPublishedProducts } from "@/lib/content-service";
 import { pageMetadata } from "@/lib/seo";
-import { TECH_CONTENT } from "@/lib/technologies";
-import { technologyHeroData } from "@/lib/technologyData";
+import { getAllSitePaths } from "@/lib/site-paths";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Sitemap | ALPIXN",
   description: "All pages on the ALPIXN website: services, offshore developers, technologies, products, resources and articles.",
   path: "/sitemap",
 });
 
+export async function generateMetadata() {
+  return withSeo("/sitemap", baseMetadata);
+}
+
 type Group = { title: string; links: { label: string; href: string }[] };
 
 export default async function SitemapPage() {
-  const [expertise, offshore, products, posts] = await Promise.all([getCachedExpertiseNavigation(), getCachedOffshoreDeveloperNavigation(), getCachedPublishedProducts(), getCachedPublishedBlogPosts()]);
-  const groups: Group[] = [
-    { title: "Company", links: [{ label: "Home", href: "/" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact-us" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms and Conditions", href: "/terms-and-conditions" }] },
-    ...expertise.map((c) => ({ title: c.label, links: c.items.map((i) => ({ label: i.label, href: i.href })) })),
-    { title: "Offshore developers", links: [{ label: "Overview", href: "/offshore-developer" }, ...offshore.flatMap((c) => c.items.map((i) => ({ label: i.label, href: i.href })))] },
-    {
-      title: "Technologies",
-      links: [{ label: "Overview", href: "/technologies" }, ...Object.values(technologyHeroData).filter((t) => TECH_CONTENT[t.slug]).map((t) => ({ label: TECH_CONTENT[t.slug].name, href: `/technologies/${t.category}/${t.slug}` }))],
-    },
-    { title: "Products", links: [{ label: "All products", href: "/products" }, ...products.map((p) => ({ label: p.navLabel || p.heroTitle, href: `/products/${p.slug}` }))] },
-    {
-      title: "Resources",
-      links: [
-        { label: "Overview", href: "/resources" },
-        { label: "Blog", href: "/resources/blogs" },
-        { label: "Portfolio", href: "/resources/portfolio" },
-        { label: "Careers", href: "/resources/careers" },
-        { label: "Our Team", href: "/resources/our-team" },
-        { label: "Internship Alumni", href: "/resources/interns-alumni" },
-      ],
-    },
-    { title: "Articles", links: posts.map((p) => ({ label: p.title, href: `/resources/blogs/${p.slug}` })) },
-  ];
+  // Same source as sitemap.xml and the admin SEO manager.
+  const paths = await getAllSitePaths();
+  const groups: Group[] = [];
+  for (const p of paths) {
+    const title = p.group.replace(/^(Expertise|Offshore) · /, "");
+    let g = groups.find((x) => x.title === title);
+    if (!g) groups.push((g = { title, links: [] }));
+    g.links.push({ label: p.label, href: p.path });
+  }
   return (
     <main>
       <PageHero eyebrow="Sitemap" title="Every Page on One Page" description="Find any service, technology, product or article on the ALPIXN website." />

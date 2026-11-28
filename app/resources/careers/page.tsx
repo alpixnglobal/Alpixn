@@ -2,6 +2,16 @@ import CareersHeroSection from "@/components/sections/careers/CareersHeroSection
 import SearchJobsSection from "@/components/sections/careers/SearchJobsSection";
 import ShapeFuturSection from "@/components/sections/careers/ShapeFuturSection";
 import { getCachedPublishedJobs, getCachedSiteSettings, getResourceUiSettings } from "@/lib/content-service";
+import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
+
+export async function generateMetadata() {
+  return withSeo("/resources/careers", pageMetadata({
+    title: "Careers at ALPIXN",
+    description: "Join ALPIXN and work on AI, robotics and software products. See open roles, locations and how to apply.",
+    path: "/resources/careers",
+  }));
+}
 
 const CareersPage = async () => {
   const [jobs, siteSettings, uiSettings] = await Promise.all([getCachedPublishedJobs(), getCachedSiteSettings(), getResourceUiSettings()]);

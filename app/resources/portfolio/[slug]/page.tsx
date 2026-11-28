@@ -12,6 +12,7 @@ import { getPublishedPortfolioProjectBySlug, getPublishedPortfolioProjects } fro
 import { CONCEPT_NOTE, showcaseProjects } from "@/lib/portfolio/showcase";
 import { absoluteUrl, pageMetadata, toDescription } from "@/lib/seo";
 import { toPortfolioCard } from "@/lib/portfolio/cards";
+import { withSeo } from "@/lib/seo-store";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -21,7 +22,7 @@ export function generateStaticParams() {
   return showcaseProjects.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+async function baseMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = await getPublishedPortfolioProjectBySlug(slug);
   if (!p) return { title: "Project not found", robots: { index: false } };
@@ -273,4 +274,9 @@ export default async function PortfolioDetailsPage({ params }: Props) {
       />
     </main>
   );
+}
+
+export async function generateMetadata(props: Parameters<typeof baseMetadata>[0]) {
+  const p = (await props.params) as Record<string, string>;
+  return withSeo(`/resources/portfolio/${p.slug}`, await baseMetadata(props));
 }

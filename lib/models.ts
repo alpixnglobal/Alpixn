@@ -1274,3 +1274,59 @@ const pageBlockSchema = new Schema(
 );
 
 export const PageBlockModel = (mongoose.models.PageBlock as GenericModel) || mongoose.model("PageBlock", pageBlockSchema);
+
+/* ---------------- SEO ---------------- */
+
+/** Site-wide SEO, analytics and webmaster-tool settings (single document, key "seo"). */
+const seoSettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+/** Per-URL SEO overrides managed from the admin. */
+const seoPageSchema = new Schema(
+  {
+    path: { type: String, required: true, unique: true, index: true, trim: true },
+    title: { type: String, default: "", trim: true, maxlength: 200 },
+    description: { type: String, default: "", trim: true, maxlength: 400 },
+    keywords: { type: [String], default: [] },
+    canonical: { type: String, default: "", trim: true },
+    ogImage: { type: String, default: "", trim: true },
+    noindex: { type: Boolean, default: false },
+    excludeFromSitemap: { type: Boolean, default: false },
+  },
+  { timestamps: true }
+);
+
+export const SeoSettingsModel = (mongoose.models.SeoSettings as GenericModel) || mongoose.model("SeoSettings", seoSettingsSchema);
+export const SeoPageModel = (mongoose.models.SeoPage as GenericModel) || mongoose.model("SeoPage", seoPageSchema);
+
+/* ---------------- AI Studio & API access ---------------- */
+
+/** AI providers, blog autopilot settings and run log (single document, key "ai"). API keys are stored encrypted. */
+const aiSettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+/** Tokens that let external tools (Claude, ChatGPT actions, automations) use the CMS API. Only a hash is stored. */
+const apiTokenSchema = new Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    prefix: { type: String, required: true },
+    tokenHash: { type: String, required: true, unique: true, index: true },
+    scopes: { type: [String], default: [] },
+    lastUsedAt: { type: Date, default: null },
+    revoked: { type: Boolean, default: false },
+  },
+  { timestamps: true }
+);
+
+export const AiSettingsModel = (mongoose.models.AiSettings as GenericModel) || mongoose.model("AiSettings", aiSettingsSchema);
+export const ApiTokenModel = (mongoose.models.ApiToken as GenericModel) || mongoose.model("ApiToken", apiTokenSchema);

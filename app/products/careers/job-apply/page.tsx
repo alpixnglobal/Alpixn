@@ -3,6 +3,17 @@ import { notFound } from "next/navigation";
 import JobApplyFormSection from "@/components/sections/job-apply/JobApplyFormSection";
 import JobApplyHeroSection from "@/components/sections/job-apply/JobApplyHeroSection";
 import { getPublishedJobBySlug } from "@/lib/content-service";
+import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
+
+export async function generateMetadata() {
+  return withSeo("/products/careers/job-apply", pageMetadata({
+    title: "Apply for a Job",
+    description: "Apply for an open role at ALPIXN.",
+    path: "/resources/careers/job-apply",
+    index: false,
+  }));
+}
 
 type JobApplyPageProps = {
   searchParams: Promise<{

@@ -9,14 +9,19 @@ import JsonLd from "@/components/seo/JsonLd";
 import { BLOG_CATEGORIES } from "@/lib/blog/types";
 import { getCachedBlogCategories, getCachedPublishedBlogPosts, getCachedPublishedFeaturedBlogPost } from "@/lib/content-service";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Insights on AI, Robotics & Software Engineering",
   description:
     "Practical articles from ALPIXN on AI development, robotics software, custom software, technology stacks and industry solutions — written for decision-makers and engineers.",
   path: "/resources/blogs",
   image: "/opengraph-image.jpg",
 });
+
+export async function generateMetadata() {
+  return withSeo("/resources/blogs", baseMetadata);
+}
 
 type BlogsPageProps = { searchParams: Promise<{ category?: string }> };
 

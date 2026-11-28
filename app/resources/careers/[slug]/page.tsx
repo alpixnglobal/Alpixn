@@ -5,6 +5,7 @@ import JobDetailsSection from "@/components/sections/career-details/JobDetailsSe
 import ShapeFuturSection from "@/components/sections/careers/ShapeFuturSection";
 import { getPublishedJobBySlug, getResourceUiSettings, getSiteSettings } from "@/lib/content-service";
 import ApplicationStatusToastWrapper from "@/components/sections/job-apply/ApplicationStatusToastWrapper";
+import { withSeo } from "@/lib/seo-store";
 
 interface CareersDetailPageProps {
   params: Promise<{
@@ -12,7 +13,7 @@ interface CareersDetailPageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: CareersDetailPageProps): Promise<Metadata> {
+async function baseMetadata({ params }: CareersDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const job = await getPublishedJobBySlug(slug);
 
@@ -75,3 +76,8 @@ const CareerDetails = async ({ params }: CareersDetailPageProps) => {
 };
 
 export default CareerDetails;
+
+export async function generateMetadata(props: Parameters<typeof baseMetadata>[0]) {
+  const p = (await props.params) as Record<string, string>;
+  return withSeo(`/resources/careers/${p.slug}`, await baseMetadata(props));
+}

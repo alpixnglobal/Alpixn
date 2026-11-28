@@ -7,12 +7,17 @@ import { Heading, Section } from "@/components/ui/v4";
 import { TECH_CONTENT, techIcon } from "@/lib/technologies";
 import { technologyHeroData } from "@/lib/technologyData";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Technologies We Use – Backend, Frontend, Mobile & Cloud | ALPIXN",
   description: "The languages, frameworks, mobile toolkits, cloud platforms and business platforms ALPIXN builds with — and what each one is best for.",
   path: "/technologies",
 });
+
+export async function generateMetadata() {
+  return withSeo("/technologies", baseMetadata);
+}
 
 const GROUPS = [
   { key: "backend", title: "Backend & data", text: "APIs, business logic and databases." },

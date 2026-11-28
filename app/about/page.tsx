@@ -10,14 +10,19 @@ import { getCachedPageBlock } from "@/lib/content-service";
 import { FeatureCards, Heading, Section } from "@/components/ui/v4";
 import Reveal from "@/components/ui/Reveal";
 import { organizationJsonLd, pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "About ALPIXN – AI, Robotics & Software Engineering",
   description:
     "Learn what ALPIXN does: custom software, AI solutions, robotics software and intelligent automation for businesses in India, the UAE, the UK, the USA, Australia, Canada and beyond.",
   path: "/about",
   image: "/opengraph-image.jpg",
 });
+
+export async function generateMetadata() {
+  return withSeo("/about", baseMetadata);
+}
 
 const COMMITMENTS = [
   { icon: BadgeCheck, title: "Honest portfolio", text: "Concept projects are labelled as concepts. We only present client work as ours when it is verified and we have permission." },

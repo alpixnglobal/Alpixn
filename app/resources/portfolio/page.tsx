@@ -6,14 +6,19 @@ import CtaBand from "@/components/sections/shared/CtaBand";
 import { toPortfolioCard } from "@/lib/portfolio/cards";
 import { getCachedPublishedPortfolioProjects } from "@/lib/content-service";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
-export const metadata = pageMetadata({
+const baseMetadata = pageMetadata({
   title: "Portfolio: Software, AI & Robotics Concept Projects",
   description:
     "Explore ALPIXN's portfolio of interactive concept projects — booking platforms, SaaS, dashboards, mobile apps, AI and robotics software across industries and international markets.",
   path: "/resources/portfolio",
   image: "/portfolio/robofleet-command-center/desktop.webp",
 });
+
+export async function generateMetadata() {
+  return withSeo("/resources/portfolio", baseMetadata);
+}
 
 
 type Props = { searchParams: Promise<Record<string, string | undefined>> };

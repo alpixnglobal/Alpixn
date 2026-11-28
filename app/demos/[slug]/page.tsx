@@ -5,6 +5,7 @@ import { ArrowLeft, FlaskConical } from "lucide-react";
 import DemoRenderer from "@/components/demos/registry";
 import { CONCEPT_NOTE, showcaseProjects } from "@/lib/portfolio/showcase";
 import { pageMetadata } from "@/lib/seo";
+import { withSeo } from "@/lib/seo-store";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -12,7 +13,7 @@ export function generateStaticParams() {
   return showcaseProjects.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+async function baseMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = showcaseProjects.find((x) => x.slug === slug);
   if (!p) return { title: "Demo not found", robots: { index: false } };
@@ -53,4 +54,9 @@ export default async function DemoPage({ params }: Props) {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata(props: Parameters<typeof baseMetadata>[0]) {
+  const p = (await props.params) as Record<string, string>;
+  return withSeo(`/demos/${p.slug}`, await baseMetadata(props));
 }
