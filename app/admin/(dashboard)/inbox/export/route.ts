@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 const cell = (v: string) => `"${(v ?? "").replace(/"/g, '""').replace(/\r?\n/g, " ")}"`;
 
 export async function GET(request: Request) {
-  await requireAdminSession();
+  await requireAdminSession("inbox");
   const type = new URL(request.url).searchParams.get("type");
   const items = (await getAdminInbox()).filter((i) => !type || i.kind === type);
   const header = ["Date", "Type", "Status", "Name", "Email", "Phone", "Subject", "Message", "Details"];

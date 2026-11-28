@@ -13,7 +13,8 @@ import {
   saveProviderAction,
   testProviderAction,
 } from "@/admin/actions/ai-actions";
-import { AdminField, AdminInput, AdminShell, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { getAiSettings, providerKeyStatus } from "@/lib/ai/settings";
 import { API_SCOPES, listApiTokens } from "@/lib/api-auth";

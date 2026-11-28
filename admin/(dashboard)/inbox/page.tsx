@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ShieldAlert, Archive, BriefcaseBusiness, Download, ExternalLink, Inbox, Mail, MailOpen, Phone, Reply, Search, Trash2, UserRoundSearch } from "lucide-react";
 
 import { deleteInboxItemAction, setInboxStatusAction } from "@/admin/actions/admin-actions";
-import { AdminShell, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { getAdminInbox, type InboxItem, type InboxKind } from "@/lib/content-service";
 import { blockSenderAction } from "@/admin/actions/spam-actions";
 

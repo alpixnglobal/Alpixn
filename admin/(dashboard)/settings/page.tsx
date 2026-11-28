@@ -5,15 +5,8 @@ import { FormActions } from "@/components/admin/admin-form-helpers";
 import { FooterSettingsRichEditor } from "@/components/admin/footer-settings-rich-editor";
 import { SettingsPageCopyFields } from "@/components/admin/entity-forms";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
-import {
-  AdminField,
-  AdminInput,
-  AdminSectionCard,
-  AdminShell,
-  AdminTextarea,
-  StatusNotice,
-  getAdminFlashMessage,
-} from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminSectionCard, AdminTextarea, StatusNotice, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { getResourceUiSettings, getSiteSettings } from "@/lib/content-service";
 

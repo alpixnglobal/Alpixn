@@ -48,10 +48,11 @@ day; the app itself decides whether today is the day chosen in Admin → AI Stud
   so request timeouts are not a problem.
 - To test once: add `?force=1` to the URL. The result shows under Admin → AI Studio → Recent activity.
 
-Add a second line for the **Sales CRM** (runs every hour: writes/sends due sequence emails and the 9 AM briefing):
+Add the **Sales CRM** line (every hour: sequence emails and the 9 AM briefing) and the **AI agents** line (every 5 minutes: runs the agents' job queue — replies, follow-ups, reminders, ads checks):
 
 ```cron
 5 * * * * curl -fsS -m 30 -H "Authorization: Bearer YOUR_CRON_SECRET" http://127.0.0.1:3000/api/cron/sales >/dev/null 2>&1
+*/5 * * * * curl -fsS -m 30 -H "Authorization: Bearer YOUR_CRON_SECRET" http://127.0.0.1:3000/api/cron/agents >/dev/null 2>&1
 ```
 
 ## 4. Nginx

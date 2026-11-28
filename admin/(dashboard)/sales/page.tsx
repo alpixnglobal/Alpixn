@@ -18,7 +18,8 @@ import {
   updateLeadAction,
   writeDueEmailsAction,
 } from "@/admin/actions/sales-actions";
-import { AdminField, AdminInput, AdminShell, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { SequencesEditor } from "@/components/admin/sequences-editor";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { getAiSettings } from "@/lib/ai/settings";

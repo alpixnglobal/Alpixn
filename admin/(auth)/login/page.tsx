@@ -10,6 +10,19 @@ import { isTwoFactorEnabled } from "@/lib/totp";
 
 export const dynamic = "force-dynamic";
 
+/** Show the code field when any team member uses 2FA (members without it leave it empty). */
+async function anyMemberTwoFactor() {
+  if (!process.env.MONGODB_URI) return false;
+  try {
+    const { connectToDatabase } = await import("@/lib/db");
+    const { AdminUserModel } = await import("@/lib/growth/models");
+    await connectToDatabase();
+    return Boolean(await AdminUserModel.exists({ active: true, totpSecretEnc: { $nin: ["", null] } }));
+  } catch {
+    return false;
+  }
+}
+
 export const metadata: Metadata = {
   title: "Admin Login",
 };
@@ -30,7 +43,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
   }
 
   const params = await searchParams;
-  const twoFactor = await isTwoFactorEnabled();
+  const twoFactor = (await isTwoFactorEnabled()) || (await anyMemberTwoFactor());
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-canvas text-fg">
@@ -106,8 +119,7 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
                       inputMode="numeric"
                       pattern="[0-9 ]{6,7}"
                       maxLength={7}
-                      required
-                      placeholder="6-digit code from your authenticator app"
+                      placeholder="6-digit code (if two-factor login is on)"
                       autoComplete="one-time-code"
                       className="w-full rounded-[18px] border border-line bg-[var(--surface-2)] px-4 py-3 text-sm md:text-base tracking-[0.3em] text-fg outline-none transition placeholder:tracking-normal placeholder:text-fg-subtle focus:border-tech"
                     />

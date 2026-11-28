@@ -3,7 +3,8 @@ import QRCode from "qrcode";
 import { CheckCircle2, CircleAlert, KeyRound, Lock, Save, ShieldCheck, Smartphone } from "lucide-react";
 
 import { disableTwoFactorAction, enableTwoFactorAction, saveContentProtectionAction, startTwoFactorSetupAction } from "@/admin/actions/security-actions";
-import { AdminField, AdminInput, AdminShell, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { decryptSecret } from "@/lib/ai/crypto";
 import { getAdminSession } from "@/lib/admin-auth";
 import { connectToDatabase } from "@/lib/db";

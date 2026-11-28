@@ -69,7 +69,7 @@ function cleanCatalog(raw: unknown): PricingCatalog {
 }
 
 export async function saveCatalogAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("pricing");
   const back = "/admin/pricing?tab=prices";
   let parsed: unknown;
   try {
@@ -85,14 +85,14 @@ export async function saveCatalogAction(formData: FormData) {
 }
 
 export async function resetCatalogAction() {
-  await requireAdminSession();
+  await requireAdminSession("pricing");
   await save({ catalog: DEFAULT_CATALOG }, "/admin/pricing?tab=prices");
   refresh();
   redirect("/admin/pricing?tab=prices&status=saved");
 }
 
 export async function saveAssistantSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("pricing");
   const back = "/admin/pricing?tab=assistant";
   const mode = text(formData, "mode");
   const assistant: AssistantSettings = {

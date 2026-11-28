@@ -25,7 +25,7 @@ async function db(tab: string) {
 }
 
 export async function saveProviderAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("providers");
   const id = text(formData, "id");
   const settings = await getAiSettings();
@@ -54,7 +54,7 @@ export async function saveProviderAction(formData: FormData) {
 }
 
 export async function addProviderAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("providers");
   const settings = await getAiSettings();
   const label = text(formData, "label");
@@ -77,7 +77,7 @@ export async function addProviderAction(formData: FormData) {
 }
 
 export async function removeProviderAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("providers");
   const id = text(formData, "id");
   const settings = await getAiSettings();
@@ -87,7 +87,7 @@ export async function removeProviderAction(formData: FormData) {
 }
 
 export async function testProviderAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("providers");
   const settings = await getAiSettings();
   const provider = settings.providers.find((p) => p.id === text(formData, "id"));
@@ -101,7 +101,7 @@ export async function testProviderAction(formData: FormData) {
 }
 
 export async function saveAutopilotAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("autopilot");
   const settings = await getAiSettings();
   const day = Number(text(formData, "dayOfWeek"));
@@ -127,7 +127,7 @@ export async function saveAutopilotAction(formData: FormData) {
 }
 
 export async function generateNowAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("autopilot");
   const opts = {
     trigger: "manual" as const,
@@ -147,7 +147,7 @@ export async function generateNowAction(formData: FormData) {
 }
 
 export async function createApiTokenAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("api");
   const name = text(formData, "name").slice(0, 60);
   const allowed = new Set(API_SCOPES.map((s) => s.key));
@@ -161,7 +161,7 @@ export async function createApiTokenAction(formData: FormData) {
 }
 
 export async function revokeApiTokenAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("ai");
   await db("api");
   await ApiTokenModel.updateOne({ _id: text(formData, "id") }, { $set: { revoked: true } });
   redirect(back("api", "&status=saved"));

@@ -442,7 +442,7 @@ export async function logoutAdminAction() {
 }
 
 export async function upsertEntityAction(entityType: EntityType, returnPath: string, formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction(returnPath);
 
   const id = getOptionalValue(formData, "id");
@@ -922,7 +922,7 @@ export async function upsertEntityAction(entityType: EntityType, returnPath: str
 }
 
 export async function deleteEntityAction(entityType: EntityType, returnPath: string, formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction(returnPath);
 
   const id = getValue(formData, "id");
@@ -1034,7 +1034,7 @@ function getPageCopyPayload(formData: FormData, prefix: string) {
 }
 
 export async function saveSiteSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("settings");
   await ensureDatabaseForAction("/admin/settings");
 
   const footerColumns = parseJsonField(formData, "footerColumns", []);
@@ -1088,7 +1088,7 @@ export async function saveSiteSettingsAction(formData: FormData) {
 }
 
 export async function saveProductSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/products");
 
   const [featureCards, audienceCards] = await Promise.all([
@@ -1138,7 +1138,7 @@ export async function saveProductSettingsAction(formData: FormData) {
 }
 
 export async function saveOffshoreDeveloperSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/offshore-developer");
 
   // Process nested images
@@ -1177,7 +1177,7 @@ export async function saveOffshoreDeveloperSettingsAction(formData: FormData) {
 }
 
 export async function saveExpertiseSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/expertise");
 
   // Process nested images
@@ -1216,7 +1216,7 @@ export async function saveExpertiseSettingsAction(formData: FormData) {
 }
 
 export async function saveHomeSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/home");
 
   // Process nested images in arrays
@@ -1280,7 +1280,7 @@ export async function saveHomeSettingsAction(formData: FormData) {
 }
 
 export async function saveAboutSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/about");
 
   // Process images in arrays
@@ -1434,7 +1434,7 @@ export async function submitJobApplicationAction(jobSlug: string, formData: Form
 
 
 export async function saveContactSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/contact");
 
   // Parse global offices from JSON fields
@@ -1491,7 +1491,7 @@ export async function saveContactSettingsAction(formData: FormData) {
 }
 
 export async function saveResourceUiSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   await ensureDatabaseForAction("/admin/settings");
 
   await ResourceUiSettingsModel.updateOne(
@@ -1716,7 +1716,7 @@ function inboxModel(kind: string) {
 }
 
 export async function setInboxStatusAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("inbox");
   const back = getOptionalValue(formData, "back") || "/admin/inbox";
   await ensureDatabaseForAction(back);
   const kind = getValue(formData, "kind");
@@ -1730,7 +1730,7 @@ export async function setInboxStatusAction(formData: FormData) {
 }
 
 export async function deleteInboxItemAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("inbox");
   const back = getOptionalValue(formData, "back") || "/admin/inbox";
   await ensureDatabaseForAction(back);
   const kind = getValue(formData, "kind");
@@ -1766,7 +1766,7 @@ function sanitiseBlockValue(def: BlockDef, raw: unknown) {
 }
 
 export async function savePageBlockAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   const key = getValue(formData, "key");
   const back = `/admin/content?block=${encodeURIComponent(key)}`;
   await ensureDatabaseForAction(back);
@@ -1786,7 +1786,7 @@ export async function savePageBlockAction(formData: FormData) {
 }
 
 export async function resetPageBlockAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("content");
   const key = getValue(formData, "key");
   const back = `/admin/content?block=${encodeURIComponent(key)}`;
   await ensureDatabaseForAction(back);

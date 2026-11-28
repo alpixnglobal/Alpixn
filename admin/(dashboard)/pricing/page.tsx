@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Bot, ExternalLink, Inbox, RotateCcw, Save, Tags } from "lucide-react";
 
 import { resetCatalogAction, saveAssistantSettingsAction, saveCatalogAction } from "@/admin/actions/pricing-actions";
-import { AdminField, AdminInput, AdminShell, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { PricingEditor } from "@/components/admin/pricing-editor";
 import { getAiSettings, providerKeyStatus } from "@/lib/ai/settings";
 import { getPricingData } from "@/lib/pricing/store";

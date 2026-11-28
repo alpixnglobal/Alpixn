@@ -4,16 +4,8 @@ import Link from "next/link";
 import { deleteEntityAction, upsertEntityAction } from "@/admin/actions/admin-actions";
 import { FormActions, FormGrid } from "@/components/admin/admin-form-helpers";
 import { PortfolioRichEditor } from "@/components/admin/resources-rich-editors";
-import {
-  AdminDirectoryList,
-  AdminManagerLayout,
-  AdminMetricCard,
-  AdminRecordLink,
-  AdminSectionCard,
-  AdminShell,
-  StatusNotice,
-  getAdminFlashMessage,
-} from "@/components/admin/admin-ui";
+import { AdminDirectoryList, AdminManagerLayout, AdminMetricCard, AdminRecordLink, AdminSectionCard, StatusNotice, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { SubmitButton } from "@/components/admin/submit-button";
 import { getAdminPortfolioProjects } from "@/lib/content-service";
 

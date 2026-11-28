@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, FileText, Sparkles, FolderOpen, Settings, House, Info, Globe, Boxes, Cpu, Users, UsersRound, Shapes, BriefcaseIcon, Newspaper, Mail } from "lucide-react";
 
-import { AdminMetricCard, AdminShell, adminCardClassName } from "@/components/admin/admin-ui";
+import { AdminMetricCard, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
+import { requireAdminSession } from "@/lib/admin-auth";
+import { pendingApprovalCount } from "@/lib/growth/approvals";
+import { can, canView } from "@/lib/rbac";
 import { getAdminInbox, getAdminOverview } from "@/lib/content-service";
 
 export const metadata: Metadata = {
@@ -150,8 +154,18 @@ const KIND: Record<string, { label: string; c: string }> = {
   application: { label: "Application", c: "#9a5b08" },
 };
 
-export default async function AdminDashboardPage() {
-  const [{ stats }, inbox] = await Promise.all([getAdminOverview(), getAdminInbox()]);
+export default async function AdminDashboardPage({ searchParams }: { searchParams: Promise<{ status?: string; error?: string }> }) {
+  const p = await searchParams;
+  const flash = getAdminFlashMessage(p.status, p.error);
+  const session = await requireAdminSession();
+  // Visitor messages are personal data: only roles with inbox access see them here.
+  const showInbox = canView(session.role, "inbox");
+  const showContent = can(session.role, "content");
+  const [{ stats }, inbox, pending] = await Promise.all([
+    getAdminOverview(),
+    showInbox ? getAdminInbox() : Promise.resolve([] as Awaited<ReturnType<typeof getAdminInbox>>),
+    canView(session.role, "approvals") ? pendingApprovalCount() : Promise.resolve(0),
+  ]);
   const open = inbox.filter((i) => i.status !== "archived");
   const newCount = inbox.filter((i) => i.status === "new").length;
   const thisWeek = countSince(inbox, 7);
@@ -159,7 +173,15 @@ export default async function AdminDashboardPage() {
 
   return (
     <AdminShell activePath="/admin" title="Dashboard" description="An overview of your website content and the latest messages from visitors.">
+      {flash ? <StatusNotice tone={flash.tone} message={flash.message} /> : null}
+      {pending ? (
+        <Link href="/admin/growth/approvals" className="flex items-center justify-between rounded-2xl border border-[#d99a19]/40 bg-[#d99a19]/10 px-5 py-3 text-[14px] font-semibold text-fg hover:border-[#d99a19]">
+          <span>{pending} AI action{pending === 1 ? "" : "s"} waiting for your approval</span>
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      ) : null}
       {/* Highlights */}
+      {showInbox ? (
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Link href="/admin/inbox?status=new" className="relative overflow-hidden rounded-2xl bg-[linear-gradient(150deg,#071a33,#064a87_80%,#0878d1_130%)] p-5 text-white shadow-[0_20px_40px_-24px_rgba(7,26,51,0.7)]">
           <span aria-hidden className="absolute inset-x-0 bottom-0 h-1 bg-brand-spectrum" />
@@ -171,9 +193,11 @@ export default async function AdminDashboardPage() {
         <AdminMetricCard label="Open applications" value={String(applications)} description="Job applications not archived." />
         <AdminMetricCard label="Published content" value={String(stats.blogs + stats.portfolio)} description={`${stats.blogs} articles · ${stats.portfolio} portfolio projects`} />
       </section>
+      ) : null}
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         {/* Recent inbox */}
+        {showInbox ? (
         <section className={`${adminCardClassName} overflow-hidden`}>
           <div className="flex items-center justify-between border-b border-line px-5 py-4">
             <div>
@@ -202,8 +226,10 @@ export default async function AdminDashboardPage() {
             {!open.length ? <li className="px-5 py-12 text-center text-[13px] text-fg-muted">No messages yet. New form submissions will appear here.</li> : null}
           </ul>
         </section>
+        ) : null}
 
         {/* Content counts */}
+        {showContent ? (
         <section className={`${adminCardClassName} p-5`}>
           <h2 className="font-display text-[16px] font-bold text-fg">Website content</h2>
           <p className="text-[12.5px] text-fg-muted">Items managed in the CMS</p>
@@ -231,9 +257,11 @@ export default async function AdminDashboardPage() {
             })}
           </ul>
         </section>
+        ) : null}
       </div>
 
       {/* Quick edit */}
+      {showContent ? (
       <section className="space-y-3">
         <h2 className="px-1 font-display text-[16px] font-bold text-fg">Edit your website</h2>
         <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
@@ -259,6 +287,7 @@ export default async function AdminDashboardPage() {
           ))}
         </div>
       </section>
+      ) : null}
     </AdminShell>
   );
 }

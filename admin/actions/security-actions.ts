@@ -13,7 +13,7 @@ const back = (q: string) => redirect(`/admin/security?${q}`);
 const err = (m: string) => back(`error=${encodeURIComponent(m)}`);
 
 async function db() {
-  await requireAdminSession();
+  await requireAdminSession("security");
   try {
     await connectToDatabase();
   } catch {

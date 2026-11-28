@@ -1401,6 +1401,22 @@ const salesLeadSchema = new Schema(
       nextSendAt: { type: Date, default: null },
     },
     inboxRef: { type: String, default: "", index: true },
+    /* unified channels */
+    whatsappId: { type: String, default: "", index: true },
+    instagramId: { type: String, default: "", index: true },
+    messengerId: { type: String, default: "", index: true },
+    /** Per-channel consent: { email|whatsapp|instagram|messenger: { status: "opted_in"|"opted_out"|"unknown", at, source } } */
+    consent: { type: Schema.Types.Mixed, default: {} },
+    /** Where the lead came from: { source, campaignId, adsetId, adId, formId, ctwaClid, referralUrl } */
+    attribution: { type: Schema.Types.Mixed, default: {} },
+    /** AI qualification: { budget, timeline, requirements, authority, need, intent: 0-100, signals[], segment, summary, updatedAt } */
+    intel: { type: Schema.Types.Mixed, default: {} },
+    priority: { type: String, default: "normal" }, // low | normal | high | hot
+    owner: { type: String, default: "" },
+    /** Deal status is only set to "won" after a human confirms. */
+    deal: { type: Schema.Types.Mixed, default: {} }, // { status: open|won|lost, amount, wonAt, confirmedBy, lostReason }
+    onboarding: { type: Schema.Types.Mixed, default: {} }, // { startedAt, checklist: [{ item, done }] }
+    lastInboundAt: { type: Date, default: null },
   },
   { timestamps: true }
 );

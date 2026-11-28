@@ -16,7 +16,7 @@ const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 const DAY = 864e5;
 
 async function db(tab: string) {
-  await requireAdminSession();
+  await requireAdminSession("sales");
   try {
     await connectToDatabase();
   } catch {

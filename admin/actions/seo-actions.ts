@@ -42,7 +42,7 @@ function refresh(path?: string) {
 }
 
 export async function saveSeoPageAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("seo");
   const path = normalizePath(text(formData, "path"));
   const back = `/admin/seo?path=${encodeURIComponent(path)}`;
   await db(back);
@@ -62,7 +62,7 @@ export async function saveSeoPageAction(formData: FormData) {
 }
 
 export async function resetSeoPageAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("seo");
   const path = normalizePath(text(formData, "path"));
   const back = `/admin/seo?path=${encodeURIComponent(path)}`;
   await db(back);
@@ -72,7 +72,7 @@ export async function resetSeoPageAction(formData: FormData) {
 }
 
 export async function saveSeoSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("seo");
   const back = "/admin/seo?tab=settings";
   await db(back);
 

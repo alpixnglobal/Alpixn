@@ -3,7 +3,8 @@ import Link from "next/link";
 import { CheckCircle2, CircleAlert, Save, ShieldCheck } from "lucide-react";
 
 import { saveSpamSettingsAction } from "@/admin/actions/spam-actions";
-import { AdminField, AdminInput, AdminShell, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { connectToDatabase } from "@/lib/db";
 import { ChatLeadModel, ContactMessageModel, JobApplicationModel } from "@/lib/models";
 import { getSpamSettings } from "@/lib/spam";

@@ -4,7 +4,8 @@ import { ExternalLink, RotateCcw, Save } from "lucide-react";
 
 import { resetPageBlockAction, savePageBlockAction } from "@/admin/actions/admin-actions";
 import BlockEditor from "@/components/admin/cms/BlockEditor";
-import { AdminShell, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { BLOCKS, BLOCK_MAP } from "@/lib/cms/blocks";
 import { getPageBlock } from "@/lib/content-service";
 

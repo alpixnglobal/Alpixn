@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ExternalLink, FileSearch, Globe, RotateCcw, Save, Search } from "lucide-react";
 
 import { resetSeoPageAction, saveSeoPageAction, saveSeoSettingsAction } from "@/admin/actions/seo-actions";
-import { AdminField, AdminInput, AdminShell, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminField, AdminInput, AdminTextarea, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { SeoPageEditor } from "@/components/admin/seo-page-editor";
 import { SITE_URL } from "@/lib/seo";
 import { getSeoPageOverrides, getSeoSettings, normalizePath } from "@/lib/seo-store";

@@ -21,7 +21,7 @@ async function save(data: Parameters<typeof saveSpamSettings>[0], back: string) 
 }
 
 export async function saveSpamSettingsAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("spam");
   const threshold = Number(formData.get("threshold"));
   await save(
     {
@@ -41,7 +41,7 @@ export async function saveSpamSettingsAction(formData: FormData) {
 
 /** Adds the sender's email to the blocklist (used from the Inbox). */
 export async function blockSenderAction(formData: FormData) {
-  await requireAdminSession();
+  await requireAdminSession("spam");
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const back = String(formData.get("back") ?? "/admin/inbox");
   if (email) {
