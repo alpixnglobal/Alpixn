@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { requireApiScope } from "@/lib/api-auth";
-import { generateBlogPost } from "@/lib/ai/blog-writer";
+import { canRunInBackground, generateBlogPost, startBlogPostInBackground } from "@/lib/ai/blog-writer";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300;
@@ -16,6 +16,10 @@ export async function POST(request: Request) {
   if (parsed.data.publish) {
     const canPublish = await requireApiScope(request, "blogs:publish");
     if (!canPublish.ok) return canPublish.response;
+  }
+  if (canRunInBackground()) {
+    const started = await startBlogPostInBackground({ trigger: "api", topic: parsed.data.topic, publish: parsed.data.publish });
+    return Response.json({ ...started, note: started.started ? "Writing in the background. Check GET /api/v1/blogs?status=all in a few minutes." : undefined }, { status: started.started ? 202 : 409 });
   }
   const result = await generateBlogPost({ trigger: "api", topic: parsed.data.topic, publish: parsed.data.publish });
   return Response.json(result, { status: result.ok ? 201 : 422 });

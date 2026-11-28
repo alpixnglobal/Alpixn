@@ -1,4 +1,5 @@
 import { revalidatePath, revalidateTag } from "next/cache";
+import { after } from "next/server";
 import { z } from "zod";
 import { BLOG_CATEGORIES, EDITORIAL_AUTHOR, countWords, readingTime } from "@/lib/blog/types";
 import { createSlugForModel } from "@/lib/content-service";
@@ -102,7 +103,46 @@ export type GenerateResult = { ok: true; slug: string; title: string; published:
  * Writes one new blog article with the configured AI provider, checks it for originality against
  * every existing article, and saves it as a draft (or publishes it, per AI Studio settings).
  */
-export async function generateBlogPost(opts: { trigger: AiRunLog["trigger"]; topic?: string; publish?: boolean; providerId?: string }): Promise<GenerateResult> {
+type GenerateOptions = { trigger: AiRunLog["trigger"]; topic?: string; publish?: boolean; providerId?: string };
+
+const LOCK_MS = 15 * 60 * 1000;
+
+/** True on hosts that keep the Node process running after a response (AWS EC2 + PM2, Docker, etc.). */
+export const canRunInBackground = () => !process.env.VERCEL;
+
+export async function isGenerationRunning() {
+  const s = await getAiSettings();
+  return Boolean(s.runningSince && Date.now() - Date.parse(s.runningSince) < LOCK_MS);
+}
+
+/**
+ * Starts writing an article without waiting for it (avoids proxy timeouts such as Nginx's 60 s).
+ * The result appears in AI Studio → Recent activity.
+ */
+export async function startBlogPostInBackground(opts: GenerateOptions) {
+  if (await isGenerationRunning()) return { started: false as const, reason: "An article is already being written. Check Recent activity in a few minutes." };
+  // after(): runs once the response is sent, still inside the request (so cache revalidation is allowed).
+  after(() =>
+    generateBlogPost(opts).catch(async (error) => {
+      await appendAiLog({ at: new Date().toISOString(), status: "error", message: error instanceof Error ? error.message : "AI generation failed.", trigger: opts.trigger }).catch(() => {});
+    })
+  );
+  return { started: true as const };
+}
+
+export async function generateBlogPost(opts: GenerateOptions): Promise<GenerateResult> {
+  if (await isGenerationRunning()) return { ok: false, error: "An article is already being written. Try again in a few minutes." };
+  const initial = await getAiSettings();
+  await saveAiSettings({ ...initial, runningSince: new Date().toISOString() });
+  try {
+    return await writeAndSave(opts);
+  } finally {
+    const latest = await getAiSettings();
+    await saveAiSettings({ ...latest, runningSince: undefined }).catch(() => {});
+  }
+}
+
+async function writeAndSave(opts: GenerateOptions): Promise<GenerateResult> {
   const settings = await getAiSettings();
   const providerId = opts.providerId || settings.autopilot.providerId || settings.defaultProviderId;
   const provider = settings.providers.find((p) => p.id === providerId && p.enabled) ?? settings.providers.find((p) => p.enabled);
@@ -175,9 +215,13 @@ export async function generateBlogPost(opts: { trigger: AiRunLog["trigger"]; top
     log: [{ at: new Date().toISOString(), status: "ok" as const, message: `${publish ? "Published" : "Saved draft"}: ${draft.title}`, slug, provider: provider.label, trigger: opts.trigger }, ...fresh.log].slice(0, 50),
   });
 
-  revalidateTag("blog", { expire: 0 });
-  revalidatePath("/resources/blogs");
-  revalidatePath(`/resources/blogs/${slug}`);
-  revalidatePath("/sitemap.xml");
+  try {
+    revalidateTag("blog", { expire: 0 });
+    revalidatePath("/resources/blogs");
+    revalidatePath(`/resources/blogs/${slug}`);
+    revalidatePath("/sitemap.xml");
+  } catch {
+    // Outside a request (e.g. a script) revalidation is not available; pages refresh on their normal schedule.
+  }
   return { ok: true, slug, title: draft.title, published: publish };
 }

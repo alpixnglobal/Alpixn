@@ -37,6 +37,8 @@ export type AiSettings = {
   defaultProviderId: string;
   autopilot: AutopilotSettings;
   log: AiRunLog[];
+  /** Set while an article is being written, so two runs never overlap. */
+  runningSince?: string;
 };
 
 export const PROVIDER_ENV: Record<ProviderType, string> = {
@@ -103,6 +105,6 @@ export function providerKeyStatus(p: AiProvider) {
   const saved = decryptSecret(p.apiKeyEnc);
   if (saved) return { source: "admin" as const, hint: maskSecret(saved) };
   const env = PROVIDER_ENV[p.type] && process.env[PROVIDER_ENV[p.type]];
-  if (env) return { source: "env" as const, hint: `${PROVIDER_ENV[p.type]} (Vercel)` };
+  if (env) return { source: "env" as const, hint: `${PROVIDER_ENV[p.type]} (server environment)` };
   return { source: "none" as const, hint: "" };
 }

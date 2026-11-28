@@ -67,6 +67,7 @@ async function AutopilotTab() {
   const a = s.autopilot;
   const enabledProviders = s.providers.filter((p) => p.enabled);
   const cronReady = Boolean(process.env.CRON_SECRET);
+  const running = Boolean(s.runningSince && Date.now() - Date.parse(s.runningSince) < 15 * 60 * 1000);
 
   return (
     <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
@@ -78,7 +79,7 @@ async function AutopilotTab() {
             </span>
             <div>
               <h2 className={h2}>Write a blog post now</h2>
-              <p className={sub}>The AI writes a full article, checks it against every existing post, and saves it. Takes 1–3 minutes.</p>
+              <p className={sub}>The AI writes a full article in the background, checks it against every existing post, and saves it. Takes 1–3 minutes — refresh to see it under Recent activity.</p>
             </div>
           </div>
           <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
@@ -93,7 +94,7 @@ async function AutopilotTab() {
             </AdminField>
           </div>
           <div className="mt-4 flex justify-end">
-            <SubmitButton label="Write article" pendingLabel="Writing… (1–3 min)" />
+            <SubmitButton label="Write article" pendingLabel="Starting…" />
           </div>
         </form>
 
@@ -161,7 +162,8 @@ async function AutopilotTab() {
           <ul className="mt-4 space-y-2.5 text-[13.5px]">
             <Status ok={a.enabled} label={a.enabled ? `Autopilot on — every ${DAYS[a.dayOfWeek]}` : "Autopilot off"} />
             <Status ok={enabledProviders.some((p) => providerKeyStatus(p).source !== "none")} label={enabledProviders.length ? `${enabledProviders.length} AI provider(s) enabled` : "No AI provider enabled"} />
-            <Status ok={cronReady} label={cronReady ? "Scheduler ready (CRON_SECRET set)" : "Add CRON_SECRET on Vercel to run the weekly schedule"} />
+            <Status ok={cronReady} label={cronReady ? "CRON_SECRET set — add the daily crontab line on the server" : "Add CRON_SECRET to the server's .env to run the weekly schedule"} />
+            {running ? <Status ok={false} label="An article is being written right now…" /> : null}
             <Status ok label={`${a.topics.length} topic(s) in queue`} />
           </ul>
         </section>
@@ -240,7 +242,7 @@ async function ProvidersTab() {
                   </div>
                 </div>
                 <span className={`rounded-full px-2.5 py-1 text-[11px] font-bold uppercase ${key.source === "none" ? "bg-[#d99a19]/15 text-[#9a5b08] dark:text-[#f6d77a]" : "bg-[#1f9d55]/10 text-[#1f9d55]"}`}>
-                  {key.source === "none" ? "No key" : key.source === "env" ? "Key from Vercel" : "Key saved"}
+                  {key.source === "none" ? "No key" : key.source === "env" ? "Key from server .env" : "Key saved"}
                 </span>
               </div>
               <div className="mt-5 grid gap-4">
@@ -328,7 +330,7 @@ async function ProvidersTab() {
       </form>
 
       <p className="text-[12.5px] text-fg-muted">
-        Prefer Vercel environment variables for keys? Set <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code> and leave the key field empty here. Keys saved in the admin are encrypted with <code>AUTH_SECRET</code>.
+        Prefer server environment variables for keys? Add <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code> or <code>GEMINI_API_KEY</code> to the server's .env and leave the key field empty here. Keys saved in the admin are encrypted with <code>AUTH_SECRET</code>.
       </p>
     </div>
   );

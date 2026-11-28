@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/admin-auth";
-import { generateBlogPost } from "@/lib/ai/blog-writer";
+import { canRunInBackground, generateBlogPost, startBlogPostInBackground } from "@/lib/ai/blog-writer";
 import { canEncrypt, encryptSecret } from "@/lib/ai/crypto";
 import { testProvider } from "@/lib/ai/providers";
 import { getAiSettings, saveAiSettings, type AiProvider } from "@/lib/ai/settings";
@@ -127,11 +127,18 @@ export async function saveAutopilotAction(formData: FormData) {
 export async function generateNowAction(formData: FormData) {
   await requireAdminSession();
   await db("autopilot");
-  const result = await generateBlogPost({
-    trigger: "manual",
+  const opts = {
+    trigger: "manual" as const,
     topic: text(formData, "topic") || undefined,
     publish: text(formData, "publish") === "publish" ? true : text(formData, "publish") === "draft" ? false : undefined,
-  });
+  };
+  if (canRunInBackground()) {
+    // AWS/PM2: write in the background so Nginx's request timeout can't cut it off.
+    const started = await startBlogPostInBackground(opts);
+    if (!started.started) err("autopilot", started.reason);
+    redirect(back("autopilot", `&status=${encodeURIComponent("Writing started. The article appears under Recent activity in 1–3 minutes — refresh this page.")}`));
+  }
+  const result = await generateBlogPost(opts);
   if (!result.ok) err("autopilot", result.error);
   revalidatePath("/admin/blogs");
   redirect(back("autopilot", `&status=${encodeURIComponent(`${result.ok && result.published ? "Published" : "Draft saved"}: ${result.ok ? result.title : ""}`)}`));
