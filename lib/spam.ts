@@ -160,7 +160,12 @@ export async function assessSubmission(opts: {
     if (secret && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) {
       const token = String(opts.formData.get("cf-turnstile-response") ?? "");
       let ok = false;
-      if (token) {
+      if (!token) {
+        // Widget didn't load (ad-blocker, network): don't lose a possible client — score it and let the other checks decide.
+        score += 50;
+        reasons.push("CAPTCHA not completed");
+        ok = true;
+      } else {
         try {
           const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
             method: "POST",

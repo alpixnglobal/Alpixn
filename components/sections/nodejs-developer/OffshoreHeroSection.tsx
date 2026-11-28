@@ -17,6 +17,7 @@ import type { OffshoreHeroTechnologyRecord } from "@/lib/content-types";
 import { offshoreTechIcon } from "@/lib/offshore developer/content";
 import { Bot, Boxes, BrainCircuit, Eye, Languages, Layers, Network, Smartphone, Sparkles, Users, type LucideIcon } from "lucide-react";
 import SpamGuard from "@/components/forms/SpamGuard";
+import Captcha from "@/components/forms/Captcha";
 
 
 const ROLE_ICON: Record<string, LucideIcon> = {
@@ -177,6 +178,7 @@ const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-dev
                     <div>
                       <Textarea name="message" placeholder="Describe Your Query" className="!min-h-[72px] h-[72px] text-sm" />
                     </div>
+                    <Captcha />
                     <div>
                       <button type="submit" className="btn-brand w-full !py-2.5">
                         Submit

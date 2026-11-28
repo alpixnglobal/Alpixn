@@ -4,6 +4,7 @@ import { InputField } from "@/components/ui/Input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValueAsteriks } from "@/components/ui/select";
 import { TextareaInput } from "@/components/ui/textarea";
 import SpamGuard from "@/components/forms/SpamGuard";
+import Captcha from "@/components/forms/Captcha";
 
 interface ContactFromSectionProps {
   introTitle?: string;
@@ -126,6 +127,7 @@ const ContactFromSection = ({
               <div className="col-span-2 w-full">
                 <TextareaInput name="message" label={messageLabel} className="h-[120px] sm:h-[208px] rounded-2xl w-full border border-line bg-surface" />
               </div>
+              <Captcha className="col-span-2" />
               <button type="submit" className="btn-brand col-span-2 w-full">
                 {buttonText}
               </button>

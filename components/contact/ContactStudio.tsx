@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Mail, MapPin, 
 import { submitContactFormAction } from "@/admin/actions/admin-actions";
 import { accentSplit } from "@/components/sections/shared/PageHero";
 import SpamGuard from "@/components/forms/SpamGuard";
+import Captcha from "@/components/forms/Captcha";
 
 /**
  * Contact page "studio": the headline and direct lines on the left, a three-step
@@ -178,6 +179,7 @@ export default function ContactStudio({
               </label>
             </fieldset>
 
+            <Captcha className="mt-5" />
             <div className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-[13px] text-fg-subtle">We read every brief and reply by email.</p>
               <button type="submit" className="btn-brand !px-6 !py-2.5 text-[14px]">
