@@ -28,6 +28,7 @@ with `--update-env`. Never commit this file.
 | `CRON_SECRET` | Weekly blog autopilot | Long random string |
 | `ANTHROPIC_API_KEY` | Claude (optional here; can be saved in Admin → AI Studio instead) | Key from console.anthropic.com |
 | `OPENAI_API_KEY`, `GEMINI_API_KEY` | Only if ChatGPT / Gemini are used | Provider keys |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | Optional free CAPTCHA on forms (Cloudflare Turnstile); site key before `npm run build` | From dash.cloudflare.com → Turnstile |
 | `SALES_SMTP_HOST`, `SALES_SMTP_PORT`, `SALES_SMTP_USER`, `SALES_SMTP_PASS` | Sales CRM emails (recommended: a separate sending domain) | Falls back to `SMTP_*` if not set |
 
 Create a random secret with: `openssl rand -hex 32`
@@ -76,3 +77,12 @@ The server needs outbound HTTPS to the AI provider you use: `api.anthropic.com` 
 If PM2 runs the app with several instances (`-i max`), each instance keeps its own page cache, so an admin edit
 can take up to an hour to show on every instance. Running a single instance (`-i 1`) or restarting PM2 after big
 content changes avoids this.
+
+## Spam protection and Nginx
+
+The forms read the visitor IP from `X-Forwarded-For` / `X-Real-IP` for rate limiting. Make sure Nginx passes them:
+
+```nginx
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```

@@ -3,6 +3,7 @@ import { submitContactFormAction } from "@/admin/actions/admin-actions";
 import { InputField } from "@/components/ui/Input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValueAsteriks } from "@/components/ui/select";
 import { TextareaInput } from "@/components/ui/textarea";
+import SpamGuard from "@/components/forms/SpamGuard";
 
 interface ContactFromSectionProps {
   introTitle?: string;
@@ -94,6 +95,7 @@ const ContactFromSection = ({
             </div>
 
             <form action={submitContactFormAction} className="grid grid-cols-1 lg:grid-cols-2 gap-[20px] space-y-[11px]">
+              <SpamGuard />
               <div className="col-span-2 lg:col-span-1 w-full">
                 <InputField name="firstName" label={firstNameLabel} className="h-[48px] sm:h-[60px] rounded-2xl w-full border border-line bg-surface" />
               </div>

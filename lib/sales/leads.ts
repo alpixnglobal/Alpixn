@@ -95,8 +95,9 @@ export async function refreshScore(id: string) {
 export async function syncInboundLeads() {
   await connectToDatabase();
   let added = 0;
-  const contacts = (await ContactMessageModel.find({}).lean()) as Record<string, unknown>[];
-  const chats = (await ChatLeadModel.find({}).lean()) as Record<string, unknown>[];
+  // Spam stays out of the CRM.
+  const contacts = (await ContactMessageModel.find({ status: { $ne: "spam" } }).lean()) as Record<string, unknown>[];
+  const chats = (await ChatLeadModel.find({ status: { $ne: "spam" } }).lean()) as Record<string, unknown>[];
   const items = [
     ...contacts.map((d) => ({
       ref: `contact:${d._id}`,

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Archive, BriefcaseBusiness, Download, ExternalLink, Inbox, Mail, MailOpen, Phone, Reply, Search, Trash2, UserRoundSearch } from "lucide-react";
+import { ShieldAlert, Archive, BriefcaseBusiness, Download, ExternalLink, Inbox, Mail, MailOpen, Phone, Reply, Search, Trash2, UserRoundSearch } from "lucide-react";
 
 import { deleteInboxItemAction, setInboxStatusAction } from "@/admin/actions/admin-actions";
 import { AdminShell, StatusNotice, adminCardClassName, getAdminFlashMessage } from "@/components/admin/admin-ui";
 import { getAdminInbox, type InboxItem, type InboxKind } from "@/lib/content-service";
+import { blockSenderAction } from "@/admin/actions/spam-actions";
 
 export const metadata: Metadata = { title: "Inbox" };
 
@@ -15,6 +16,7 @@ const STATUS_TONE: Record<string, string> = {
   read: "bg-surface-2 text-fg-muted",
   replied: "bg-emerald-500/12 text-emerald-700 dark:text-emerald-300",
   archived: "bg-surface-2 text-fg-subtle",
+  spam: "bg-rose-500/12 text-rose-600 dark:text-rose-300",
 };
 const TABS: { key: string; label: string }[] = [
   { key: "all", label: "All" },
@@ -42,7 +44,7 @@ function qs(p: Params, patch: Partial<Params>) {
 
 export default async function InboxPage({ searchParams }: { searchParams: Promise<Params & { status?: string }> }) {
   const raw = await searchParams;
-  const p: Params = { type: raw.type ?? "all", status: ["new", "read", "replied", "archived"].includes(raw.status ?? "") ? raw.status : "all", q: raw.q ?? "", id: raw.id };
+  const p: Params = { type: raw.type ?? "all", status: ["new", "read", "replied", "archived", "spam"].includes(raw.status ?? "") ? raw.status : "all", q: raw.q ?? "", id: raw.id };
   const flash = getAdminFlashMessage(raw.status === "deleted" ? "deleted" : undefined, raw.error);
   const all = await getAdminInbox();
 
@@ -50,19 +52,20 @@ export default async function InboxPage({ searchParams }: { searchParams: Promis
   const items = all.filter(
     (i) =>
       (p.type === "all" || i.kind === p.type) &&
-      (p.status === "all" ? i.status !== "archived" : i.status === p.status) &&
+      (p.status === "all" ? i.status !== "archived" && i.status !== "spam" : i.status === p.status) &&
       (!q || `${i.name} ${i.email} ${i.phone} ${i.subject} ${i.message}`.toLowerCase().includes(q))
   );
   const selected: InboxItem | undefined = items.find((i) => i.id === p.id) ?? items[0];
   const back = qs(p, { id: selected?.id });
   const counts = {
-    all: all.filter((i) => i.status !== "archived").length,
-    enquiry: all.filter((i) => i.kind === "enquiry" && i.status !== "archived").length,
-    hire: all.filter((i) => i.kind === "hire" && i.status !== "archived").length,
-    application: all.filter((i) => i.kind === "application" && i.status !== "archived").length,
-    assistant: all.filter((i) => i.kind === "assistant" && i.status !== "archived").length,
+    all: all.filter((i) => i.status !== "archived" && i.status !== "spam").length,
+    enquiry: all.filter((i) => i.kind === "enquiry" && i.status !== "archived" && i.status !== "spam").length,
+    hire: all.filter((i) => i.kind === "hire" && i.status !== "archived" && i.status !== "spam").length,
+    application: all.filter((i) => i.kind === "application" && i.status !== "archived" && i.status !== "spam").length,
+    assistant: all.filter((i) => i.kind === "assistant" && i.status !== "archived" && i.status !== "spam").length,
   } as Record<string, number>;
   const newCount = all.filter((i) => i.status === "new").length;
+  const spamCount = all.filter((i) => i.status === "spam").length;
 
   return (
     <AdminShell
@@ -93,6 +96,7 @@ export default async function InboxPage({ searchParams }: { searchParams: Promis
             <option value="read">Read</option>
             <option value="replied">Replied</option>
             <option value="archived">Archived</option>
+            <option value="spam">Spam{spamCount ? ` (${spamCount})` : ""}</option>
           </select>
           <label className="flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2">
             <Search className="h-4 w-4 text-fg-subtle" />
@@ -189,18 +193,27 @@ export default async function InboxPage({ searchParams }: { searchParams: Promis
               <a href={`mailto:${selected.email}?subject=${encodeURIComponent(`Re: ${selected.subject}`)}`} className="inline-flex items-center gap-2 rounded-xl bg-[linear-gradient(135deg,#fbe7a1,#d99a19)] px-3.5 py-2 text-[13px] font-semibold text-[#071a33]">
                 <Reply className="h-4 w-4" /> Reply by email
               </a>
-              {(["read", "replied", "new", "archived"] as const).filter((s) => s !== selected.status).map((s) => (
+              {(selected.status === "spam" ? (["new"] as const) : (["read", "replied", "new", "archived", "spam"] as const)).filter((s) => s !== selected.status).map((s) => (
                 <form key={s} action={setInboxStatusAction}>
                   <input type="hidden" name="kind" value={selected.kind} />
                   <input type="hidden" name="id" value={selected.id} />
                   <input type="hidden" name="status" value={s} />
                   <input type="hidden" name="back" value={back} />
                   <button className="inline-flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 text-[13px] font-semibold text-fg hover:border-[#0878d1]/50">
-                    {s === "read" ? <MailOpen className="h-4 w-4" /> : s === "archived" ? <Archive className="h-4 w-4" /> : s === "new" ? <Mail className="h-4 w-4" /> : <Reply className="h-4 w-4" />}
-                    Mark {s}
+                    {s === "read" ? <MailOpen className="h-4 w-4" /> : s === "archived" ? <Archive className="h-4 w-4" /> : s === "spam" ? <ShieldAlert className="h-4 w-4" /> : s === "new" ? <Mail className="h-4 w-4" /> : <Reply className="h-4 w-4" />}
+                    {selected.status === "spam" && s === "new" ? "Not spam" : `Mark ${s}`}
                   </button>
                 </form>
               ))}
+              {selected.status === "spam" && selected.email ? (
+                <form action={blockSenderAction}>
+                  <input type="hidden" name="email" value={selected.email} />
+                  <input type="hidden" name="back" value={back} />
+                  <button className="inline-flex items-center gap-2 rounded-xl border border-line bg-surface px-3 py-2 text-[13px] font-semibold text-fg hover:border-rose-500/50">
+                    <ShieldAlert className="h-4 w-4" /> Block sender
+                  </button>
+                </form>
+              ) : null}
               <form action={deleteInboxItemAction} className="ml-auto">
                 <input type="hidden" name="kind" value={selected.kind} />
                 <input type="hidden" name="id" value={selected.id} />

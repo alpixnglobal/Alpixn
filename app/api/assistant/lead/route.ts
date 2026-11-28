@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   const estimate = computeEstimate(catalog, selections);
   const transcript = (Array.isArray(body.transcript) ? body.transcript : []).map((t) => ({ role: t?.role === "assistant" ? ("assistant" as const) : ("user" as const), text: String(t?.text ?? "").slice(0, 1500) }));
   try {
-    const result = await saveChatLead({ sessionId: body.sessionId, lead: sanitizeLead(body.lead), transcript, estimate: estimate.lines.length ? estimateText(estimate) : undefined, pagePath: body.pagePath });
+    const result = await saveChatLead({ sessionId: body.sessionId, lead: sanitizeLead(body.lead), transcript, estimate: estimate.lines.length ? estimateText(estimate) : undefined, pagePath: body.pagePath, ip: clientIp(request) });
     return Response.json(result);
   } catch {
     return Response.json({ saved: false }, { status: 503 });

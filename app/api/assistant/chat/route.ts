@@ -35,6 +35,7 @@ export async function POST(request: Request) {
         transcript: [...transcript, { role: "assistant", text: turn.reply }],
         estimate: turn.estimate ? estimateText(turn.estimate) : undefined,
         pagePath: body.pagePath,
+        ip: clientIp(request),
       }).catch(() => {});
     }
     return Response.json({ reply: turn.reply, quickReplies: turn.quickReplies, lead, estimate: turn.estimate });

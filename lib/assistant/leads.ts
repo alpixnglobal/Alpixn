@@ -1,6 +1,7 @@
 import { connectToDatabase } from "@/lib/db";
 import { CONTACT_TO_EMAIL, isMailConfigured, sendRowsEmail } from "@/lib/mailer";
 import { ChatLeadModel } from "@/lib/models";
+import { assessSubmission } from "@/lib/spam";
 
 /** Everything the assistant has learned about the visitor's project. */
 export type LeadState = {
@@ -66,12 +67,20 @@ export type Transcript = { role: "user" | "assistant"; text: string }[];
  * Creates or updates the lead for this chat session. Emails the team once, the first time an
  * estimate is shared with a visitor who left contact details.
  */
-export async function saveChatLead(opts: { sessionId: string; lead: LeadState; transcript: Transcript; estimate?: string; pagePath?: string }) {
+export async function saveChatLead(opts: { sessionId: string; lead: LeadState; transcript: Transcript; estimate?: string; pagePath?: string; ip?: string }) {
   if (!/^[a-zA-Z0-9-]{8,64}$/.test(opts.sessionId) || !hasContact(opts.lead)) return { saved: false };
   await connectToDatabase();
   const l = opts.lead;
   const transcript = opts.transcript.slice(-60).map((t) => ({ role: t.role === "assistant" ? "assistant" : "user", text: clip(t.text, 2000) }));
-  const existing = (await ChatLeadModel.findOne({ sessionId: opts.sessionId }, { emailed: 1 }).lean()) as { emailed?: boolean } | null;
+  const existing = (await ChatLeadModel.findOne({ sessionId: opts.sessionId }, { emailed: 1, status: 1 }).lean()) as { emailed?: boolean; status?: string } | null;
+  // Spam check once, when the lead is first saved.
+  let spamFields: Record<string, unknown> = {};
+  if (!existing) {
+    const verdict = await assessSubmission({ ip: opts.ip ?? "unknown", form: "chat", email: l.email, name: l.name, texts: [l.projectDetails, l.references, l.company], noFormChecks: true });
+    if (verdict.action === "drop") return { saved: false };
+    if (verdict.action === "spam") spamFields = { status: "spam", spamReasons: verdict.reasons };
+  }
+  const isSpam = existing?.status === "spam" || spamFields.status === "spam";
   await ChatLeadModel.updateOne(
     { sessionId: opts.sessionId },
     {
@@ -88,13 +97,14 @@ export async function saveChatLead(opts: { sessionId: string; lead: LeadState; t
         transcript,
         pagePath: clip(opts.pagePath, 200),
         ...(opts.estimate ? { estimate: opts.estimate } : {}),
+        ...spamFields,
       },
-      $setOnInsert: { status: "new" },
+      ...(spamFields.status ? {} : { $setOnInsert: { status: "new" } }),
     },
     { upsert: true }
   );
 
-  if (opts.estimate && !existing?.emailed && isMailConfigured()) {
+  if (opts.estimate && !existing?.emailed && !isSpam && isMailConfigured()) {
     try {
       await sendRowsEmail({
         to: CONTACT_TO_EMAIL,

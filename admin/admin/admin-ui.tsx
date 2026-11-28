@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Bot, Boxes, BriefcaseIcon, Search, Tags, TrendingUp, ChevronDown, Inbox, LayoutTemplate, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
+import { Bot, Boxes, BriefcaseIcon, Search, ShieldCheck, Tags, TrendingUp, ChevronDown, Inbox, LayoutTemplate, Cpu, ExternalLink, FileText, FolderOpen, Globe, House, Info, LayoutDashboard, Mail, Newspaper, Settings, Shapes, Sparkles, Users, UsersRound } from "lucide-react";
 
 import { PersistentScrollArea } from "@/components/admin/persistent-scroll-area";
 import { LogoutForm } from "@/components/admin/logout-form";
@@ -113,6 +113,7 @@ const adminLinks: AdminNavLink[] = [
   { section: "System" },
   { href: "/admin/pricing", label: "Pricing & chat robot", icon: Tags },
   { href: "/admin/seo", label: "SEO & analytics", icon: Search },
+  { href: "/admin/spam", label: "Spam protection", icon: ShieldCheck },
   { href: "/admin/ai", label: "AI Studio", icon: Bot },
   { href: "/admin/settings", label: "Site settings", icon: Settings },
 ];

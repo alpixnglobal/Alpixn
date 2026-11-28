@@ -2,6 +2,7 @@ import Accent from "@/components/ui/Accent";
 import { submitJobApplicationAction } from "@/admin/actions/admin-actions";
 
 import type { JobOpeningRecord } from "@/lib/content-types";
+import SpamGuard from "@/components/forms/SpamGuard";
 
 type JobApplyFormSectionProps = {
   job: JobOpeningRecord;
@@ -58,6 +59,7 @@ const JobApplyFormSection = ({
           {/* Right */}
             <div className="mt-4 flex justify-end xl:mt-0">
               <form action={action} className="w-full px-2 md:px-0 lg:w-[720px] lg:px-0">
+              <SpamGuard />
                 <input type="hidden" name="redirectTo" value={`/resources/careers/${job.slug}`} />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-[20px]">
                   <div className="col-span-1">

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath, revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
@@ -35,6 +36,7 @@ import {
 } from "@/lib/models";
 import { createSlugForModel, ensureSeedData } from "@/lib/content-service";
 import { readingTime } from "@/lib/blog/types";
+import { assessSubmission } from "@/lib/spam";
 
 type EntityType = "intern" | "team" | "portfolio" | "job" | "blog" | "technology" | "product" | "offshore" | "expertise";
 
@@ -1344,6 +1346,13 @@ const jobApplicationSchema = z.object({
   coverLetter: z.string().max(2000, "Cover letter is too long."),
 });
 
+/** Runs the spam checks for a public form submission (IP from the proxy headers). */
+async function checkFormSpam(formData: FormData, form: string, email: string, name: string, texts: string[]) {
+  const h = await headers();
+  const ip = (h.get("x-forwarded-for")?.split(",")[0] || h.get("x-real-ip") || "unknown").trim();
+  return assessSubmission({ formData, ip, form, email, name, texts });
+}
+
 export async function submitJobApplicationAction(jobSlug: string, formData: FormData) {
   const redirectTo = getOptionalValue(formData, "redirectTo") || `/resources/careers/${jobSlug}`;
 
@@ -1371,9 +1380,14 @@ export async function submitJobApplicationAction(jobSlug: string, formData: Form
   }
   const v = parsedValues.data;
 
+  const verdict = await checkFormSpam(formData, "job", v.email, v.fullName, [v.coverLetter ?? "", v.location]);
+  if (verdict.action === "challenge") redirect(`${redirectTo}?error=${encodeURIComponent("Please complete the verification and try again.")}`);
+  if (verdict.action === "drop") redirect(`${redirectTo}?status=applied`);
+  const isSpam = verdict.action === "spam";
+
   // 1) Email the application to HR (hr@alpixn.com or HR_TO_EMAIL).
   let emailed = false;
-  if (isMailConfigured()) {
+  if (isMailConfigured() && !isSpam) {
     try {
       await sendRowsEmail({
         to: HR_TO_EMAIL,
@@ -1404,14 +1418,14 @@ export async function submitJobApplicationAction(jobSlug: string, formData: Form
   let stored = false;
   try {
     await connectToDatabase();
-    await JobApplicationModel.create({ jobSlug: resolvedJob.slug, jobTitle: resolvedJob.title, company: resolvedJob.company, ...v, status: "new" });
+    await JobApplicationModel.create({ jobSlug: resolvedJob.slug, jobTitle: resolvedJob.title, company: resolvedJob.company, ...v, status: isSpam ? "spam" : "new", spamReasons: verdict.reasons });
     stored = true;
     revalidatePath("/admin/careers");
   } catch (error) {
     console.error("Job application could not be stored:", error);
   }
 
-  if (!emailed && !stored) {
+  if (!emailed && !stored && !isSpam) {
     redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your application could not be sent. Please email hr@alpixn.com directly.")}`);
   }
   redirect(`${redirectTo}?status=applied`);
@@ -1581,9 +1595,14 @@ export async function submitContactFormAction(formData: FormData) {
     redirect(`${redirectTo}?error=Please+enter+a+valid+email+address`);
   }
 
+  const verdict = await checkFormSpam(formData, "contact", email, `${firstName} ${lastName}`, [message, interest]);
+  if (verdict.action === "challenge") redirect(`${redirectTo}?error=${encodeURIComponent("Please complete the verification and try again.")}`);
+  if (verdict.action === "drop") redirect(`${redirectTo}?status=sent`);
+  const isSpam = verdict.action === "spam";
+
   // 1) Email the enquiry to info@alpixn.com (or CONTACT_TO_EMAIL).
   let emailed = false;
-  if (isMailConfigured()) {
+  if (isMailConfigured() && !isSpam) {
     try {
       await sendContactEnquiryEmail({ firstName, lastName, email, phone, interest, message });
       emailed = true;
@@ -1596,14 +1615,14 @@ export async function submitContactFormAction(formData: FormData) {
   let stored = false;
   try {
     await connectToDatabase();
-    await ContactMessageModel.create({ firstName, lastName, email, phone, interest, message, status: "new" });
+    await ContactMessageModel.create({ firstName, lastName, email, phone, interest, message, status: isSpam ? "spam" : "new", spamReasons: verdict.reasons });
     stored = true;
     revalidatePath("/admin/contact");
   } catch (error) {
     console.error("Contact message could not be stored:", error);
   }
 
-  if (!emailed && !stored) {
+  if (!emailed && !stored && !isSpam) {
     redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your message could not be sent. Please email info@alpixn.com directly.")}`);
   }
   redirect(`${redirectTo}?status=sent`);
@@ -1629,8 +1648,13 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
     redirect(`${redirectTo}?error=${encodeURIComponent("Please enter a valid email address.")}`);
   }
 
+  const verdict = await checkFormSpam(formData, "offshore", email, fullName, [message, company]);
+  if (verdict.action === "challenge") redirect(`${redirectTo}?error=${encodeURIComponent("Please complete the verification and try again.")}`);
+  if (verdict.action === "drop") redirect(`${redirectTo}?status=sent`);
+  const isSpam = verdict.action === "spam";
+
   let emailed = false;
-  if (isMailConfigured()) {
+  if (isMailConfigured() && !isSpam) {
     try {
       await sendRowsEmail({
         to: CONTACT_TO_EMAIL,
@@ -1665,7 +1689,8 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
       phone,
       interest: `hire-developers${technology ? `: ${technology}` : ""}${role ? ` (${role})` : ""}`,
       message: [company ? `Company: ${company}` : "", message].filter(Boolean).join("\n\n"),
-      status: "new",
+      status: isSpam ? "spam" : "new",
+      spamReasons: verdict.reasons,
     });
     stored = true;
     revalidatePath("/admin/contact");
@@ -1673,7 +1698,7 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
     console.error("Offshore enquiry could not be stored:", error);
   }
 
-  if (!emailed && !stored) {
+  if (!emailed && !stored && !isSpam) {
     redirect(`${redirectTo}?error=${encodeURIComponent("Sorry, your enquiry could not be sent. Please email info@alpixn.com directly.")}`);
   }
   redirect(`${redirectTo}?status=sent`);
@@ -1683,7 +1708,7 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
 // Admin inbox: status changes and deletion for enquiries and applications
 // ---------------------------------------------------------------------------
 
-const INBOX_STATUSES = new Set(["new", "read", "replied", "archived"]);
+const INBOX_STATUSES = new Set(["new", "read", "replied", "archived", "spam"]);
 
 function inboxModel(kind: string) {
   return kind === "application" ? JobApplicationModel : kind === "assistant" ? ChatLeadModel : ContactMessageModel;

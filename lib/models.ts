@@ -412,6 +412,7 @@ const jobApplicationSchema = new Schema(
     cvDriveLink: { type: String, required: true, trim: true },
     coverLetter: { type: String, default: "" },
     status: { type: String, default: "new" },
+    spamReasons: { type: [String], default: [] },
   },
   { timestamps: true }
 );
@@ -1256,7 +1257,8 @@ const contactMessageSchema = new Schema(
     phone: { type: String, required: true, trim: true },
     interest: { type: String, default: "" },
     message: { type: String, default: "" },
-    status: { type: String, default: "new" }, // new | read
+    status: { type: String, default: "new" }, // new | read | replied | archived | spam
+    spamReasons: { type: [String], default: [] },
   },
   { timestamps: true }
 );
@@ -1358,6 +1360,7 @@ const chatLeadSchema = new Schema(
     transcript: { type: [{ role: String, text: String }], default: [] },
     pagePath: { type: String, default: "" },
     status: { type: String, default: "new" },
+    spamReasons: { type: [String], default: [] },
     emailed: { type: Boolean, default: false },
   },
   { timestamps: true, minimize: false }
@@ -1430,3 +1433,14 @@ const salesSettingsSchema = new Schema(
 export const SalesLeadModel = (mongoose.models.SalesLead as GenericModel) || mongoose.model("SalesLead", salesLeadSchema);
 export const SalesEmailModel = (mongoose.models.SalesEmail as GenericModel) || mongoose.model("SalesEmail", salesEmailSchema);
 export const SalesSettingsModel = (mongoose.models.SalesSettings as GenericModel) || mongoose.model("SalesSettings", salesSettingsSchema);
+
+/** Spam-protection settings for website forms (single document, key "spam"). */
+const spamSettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+export const SpamSettingsModel = (mongoose.models.SpamSettings as GenericModel) || mongoose.model("SpamSettings", spamSettingsSchema);

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { submitContactFormAction } from "@/admin/actions/admin-actions";
 import { accentSplit } from "@/components/sections/shared/PageHero";
+import SpamGuard from "@/components/forms/SpamGuard";
 
 /**
  * Contact page "studio": the headline and direct lines on the left, a three-step
@@ -108,6 +109,7 @@ export default function ContactStudio({
         {/* Right: three-step brief */}
         <div className="lg:col-span-7">
           <form action={submitContactFormAction} className="relative mx-auto max-w-[620px] overflow-hidden rounded-[26px] border border-line bg-surface p-5 shadow-[0_40px_90px_-50px_rgba(7,26,51,0.55)] sm:p-6">
+              <SpamGuard />
             <span aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-brand-spectrum" />
             <div className="flex items-center justify-between">
               <h2 className="font-display text-lg font-bold text-fg">Start your project brief</h2>

@@ -16,6 +16,7 @@ import { getOffshoreHeroData } from "@/lib/offshore developer/offshore-banner-da
 import type { OffshoreHeroTechnologyRecord } from "@/lib/content-types";
 import { offshoreTechIcon } from "@/lib/offshore developer/content";
 import { Bot, Boxes, BrainCircuit, Eye, Languages, Layers, Network, Smartphone, Sparkles, Users, type LucideIcon } from "lucide-react";
+import SpamGuard from "@/components/forms/SpamGuard";
 
 
 const ROLE_ICON: Record<string, LucideIcon> = {
@@ -144,6 +145,7 @@ const OffshoreHeroSection = ({ slug = "default", data, pagePath = "/offshore-dev
                   {formTitle}
                 </h3>
                 <form action={submitOffshoreEnquiryAction} className="w-full">
+              <SpamGuard />
                   <input type="hidden" name="pagePath" value={pagePath} />
                   <input type="hidden" name="role" value={role} />
                   <div className="flex flex-col gap-2.5">

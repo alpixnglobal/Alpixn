@@ -2042,7 +2042,7 @@ export async function getAdminInbox(): Promise<InboxItem[]> {
       message: String(d.message ?? ""),
       status: String(d.status ?? "new"),
       createdAt: isoDate(d.createdAt),
-      details: [["Topic", interest.replace(/-/g, " ")]] as [string, string][],
+      details: [["Topic", interest.replace(/-/g, " ")], ["Spam reasons", ((d.spamReasons as string[]) ?? []).join(", ")]] as [string, string][],
     };
   });
   const fromApplications = (applications as Record<string, unknown>[]).map((d) => ({
@@ -2061,6 +2061,7 @@ export async function getAdminInbox(): Promise<InboxItem[]> {
       ["LinkedIn", String(d.linkedInUrl ?? "")],
       ["Portfolio", String(d.portfolioUrl ?? "")],
       ["CV link", String(d.cvDriveLink ?? "")],
+      ["Spam reasons", ((d.spamReasons as string[]) ?? []).join(", ")],
     ] as [string, string][],
   }));
   const fromChats = (chats as Record<string, unknown>[]).map((d) => {
@@ -2089,6 +2090,7 @@ export async function getAdminInbox(): Promise<InboxItem[]> {
         ["Domain & hosting", String(r.domainHosting ?? "")],
         ["References", String(r.references ?? "")],
         ["Page", String(d.pagePath ?? "")],
+        ["Spam reasons", ((d.spamReasons as string[]) ?? []).join(", ")],
       ] as [string, string][],
     };
   });
