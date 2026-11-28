@@ -8,8 +8,8 @@ import { getAdminInbox, type InboxItem, type InboxKind } from "@/lib/content-ser
 
 export const metadata: Metadata = { title: "Inbox" };
 
-const KIND_LABEL: Record<InboxKind, string> = { enquiry: "Contact enquiry", hire: "Hire developers", application: "Job application" };
-const KIND_TONE: Record<InboxKind, string> = { enquiry: "#0878d1", hire: "#d99a19", application: "#9a5b08" };
+const KIND_LABEL: Record<InboxKind, string> = { enquiry: "Contact enquiry", hire: "Hire developers", application: "Job application", assistant: "AI assistant lead" };
+const KIND_TONE: Record<InboxKind, string> = { enquiry: "#0878d1", hire: "#d99a19", application: "#9a5b08", assistant: "#1f9d55" };
 const STATUS_TONE: Record<string, string> = {
   new: "bg-[#0878d1]/12 text-[#0878d1] dark:text-[#7cc6ff]",
   read: "bg-surface-2 text-fg-muted",
@@ -21,6 +21,7 @@ const TABS: { key: string; label: string }[] = [
   { key: "enquiry", label: "Contact" },
   { key: "hire", label: "Hire developers" },
   { key: "application", label: "Applications" },
+  { key: "assistant", label: "AI assistant" },
 ];
 
 type Params = { type?: string; status?: string; q?: string; id?: string; error?: string; saved?: string };
@@ -59,6 +60,7 @@ export default async function InboxPage({ searchParams }: { searchParams: Promis
     enquiry: all.filter((i) => i.kind === "enquiry" && i.status !== "archived").length,
     hire: all.filter((i) => i.kind === "hire" && i.status !== "archived").length,
     application: all.filter((i) => i.kind === "application" && i.status !== "archived").length,
+    assistant: all.filter((i) => i.kind === "assistant" && i.status !== "archived").length,
   } as Record<string, number>;
   const newCount = all.filter((i) => i.status === "new").length;
 

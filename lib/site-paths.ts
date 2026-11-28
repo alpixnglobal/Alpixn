@@ -29,6 +29,7 @@ export async function getAllSitePaths(): Promise<SitePath[]> {
     { path: "/", label: "Home", group: "Company", priority: 1 },
     { path: "/about", label: "About", group: "Company", priority: 0.8 },
     { path: "/contact-us", label: "Contact", group: "Company", priority: 0.8 },
+    { path: "/pricing", label: "Pricing & Packages", group: "Company", priority: 0.8 },
     { path: "/privacy-policy", label: "Privacy Policy", group: "Company", priority: 0.3 },
     { path: "/terms-and-conditions", label: "Terms and Conditions", group: "Company", priority: 0.3 },
     { path: "/sitemap", label: "Sitemap", group: "Company", priority: 0.2 },

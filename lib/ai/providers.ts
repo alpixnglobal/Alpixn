@@ -11,6 +11,8 @@ type StructuredRequest<T extends z.ZodType> = {
   schema: T;
   /** Name used for the JSON schema on providers that need one. */
   name?: string;
+  /** Claude effort level; "low" keeps chat replies fast. */
+  effort?: "low" | "medium" | "high";
 };
 
 /** Pulls the first JSON object out of a model reply (handles ```json fences). */
@@ -39,7 +41,7 @@ async function claude<T extends z.ZodType>(p: AiProvider, apiKey: string, req: S
       // Server-side refusal fallback: if the model declines, Anthropic re-runs the request on a recommended fallback model.
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
-      output_config: { effort: "medium", format: betaZodOutputFormat(req.schema) },
+      output_config: { effort: req.effort ?? "medium", format: betaZodOutputFormat(req.schema) },
       system: req.system,
       messages: [{ role: "user", content: req.prompt }],
     });

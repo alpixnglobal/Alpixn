@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { requireAdminSession } from "@/lib/admin-auth";
@@ -48,6 +48,7 @@ export async function saveProviderAction(formData: FormData) {
   );
   const defaultProviderId = formData.get("makeDefault") === "on" ? id : settings.defaultProviderId;
   await saveAiSettings({ ...settings, providers, defaultProviderId });
+  revalidateTag("ai", { expire: 0 });
   revalidatePath("/admin/ai");
   redirect(back("providers", "&status=saved"));
 }
@@ -70,6 +71,7 @@ export async function addProviderAction(formData: FormData) {
     ...settings,
     providers: [...settings.providers, { id, type, label, model, baseUrl: type === "openai-compatible" ? baseUrl : "", apiKeyEnc: apiKey ? encryptSecret(apiKey) : "", enabled: true }],
   });
+  revalidateTag("ai", { expire: 0 });
   revalidatePath("/admin/ai");
   redirect(back("providers", "&status=saved"));
 }

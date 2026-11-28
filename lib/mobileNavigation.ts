@@ -272,6 +272,7 @@ export const mobileNavigation: MobileNavItemType[] = [
       { label: "Portfolio", href: "/resources/portfolio" },
       { label: "Career", href: "/resources/careers" },
       { label: "Blog & Articles", href: "/resources/blogs" },
+      { label: "Pricing & Packages", href: "/pricing" },
     ],
   },
 ];

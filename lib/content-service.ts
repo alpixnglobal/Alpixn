@@ -9,6 +9,7 @@ import { connectToDatabase } from "@/lib/db";
 import {
   AboutSettingsModel,
   BlogPostModel,
+  ChatLeadModel,
   ContactMessageModel,
   PageBlockModel,
   ContactSettingsModel,
@@ -130,6 +131,7 @@ const defaultSiteSettings: SiteSettings = {
         { label: "Products", href: "/products", order: 4 },
         { label: "Our Expertise", href: "/our-expertise", order: 5 },
         { label: "Technologies", href: "/technologies", order: 6 },
+        { label: "Pricing", href: "/pricing", order: 6.5 },
         { label: "Contact", href: "/contact-us", order: 7 },
       ],
     },
@@ -2000,7 +2002,7 @@ export async function getAdminContactMessages() {
 // ADMIN INBOX: contact + hire-developer enquiries and job applications in one list
 // ============================================================================
 
-export type InboxKind = "enquiry" | "hire" | "application";
+export type InboxKind = "enquiry" | "hire" | "application" | "assistant";
 export type InboxItem = {
   id: string;
   kind: InboxKind;
@@ -2021,9 +2023,10 @@ function isoDate(value: unknown) {
 
 export async function getAdminInbox(): Promise<InboxItem[]> {
   if (!(await prepareRead())) return [];
-  const [messages, applications] = await Promise.all([
+  const [messages, applications, chats] = await Promise.all([
     ContactMessageModel.find({}).sort({ createdAt: -1 }).lean(),
     JobApplicationModel.find({}).sort({ createdAt: -1 }).lean(),
+    ChatLeadModel.find({}).sort({ updatedAt: -1 }).lean(),
   ]);
   const fromMessages = (messages as Record<string, unknown>[]).map((d) => {
     const interest = String(d.interest ?? "");
@@ -2060,7 +2063,36 @@ export async function getAdminInbox(): Promise<InboxItem[]> {
       ["CV link", String(d.cvDriveLink ?? "")],
     ] as [string, string][],
   }));
-  return [...fromMessages, ...fromApplications].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  const fromChats = (chats as Record<string, unknown>[]).map((d) => {
+    const r = (d.requirements ?? {}) as Record<string, unknown>;
+    const list = (v: unknown) => (Array.isArray(v) ? v.join(", ") : "");
+    const transcript = Array.isArray(d.transcript) ? (d.transcript as { role: string; text: string }[]) : [];
+    return {
+      id: String(d._id),
+      kind: "assistant" as InboxKind,
+      name: String(d.name ?? ""),
+      email: String(d.email ?? ""),
+      phone: String(d.phone ?? ""),
+      subject: `AI assistant: ${String(d.service || "Project enquiry")}`,
+      message: [String(r.projectDetails ?? ""), d.estimate ? `Estimate shown to the client (not final):\n${String(d.estimate)}` : "", transcript.length ? `Chat transcript:\n${transcript.map((t) => `${t.role === "assistant" ? "Bot" : "Client"}: ${t.text}`).join("\n")}` : ""]
+        .filter(Boolean)
+        .join("\n\n"),
+      status: String(d.status ?? "new"),
+      createdAt: isoDate(d.updatedAt ?? d.createdAt),
+      details: [
+        ["Service", String(d.service ?? "")],
+        ["Client budget", String(d.budget ?? "")],
+        ["Timeline", String(d.timeline ?? "")],
+        ["Company", String(d.company ?? "")],
+        ["Features", list(r.features)],
+        ["Third-party APIs", list(r.thirdPartyApis)],
+        ["Domain & hosting", String(r.domainHosting ?? "")],
+        ["References", String(r.references ?? "")],
+        ["Page", String(d.pagePath ?? "")],
+      ] as [string, string][],
+    };
+  });
+  return [...fromMessages, ...fromApplications, ...fromChats].sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
 }
 
 // ============================================================================

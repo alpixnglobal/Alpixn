@@ -20,6 +20,7 @@ const defaultFooterColumns: FooterColumn[] = [
       { label: "Products", href: "/products", order: 4 },
       { label: "Our Expertise", href: "/our-expertise", order: 5 },
       { label: "Technologies", href: "/technologies", order: 6 },
+        { label: "Pricing", href: "/pricing", order: 6.5 },
       { label: "Contact", href: "/contact-us", order: 7 },
     ],
   },
@@ -113,6 +114,14 @@ const legacyResourceLabels = ["Blogs", "Careers", "Our Team", "Interns & Alumni"
 
 function normalizeFooterColumns(columns: FooterColumn[]) {
   return columns.map((column) => {
+    // Make sure the new Pricing page is linked even when older footer settings are stored.
+    if (column.title === "Company" && !column.links.some((link) => link.href === "/pricing")) {
+      const contactIndex = column.links.findIndex((link) => link.href === "/contact-us");
+      const links = [...column.links];
+      links.splice(contactIndex >= 0 ? contactIndex : links.length, 0, { label: "Pricing", href: "/pricing", order: 6.5 });
+      column = { ...column, links };
+    }
+
     if (column.title === "Offshore Developers") {
       const labels = column.links.map((link) => link.label);
       const isLegacy = labels.length === legacyOffshoreLabels.length && legacyOffshoreLabels.every((label) => labels.includes(label));

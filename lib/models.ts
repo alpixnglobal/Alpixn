@@ -1330,3 +1330,38 @@ const apiTokenSchema = new Schema(
 
 export const AiSettingsModel = (mongoose.models.AiSettings as GenericModel) || mongoose.model("AiSettings", aiSettingsSchema);
 export const ApiTokenModel = (mongoose.models.ApiToken as GenericModel) || mongoose.model("ApiToken", apiTokenSchema);
+
+/* ---------------- Pricing & chat assistant ---------------- */
+
+/** Price catalog and assistant settings (single document, key "pricing"). */
+const pricingSettingsSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true, index: true },
+    data: { type: Schema.Types.Mixed, default: {} },
+  },
+  { timestamps: true, minimize: false }
+);
+
+/** Requirements collected by the website chat assistant. */
+const chatLeadSchema = new Schema(
+  {
+    sessionId: { type: String, required: true, unique: true, index: true },
+    name: { type: String, default: "", trim: true },
+    email: { type: String, default: "", trim: true },
+    phone: { type: String, default: "", trim: true },
+    company: { type: String, default: "", trim: true },
+    service: { type: String, default: "", trim: true },
+    budget: { type: String, default: "", trim: true },
+    timeline: { type: String, default: "", trim: true },
+    requirements: { type: Schema.Types.Mixed, default: {} },
+    estimate: { type: String, default: "" },
+    transcript: { type: [{ role: String, text: String }], default: [] },
+    pagePath: { type: String, default: "" },
+    status: { type: String, default: "new" },
+    emailed: { type: Boolean, default: false },
+  },
+  { timestamps: true, minimize: false }
+);
+
+export const PricingSettingsModel = (mongoose.models.PricingSettings as GenericModel) || mongoose.model("PricingSettings", pricingSettingsSchema);
+export const ChatLeadModel = (mongoose.models.ChatLead as GenericModel) || mongoose.model("ChatLead", chatLeadSchema);

@@ -6,6 +6,8 @@ import Header from "@/components/layouts/Header";
 import SiteChrome from "@/components/layouts/SiteChrome";
 import { ThemeProvider } from "@/components/theme-provider";
 import Analytics from "@/components/seo/Analytics";
+import Assistant from "@/components/assistant/Assistant";
+import { getCachedAssistantAiReady, getCachedPricingData } from "@/lib/pricing/store";
 import { getCachedSiteSettings } from "@/lib/content-service";
 import { getCachedSeoSettings } from "@/lib/seo-store";
 
@@ -84,7 +86,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [siteSettings, seo] = await Promise.all([getCachedSiteSettings(), getCachedSeoSettings()]);
+  const [siteSettings, seo, pricing, aiReady] = await Promise.all([getCachedSiteSettings(), getCachedSeoSettings(), getCachedPricingData(), getCachedAssistantAiReady()]);
 
   return (
     // suppressHydrationWarning: next-themes sets the theme class on <html> before hydration.
@@ -100,6 +102,7 @@ export default async function RootLayout({
           <SiteChrome header={<Header />} footer={<Footer settings={siteSettings} />}>
             {children}
           </SiteChrome>
+          {pricing.assistant.enabled ? <Assistant catalog={pricing.catalog} config={{ name: pricing.assistant.name, greeting: pricing.assistant.greeting, mode: aiReady ? "ai" : "guided" }} /> : null}
         </ThemeProvider>
         <Analytics settings={seo} />
       </body>

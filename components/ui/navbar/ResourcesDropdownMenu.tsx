@@ -3,6 +3,7 @@
 import MegaMenu from "./MegaMenu";
 
 const ITEMS = [
+  { label: "Pricing & Packages", href: "/pricing", description: "Price plans for every service and budget" },
   { label: "Blog & Articles", href: "/resources/blogs", description: "Guides on AI, robotics and software" },
   { label: "Portfolio", href: "/resources/portfolio", description: "Projects and interactive demos" },
   { label: "Careers", href: "/resources/careers", description: "Open roles at ALPIXN" },

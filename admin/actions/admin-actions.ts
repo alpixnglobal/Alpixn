@@ -12,6 +12,7 @@ import { getPublishedJobBySlug } from "@/lib/content-service";
 import { normalizeBase64Image } from "@/lib/image-data";
 import {
   AboutSettingsModel,
+  ChatLeadModel,
   BlogPostModel,
   ContactMessageModel,
   PageBlockModel,
@@ -1685,7 +1686,7 @@ export async function submitOffshoreEnquiryAction(formData: FormData) {
 const INBOX_STATUSES = new Set(["new", "read", "replied", "archived"]);
 
 function inboxModel(kind: string) {
-  return kind === "application" ? JobApplicationModel : ContactMessageModel;
+  return kind === "application" ? JobApplicationModel : kind === "assistant" ? ChatLeadModel : ContactMessageModel;
 }
 
 export async function setInboxStatusAction(formData: FormData) {

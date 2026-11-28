@@ -1527,3 +1527,12 @@ html.theme-ready section {
   font-size: 14px;
 }
 .admin-main summary::-webkit-details-marker { display: none; }
+
+/* ---------- Website assistant robot ---------- */
+@keyframes assistant-blink { 0%, 90%, 100% { transform: scaleY(1); } 94% { transform: scaleY(0.1); } }
+@keyframes assistant-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes assistant-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+.assistant-eyes { transform-box: fill-box; transform-origin: center; animation: assistant-blink 4.5s infinite; }
+.assistant-antenna { animation: assistant-glow 1.8s ease-in-out infinite; }
+.assistant-bob { animation: assistant-bob 2.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .assistant-eyes, .assistant-antenna, .assistant-bob { animation: none; } }
